@@ -1,0 +1,17 @@
+title: "乙巳_YS-01-用到的包"
+description: "从一个项目了解使用nodejs开发产品需要用到哪些知识，01-用到的包"
+duration: "1分钟55秒"
+date: "2025-09-19"
+category: "基石 Prop"
+status: "latest"
+platforms:
+  bilibili: "https://www.bilibili.com/video/BV17sW3zuEso/"
+  douyin: "https://v.douyin.com/O0L0nVH78LU/"
+  youtube: "https://youtu.be/rZ7mfog7gB4"
+thumbnail: "https://bitmc.uno/picgo/01%EF%BC%9A%E4%B8%BB%E8%A6%81%E7%9A%84%E5%8C%85.jpg"
+tags:
+  - 项目
+  - nodejs
+  - nestjs
+  - vue
+  - typescript
