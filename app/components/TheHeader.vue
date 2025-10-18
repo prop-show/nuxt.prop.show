@@ -1,13 +1,8 @@
 <script setup lang="ts">
 import type { NavigationMenuItem } from "@nuxt/ui"
+const { navigationLinks } = useAppConfig()
 
-const items = ref<NavigationMenuItem[][]>([
-  [
-    { label: "首页", icon: "i-tabler-armchair-2", to: "/" },
-    { label: "视频", icon: "i-tabler-device-tv", to: "/videos" },
-    { label: "关于我们", icon: "i-tabler-brand-asana", to: "/about" },
-  ],
-])
+const items = ref<NavigationMenuItem[][]>([navigationLinks])
 </script>
 
 <template>

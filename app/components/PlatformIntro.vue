@@ -41,8 +41,8 @@ const features = [
             <Icon :name="feature.icon" size="24" :class="`text-${feature.color}-500`" />
           </div>
         </div>
-        <h3 class="font-semibold mb-2">{{ feature.title }}</h3>
-        <p class="text-sm text-muted">{{ feature.description }}</p>
+        <h3 class="font-semibold mb-2 text-center">{{ feature.title }}</h3>
+        <p class="text-sm text-muted text-center">{{ feature.description }}</p>
       </UCard>
     </div>
 

@@ -41,6 +41,12 @@ const getCategoryColor = (category: string) => {
       </div>
     </div>
 
+    <div class="flex flex-wrap gap-1 my-3" v-if="video.tags?.length">
+      <UBadge v-for="tag in video.tags" :key="tag" variant="outline" color="neutral" class="text-xs">
+        {{ tag }}
+      </UBadge>
+    </div>
+
     <p class="line-clamp-3 text-sm text-muted py-2">{{ video.description }}</p>
 
     <VideoPlatformButtons :platforms="video.platforms" />

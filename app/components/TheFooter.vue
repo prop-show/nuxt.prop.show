@@ -1,9 +1,5 @@
 <script lang="ts" setup>
-const navigationLinks = [
-  { name: "首页", href: "/" },
-  { name: "关于我们", href: "/about" },
-  { name: "视频", href: "/videos" },
-]
+const { navigationLinks } = useAppConfig()
 
 const socials: { href: string; platform: string; icon: string }[] = [
   { href: "https://github.com/prop-show", platform: "GitHub", icon: "i-tabler-brand-github" },
@@ -55,9 +51,9 @@ const currentYear = new Date().getFullYear()
         <div>
           <h3 class="font-semibold mb-4">快速导航</h3>
           <ul class="space-y-2">
-            <li v-for="link in navigationLinks" :key="link.name">
-              <NuxtLink :to="link.href" class="text-muted hover:text-foreground transition-colors text-sm">
-                {{ link.name }}
+            <li v-for="link in navigationLinks" :key="link.label">
+              <NuxtLink :to="link.to" class="text-muted hover:text-foreground transition-colors text-sm">
+                {{ link.label }}
               </NuxtLink>
             </li>
           </ul>
