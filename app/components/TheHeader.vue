@@ -23,7 +23,7 @@ const items = ref<NavigationMenuItem[][]>([navigationLinks])
       <UNavigationMenu color="neutral" :items="items" />
     </aside>
 
-    <aside className="block md:hidden">
+    <aside class="block md:hidden">
       <UDrawer title="导航菜单" direction="top" inset>
         <UButton color="neutral" variant="subtle" trailing-icon="i-tabler-align-justified" />
 
