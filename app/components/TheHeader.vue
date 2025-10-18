@@ -27,6 +27,17 @@ const items = ref<NavigationMenuItem[][]>([
     <aside class="justify-end hidden md:flex space-x-1">
       <UNavigationMenu color="neutral" :items="items" />
     </aside>
+
+    <aside className="block md:hidden">
+      <UDrawer title="导航菜单" direction="top" inset>
+        <UButton color="neutral" variant="subtle" trailing-icon="i-tabler-align-justified" />
+
+        <template #body>
+          <UNavigationMenu color="neutral" :items="items" orientation="vertical" />
+        </template>
+      </UDrawer>
+    </aside>
+
     <UColorModeButton />
   </header>
 </template>
