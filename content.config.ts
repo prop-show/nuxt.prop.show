@@ -16,6 +16,11 @@ const VideoSchema = z.object({
   tags: z.array(z.string()).default([]),
 })
 
+const NewsSchema = z.object({
+  title: z.string(),
+  date: z.string(),
+})
+
 
 export default defineContentConfig({
   collections: {
@@ -23,6 +28,11 @@ export default defineContentConfig({
       type: 'data',
       source: 'video/**/*.yml',
       schema: VideoSchema
+    }),
+    news: defineCollection({
+      type: 'data',
+      source: 'news/**/*.md',
+      schema: NewsSchema
     })
   }
 })
