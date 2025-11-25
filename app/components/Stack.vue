@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 const stacks = [
-  { name: "Nuxt.js" },
-  { name: "Vue" },
-  { name: "TypeScript" },
-  { name: "Tailwind CSS" },
-  { name: "Nuxt UI" },
-  { name: "Vue Bits" },
-  { name: "Vercel" },
+  { name: 'Nuxt.js' },
+  { name: 'Vue' },
+  { name: 'TypeScript' },
+  { name: 'Tailwind CSS' },
+  { name: 'Nuxt UI' },
+  { name: 'Vue Bits' },
+  { name: 'Vercel' },
 ]
 </script>
 

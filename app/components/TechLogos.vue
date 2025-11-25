@@ -1,20 +1,20 @@
 <script lang="ts" setup>
 const techLogos = [
-  { icon: "i-tabler-brand-react", title: "React", href: "https://react.dev" },
-  { icon: "i-tabler-brand-nextjs", title: "Next.js", href: "https://nextjs.org" },
-  { icon: "i-tabler-brand-vue", title: "Vue.js", href: "https://vuejs.org/" },
-  { icon: "i-tabler-brand-nuxt", title: "Nuxt.js", href: "https://nuxt.com/" },
+  { icon: 'i-tabler-brand-react', title: 'React', href: 'https://react.dev' },
+  { icon: 'i-tabler-brand-nextjs', title: 'Next.js', href: 'https://nextjs.org' },
+  { icon: 'i-tabler-brand-vue', title: 'Vue.js', href: 'https://vuejs.org/' },
+  { icon: 'i-tabler-brand-nuxt', title: 'Nuxt.js', href: 'https://nuxt.com/' },
   {
-    icon: "i-tabler-brand-typescript",
-    title: "TypeScript",
-    href: "https://www.typescriptlang.org",
+    icon: 'i-tabler-brand-typescript',
+    title: 'TypeScript',
+    href: 'https://www.typescriptlang.org',
   },
   {
-    icon: "i-tabler-brand-tailwind",
-    title: "Tailwind CSS",
-    href: "https://tailwindcss.com",
+    icon: 'i-tabler-brand-tailwind',
+    title: 'Tailwind CSS',
+    href: 'https://tailwindcss.com',
   },
-  { icon: "i-tabler-brand-nodejs", title: "Nodejs", href: "https://nodejs.org/" },
+  { icon: 'i-tabler-brand-nodejs', title: 'Nodejs', href: 'https://nodejs.org/' },
 ]
 </script>
 

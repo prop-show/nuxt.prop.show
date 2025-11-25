@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { VideosCollectionItem } from "@nuxt/content"
+import type { VideosCollectionItem } from '@nuxt/content'
 
 const { videos = [] } = defineProps<{
   videos?: VideosCollectionItem[]

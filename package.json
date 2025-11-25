@@ -2,20 +2,27 @@
   "name": "nuxt-prop-show",
   "type": "module",
   "private": true,
+  "packageManager": "pnpm@10.17.0",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev --port=4399",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
   },
   "dependencies": {
     "@nuxt/content": "^3.8.2",
+    "@nuxt/eslint": "1.10.0",
+    "@nuxt/hints": "1.0.0-alpha.2",
     "@nuxt/icon": "2.1.0",
+    "@nuxt/image": "2.0.0",
     "@nuxt/ui": "^4.2.0",
     "@nuxtjs/seo": "3.2.2",
     "@tailwindcss/vite": "^4.1.17",
     "better-sqlite3": "^12.4.1",
+    "eslint": "^9.39.1",
     "nuxt": "^4.2.1",
     "tailwindcss": "^4.1.17",
     "vue": "^3.5.24",
@@ -23,5 +30,17 @@
     "vue3-marquee": "^4.2.2",
     "zod": "^4.1.12"
   },
-  "packageManager": "pnpm@10.17.0"
+  "devDependencies": {
+    "@antfu/eslint-config": "^6.2.0",
+    "eslint": "^9.38.0",
+    "eslint-plugin-format": "^1.0.2",
+    "lint-staged": "^16.2.7",
+    "simple-git-hooks": "^2.13.1"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
+  }
 }

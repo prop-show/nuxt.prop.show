@@ -2,14 +2,14 @@
 interface SectionTitleProps {
   title: string
   centered?: boolean
-  size?: "sm" | "md" | "lg"
+  size?: 'sm' | 'md' | 'lg'
 }
-const { title, centered = true, size = "md" } = defineProps<SectionTitleProps>()
+const { title, centered = true, size = 'md' } = defineProps<SectionTitleProps>()
 
 const sizeClasses = {
-  sm: "text-xl",
-  md: "text-2xl",
-  lg: "text-3xl",
+  sm: 'text-xl',
+  md: 'text-2xl',
+  lg: 'text-3xl',
 }
 </script>
 

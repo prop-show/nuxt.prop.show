@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 const { navigationLinks } = useAppConfig()
 
-const socials: { href: string; platform: string; icon: string }[] = [
-  { href: "https://github.com/prop-show", platform: "GitHub", icon: "i-tabler-brand-github" },
-  { href: "https://space.bilibili.com/104376935", platform: "哔哩哔哩", icon: "i-tabler-brand-bilibili" },
-  { href: "https://www.youtube.com/@PropShowFM", platform: "YouTube", icon: "i-tabler-brand-youtube" },
-  { href: "https://bento.me/prop-show", platform: "Bento", icon: "i-tabler-link" },
+const socials: { href: string, platform: string, icon: string }[] = [
+  { href: 'https://github.com/prop-show', platform: 'GitHub', icon: 'i-tabler-brand-github' },
+  { href: 'https://space.bilibili.com/104376935', platform: '哔哩哔哩', icon: 'i-tabler-brand-bilibili' },
+  { href: 'https://www.youtube.com/@PropShowFM', platform: 'YouTube', icon: 'i-tabler-brand-youtube' },
+  { href: 'https://bento.me/prop-show', platform: 'Bento', icon: 'i-tabler-link' },
 ]
 
 const currentYear = new Date().getFullYear()
@@ -22,8 +22,12 @@ const currentYear = new Date().getFullYear()
           <div class="flex items-center mb-4">
             <Icon name="prop:logo" size="60" />
             <div class="ml-3">
-              <div class="font-black text-2xl">prop.show</div>
-              <p class="text-muted text-sm mt-1">为你传递前端开发的核心属性</p>
+              <div class="font-black text-2xl">
+                prop.show
+              </div>
+              <p class="text-muted text-sm mt-1">
+                为你传递前端开发的核心属性
+              </p>
             </div>
           </div>
           <p class="text-muted text-sm mb-4 max-w-md">
@@ -34,7 +38,7 @@ const currentYear = new Date().getFullYear()
           <!-- {/* 社交媒体链接 */} -->
           <div class="flex gap-3">
             <NuxtLink
-              v-for="(social, index) in socials"
+              v-for="(social) in socials"
               :key="social.platform"
               :to="social.href"
               target="_blank"
@@ -49,7 +53,9 @@ const currentYear = new Date().getFullYear()
 
         <!-- {/* 快速导航 */} -->
         <div>
-          <h3 class="font-semibold mb-4">快速导航</h3>
+          <h3 class="font-semibold mb-4">
+            快速导航
+          </h3>
           <ul class="space-y-2">
             <li v-for="link in navigationLinks" :key="link.label">
               <NuxtLink :to="link.to" class="text-muted hover:text-foreground transition-colors text-sm">
@@ -65,7 +71,9 @@ const currentYear = new Date().getFullYear()
       <div class="mt-4 pt-6">
         <div class="flex flex-col md:flex-row justify-between items-center gap-4">
           <!-- {/* 版权信息 */} -->
-          <div class="text-sm text-muted">© {{ currentYear }} prop.show. All rights reserved.</div>
+          <div class="text-sm text-muted">
+            © {{ currentYear }} prop.show. All rights reserved.
+          </div>
 
           <!-- {/* 友情链接/政策 */} -->
           <div class="flex items-center gap-4 text-sm text-muted">

@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import type { NavigationMenuItem } from "@nuxt/ui"
+import type { NavigationMenuItem } from '@nuxt/ui'
+
 const { navigationLinks } = useAppConfig()
 
 const items = ref<NavigationMenuItem[][]>([navigationLinks])
@@ -11,8 +12,12 @@ const items = ref<NavigationMenuItem[][]>([navigationLinks])
       <section class="flex items-center">
         <Icon name="prop:logo" size="60" />
         <section class="hidden md:block ml-2">
-          <div class="font-black text-5xl">prop.show</div>
-          <p class="font-bold mt-1">为你传递前端开发的核心属性</p>
+          <div class="font-black text-5xl">
+            prop.show
+          </div>
+          <p class="font-bold mt-1">
+            为你传递前端开发的核心属性
+          </p>
         </section>
       </section>
     </NuxtLink>

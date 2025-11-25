@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-const socials: { href: string; platform: string; icon: string }[] = [
-  { href: "https://github.com/prop-show", platform: "GitHub", icon: "i-tabler-brand-github" },
-  { href: "https://space.bilibili.com/104376935", platform: "哔哩哔哩", icon: "i-tabler-brand-bilibili" },
-  { href: "https://www.youtube.com/@PropShowFM", platform: "YouTube", icon: "i-tabler-brand-youtube" },
+const socials: { href: string, platform: string, icon: string }[] = [
+  { href: 'https://github.com/prop-show', platform: 'GitHub', icon: 'i-tabler-brand-github' },
+  { href: 'https://space.bilibili.com/104376935', platform: '哔哩哔哩', icon: 'i-tabler-brand-bilibili' },
+  { href: 'https://www.youtube.com/@PropShowFM', platform: 'YouTube', icon: 'i-tabler-brand-youtube' },
 ]
 </script>
 
@@ -17,10 +17,10 @@ const socials: { href: string; platform: string; icon: string }[] = [
     <template #description>
       <section class="flex flex-wrap items-center gap-2 mt-2">
         <UButton
-          color="neutral"
-          variant="outline"
           v-for="social in socials"
           :key="social.platform"
+          color="neutral"
+          variant="outline"
           :href="social.href"
           :icon="social.icon"
           target="_blank"

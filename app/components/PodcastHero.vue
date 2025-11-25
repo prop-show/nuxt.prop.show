@@ -6,11 +6,13 @@
       <Icon name="prop:logo" :size="300" class="hover:animate-spin" />
     </div>
     <section class="text-center flex justify-center">
-      <h1 class="sr-only">prop.show - 前端开发播客与教程</h1>
+      <h1 class="sr-only">
+        prop.show - 前端开发播客与教程
+      </h1>
       <VueBitsBlurText
         text="为你传递前端开发的核心属性"
         :delay="150"
-        animateBy="words"
+        animate-by="words"
         direction="top"
         class="font-bold mt-4 text-5xl text-center"
       />

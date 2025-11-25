@@ -13,10 +13,12 @@ defineProps<FeatureCardProps>()
       <div>
         <h2>{{ title }}</h2>
       </div>
-      <p class="text-sm text-muted">{{ description }}</p>
+      <p class="text-sm text-muted">
+        {{ description }}
+      </p>
 
       <div class="text-muted mt-2">
-        <slot></slot>
+        <slot />
       </div>
     </template>
   </UCard>

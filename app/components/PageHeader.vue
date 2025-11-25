@@ -12,10 +12,12 @@ defineProps<PageHeaderProps>()
     <VueBitsBlurText
       :text="title"
       :delay="150"
-      animateBy="words"
+      animate-by="words"
       direction="top"
       class="font-bold items-center justify-center mx-auto text-4xl md:text-5xl mb-4"
     />
-    <p v-if="description" class="text-lg text-muted-foreground max-w-2xl mx-auto">{{ description }}</p>
+    <p v-if="description" class="text-lg text-muted-foreground max-w-2xl mx-auto">
+      {{ description }}
+    </p>
   </header>
 </template>

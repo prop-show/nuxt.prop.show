@@ -1,4 +1,4 @@
-import { defineContentConfig, defineCollection, z } from '@nuxt/content'
+import { defineCollection, defineContentConfig, z } from '@nuxt/content'
 
 const VideoSchema = z.object({
   title: z.string(),
@@ -21,18 +21,17 @@ const NewsSchema = z.object({
   date: z.string(),
 })
 
-
 export default defineContentConfig({
   collections: {
     videos: defineCollection({
       type: 'data',
       source: 'video/**/*.yml',
-      schema: VideoSchema
+      schema: VideoSchema,
     }),
     news: defineCollection({
       type: 'data',
       source: 'news/**/*.md',
-      schema: NewsSchema
-    })
-  }
+      schema: NewsSchema,
+    }),
+  },
 })
