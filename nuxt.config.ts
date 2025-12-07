@@ -25,6 +25,26 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/main.css'],
 
+  // 性能优化配置
+  experimental: {
+    payloadExtraction: true,
+    viewTransition: true,
+  },
+
+  // Nitro 预渲染配置
+  nitro: {
+    compressPublicAssets: true,
+    prerender: {
+      crawlLinks: true,
+      routes: ['/'],
+    },
+  },
+
+  // 路由预取策略
+  routeRules: {
+    '/': { prerender: true },
+  },
+
   vite: {
     plugins: [tailwindcss()],
   },
@@ -54,6 +74,9 @@ export default defineNuxtConfig({
 
   image: {
     domains: ['bitmc.uno'],
+    format: ['webp', 'avif'],
+    quality: 80,
+    densities: [1, 2],
   },
 
   eslint: {

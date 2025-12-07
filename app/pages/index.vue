@@ -21,10 +21,10 @@ defineOgImageComponent('NuxtSeo', {
     <div class="max-w-6xl mx-auto">
       <SocialLinks />
       <PlatformIntro />
-      <TechLogos />
-      <Creators />
-      <Modules />
-      <ComingSoonPreview />
+      <LazyTechLogos />
+      <LazyCreators />
+      <LazyModules />
+      <LazyComingSoonPreview />
     </div>
   </section>
 </template>

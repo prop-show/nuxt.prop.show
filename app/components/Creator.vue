@@ -6,7 +6,7 @@ const { avatar, creator, href } = defineProps<CreatorProp>()
 
 <template>
   <div class="flex items-center gap-2">
-    <NuxtImg width="40" height="40" :src="avatar" alt="whbbit-avatar" class="size-10 rounded-full object-cover" />
+    <NuxtImg width="40" height="40" :src="avatar" :alt="`${creator} avatar`" class="size-10 rounded-full object-cover" loading="lazy" />
     <NuxtLink :to="href" target="_blank" class="flex items-center gap-1 border-b border-primary">
       <IconLink />
       <Icon name="i-tabler-link" size="24" />
