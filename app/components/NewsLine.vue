@@ -8,13 +8,11 @@ defineProps<{
 
 <template>
   <section class="space-y-4">
-    <UCard v-for="item in news" :key="item.id">
-      <template #header>
-        <h3 class="text-lg font-bold">
-          {{ item.title }}
-        </h3>
-      </template>
-      <ContentRenderer :value="item.meta" />
-    </UCard>
+    <template v-for="item in news" :key="item.id">
+      <NuxtLink :to="item.path" class="border rounded-md border-primary/40 p-4 block prose dark:prose-invert mx-auto prose:a">
+        <h2> {{ item.title }} </h2>
+        <p>{{ item.description }}</p>
+      </NuxtLink>
+    </template>
   </section>
 </template>

@@ -29,7 +29,7 @@ export default defineContentConfig({
       schema: VideoSchema,
     }),
     news: defineCollection({
-      type: 'data',
+      type: 'page',
       source: 'news/**/*.md',
       schema: NewsSchema,
     }),
