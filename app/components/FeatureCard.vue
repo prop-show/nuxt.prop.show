@@ -1,25 +1,25 @@
 <script lang="ts" setup>
 interface FeatureCardProps {
-  title: string
-  description: string
+    title: string
+    description: string
 }
 
 defineProps<FeatureCardProps>()
 </script>
 
 <template>
-  <UCard>
-    <template #header>
-      <div>
-        <h2>{{ title }}</h2>
-      </div>
-      <p class="text-sm text-muted">
-        {{ description }}
-      </p>
+    <UCard>
+        <template #header>
+            <div>
+                <h2>{{ title }}</h2>
+            </div>
+            <p class="text-sm text-muted">
+                {{ description }}
+            </p>
 
-      <div class="text-muted mt-2">
-        <slot />
-      </div>
-    </template>
-  </UCard>
+            <div class="text-muted mt-2">
+                <slot />
+            </div>
+        </template>
+    </UCard>
 </template>

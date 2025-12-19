@@ -1,28 +1,28 @@
 <script lang="ts" setup>
 useSeoMeta({
-  title: '关于我们 - prop.show',
-  description: '了解 prop.show 前端开发播客与教程平台，我们的使命、内容和创作团队。',
+    title: '关于我们 - prop.show',
+    description: '了解 prop.show 前端开发播客与教程平台，我们的使命、内容和创作团队。',
 })
 
 defineOgImageComponent('NuxtSeo', {
-  headline: 'prop.show',
-  title: '关于我们 😜',
-  description: '了解 prop.show 前端开发播客与教程平台，我们的使命、内容和创作团队。',
-  theme: '#F0DB4F',
-  colorMode: 'dark',
+    headline: 'prop.show',
+    title: '关于我们 😜',
+    description: '了解 prop.show 前端开发播客与教程平台，我们的使命、内容和创作团队。',
+    theme: '#F0DB4F',
+    colorMode: 'dark',
 })
 </script>
 
 <template>
-  <section>
-    <PageHeader title="关于 prop.show" description="为你传递前端开发的核心属性，分享技术洞察与编程智慧" />
+    <section>
+        <PageHeader title="关于 prop.show" description="为你传递前端开发的核心属性，分享技术洞察与编程智慧" />
 
-    <OurMission />
+        <OurMission />
 
-    <Modules />
+        <Modules />
 
-    <Creators />
+        <Creators />
 
-    <Stack />
-  </section>
+        <Stack />
+    </section>
 </template>

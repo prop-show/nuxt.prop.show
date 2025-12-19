@@ -1,6 +1,6 @@
+---
 title: vscode 美化
 description: 我用的 vscode 美化配置，分享给大家
-duration: 1分钟30秒
 date: 2025-08-28
 category: 酷炫 Prop
 status: latest
@@ -14,3 +14,4 @@ tags:
   - 主题
   - 图标
   - 字体
+---

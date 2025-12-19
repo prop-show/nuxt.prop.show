@@ -1,30 +1,30 @@
 <script lang="ts" setup>
 useSeoMeta({
-  title: '前端开发播客与教程 - prop.show',
-  description:
+    title: '前端开发播客与教程 - prop.show',
+    description:
     'prop.show 是专注于前端开发的播客与教程平台，提供 React、Vue、Node.js、TypeScript 等技术内容。包括视频教程、音频播客、新库推荐和框架解析。',
 })
 
 defineOgImageComponent('NuxtSeo', {
-  headline: 'prop.show',
-  title: 'Hello 👋',
-  description: 'prop.show 是专注于前端开发的播客与教程平台，提供 React、Vue、Node.js、TypeScript 等技术内容。包括视频教程、音频播客、新库推荐和框架解析。',
-  theme: '#F0DB4F',
-  colorMode: 'dark',
+    headline: 'prop.show',
+    title: 'Hello 👋',
+    description: 'prop.show 是专注于前端开发的播客与教程平台，提供 React、Vue、Node.js、TypeScript 等技术内容。包括视频教程、音频播客、新库推荐和框架解析。',
+    theme: '#F0DB4F',
+    colorMode: 'dark',
 })
 </script>
 
 <template>
-  <section>
-    <PodcastHero />
+    <section>
+        <PodcastHero />
 
-    <div class="max-w-6xl mx-auto">
-      <SocialLinks />
-      <PlatformIntro />
-      <LazyTechLogos />
-      <LazyCreators />
-      <LazyModules />
-      <LazyComingSoonPreview />
-    </div>
-  </section>
+        <div class="max-w-6xl mx-auto">
+            <SocialLinks />
+            <PlatformIntro />
+            <LazyTechLogos />
+            <LazyCreators />
+            <LazyModules />
+            <LazyComingSoonPreview />
+        </div>
+    </section>
 </template>

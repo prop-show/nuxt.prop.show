@@ -2,17 +2,17 @@
 import type { NewsCollectionItem } from '@nuxt/content'
 
 defineProps<{
-  news: NewsCollectionItem[]
+    news: NewsCollectionItem[]
 }>()
 </script>
 
 <template>
-  <section class="space-y-4">
-    <template v-for="item in news" :key="item.id">
-      <NuxtLink :to="item.path" class="border rounded-md border-primary/40 p-4 block prose dark:prose-invert mx-auto prose:a">
-        <h2> {{ item.title }} </h2>
-        <p>{{ item.description }}</p>
-      </NuxtLink>
-    </template>
-  </section>
+    <section class="space-y-4">
+        <UCard v-for="item in news" :key="item.id" variant="subtle">
+            <NuxtLink :to="item.path" class="prose dark:prose-invert mx-auto">
+                <h2> {{ item.title }} </h2>
+                <p>{{ item.description }}</p>
+            </NuxtLink>
+        </UCard>
+    </section>
 </template>

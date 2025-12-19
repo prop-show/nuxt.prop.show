@@ -1,5 +1,5 @@
 export interface CreatorProp {
-  avatar: string
-  creator: string
-  href: string
+    avatar: string
+    creator: string
+    href: string
 }
