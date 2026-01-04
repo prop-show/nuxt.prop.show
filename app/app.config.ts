@@ -46,7 +46,7 @@ export default defineAppConfig({
 
     friendLinks: [
         { label: 'PropShowKit', to: 'https://kit.prop.show' },
-        { label: 'Whbbit1999', to: 'https://whbbit.cn' },
+        { label: 'Whbbit1999', to: 'https://weilog.me' },
         { label: 'Himavanta', to: 'https://www.unsun.cc/' },
     ] as NavigationMenuItem[],
 
