@@ -12,7 +12,7 @@ const { creators } = useAppConfig()
         </p>
 
         <section class="flex justify-center items-center flex-wrap gap-4">
-            <span class="font-black text-2xl">频道主播:</span>
+            <!-- <span class="font-black text-2xl">频道主播:</span> -->
 
             <div v-for="(creator, index) in creators" :key="index" class="flex items-center gap-2 flex-wrap">
                 <Creator :avatar="creator.avatar" :creator="creator.creator" :href="creator.href" />
