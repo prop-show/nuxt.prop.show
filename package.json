@@ -21,6 +21,7 @@
     "@nuxt/ui": "^4.5.0",
     "@nuxtjs/seo": "3.3.0",
     "@tailwindcss/vite": "^4.2.1",
+    "@vercel/analytics": "^2.0.0",
     "better-sqlite3": "^12.6.2",
     "eslint": "^9.39.3",
     "nuxt": "^4.3.1",
