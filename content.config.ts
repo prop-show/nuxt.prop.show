@@ -13,6 +13,7 @@ const VideoSchema = z.object({
     }),
     thumbnail: z.string(),
     tags: z.array(z.string()).default([]),
+    order: z.number().default(0),
 })
 
 const NewsSchema = z.object({

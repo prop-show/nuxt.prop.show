@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import type { VideosCollectionItem } from '@nuxt/content'
 
-const { platforms } = defineProps<{
+const { platforms, showTitle = true } = defineProps<{
+    showTitle?: boolean
     platforms: VideosCollectionItem['platforms']
 }>()
 
@@ -9,11 +10,11 @@ const { platforms: staticPlatforms } = useAppConfig()
 </script>
 
 <template>
-    <div className="space-y-2 pt-2">
-        <div className=" text-white text-sm">
+    <div class="space-y-2 pt-2 prose">
+        <h3 v-if="showTitle" class=" text-white">
             观看平台：
-        </div>
-        <div className="flex flex-wrap gap-2 space-x-2">
+        </h3>
+        <div class="flex flex-wrap gap-2 space-x-2">
             <UButton
                 v-for="platform in staticPlatforms"
                 :key="platform.key"

@@ -1,9 +1,8 @@
 ---
 title: vscode 美化
 description: 我用的 vscode 美化配置，分享给大家
-date: 2025-08-28
 category: 酷炫 Prop
-status: latest
+order: 1
 platforms:
   bilibili: 'https://www.bilibili.com/video/BV1Yeh1z1E74/'
   douyin: 'https://v.douyin.com/xUowjooJEC0/'

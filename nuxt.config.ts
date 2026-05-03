@@ -63,14 +63,14 @@ export default defineNuxtConfig({
         description: 'prop.show 为你传递前端开发的核心属性。包含 Node.js 后台 API 开发，前端页面开发，系统设计，新库推荐，框架解析等内容。',
         defaultLocale: 'zh-CN',
     },
-    ogImage: {
-        fonts: [
-            'Noto+Sans+SC:400',
-        ],
-        defaults: {
-            emojis: 'twemoji',
-        },
-    },
+    // ogImage: {
+    //     // fonts: [
+    //     //     'Noto+Sans+SC:400',
+    //     // ],
+    //     defaults: {
+    //         emojis: 'twemoji',
+    //     },
+    // },
 
     image: {
         domains: ['bitmc.uno'],

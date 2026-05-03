@@ -27,7 +27,7 @@ export default defineAppConfig({
     creators: [
         {
             avatar: 'https://bitmc.uno/picgo/126662463_p2.jpg',
-            creator: 'Whbbit1999',
+            creator: 'Wei',
             href: 'https://github.com/Whbbit1999',
         },
         {
@@ -46,7 +46,7 @@ export default defineAppConfig({
 
     friendLinks: [
         { label: 'PropShowKit', to: 'https://kit.prop.show' },
-        { label: 'Whbbit1999', to: 'https://weilog.me' },
+        { label: '月空人', to: 'https://weilog.me' },
         { label: 'Himavanta', to: 'https://www.unsun.cc/' },
     ] as NavigationMenuItem[],
 

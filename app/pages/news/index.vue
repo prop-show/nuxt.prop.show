@@ -13,19 +13,19 @@ useSeoMeta({
     description: '第一时间获得前端库和工具的最新动态和更新消息。',
 })
 
-defineOgImageComponent('NuxtSeo', {
-    headline: 'prop.show',
-    title: '前端速报 📰',
-    description: '第一时间获得前端库和工具的最新动态和更新消息。',
-    theme: '#F0DB4F',
-    colorMode: 'dark',
-})
+// defineOgImageComponent('NuxtSeo', {
+//     headline: 'prop.show',
+//     title: '前端速报 📰',
+//     description: '第一时间获得前端库和工具的最新动态和更新消息。',
+//     theme: '#F0DB4F',
+//     colorMode: 'dark',
+// })
 </script>
 
 <template>
     <main>
         <PageHeader title="速报" description="一些库和工具的最新动态和更新消息" />
-        <section className="mb-16" />
+        <section class="mb-16" />
 
         <section v-if="pending">
             <UCard v-for="index in 4" :key="index" class="space-y-4 mb-4">

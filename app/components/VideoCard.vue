@@ -20,14 +20,10 @@ function getCategoryColor(category: string) {
 </script>
 
 <template>
-    <UCard class="group hover:shadow-lg transition-all" variant="subtle">
-        <div class="relative overflow-hidden rounded-md">
-            <div class="aspect-video flex items-center justify-center">
-                <NuxtImg :src="video.thumbnail" :alt="video.title" layout="fill" object-fit="cover" class="w-full" />
-            </div>
-        </div>
+    <UCard class="group hover:shadow-lg relative transition-all" variant="subtle">
+        <span class="absolute -right-2 -top-2 text-9xl font-black -rotate-12 text-primary dark:text-primary-400 -z-10">{{ video.order }}</span>
 
-        <div class="flex items-start justify-between pt-4">
+        <div class="flex items-start justify-between relative z-10">
             <div class="flex-1">
                 <div class="flex items-center gap-2 mb-2">
                     <div class="w-3 h-3 rounded-full" :class="[`${getCategoryColor(video.category)}`]" />
@@ -49,6 +45,6 @@ function getCategoryColor(category: string) {
             {{ video.description }}
         </p>
 
-        <!-- <VideoPlatformButtons :platforms="video.platforms" /> -->
+        <VideoPlatformButtons :show-title="false" :platforms="video.platforms" />
     </UCard>
 </template>

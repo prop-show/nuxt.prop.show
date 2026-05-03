@@ -5,7 +5,7 @@ const { techLogos } = useAppConfig()
 <template>
     <section class="my-8">
         <ClientOnly>
-            <Vue3Marquee pause-on-hover clone :duration="20">
+            <Vue3Marquee pause-on-hover clone :duration="20" class="overflow-hidden">
                 <NuxtLink
                     v-for="tech in techLogos"
                     :key="tech.href"
@@ -13,7 +13,7 @@ const { techLogos } = useAppConfig()
                     target="_blank"
                     class="size-18 inline-block hover:scale-110 transition-transform mx-6"
                 >
-                    <Icon :name="tech.icon" size="60" />
+                    <Icon :name="tech.icon" size="65" />
                 </NuxtLink>
             </Vue3Marquee>
         </ClientOnly>

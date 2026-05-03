@@ -13,9 +13,9 @@ useSeoMeta({
 
 <template>
     <div v-if="video" class="prose dark:prose-invert mx-auto ">
-        <div class="aspect-video flex items-center justify-center">
+        <!-- <div class="aspect-video flex items-center justify-center">
             <NuxtImg :src="video.thumbnail" :alt="video.title" layout="fill" object-fit="cover" class="w-full" />
-        </div>
+        </div> -->
 
         <h1>
             {{ video.title }}
@@ -31,8 +31,8 @@ useSeoMeta({
             </UBadge>
         </div>
 
-        <VideoPlatformButtons :platforms="video.platforms" />
-
         <ContentRenderer v-if="video" :value="video" />
+
+        <VideoPlatformButtons :platforms="video.platforms" />
     </div>
 </template>

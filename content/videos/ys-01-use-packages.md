@@ -1,9 +1,8 @@
 ---
-title: 乙巳:用到的包
+title: 乙巳:01 用到的包
 description: 从一个项目了解使用nodejs开发产品需要用到哪些知识，01-用到的包
-date: 2025-09-19
 category: 基石 Prop
-status: latest
+order: 3
 platforms:
   bilibili: 'https://www.bilibili.com/video/BV17sW3zuEso/'
   douyin: 'https://v.douyin.com/O0L0nVH78LU/'
