@@ -11,7 +11,10 @@ const colorMode = useColorMode()
     <header class="flex justify-between items-center py-5 px-4 md:px-0">
         <NuxtLink to="/">
             <section class="flex items-center">
-                <Icon :name="colorMode.value === 'dark' ? 'prop:prop-dark-transparent' : 'prop:prop-light-transparent'" size="60" />
+                <Icon
+                    :name="colorMode.value === 'light' ? 'prop:prop-light-transparent' : 'prop:prop-dark-transparent'"
+                    :size="60"
+                />
                 <section class="hidden md:block ml-2">
                     <div class="font-black text-5xl">
                         prop.show

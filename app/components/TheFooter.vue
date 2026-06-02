@@ -14,7 +14,10 @@ const colorMode = useColorMode()
                 <!-- {/* 品牌区域 */} -->
                 <div class="lg:col-span-2">
                     <div class="flex items-center mb-4">
-                        <Icon :name="colorMode.value === 'dark' ? 'prop:prop-dark-transparent' : 'prop:prop-light-transparent'" size="60" />
+                        <Icon
+                            :name="colorMode.value === 'light' ? 'prop:prop-light-transparent' : 'prop:prop-dark-transparent'"
+                            :size="60"
+                        />
                         <div class="ml-3">
                             <div class="font-black text-2xl">
                                 prop.show

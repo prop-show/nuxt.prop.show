@@ -5,7 +5,10 @@ const colorMode = useColorMode()
 <template>
     <header class="my-10" role="banner">
         <div class="flex justify-center">
-            <Icon :name="colorMode.value === 'dark' ? 'prop:prop-dark-transparent' : 'prop:prop-light-transparent'" :size="300" />
+            <Icon
+                :name="colorMode.value === 'light' ? 'prop:prop-light-transparent' : 'prop:prop-dark-transparent'"
+                :size="300"
+            />
         </div>
         <section class="text-center flex justify-center">
             <h1 class="sr-only">
