@@ -1,9 +1,11 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const colorMode = useColorMode()
+</script>
 
 <template>
     <header class="my-10" role="banner">
         <div class="flex justify-center">
-            <Icon name="prop:logo" :size="300" class="hover:animate-spin" />
+            <Icon :name="colorMode.value === 'dark' ? 'prop:prop-dark-transparent' : 'prop:prop-light-transparent'" :size="300" />
         </div>
         <section class="text-center flex justify-center">
             <h1 class="sr-only">

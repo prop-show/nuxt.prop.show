@@ -54,13 +54,13 @@ const upcomingFeatures = [
         </div>
 
         <div class="text-center mt-6">
-            <p class="text-sm text-muted">
+            <div class="text-sm text-muted">
                 💡 有建议或想法？欢迎通过
                 <NuxtLink to="https://github.com/prop-show" class="text-blue-500 hover:underline mx-1">
                     GitHub
                 </NuxtLink>
                 与我们交流
-            </p>
+            </div>
         </div>
     </section>
 </template>

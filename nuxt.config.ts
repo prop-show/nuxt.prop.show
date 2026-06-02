@@ -56,6 +56,9 @@ export default defineNuxtConfig({
             },
         ],
     },
+    colorMode: {
+        classSuffix: '',
+    },
 
     site: {
         url: 'https://prop.show',
@@ -98,7 +101,8 @@ export default defineNuxtConfig({
                 { name: 'author', content: 'prop.show' },
             ],
             link: [
-                { rel: 'icon', href: '/favicon.svg' },
+                { rel: 'icon', type: 'image/svg+xml', href: '/prop-dark.svg', media: '(prefers-color-scheme: dark)' },
+                { rel: 'icon', type: 'image/svg+xml', href: '/prop-light.svg', media: '(prefers-color-scheme: light)' },
                 { rel: 'canonical', href: 'https://prop.show' },
             ],
         },

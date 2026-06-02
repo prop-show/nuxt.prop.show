@@ -140,7 +140,7 @@ watch([() => props.delay, () => props.stepDuration, () => props.animateBy, () =>
 </script>
 
 <template>
-    <p ref="rootRef" class="blur-text flex flex-wrap" :class="[className]">
+    <div ref="rootRef" class="blur-text flex flex-wrap" :class="[className]">
         <Motion
             v-for="(segment, index) in elements"
             :key="`${animationKey}-${index}`"
@@ -157,5 +157,5 @@ watch([() => props.delay, () => props.stepDuration, () => props.animateBy, () =>
             {{ segment === " " ? "\u00A0" : segment }}
             {{ animateBy === "words" && index < elements.length - 1 ? "\u00A0" : "" }}
         </Motion>
-    </p>
+    </div>
 </template>

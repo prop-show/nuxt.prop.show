@@ -55,11 +55,11 @@ const features = [
         </div>
 
         <div class="text-center mt-8">
-            <p class="text-lg font-medium text-muted">
+            <div class="text-lg font-medium text-muted">
                 🚀 现已覆盖 <span class="text-foreground font-bold">React</span>、
                 <span class="text-foreground font-bold">Vue</span>、 <span class="text-foreground font-bold">Node.js</span>、
                 <span class="text-foreground font-bold">TypeScript</span> 等热门技术栈
-            </p>
+            </div>
         </div>
     </section>
 </template>

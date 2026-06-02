@@ -4,13 +4,14 @@ import type { NavigationMenuItem } from '@nuxt/ui'
 const { navigationLinks } = useAppConfig()
 
 const items = ref<NavigationMenuItem[][]>([navigationLinks])
+const colorMode = useColorMode()
 </script>
 
 <template>
     <header class="flex justify-between items-center py-5 px-4 md:px-0">
         <NuxtLink to="/">
             <section class="flex items-center">
-                <Icon name="prop:logo" size="60" />
+                <Icon :name="colorMode.value === 'dark' ? 'prop:prop-dark-transparent' : 'prop:prop-light-transparent'" size="60" />
                 <section class="hidden md:block ml-2">
                     <div class="font-black text-5xl">
                         prop.show
