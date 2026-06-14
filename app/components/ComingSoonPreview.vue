@@ -4,7 +4,7 @@ const upcomingFeatures = [
         number: '01',
         title: '交互式代码练习',
         description: '提供在线编码环境，把节目中的知识直接变成可以动手验证的练习。',
-        status: '开发中',
+        status: '设计中',
         statusLabel: 'IN DEVELOPMENT',
         accent: 'bg-green-500',
         icon: 'i-tabler-terminal-2',

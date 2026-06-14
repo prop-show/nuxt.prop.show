@@ -22,7 +22,7 @@ const signals = computed(() => [
 </script>
 
 <template>
-    <header class="hero-shell my-8 overflow-hidden border border-default bg-default/85 shadow-sm md:my-12" role="banner">
+    <header class="hero-shell my-8 overflow-hidden border border-default/50 bg-default/85 md:my-12" role="banner">
         <div class="grid lg:grid-cols-[1.35fr_0.65fr]">
             <section class="relative flex min-h-125 flex-col justify-between overflow-hidden p-6 sm:p-10 lg:p-14">
                 <div class="hero-grid absolute inset-0 opacity-50" />
@@ -68,7 +68,7 @@ const signals = computed(() => [
             <aside class="relative flex min-h-100 items-center justify-center overflow-hidden border-t border-default bg-primary lg:min-h-full lg:border-t-0 lg:border-l">
                 <div class="absolute inset-5 border border-black/15" />
                 <div class="absolute top-8 right-8 font-mono text-xs font-bold tracking-[0.2em] text-black/55">
-                    SIGNAL 24/7
+                    FRONTEND, CLEARLY
                 </div>
 
                 <div class="hero-logo relative flex size-72 items-center justify-center rounded-full border border-black/20 sm:size-80">
