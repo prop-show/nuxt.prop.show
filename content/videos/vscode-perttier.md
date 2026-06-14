@@ -7,7 +7,7 @@ platforms:
   bilibili: 'https://www.bilibili.com/video/BV1Yeh1z1E74/'
   douyin: 'https://v.douyin.com/xUowjooJEC0/'
   youtube: 'https://youtu.be/PwkSOswyuoo'
-thumbnail: 'https://bitmc.uno/picgo/a79344c2077cf5f3c4768c55d56d6f92bfbdf595.jpg@672w_378h_1c.avif'
+
 tags:
   - vscode
   - 主题

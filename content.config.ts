@@ -11,7 +11,6 @@ const VideoSchema = z.object({
         youtube: z.string().optional(),
         douyin: z.string().optional(),
     }),
-    thumbnail: z.string(),
     tags: z.array(z.string()).default([]),
     order: z.number().default(0),
 })

@@ -7,7 +7,7 @@ platforms:
   bilibili: 'https://www.bilibili.com/video/BV1RPpszKEDA/'
   douyin: 'https://v.douyin.com/kJpVbLnB12c/'
   youtube: 'https://youtu.be/EUdVfSPbhQI'
-thumbnail: 'https://bitmc.uno/picgo/%E5%89%8D%E8%A8%80-%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B.jpg'
+
 tags:
   - 项目
   - nodejs
