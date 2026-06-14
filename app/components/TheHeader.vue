@@ -1,7 +1,6 @@
 <script setup lang="ts">
 const { navigationLinks } = useAppConfig()
 const route = useRoute()
-const colorMode = useColorMode()
 const mobileMenuOpen = ref(false)
 
 function isActive(to?: string) {
@@ -21,8 +20,14 @@ function isActive(to?: string) {
             <NuxtLink to="/" class="group flex shrink-0 items-center gap-3 outline-none focus-visible:ring-2 focus-visible:ring-primary">
                 <span class="flex size-10 items-center justify-center border border-default bg-default transition-colors group-hover:border-primary">
                     <Icon
-                        :name="colorMode.value === 'light' ? 'prop:prop-light-transparent' : 'prop:prop-dark-transparent'"
+                        name="prop:prop-light-transparent"
                         :size="34"
+                        class="dark:hidden"
+                    />
+                    <Icon
+                        name="prop:prop-dark-transparent"
+                        :size="34"
+                        class="hidden dark:block"
                     />
                 </span>
                 <div>

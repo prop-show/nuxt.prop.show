@@ -2,7 +2,6 @@
 const { socials, navigationLinks, friendLinks } = useAppConfig()
 
 const currentYear = new Date().getFullYear()
-const colorMode = useColorMode()
 </script>
 
 <template>
@@ -14,10 +13,18 @@ const colorMode = useColorMode()
                 <!-- {/* 品牌区域 */} -->
                 <div class="lg:col-span-2">
                     <div class="flex items-center mb-4">
-                        <Icon
-                            :name="colorMode.value === 'light' ? 'prop:prop-light-transparent' : 'prop:prop-dark-transparent'"
-                            :size="60"
-                        />
+                        <span class="flex size-15 items-center justify-center">
+                            <Icon
+                                name="prop:prop-light-transparent"
+                                :size="60"
+                                class="dark:hidden"
+                            />
+                            <Icon
+                                name="prop:prop-dark-transparent"
+                                :size="60"
+                                class="hidden dark:block"
+                            />
+                        </span>
                         <div class="ml-3">
                             <div class="font-black text-2xl">
                                 prop.show
