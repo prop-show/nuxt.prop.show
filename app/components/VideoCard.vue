@@ -17,34 +17,65 @@ function getCategoryColor(category: string) {
             return 'bg-gray-500'
     }
 }
+
+const { platforms: platformOptions } = useAppConfig()
 </script>
 
 <template>
-    <UCard class="group relative overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:bg-elevated/70 hover:shadow-lg" variant="subtle">
-        <span class="pointer-events-none absolute -right-2 -top-3 z-0 font-mono text-9xl font-black tracking-[-0.12em] text-primary/25 transition-all duration-300 group-hover:-rotate-6 group-hover:text-primary/45">{{ String(video.order).padStart(2, '0') }}</span>
-
-        <div class="flex items-start justify-between relative z-10">
-            <div class="flex-1">
-                <div class="flex items-center gap-2 mb-2">
-                    <div class="w-3 h-3 rounded-full" :class="[`${getCategoryColor(video.category)}`]" />
-                    <span class="font-mono text-xs font-bold tracking-wider text-muted">{{ video.category }}</span>
-                </div>
-                <h3 class="text-lg font-black transition-colors group-hover:text-primary">
-                    {{ video.title }}
-                </h3>
+    <NuxtLink
+        :to="video.path"
+        class="group grid gap-5 border-b border-default px-1 py-7 outline-none transition-colors last:border-b-0 hover:bg-elevated/55 focus-visible:bg-elevated/55 sm:px-5 lg:grid-cols-[7rem_1fr_12rem_2.5rem] lg:items-center"
+    >
+        <div>
+            <div class="font-mono text-2xl font-black tracking-[-0.06em] transition-colors group-hover:text-primary">
+                EP.{{ String(video.order).padStart(2, '0') }}
+            </div>
+            <div class="mt-2 flex items-center gap-2">
+                <span class="size-2 rounded-full" :class="getCategoryColor(video.category)" />
+                <span class="font-mono text-[10px] font-bold tracking-[0.14em] text-dimmed">
+                    {{ video.category }}
+                </span>
             </div>
         </div>
 
-        <div v-if="video.tags?.length" class="flex flex-wrap gap-1 my-3">
-            <UBadge v-for="tag in video.tags" :key="tag" variant="outline" color="neutral" class="text-xs">
-                {{ tag }}
-            </UBadge>
+        <div class="min-w-0">
+            <h3 class="text-lg font-black transition-colors group-hover:text-primary md:text-xl">
+                {{ video.title }}
+            </h3>
+            <p class="mt-2 line-clamp-2 text-sm leading-6 text-muted">
+                {{ video.description }}
+            </p>
+
+            <div v-if="video.tags?.length" class="mt-3 flex flex-wrap gap-2">
+                <span
+                    v-for="tag in video.tags.slice(0, 4)"
+                    :key="tag"
+                    class="border border-default px-2 py-0.5 font-mono text-[9px] font-bold tracking-wider text-toned"
+                >
+                    {{ tag }}
+                </span>
+            </div>
         </div>
 
-        <p class="line-clamp-3 text-sm text-muted py-2">
-            {{ video.description }}
-        </p>
+        <div>
+            <div class="font-mono text-[9px] font-bold tracking-[0.18em] text-dimmed">
+                AVAILABLE ON
+            </div>
+            <div class="mt-3 flex flex-wrap gap-2">
+                <span
+                    v-for="platform in platformOptions"
+                    :key="platform.key"
+                    class="flex size-8 items-center justify-center border border-default text-muted transition-colors group-hover:text-highlighted"
+                    :class="{ 'opacity-25': !video.platforms[platform.key as keyof typeof video.platforms] }"
+                    :title="platform.name"
+                >
+                    <Icon :name="platform.icon" class="size-4" />
+                </span>
+            </div>
+        </div>
 
-        <VideoPlatformButtons :show-title="false" :platforms="video.platforms" />
-    </UCard>
+        <div class="hidden size-10 items-center justify-center border border-default text-muted transition-all duration-300 group-hover:border-primary group-hover:bg-primary group-hover:text-black lg:flex">
+            <Icon name="i-tabler-player-play-filled" class="size-5 transition-transform group-hover:scale-110" />
+        </div>
+    </NuxtLink>
 </template>

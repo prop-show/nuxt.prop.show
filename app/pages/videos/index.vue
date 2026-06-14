@@ -11,6 +11,8 @@ useSeoMeta({
     description: '观看 prop.show 前端开发视频，包含项目实战、技术解析、工具使用等高质量内容。',
 })
 
+const channelCount = computed(() => new Set(videos.value.map(video => video.category)).size)
+
 // defineOgImageComponent('NuxtSeo', {
 //     headline: 'prop.show',
 //     title: '视频 🎥',
@@ -22,39 +24,37 @@ useSeoMeta({
 
 <template>
     <main>
-        <!-- <PageHeader title="视频教程" description="通过高质量的视频内容，学习前端开发技能和最佳实践" /> -->
-        <!-- <section class="mb-16" /> -->
+        <VideoHero
+            :count="videos.length"
+            :channel-count="channelCount"
+            :latest-order="videos[0]?.order"
+            :latest-title="videos[0]?.title"
+        />
 
-        <section v-if="pending" class="grid gap-6">
-            <UCard v-for="i in 6" :key="i" class="relative overflow-hidden" variant="subtle">
-                <USkeleton class="absolute -right-2 -top-2 size-24 -rotate-12 opacity-40" />
+        <section v-if="pending" class="my-20">
+            <div class="mb-8 border-b border-default pb-5">
+                <USkeleton class="mb-2 h-3 w-28" />
+                <USkeleton class="h-10 w-56" />
+            </div>
 
-                <div class="relative z-10">
-                    <div class="mb-2 flex items-center gap-2">
-                        <USkeleton class="size-3 rounded-full" />
-                        <USkeleton class="h-4 w-20" />
+            <div class="border-y border-default">
+                <div v-for="index in 5" :key="index" class="grid gap-5 border-b border-default px-1 py-7 last:border-b-0 sm:px-5 lg:grid-cols-[7rem_1fr_12rem_2.5rem] lg:items-center">
+                    <div class="space-y-3">
+                        <USkeleton class="h-8 w-16" />
+                        <USkeleton class="h-3 w-20" />
                     </div>
-
-                    <USkeleton class="h-7 w-2/3 max-w-120" />
-
-                    <div class="my-3 flex flex-wrap gap-1">
-                        <USkeleton class="h-5 w-14 rounded-sm" />
-                        <USkeleton class="h-5 w-20 rounded-sm" />
-                        <USkeleton v-if="i % 2 === 0" class="h-5 w-16 rounded-sm" />
-                    </div>
-
-                    <div class="space-y-2 py-2">
+                    <div class="space-y-3">
+                        <USkeleton class="h-6 w-3/5" />
                         <USkeleton class="h-4 w-full" />
-                        <USkeleton class="h-4 w-4/5" />
+                        <div class="flex gap-2">
+                            <USkeleton class="h-5 w-14" />
+                            <USkeleton class="h-5 w-18" />
+                        </div>
                     </div>
-
-                    <div class="flex flex-wrap gap-4 pt-2">
-                        <USkeleton class="h-8 w-24 rounded-sm" />
-                        <USkeleton class="h-8 w-20 rounded-sm" />
-                        <USkeleton class="h-8 w-24 rounded-sm" />
-                    </div>
+                    <USkeleton class="h-8 w-32" />
+                    <USkeleton class="hidden size-10 lg:block" />
                 </div>
-            </UCard>
+            </div>
         </section>
 
         <UEmpty

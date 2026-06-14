@@ -7,25 +7,41 @@ const { platforms, showTitle = true } = defineProps<{
 }>()
 
 const { platforms: staticPlatforms } = useAppConfig()
+
+const availablePlatforms = computed(() => staticPlatforms.filter(platform =>
+    platforms[platform.key as keyof typeof platforms],
+))
 </script>
 
 <template>
-    <div class="space-y-2 pt-2 prose">
-        <h3 v-if="showTitle" class=" text-white">
-            观看平台：
+    <div>
+        <h3 v-if="showTitle" class="mb-4 text-xl font-black">
+            观看平台
         </h3>
-        <div class="flex flex-wrap gap-2 space-x-2">
-            <UButton
-                v-for="platform in staticPlatforms"
+
+        <div class="grid gap-3 sm:grid-cols-2">
+            <NuxtLink
+                v-for="platform in availablePlatforms"
                 :key="platform.key"
-                :icon="platform.icon"
-                variant="outline"
-                color="neutral"
                 :to="platforms[platform.key as keyof typeof platforms]"
                 target="_blank"
+                class="group flex items-center justify-between border border-default p-4 outline-none transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:bg-elevated/70 focus-visible:ring-2 focus-visible:ring-primary"
             >
-                {{ platform.name }}
-            </UButton>
+                <div class="flex items-center gap-3">
+                    <span class="flex size-10 items-center justify-center bg-muted">
+                        <Icon :name="platform.icon" class="size-5" />
+                    </span>
+                    <div>
+                        <div class="font-mono text-[9px] font-bold tracking-[0.18em] text-dimmed">
+                            WATCH ON
+                        </div>
+                        <div class="mt-1 font-black">
+                            {{ platform.name }}
+                        </div>
+                    </div>
+                </div>
+                <Icon name="i-tabler-arrow-up-right" class="size-5 text-muted transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-primary" />
+            </NuxtLink>
         </div>
     </div>
 </template>
