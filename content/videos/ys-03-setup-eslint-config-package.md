@@ -1,7 +1,7 @@
 ---
 title: 乙巳:03 eslint-config包配置
 description: 从一个项目了解使用nodejs开发产品需要用到哪些知识，03-eslint-config包配置
-category: 基石 Prop
+category: 构建现场
 order: 5
 platforms:
   bilibili: 'https://www.bilibili.com/video/BV1EbJ1zfEfQ/'

@@ -15,13 +15,13 @@ useSeoMeta({
 
 <template>
     <section>
-        <PageHeader title="关于 prop.show" description="为你传递前端开发的核心属性，分享技术洞察与编程智慧" />
+        <AboutHero />
 
         <OurMission />
 
         <Modules />
 
-        <Creators />
+        <Creators variant="directory" />
 
         <Stack />
     </section>

@@ -1,7 +1,7 @@
 ---
 title: 乙巳:07 全局路由前缀添加
 description: 从一个项目了解使用nodejs开发产品需要用到哪些知识，07-全局路由前缀添加
-category: 基石 Prop
+category: 构建现场
 order: 9
 platforms:
   bilibili: 'https://www.bilibili.com/video/BV1sKn1zBEMY/'

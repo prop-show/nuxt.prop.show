@@ -1,7 +1,7 @@
 ---
 title: 乙巳:18 标准化web项目目录
 description: 从一个项目了解使用nodejs开发产品需要用到哪些知识，18-标准化web项目目录
-category: 基石 Prop
+category: 构建现场
 order: 20
 platforms:
   bilibili: 'https://www.bilibili.com/video/BV1mdkZBEEJC/'

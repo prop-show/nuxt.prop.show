@@ -1,7 +1,7 @@
 ---
 title: 乙巳:10 Nestjs全局错误处理
 description: 从一个项目了解使用nodejs开发产品需要用到哪些知识，10-Nestjs全局错误处理
-category: 基石 Prop
+category: 构建现场
 order: 12
 platforms:
   bilibili: 'https://www.bilibili.com/video/BV1n14vzXEb2/'

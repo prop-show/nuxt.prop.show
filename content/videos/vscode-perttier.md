@@ -1,7 +1,7 @@
 ---
 title: vscode 美化
 description: 我用的 vscode 美化配置，分享给大家
-category: 酷炫 Prop
+category: 工具雷达
 order: 1
 platforms:
   bilibili: 'https://www.bilibili.com/video/BV1Yeh1z1E74/'

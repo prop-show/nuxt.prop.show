@@ -1,7 +1,7 @@
 ---
 title: 乙巳:08 全局响应拦截
 description: 从一个项目了解使用nodejs开发产品需要用到哪些知识，08-全局响应拦截
-category: 基石 Prop
+category: 构建现场
 order: 10
 platforms:
   bilibili: 'https://www.bilibili.com/video/BV1LV4yziEEo/'

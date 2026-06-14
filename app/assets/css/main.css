@@ -6,8 +6,19 @@
 :root {
     --ui-radius: 0.2rem;
 }
-html,
+
+html {
+    background-color: var(--ui-bg);
+    color-scheme: light;
+}
+
+html.dark {
+    color-scheme: dark;
+}
+
 body {
+    min-height: 100svh;
+    background-color: var(--ui-bg);
     background-image: url('texture.png');
-    transition: background-color 2s ease-in;
+    transition: background-color 200ms ease-in;
 }

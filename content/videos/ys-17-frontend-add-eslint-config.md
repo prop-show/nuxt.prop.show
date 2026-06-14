@@ -1,7 +1,7 @@
 ---
 title: 乙巳:17 web添加eslint config
 description: 从一个项目了解使用nodejs开发产品需要用到哪些知识，17-web添加eslint config
-category: 基石 Prop
+category: 构建现场
 order: 19
 platforms:
   bilibili: 'https://www.bilibili.com/video/BV11S1SBwE1K/'

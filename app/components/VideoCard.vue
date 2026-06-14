@@ -7,11 +7,11 @@ defineProps<{
 
 function getCategoryColor(category: string) {
     switch (category) {
-        case '基石 Prop':
+        case '构建现场':
             return 'bg-blue-500'
-        case '酷炫 Prop':
+        case '工具雷达':
             return 'bg-green-500'
-        case '闲聊 Prop':
+        case '开发者会客厅':
             return 'bg-purple-500'
         default:
             return 'bg-gray-500'
@@ -20,16 +20,16 @@ function getCategoryColor(category: string) {
 </script>
 
 <template>
-    <UCard class="group hover:shadow-lg relative transition-all" variant="subtle">
-        <span class="absolute -right-2 -top-2 text-9xl font-black -rotate-12 text-primary dark:text-primary-400 -z-10">{{ video.order }}</span>
+    <UCard class="group relative overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:bg-elevated/70 hover:shadow-lg" variant="subtle">
+        <span class="pointer-events-none absolute -right-2 -top-3 z-0 font-mono text-9xl font-black tracking-[-0.12em] text-primary/25 transition-all duration-300 group-hover:-rotate-6 group-hover:text-primary/45">{{ String(video.order).padStart(2, '0') }}</span>
 
         <div class="flex items-start justify-between relative z-10">
             <div class="flex-1">
                 <div class="flex items-center gap-2 mb-2">
                     <div class="w-3 h-3 rounded-full" :class="[`${getCategoryColor(video.category)}`]" />
-                    <span class="text-sm text-muted-foreground">{{ video.category }}</span>
+                    <span class="font-mono text-xs font-bold tracking-wider text-muted">{{ video.category }}</span>
                 </div>
-                <h3 class="text-lg font-black group-hover:text-primary transition-colors">
+                <h3 class="text-lg font-black transition-colors group-hover:text-primary">
                     {{ video.title }}
                 </h3>
             </div>
