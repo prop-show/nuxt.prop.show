@@ -5,107 +5,119 @@ const currentYear = new Date().getFullYear()
 </script>
 
 <template>
-    <footer class="mt-16 bg-muted/20">
-        <USeparator />
-        <div class="container mx-auto px-4 py-12">
-            <!-- {/* 主要内容区域 */} -->
-            <div class="grid gap-8 lg:grid-cols-4 md:grid-cols-2">
-                <!-- {/* 品牌区域 */} -->
-                <div class="lg:col-span-2">
-                    <div class="flex items-center mb-4">
-                        <span class="flex size-15 items-center justify-center">
+    <footer class="mt-24 border-t border-default">
+        <div class="grid lg:grid-cols-[1fr_18rem]">
+            <section class="grid gap-10 border-b border-default py-10 lg:grid-cols-[1fr_auto] lg:border-r lg:px-0 lg:pr-10">
+                <div>
+                    <div class="flex items-center gap-3">
+                        <span class="flex size-11 items-center justify-center border border-default">
                             <Icon
                                 name="prop:prop-light-transparent"
-                                :size="60"
+                                :size="36"
                                 class="dark:hidden"
                             />
                             <Icon
                                 name="prop:prop-dark-transparent"
-                                :size="60"
+                                :size="36"
                                 class="hidden dark:block"
                             />
                         </span>
-                        <div class="ml-3">
-                            <div class="font-black text-2xl">
-                                prop.show
+                        <div>
+                            <div class="font-mono text-sm font-black tracking-[0.08em]">
+                                PROP.SHOW
                             </div>
-                            <p class="text-muted text-sm mt-1">
-                                为你传递前端开发的核心属性
-                            </p>
+                            <div class="mt-1 flex items-center gap-2 font-mono text-[9px] font-bold tracking-[0.16em] text-dimmed">
+                                <span class="size-1.5 rounded-full bg-primary" />
+                                END OF TRANSMISSION
+                            </div>
                         </div>
                     </div>
-                    <p class="text-muted text-sm mb-4 max-w-md">
-                        专注于前端开发的播客与教程平台，提供高质量的技术内容分享。 涵盖 React、Vue、Node.js、TypeScript
-                        等热门技术栈。
-                    </p>
 
-                    <!-- {/* 社交媒体链接 */} -->
-                    <div class="flex gap-3">
+                    <h2 class="mt-8 max-w-xl text-3xl leading-tight font-black tracking-[-0.045em] sm:text-4xl">
+                        把前端技术讲明白，
+                        <span class="block text-yellow-600 dark:text-yellow-400">持续记录真实经验。</span>
+                    </h2>
+                    <p class="mt-5 max-w-xl text-sm leading-7 text-muted">
+                        视频、速报与开发者对谈持续更新。欢迎随时回来，看看我们最近在关注什么。
+                    </p>
+                </div>
+
+                <div>
+                    <div class="mb-3 font-mono text-[10px] font-bold tracking-[0.2em] text-dimmed">
+                        LISTENING TERMINALS
+                    </div>
+                    <div class="flex flex-wrap gap-2">
                         <NuxtLink
-                            v-for="(social) in socials"
+                            v-for="social in socials"
                             :key="social.platform"
                             :to="social.href"
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="flex items-center justify-center w-10 h-10 rounded-full bg-muted hover:bg-muted-foreground/10 transition-colors"
+                            class="group flex size-11 items-center justify-center border border-default text-muted outline-none transition-all hover:-translate-y-0.5 hover:border-primary hover:bg-elevated/70 hover:text-highlighted focus-visible:ring-2 focus-visible:ring-primary"
                             :title="social.platform"
                         >
-                            <Icon :name="social.icon" size="18" />
+                            <Icon :name="social.icon" class="size-5" />
                         </NuxtLink>
                     </div>
                 </div>
+            </section>
 
-                <!-- {/* 快速导航 */} -->
-                <div>
-                    <h3 class="font-semibold mb-4">
-                        快速导航
-                    </h3>
-                    <ul class="space-y-2">
-                        <li v-for="link in navigationLinks" :key="link.label">
-                            <NuxtLink :to="link.to" class="text-muted hover:text-foreground transition-colors text-sm">
-                                <Icon :name="link.icon" />
-                                {{ link.label }}
-                            </NuxtLink>
-                        </li>
-                    </ul>
+            <aside class="relative flex min-h-48 flex-col justify-between overflow-hidden border-b border-default bg-primary p-6 text-black">
+                <div class="absolute -right-8 -bottom-16 font-mono text-[10rem] leading-none font-black tracking-[-0.16em] text-black/8">
+                    P
                 </div>
+                <div class="relative z-10 font-mono text-[10px] font-bold tracking-[0.2em] text-black/55">
+                    SIGNAL STATUS
+                </div>
+                <div class="relative z-10">
+                    <div class="flex items-center gap-2 text-lg font-black">
+                        <span class="size-2 rounded-full bg-black" />
+                        CHANNEL OPEN
+                    </div>
+                    <div class="mt-2 font-mono text-[10px] font-bold tracking-[0.16em] text-black/55">
+                        NEXT BROADCAST PENDING
+                    </div>
+                </div>
+            </aside>
+        </div>
 
-                <!-- {/* 友情链接 */} -->
-                <div>
-                    <h3 class="font-semibold mb-4">
-                        友情链接
-                    </h3>
-                    <ul class="space-y-2">
-                        <li v-for="link in friendLinks" :key="link.label">
-                            <NuxtLink :to="link.to" target="_blank" rel="noopener noreferrer" class="text-muted hover:text-foreground transition-colors text-sm">
-                                <Icon name="lucide-external-link" />
-                                {{ link.label }}
-                            </NuxtLink>
-                        </li>
-                    </ul>
+        <nav class="grid border-b border-default sm:grid-cols-2 lg:grid-cols-4" aria-label="页脚导航">
+            <NuxtLink
+                v-for="(link, index) in navigationLinks"
+                :key="link.label"
+                :to="link.to"
+                class="group flex min-h-20 items-center justify-between border-b border-default px-5 outline-none transition-colors last:border-b-0 hover:bg-elevated/55 focus-visible:bg-elevated/55 sm:odd:border-r lg:border-r lg:border-b-0 lg:last:border-r-0"
+            >
+                <div class="flex items-center gap-4">
+                    <span class="font-mono text-[10px] font-bold tracking-[0.14em] text-dimmed">
+                        {{ String(index + 1).padStart(2, '0') }}
+                    </span>
+                    <span class="font-black">{{ link.label }}</span>
                 </div>
+                <Icon name="i-tabler-arrow-right" class="size-4 text-muted transition-transform group-hover:translate-x-1 group-hover:text-primary" />
+            </NuxtLink>
+        </nav>
+
+        <div class="flex flex-col gap-5 py-6 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
+            <div class="font-mono font-bold tracking-[0.08em]">
+                © {{ currentYear }} PROP.SHOW
             </div>
 
-            <!-- {/* 分割线 */} -->
-            <USeparator class="mt-2" />
-
-            <!-- {/* 底部信息区域 */} -->
-            <div class="mt-4 pt-6">
-                <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                    <!-- {/* 版权信息 */} -->
-                    <div class="text-sm text-muted">
-                        © {{ currentYear }} prop.show. All rights reserved.
-                    </div>
-
-                    <!-- {/* 友情链接/政策 */} -->
-                    <div class="flex items-center gap-4 text-sm text-muted">
-                        <div class="flex items-center gap-1">
-                            <span>Made with</span>
-                            <Icon name="i-tabler-heart-filled" class="w-4 h-4 text-red-500 fill-current" />
-                            <span>by prop.show team</span>
-                        </div>
-                    </div>
-                </div>
+            <div class="flex flex-wrap items-center gap-x-5 gap-y-2">
+                <span class="font-mono text-[9px] font-bold tracking-[0.18em] text-dimmed">
+                    FRIEND SIGNALS
+                </span>
+                <NuxtLink
+                    v-for="link in friendLinks"
+                    :key="link.label"
+                    :to="link.to"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="group inline-flex items-center gap-1.5 font-bold transition-colors hover:text-highlighted"
+                >
+                    {{ link.label }}
+                    <Icon name="i-tabler-arrow-up-right" class="size-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </NuxtLink>
             </div>
         </div>
     </footer>
