@@ -35,7 +35,7 @@ const currentYear = new Date().getFullYear()
 
                     <h2 class="mt-8 max-w-xl text-3xl leading-tight font-black tracking-[-0.045em] sm:text-4xl">
                         把前端技术讲明白，
-                        <span class="block text-yellow-600 dark:text-yellow-400">持续记录真实经验。</span>
+                        <span class="block text-primary ">持续记录真实经验。</span>
                     </h2>
                     <p class="mt-5 max-w-xl text-sm leading-7 text-muted">
                         视频、速报与开发者对谈持续更新。欢迎随时回来，看看我们最近在关注什么。

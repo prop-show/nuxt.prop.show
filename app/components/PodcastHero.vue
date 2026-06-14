@@ -36,7 +36,7 @@ const signals = computed(() => [
 
                     <h1 class="max-w-4xl text-5xl leading-[0.95] font-black tracking-[-0.07em] sm:text-7xl lg:text-8xl">
                         把前端技术
-                        <span class="mt-2 block text-yellow-600 dark:text-yellow-400">讲明白。</span>
+                        <span class="mt-2 block text-primary ">讲明白。</span>
                     </h1>
 
                     <p class="mt-8 max-w-2xl text-base leading-7 text-muted sm:text-lg">

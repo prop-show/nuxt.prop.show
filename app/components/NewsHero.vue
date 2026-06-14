@@ -28,7 +28,7 @@ function formatDate(date?: string) {
 
                 <h1 class="relative z-10 mt-8 max-w-3xl text-5xl leading-[0.95] font-black tracking-[-0.065em] sm:text-7xl">
                     前端讯号，
-                    <span class="mt-2 block text-yellow-600 dark:text-yellow-400">正在接收。</span>
+                    <span class="mt-2 block text-primary ">正在接收。</span>
                 </h1>
 
                 <p class="relative z-10 mt-7 max-w-2xl text-base leading-7 text-muted">

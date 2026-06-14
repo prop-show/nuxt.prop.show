@@ -38,7 +38,7 @@ const facts = [
                     </p>
                     <h1 class="mt-6 max-w-3xl text-4xl leading-tight font-black tracking-[-0.055em] sm:text-6xl">
                         记录技术变化，
-                        <span class="block text-yellow-600 dark:text-yellow-400">分享真实经验。</span>
+                        <span class="block text-primary ">分享真实经验。</span>
                     </h1>
                     <p class="mt-7 max-w-2xl text-base leading-8 text-muted">
                         prop.show 是一个由前端开发者共同维护的内容项目。我们从实际工作出发，把踩过的坑、验证过的方法和正在发生的技术变化，整理成值得反复观看的内容。
