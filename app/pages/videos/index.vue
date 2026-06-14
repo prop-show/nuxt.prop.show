@@ -1,17 +1,68 @@
 <script lang="ts" setup>
-const { data: videos, pending } = useAsyncData(
-    () => queryCollection('videos').order('order', 'DESC').all(),
-    {
-        default: () => [],
+const route = useRoute()
+const { paginationPageSize } = useAppConfig()
+
+const requestedPage = computed(() => {
+    const page = Number.parseInt(String(route.query.page || '1'), 10)
+
+    return Math.max(Number.isNaN(page) ? 1 : page, 1)
+})
+
+const { data: videoPage, pending } = useAsyncData(
+    () => `videos-page-${requestedPage.value}`,
+    async () => {
+        const requested = requestedPage.value
+        const [total, channelCount, latest] = await Promise.all([
+            queryCollection('videos').count('*'),
+            queryCollection('videos').count('category', true),
+            queryCollection('videos').order('order', 'DESC').first(),
+        ])
+        const lastPage = Math.max(1, Math.ceil(total / paginationPageSize))
+        const page = Math.min(requested, lastPage)
+        const videos = await queryCollection('videos')
+            .order('order', 'DESC')
+            .skip((page - 1) * paginationPageSize)
+            .limit(paginationPageSize)
+            .all()
+
+        return { videos, total, channelCount, latest, requested, page }
     },
+    {
+        default: () => ({
+            videos: [],
+            total: 0,
+            channelCount: 0,
+            latest: null,
+            requested: 1,
+            page: 1,
+        }),
+    },
+)
+
+const currentPage = computed(() => videoPage.value.page)
+
+watch(
+    [requestedPage, () => videoPage.value.requested, currentPage],
+    async ([requested, resolvedRequest, page]) => {
+        if (resolvedRequest !== requested || page === requested)
+            return
+
+        const query = { ...route.query }
+
+        if (page === 1)
+            delete query.page
+        else
+            query.page = String(page)
+
+        await navigateTo({ path: route.path, query }, { replace: true })
+    },
+    { immediate: true },
 )
 
 useSeoMeta({
     title: '视频 - prop.show',
     description: '观看 prop.show 前端开发视频，包含项目实战、技术解析、工具使用等高质量内容。',
 })
-
-const channelCount = computed(() => new Set(videos.value.map(video => video.category)).size)
 
 // defineOgImageComponent('NuxtSeo', {
 //     headline: 'prop.show',
@@ -25,10 +76,10 @@ const channelCount = computed(() => new Set(videos.value.map(video => video.cate
 <template>
     <main>
         <VideoHero
-            :count="videos.length"
-            :channel-count="channelCount"
-            :latest-order="videos[0]?.order"
-            :latest-title="videos[0]?.title"
+            :count="videoPage.total"
+            :channel-count="videoPage.channelCount"
+            :latest-order="videoPage.latest?.order"
+            :latest-title="videoPage.latest?.title"
         />
 
         <section v-if="pending" class="my-20">
@@ -58,12 +109,20 @@ const channelCount = computed(() => new Set(videos.value.map(video => video.cate
         </section>
 
         <UEmpty
-            v-else-if="!videos.length"
+            v-else-if="!videoPage.total"
             icon="i-tabler-player-play"
             title="暂无视频"
             description="精彩内容即将上线，敬请期待！"
         />
 
-        <VideoList v-else :videos />
+        <template v-else>
+            <VideoList :videos="videoPage.videos" :total="videoPage.total" />
+            <ContentPagination
+                :page="currentPage"
+                :page-size="paginationPageSize"
+                :total="videoPage.total"
+                base-path="/videos"
+            />
+        </template>
     </main>
 </template>

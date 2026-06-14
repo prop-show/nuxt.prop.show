@@ -3,6 +3,8 @@ import type { NewsCollectionItem } from '@nuxt/content'
 
 defineProps<{
     news: NewsCollectionItem[]
+    total: number
+    offset: number
 }>()
 
 function formatDate(date: string) {
@@ -40,7 +42,7 @@ function formatDate(date: string) {
                 class="group grid gap-5 border-b border-default px-1 py-6 outline-none transition-colors last:border-b-0 hover:bg-elevated/55 focus-visible:bg-elevated/55 sm:px-5 md:grid-cols-[5rem_8rem_1fr_2.5rem] md:items-center"
             >
                 <div class="font-mono text-xs font-bold tracking-[0.16em] text-dimmed">
-                    SIG.{{ String(news.length - index).padStart(2, '0') }}
+                    SIG.{{ String(total - offset - index).padStart(2, '0') }}
                 </div>
 
                 <time :datetime="item.date" class="flex items-baseline gap-2 font-mono">
@@ -50,7 +52,7 @@ function formatDate(date: string) {
 
                 <div class="min-w-0">
                     <div class="mb-2 flex items-center gap-2">
-                        <span v-if="index === 0" class="bg-primary px-2 py-0.5 font-mono text-[9px] font-black tracking-wider text-black">
+                        <span v-if="offset === 0 && index === 0" class="bg-primary px-2 py-0.5 font-mono text-[9px] font-black tracking-wider text-black">
                             LATEST
                         </span>
                         <span class="font-mono text-[9px] font-bold tracking-[0.18em] text-dimmed">FRONTEND NEWS</span>

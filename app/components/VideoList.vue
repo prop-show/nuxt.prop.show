@@ -3,6 +3,7 @@ import type { VideosCollectionItem } from '@nuxt/content'
 
 defineProps<{
     videos: VideosCollectionItem[]
+    total: number
 }>()
 </script>
 
@@ -18,7 +19,7 @@ defineProps<{
                 </h2>
             </div>
             <span class="hidden font-mono text-xs font-bold tracking-[0.18em] text-dimmed sm:block">
-                {{ String(videos.length).padStart(2, '0') }} EPISODES
+                {{ String(total).padStart(2, '0') }} EPISODES
             </span>
         </div>
 

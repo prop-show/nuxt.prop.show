@@ -3,6 +3,8 @@ import type { NavigationMenuItem } from '@nuxt/ui'
 import type { Creator, Platform, Social } from './types/app.config.type'
 
 export default defineAppConfig({
+    paginationPageSize: 10,
+
     ui: {
         colors: {
             primary: 'yellow',
