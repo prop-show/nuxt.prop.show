@@ -1,9 +1,24 @@
 <script lang="ts" setup>
-const signals = [
-    { label: 'VIDEO', value: '实战教程' },
-    { label: 'NEWS', value: '前端速报' },
-    { label: 'VOICE', value: '开发者对谈' },
-]
+const props = defineProps<{
+    videoCount: number
+    newsCount: number
+    creatorCount: number
+}>()
+
+const signals = computed(() => [
+    {
+        label: `${String(props.videoCount).padStart(2, '0')} EPISODES`,
+        value: '视频节目',
+    },
+    {
+        label: `${String(props.newsCount).padStart(2, '0')} REPORTS`,
+        value: '前端速报',
+    },
+    {
+        label: `${String(props.creatorCount).padStart(2, '0')} CREATORS`,
+        value: '内容创作者',
+    },
+])
 </script>
 
 <template>
@@ -85,6 +100,7 @@ const signals = [
         linear-gradient(to bottom, color-mix(in srgb, var(--ui-border) 65%, transparent) 1px, transparent 1px);
     background-size: 42px 42px;
     mask-image: linear-gradient(to right, black, transparent 88%);
+    contain: strict;
 }
 
 .hero-orbit::before,
@@ -102,6 +118,8 @@ const signals = [
 
 .hero-logo {
     animation: hero-float 7s ease-in-out infinite;
+    will-change: transform;
+    transform: translateZ(0);
 }
 
 @keyframes hero-float {
