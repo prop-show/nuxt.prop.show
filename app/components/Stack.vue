@@ -7,7 +7,6 @@ const stackIcons: Record<string, string> = {
     'TypeScript': 'i-tabler-brand-typescript',
     'Tailwind CSS': 'i-tabler-brand-tailwind',
     'Nuxt UI': 'i-tabler-components',
-    'Vue Bits': 'i-tabler-sparkles',
     'Vercel': 'i-tabler-brand-vercel',
 }
 </script>

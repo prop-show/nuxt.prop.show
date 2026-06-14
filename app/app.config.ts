@@ -66,7 +66,6 @@ export default defineAppConfig({
         { name: 'TypeScript' },
         { name: 'Tailwind CSS' },
         { name: 'Nuxt UI' },
-        { name: 'Vue Bits' },
         { name: 'Vercel' },
     ],
 })
