@@ -23,6 +23,7 @@ export default defineAppConfig({
         { href: 'https://github.com/prop-show', platform: 'GitHub', icon: 'i-tabler-brand-github' },
         { href: 'https://space.bilibili.com/104376935', platform: '哔哩哔哩', icon: 'i-tabler-brand-bilibili' },
         { href: 'https://www.youtube.com/@PropShowFM', platform: 'YouTube', icon: 'i-tabler-brand-youtube' },
+        { href: '/rss.xml', platform: 'XSS', icon: 'i-tabler-rss' },
         // { href: 'https://bento.me/prop-show', platform: 'Bento', icon: 'i-tabler-link' },
     ] as Social[],
 

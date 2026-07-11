@@ -36,7 +36,7 @@ export default defineNuxtConfig({
         compressPublicAssets: true,
         prerender: {
             crawlLinks: true,
-            routes: ['/'],
+            routes: ['/', '/rss.xml'],
         },
     },
 
@@ -101,6 +101,7 @@ export default defineNuxtConfig({
                 { name: 'author', content: 'prop.show' },
             ],
             link: [
+                { rel: 'alternate', type: 'application/rss+xml', title: 'prop.show RSS', href: '/rss.xml' },
                 { rel: 'icon', type: 'image/svg+xml', href: '/prop-dark.svg', media: '(prefers-color-scheme: dark)' },
                 { rel: 'icon', type: 'image/svg+xml', href: '/prop-light.svg', media: '(prefers-color-scheme: light)' },
                 { rel: 'canonical', href: 'https://prop.show' },
