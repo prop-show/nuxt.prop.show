@@ -1,13 +1,24 @@
 <script lang="ts" setup>
+import type { VideosCollectionItem } from '@nuxt/content'
+
 const route = useRoute()
 
 const { data: pageData, pending } = useAsyncData(
     route.path,
     async () => {
-        const [video, videos] = await Promise.all([
-            queryCollection('videos').path(route.path).first(),
-            queryCollection('videos').order('order', 'ASC').all(),
-        ])
+        const video = await queryCollection('videos').path(route.path).first()
+
+        if (!video)
+            return { video, previous: undefined, next: undefined }
+
+        const videos = video.series
+            ? await queryCollection('videos')
+                    .where('series', '=', video.series)
+                    .all()
+            : await queryCollection('videos').order('order', 'ASC').all()
+
+        if (video.series)
+            videos.sort((a, b) => (a.episode ?? a.order!) - (b.episode ?? b.order!))
 
         const index = videos.findIndex(item => item.path === route.path)
 
@@ -22,6 +33,20 @@ const { data: pageData, pending } = useAsyncData(
 const video = computed(() => pageData.value?.video)
 const previousVideo = computed(() => pageData.value?.previous)
 const nextVideo = computed(() => pageData.value?.next)
+const isYisiSeries = computed(() => video.value?.series === '乙巳')
+const displayEpisode = computed(() => video.value?.series
+    ? video.value.episode ?? video.value.order
+    : video.value?.order)
+
+function episodeNumber(item: VideosCollectionItem) {
+    return item.series ? item.episode ?? item.order : item.order
+}
+
+function seoTitle(item: VideosCollectionItem) {
+    return item.series
+        ? `${item.series} EP.${String(episodeNumber(item)).padStart(2, '0')}：${item.title}`
+        : item.title
+}
 
 function getCategoryColor(category?: string) {
     switch (category) {
@@ -37,7 +62,7 @@ function getCategoryColor(category?: string) {
 }
 
 useSeoMeta({
-    title: () => video.value ? video.value.title : '视频 - prop.show',
+    title: () => video.value ? seoTitle(video.value) : '视频 - prop.show',
     description: () => video.value ? video.value.description : '观看 prop.show 前端开发视频。',
 })
 </script>
@@ -80,6 +105,10 @@ useSeoMeta({
                                 </span>
                                 <span>/</span>
                                 <span>{{ video.category }}</span>
+                                <template v-if="video.series">
+                                    <span>/</span>
+                                    <span>{{ video.series }} SERIES</span>
+                                </template>
                             </div>
 
                             <h1 class="mt-7 max-w-4xl text-4xl leading-tight font-black tracking-[-0.045em] sm:text-6xl">
@@ -112,10 +141,10 @@ useSeoMeta({
 
                         <div class="relative z-10 p-7">
                             <div class="font-mono text-7xl font-black tracking-[-0.12em]">
-                                {{ String(video.order).padStart(2, '0') }}
+                                {{ String(displayEpisode).padStart(2, '0') }}
                             </div>
                             <div class="mt-2 font-mono text-xs font-bold tracking-[0.2em]">
-                                EP.{{ String(video.order).padStart(2, '0') }}
+                                EP.{{ String(displayEpisode).padStart(2, '0') }}
                             </div>
                         </div>
                     </aside>
@@ -139,6 +168,18 @@ useSeoMeta({
                 </aside>
 
                 <div class="min-w-0 space-y-8">
+                    <NuxtLink
+                        v-if="isYisiSeries"
+                        to="/series/yisi"
+                        class="group flex items-center justify-between border border-default bg-default/55 p-5 font-bold outline-none transition-colors hover:border-primary focus-visible:ring-2 focus-visible:ring-primary"
+                    >
+                        <span>
+                            <span class="block font-mono text-[10px] tracking-[0.18em] text-primary">PART OF YISI SERIES</span>
+                            <span class="mt-1 block">查看「{{ video.series }}」完整课程目录</span>
+                        </span>
+                        <Icon name="i-tabler-route" class="size-5 text-muted transition-transform group-hover:translate-x-1" />
+                    </NuxtLink>
+
                     <section class="border border-default bg-default/55 p-6 sm:p-8">
                         <div class="mb-6">
                             <div class="font-mono text-[10px] font-bold tracking-[0.2em] text-primary">
@@ -185,7 +226,7 @@ useSeoMeta({
                     </div>
                     <div>
                         <div class="font-mono text-xs font-bold text-primary">
-                            EP.{{ String(previousVideo.order).padStart(2, '0') }}
+                            EP.{{ String(episodeNumber(previousVideo)).padStart(2, '0') }}
                         </div>
                         <div class="mt-1 line-clamp-1 font-black">
                             {{ previousVideo.title }}
@@ -205,7 +246,7 @@ useSeoMeta({
                     </div>
                     <div>
                         <div class="font-mono text-xs font-bold text-primary">
-                            EP.{{ String(nextVideo.order).padStart(2, '0') }}
+                            EP.{{ String(episodeNumber(nextVideo)).padStart(2, '0') }}
                         </div>
                         <div class="mt-1 line-clamp-1 font-black">
                             {{ nextVideo.title }}

@@ -24,7 +24,14 @@ export default defineEventHandler(async (event) => {
 
     const items = [
         ...news.map(item => ({ ...item, category: '前端速报', sortOrder: 0 })),
-        ...videos.map(item => ({ ...item, category: item.category, sortOrder: item.order ?? 0 })),
+        ...videos.map(item => ({
+            ...item,
+            title: item.series
+                ? `${item.series} EP.${String(item.episode ?? item.order).padStart(2, '0')}：${item.title}`
+                : item.title,
+            category: item.category,
+            sortOrder: item.order ?? 0,
+        })),
     ].sort((a, b) => {
         const dateDifference = (Date.parse(b.date || '') || 0) - (Date.parse(a.date || '') || 0)
         return dateDifference || b.sortOrder - a.sortOrder

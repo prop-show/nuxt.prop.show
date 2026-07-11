@@ -1,23 +1,29 @@
 <script lang="ts" setup>
 const { creators } = useAppConfig()
 
-const { data: contentCounts } = useAsyncData(
-    'home-content-counts',
+const { data: homeContent } = useAsyncData(
+    'home-content',
     async () => {
-        const [videos, news] = await Promise.all([
-            queryCollection('videos').all(),
-            queryCollection('news').all(),
+        const [videoTotal, newsTotal, videos, news] = await Promise.all([
+            queryCollection('videos').count('*'),
+            queryCollection('news').count('*'),
+            queryCollection('videos').order('order', 'DESC').limit(3).all(),
+            queryCollection('news').order('date', 'DESC').limit(3).all(),
         ])
 
         return {
-            videos: videos.length,
-            news: news.length,
+            videoTotal,
+            newsTotal,
+            videos,
+            news,
         }
     },
     {
         default: () => ({
-            videos: 0,
-            news: 0,
+            videoTotal: 0,
+            newsTotal: 0,
+            videos: [],
+            news: [],
         }),
     },
 )
@@ -32,12 +38,18 @@ useSeoMeta({
 <template>
     <section>
         <PodcastHero
-            :video-count="contentCounts.videos"
-            :news-count="contentCounts.news"
+            :video-count="homeContent.videoTotal"
+            :news-count="homeContent.newsTotal"
             :creator-count="creators.length"
         />
 
-        <div class="max-w-6xl mx-auto">
+        <div class="mx-auto max-w-6xl">
+            <HomeLatestContent
+                :videos="homeContent.videos"
+                :news="homeContent.news"
+                :video-total="homeContent.videoTotal"
+                :news-total="homeContent.newsTotal"
+            />
             <SocialLinks />
             <PlatformIntro />
             <LazyTechLogos />

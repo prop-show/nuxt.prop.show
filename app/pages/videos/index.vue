@@ -2,49 +2,46 @@
 const route = useRoute()
 const { paginationPageSize } = useAppConfig()
 
+const activeCategory = computed(() => typeof route.query.category === 'string' ? route.query.category : undefined)
+const activeTag = computed(() => typeof route.query.tag === 'string' ? route.query.tag : undefined)
+
 const requestedPage = computed(() => {
     const page = Number.parseInt(String(route.query.page || '1'), 10)
 
     return Math.max(Number.isNaN(page) ? 1 : page, 1)
 })
 
-const { data: videoPage, pending } = useAsyncData(
-    () => `videos-page-${requestedPage.value}`,
+const { data: videos, pending } = useAsyncData(
+    'videos-archive',
     async () => {
-        const requested = requestedPage.value
-        const [total, channelCount, latest] = await Promise.all([
-            queryCollection('videos').count('*'),
-            queryCollection('videos').count('category', true),
-            queryCollection('videos').order('order', 'DESC').first(),
-        ])
-        const lastPage = Math.max(1, Math.ceil(total / paginationPageSize))
-        const page = Math.min(requested, lastPage)
-        const videos = await queryCollection('videos')
-            .order('order', 'DESC')
-            .skip((page - 1) * paginationPageSize)
-            .limit(paginationPageSize)
-            .all()
-
-        return { videos, total, channelCount, latest, requested, page }
+        return queryCollection('videos').order('order', 'DESC').all()
     },
-    {
-        default: () => ({
-            videos: [],
-            total: 0,
-            channelCount: 0,
-            latest: null,
-            requested: 1,
-            page: 1,
-        }),
-    },
+    { default: () => [] },
 )
 
-const currentPage = computed(() => videoPage.value.page)
+const categories = computed(() => [...new Set(videos.value.map(video => video.category))])
+const tags = computed(() => [...new Set(videos.value.flatMap(video => video.tags || []))].sort())
+const seriesCount = computed(() => videos.value.filter(video => video.series === '乙巳').length)
+const filteredVideos = computed(() => videos.value.filter((video) => {
+    const categoryMatches = !activeCategory.value || video.category === activeCategory.value
+    const tagMatches = !activeTag.value || video.tags?.includes(activeTag.value)
+    return categoryMatches && tagMatches
+}))
+const lastPage = computed(() => Math.max(1, Math.ceil(filteredVideos.value.length / paginationPageSize)))
+const currentPage = computed(() => Math.min(requestedPage.value, lastPage.value))
+const paginatedVideos = computed(() => filteredVideos.value.slice(
+    (currentPage.value - 1) * paginationPageSize,
+    currentPage.value * paginationPageSize,
+))
+const filterQuery = computed(() => ({
+    ...(activeCategory.value ? { category: activeCategory.value } : {}),
+    ...(activeTag.value ? { tag: activeTag.value } : {}),
+}))
 
 watch(
-    [requestedPage, () => videoPage.value.requested, currentPage],
-    async ([requested, resolvedRequest, page]) => {
-        if (resolvedRequest !== requested || page === requested)
+    [requestedPage, currentPage],
+    async ([requested, page]) => {
+        if (page === requested)
             return
 
         const query = { ...route.query }
@@ -76,10 +73,19 @@ useSeoMeta({
 <template>
     <main>
         <VideoHero
-            :count="videoPage.total"
-            :channel-count="videoPage.channelCount"
-            :latest-order="videoPage.latest?.order"
-            :latest-title="videoPage.latest?.title"
+            :count="videos.length"
+            :channel-count="categories.length"
+            :latest-order="videos[0]?.order"
+            :latest-title="videos[0]?.title"
+        />
+
+        <VideoArchiveFilters
+            :categories
+            :tags
+            :active-category="activeCategory"
+            :active-tag="activeTag"
+            :result-count="filteredVideos.length"
+            :series-count
         />
 
         <section v-if="pending" class="my-20">
@@ -109,19 +115,26 @@ useSeoMeta({
         </section>
 
         <UEmpty
-            v-else-if="!videoPage.total"
+            v-else-if="!filteredVideos.length"
             icon="i-tabler-player-play"
-            title="暂无视频"
-            description="精彩内容即将上线，敬请期待！"
-        />
+            title="没有匹配的节目"
+            description="换一个频道或标签，或者清除当前筛选。"
+        >
+            <template #actions>
+                <UButton to="/videos" color="neutral" variant="outline">
+                    清除筛选
+                </UButton>
+            </template>
+        </UEmpty>
 
         <template v-else>
-            <VideoList :videos="videoPage.videos" :total="videoPage.total" />
+            <VideoList :videos="paginatedVideos" :total="filteredVideos.length" />
             <ContentPagination
                 :page="currentPage"
                 :page-size="paginationPageSize"
-                :total="videoPage.total"
+                :total="filteredVideos.length"
                 base-path="/videos"
+                :query="filterQuery"
             />
         </template>
     </main>

@@ -51,6 +51,7 @@ const currentYear = new Date().getFullYear()
                             v-for="social in socials"
                             :key="social.platform"
                             :to="social.href"
+                            :external="social.href === '/rss.xml'"
                             target="_blank"
                             rel="noopener noreferrer"
                             class="group flex size-11 items-center justify-center border border-default text-muted outline-none transition-all hover:-translate-y-0.5 hover:border-primary hover:bg-elevated/70 hover:text-highlighted focus-visible:ring-2 focus-visible:ring-primary"

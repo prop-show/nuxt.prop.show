@@ -1,7 +1,9 @@
 ---
-title: 乙巳:22 结合redis缓存
+title: 结合redis缓存
 description: 从一个项目了解使用nodejs开发产品需要用到哪些知识，22-结合redis缓存
 category: 构建现场
+series: 乙巳
+episode: 22
 order: 24
 platforms:
   bilibili: 'https://www.bilibili.com/video/BV1Sa27B7EKE/'

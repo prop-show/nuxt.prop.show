@@ -1,9 +1,16 @@
 <script lang="ts" setup>
 import type { VideosCollectionItem } from '@nuxt/content'
 
-defineProps<{
+const props = withDefaults(defineProps<{
     video: VideosCollectionItem
-}>()
+    numbering?: 'global' | 'series'
+}>(), {
+    numbering: 'global',
+})
+
+const displayEpisode = computed(() => props.numbering === 'series'
+    ? props.video.episode ?? props.video.order
+    : props.video.order)
 
 function getCategoryColor(category: string) {
     switch (category) {
@@ -28,18 +35,22 @@ const { platforms: platformOptions } = useAppConfig()
     >
         <div>
             <div class="font-mono text-2xl font-black tracking-[-0.06em] transition-colors group-hover:text-primary">
-                EP.{{ String(video.order).padStart(2, '0') }}
+                EP.{{ String(displayEpisode).padStart(2, '0') }}
             </div>
             <div class="mt-2 flex items-center gap-2">
                 <span class="size-2 rounded-full" :class="getCategoryColor(video.category)" />
                 <span class="font-mono text-[10px] font-bold tracking-[0.14em] text-dimmed">
                     {{ video.category }}
+                    <template v-if="video.series">
+                        / {{ video.series }}
+                    </template>
                 </span>
             </div>
         </div>
 
         <div class="min-w-0">
             <h3 class="text-lg font-black transition-colors group-hover:text-primary md:text-xl">
+                {{ `${video.series}:` || '' }}
                 {{ video.title }}
             </h3>
             <p class="mt-2 line-clamp-2 text-sm leading-6 text-muted">

@@ -12,6 +12,8 @@ const VideoSchema = z.object({
         douyin: z.string().optional(),
     }),
     tags: z.array(z.string()).default([]),
+    series: z.string().min(1).optional(),
+    episode: z.number().int().nonnegative().optional(),
     order: z.number().default(0),
 })
 

@@ -4,12 +4,16 @@ const props = defineProps<{
     pageSize: number
     total: number
     basePath: string
+    query?: Record<string, string>
 }>()
 
 function pageLink(page: number) {
-    return page === 1
-        ? props.basePath
-        : { path: props.basePath, query: { page } }
+    const query: Record<string, string | number> = { ...props.query }
+
+    if (page > 1)
+        query.page = page
+
+    return Object.keys(query).length ? { path: props.basePath, query } : props.basePath
 }
 </script>
 
