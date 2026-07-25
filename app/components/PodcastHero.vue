@@ -31,21 +31,21 @@ const signals = computed(() => [
                 <div class="relative z-10">
                     <div class="mb-10 flex items-center gap-3 font-mono text-xs font-bold tracking-[0.22em] text-muted">
                         <span class="inline-flex size-2 animate-pulse rounded-full bg-primary motion-reduce:animate-none" />
-                        PROP.SHOW / ON AIR
+                        PROP.SHOW / VIDEOS & NEWS
                     </div>
 
                     <h1 class="max-w-4xl text-5xl leading-[0.95] font-black tracking-[-0.07em] sm:text-7xl lg:text-8xl">
-                        把前端技术
-                        <span class="mt-2 block text-primary ">讲明白。</span>
+                        这里有前端视频，
+                        <span class="mt-2 block text-primary ">也有技术速报。</span>
                     </h1>
 
                     <p class="mt-8 max-w-2xl text-base leading-7 text-muted sm:text-lg">
-                        从真实项目到新工具拆解，用视频、播客和速报，持续记录前端开发中真正值得关注的核心属性。
+                        prop.show 由前端开发者共同维护，分享真实项目里的实践、工具使用和技术动态。想看完整演示，或快速了解一条新消息，都可以从这里开始。
                     </p>
 
                     <div class="mt-10 flex flex-wrap gap-3">
                         <UButton to="/videos" icon="i-tabler-player-play-filled" size="xl">
-                            开始观看
+                            查看视频
                         </UButton>
                         <UButton to="/news" icon="i-tabler-news" size="xl" color="neutral" variant="outline">
                             浏览速报
@@ -68,7 +68,7 @@ const signals = computed(() => [
             <aside class="relative flex min-h-100 items-center justify-center overflow-hidden border-t border-default bg-primary lg:min-h-full lg:border-t-0 lg:border-l">
                 <div class="absolute inset-5 border border-black/15" />
                 <div class="absolute top-8 right-8 font-mono text-xs font-bold tracking-[0.2em] text-black/55">
-                    FRONTEND, CLEARLY
+                    VIDEOS / REPORTS
                 </div>
 
                 <div class="hero-logo relative flex size-72 items-center justify-center rounded-full border border-black/20 sm:size-80">
@@ -81,7 +81,7 @@ const signals = computed(() => [
                 </div>
 
                 <div class="absolute bottom-8 left-8 right-8 flex items-end justify-between font-mono text-black">
-                    <span class="text-xs font-bold tracking-[0.2em]">FRONTEND BROADCAST</span>
+                    <span class="text-xs font-bold tracking-[0.2em]">MADE BY DEVELOPERS</span>
                     <span class="text-5xl font-black tracking-[-0.08em]">P.</span>
                 </div>
             </aside>
