@@ -28,7 +28,7 @@ function formatDate(date: string) {
                 </h2>
             </div>
             <p class="max-w-md text-sm leading-6 text-muted sm:text-right">
-                直接从最新节目和前端速报开始，不必先翻完整档案。
+                从最新节目和前端速报开始。
             </p>
         </div>
 

@@ -60,14 +60,6 @@ useSeoMeta({
     title: '视频 - prop.show',
     description: '观看 prop.show 前端开发视频，包含项目实战、技术解析、工具使用等高质量内容。',
 })
-
-// defineOgImageComponent('NuxtSeo', {
-//     headline: 'prop.show',
-//     title: '视频 🎥',
-//     description: '观看 prop.show 前端开发视频，包含项目实战、技术解析、工具使用等高质量内容。',
-//     theme: '#F0DB4F',
-//     colorMode: 'dark',
-// })
 </script>
 
 <template>

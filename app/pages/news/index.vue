@@ -64,14 +64,6 @@ useSeoMeta({
     title: '速报 - prop.show',
     description: '第一时间获得前端库和工具的最新动态和更新消息。',
 })
-
-// defineOgImageComponent('NuxtSeo', {
-//     headline: 'prop.show',
-//     title: '前端速报 📰',
-//     description: '第一时间获得前端库和工具的最新动态和更新消息。',
-//     theme: '#F0DB4F',
-//     colorMode: 'dark',
-// })
 </script>
 
 <template>
