@@ -50,7 +50,7 @@ const { platforms: platformOptions } = useAppConfig()
 
         <div class="min-w-0">
             <h3 class="text-lg font-black transition-colors group-hover:text-primary md:text-xl">
-                {{ `${video.series}:` || '' }}
+                {{ video.series && `${video.series}:` || '' }}
                 {{ video.title }}
             </h3>
             <p class="mt-2 line-clamp-2 text-sm leading-6 text-muted">
