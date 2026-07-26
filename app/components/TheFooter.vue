@@ -100,8 +100,14 @@ const currentYear = new Date().getFullYear()
         </nav>
 
         <div class="flex flex-col gap-5 py-6 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
-            <div class="font-mono font-bold tracking-[0.08em]">
-                © {{ currentYear }} PROP.SHOW
+            <div class="flex flex-wrap items-center gap-x-4 gap-y-2 font-mono font-bold tracking-[0.08em]">
+                <span>© {{ currentYear }} PROP.SHOW</span>
+                <NuxtLink
+                    to="/design-assets"
+                    class="text-[10px] tracking-[0.12em] text-dimmed outline-none transition-colors hover:text-muted focus-visible:ring-2 focus-visible:ring-primary"
+                >
+                    设计资产
+                </NuxtLink>
             </div>
 
             <div class="flex flex-wrap items-center gap-x-5 gap-y-2">

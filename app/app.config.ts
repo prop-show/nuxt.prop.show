@@ -47,6 +47,55 @@ export default defineAppConfig({
         { label: '关于我们', icon: 'i-tabler-brand-asana', to: '/about' },
     ] as NavigationMenuItem[],
 
+    designAssets: {
+        logos: [
+            {
+                key: 'light',
+                label: '浅色背景版',
+                channel: 'LIGHT SURFACE',
+                description: '黑色标志用于白色或其他明亮、简洁的背景。',
+                asset: '/prop-light.svg',
+                transparentAsset: '/prop-light-transparent.svg',
+                surfaceColor: '#FFFFFF',
+            },
+            {
+                key: 'dark',
+                label: '深色背景版',
+                channel: 'DARK SURFACE',
+                description: '品牌黄标志用于黑色或其他深色背景。',
+                asset: '/prop-dark.svg',
+                transparentAsset: '/prop-dark-transparent.svg',
+                surfaceColor: '#000000',
+            },
+        ],
+        colors: [
+            {
+                name: '品牌黄',
+                channel: 'PRIMARY',
+                hex: '#F0DB4F',
+                rgb: '240 219 79',
+                description: '标志、主要交互与重点信息',
+                textColor: '#000000',
+            },
+            {
+                name: '墨黑',
+                channel: 'INK',
+                hex: '#000000',
+                rgb: '0 0 0',
+                description: '标题、黑色背景与浅色版标志',
+                textColor: '#FFFFFF',
+            },
+            {
+                name: '纸白',
+                channel: 'PAPER',
+                hex: '#FFFFFF',
+                rgb: '255 255 255',
+                description: '浅色表面与内容留白',
+                textColor: '#000000',
+            },
+        ],
+    },
+
     friendLinks: [
         { label: 'PropShowKit', to: 'https://kit.prop.show' },
         { label: '月空人', to: 'https://weilog.me' },

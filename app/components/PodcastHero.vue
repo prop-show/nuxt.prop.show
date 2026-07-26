@@ -35,8 +35,8 @@ const signals = computed(() => [
                     </div>
 
                     <h1 class="max-w-4xl text-5xl leading-[0.95] font-black tracking-[-0.07em] sm:text-7xl lg:text-8xl">
-                        这里有前端视频，
-                        <span class="mt-2 block text-primary ">也有技术速报。</span>
+                        看前端视频，
+                        <span class="mt-2 block text-primary ">读技术速报。</span>
                     </h1>
 
                     <p class="mt-8 max-w-2xl text-base leading-7 text-muted sm:text-lg">
@@ -45,10 +45,10 @@ const signals = computed(() => [
 
                     <div class="mt-10 flex flex-wrap gap-3">
                         <UButton to="/videos" icon="i-tabler-player-play-filled" size="xl">
-                            查看视频
+                            看视频
                         </UButton>
                         <UButton to="/news" icon="i-tabler-news" size="xl" color="neutral" variant="outline">
-                            浏览速报
+                            读速报
                         </UButton>
                     </div>
                 </div>
