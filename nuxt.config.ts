@@ -36,7 +36,7 @@ export default defineNuxtConfig({
         compressPublicAssets: true,
         prerender: {
             crawlLinks: true,
-            routes: ['/', '/rss.xml'],
+            routes: ['/', '/works', '/rss.xml'],
         },
     },
 

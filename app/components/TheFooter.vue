@@ -108,6 +108,12 @@ const currentYear = new Date().getFullYear()
                 >
                     设计资产
                 </NuxtLink>
+                <NuxtLink
+                    to="/works"
+                    class="text-[10px] tracking-[0.12em] text-dimmed outline-none transition-colors hover:text-muted focus-visible:ring-2 focus-visible:ring-primary"
+                >
+                    团队成员作品
+                </NuxtLink>
             </div>
 
             <div class="flex flex-wrap items-center gap-x-5 gap-y-2">

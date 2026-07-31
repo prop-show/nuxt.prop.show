@@ -61,6 +61,7 @@ export default withNuxt(
             'prefer-arrow-callback': 'off',
             'prefer-template': 'off',
             'style/indent': 'off',
+            'style/jsx-one-expression-per-line': 'off',
             'style/no-mixed-spaces-and-tabs': 'off',
             'style/quotes': 'off',
             'style/semi': 'off',

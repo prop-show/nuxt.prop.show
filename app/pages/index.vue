@@ -1,12 +1,11 @@
 <script lang="ts" setup>
-const { creators } = useAppConfig()
-
 const { data: homeContent } = useAsyncData(
     'home-content',
     async () => {
-        const [videoTotal, newsTotal, videos, news] = await Promise.all([
+        const [videoTotal, newsTotal, creatorTotal, videos, news] = await Promise.all([
             queryCollection('videos').count('*'),
             queryCollection('news').count('*'),
+            queryCollection('creators').count('*'),
             queryCollection('videos').order('order', 'DESC').limit(3).all(),
             queryCollection('news').order('date', 'DESC').limit(3).all(),
         ])
@@ -14,6 +13,7 @@ const { data: homeContent } = useAsyncData(
         return {
             videoTotal,
             newsTotal,
+            creatorTotal,
             videos,
             news,
         }
@@ -22,6 +22,7 @@ const { data: homeContent } = useAsyncData(
         default: () => ({
             videoTotal: 0,
             newsTotal: 0,
+            creatorTotal: 0,
             videos: [],
             news: [],
         }),
@@ -40,7 +41,7 @@ useSeoMeta({
         <PodcastHero
             :video-count="homeContent.videoTotal"
             :news-count="homeContent.newsTotal"
-            :creator-count="creators.length"
+            :creator-count="homeContent.creatorTotal"
         />
 
         <div class="mx-auto max-w-6xl">

@@ -39,7 +39,7 @@ const features = [
                     WHAT WE TRANSMIT
                 </div>
                 <h2 class="text-3xl font-black tracking-tight md:text-4xl">
-                    不只讲知识，也讲怎么用
+                    围绕真实场景讲解
                 </h2>
             </div>
             <p class="max-w-md text-sm leading-6 text-muted md:text-right">

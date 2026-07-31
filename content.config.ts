@@ -22,6 +22,25 @@ const NewsSchema = z.object({
     date: z.string(),
 })
 
+const CreatorSchema = z.object({
+    name: z.string(),
+    avatar: z.string(),
+    href: z.string(),
+    role: z.string(),
+    order: z.number().int().nonnegative().default(0),
+})
+
+const WorkSchema = z.object({
+    title: z.string(),
+    description: z.string(),
+    author: z.string(),
+    type: z.string(),
+    order: z.number().int().nonnegative().default(0),
+    tags: z.array(z.string()).default([]),
+    website: z.string().optional(),
+    repository: z.string().optional(),
+})
+
 export default defineContentConfig({
     collections: {
         videos: defineCollection({
@@ -33,6 +52,16 @@ export default defineContentConfig({
             type: 'page',
             source: 'news/**/*.md',
             schema: NewsSchema,
+        }),
+        creators: defineCollection({
+            type: 'data',
+            source: 'creators/**/*.yml',
+            schema: CreatorSchema,
+        }),
+        works: defineCollection({
+            type: 'page',
+            source: 'works/**/*.md',
+            schema: WorkSchema,
         }),
     },
 })

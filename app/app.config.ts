@@ -1,6 +1,6 @@
 import type { NavigationMenuItem } from '@nuxt/ui'
 
-import type { Creator, Platform, Social } from './types/app.config.type'
+import type { Platform, Social } from './types/app.config.type'
 
 export default defineAppConfig({
     paginationPageSize: 10,
@@ -24,27 +24,13 @@ export default defineAppConfig({
         { href: 'https://space.bilibili.com/104376935', platform: '哔哩哔哩', icon: 'i-tabler-brand-bilibili' },
         { href: 'https://www.youtube.com/@PropShowFM', platform: 'YouTube', icon: 'i-tabler-brand-youtube' },
         { href: '/rss.xml', platform: 'RSS', icon: 'i-tabler-rss' },
-        // { href: 'https://bento.me/prop-show', platform: 'Bento', icon: 'i-tabler-link' },
     ] as Social[],
 
-    creators: [
-        {
-            avatar: 'https://bitmc.uno/picgo/126662463_p2.jpg',
-            creator: 'Wei',
-            href: 'https://github.com/Whbbit1999',
-        },
-        {
-            avatar: 'https://bitmc.uno/picgo/Himavanta.jpeg',
-            creator: 'Himavanta',
-            href: 'https://github.com/himavanta',
-        },
-    ] as Creator[],
-
     navigationLinks: [
-        { label: '首页', icon: 'i-tabler-armchair-2', to: '/' },
-        { label: '视频', icon: 'i-tabler-device-tv', to: '/videos' },
-        { label: '速报', icon: 'i-tabler-news', to: '/news' },
-        { label: '关于我们', icon: 'i-tabler-brand-asana', to: '/about' },
+        { label: '首页', to: '/' },
+        { label: '视频', to: '/videos' },
+        { label: '速报', to: '/news' },
+        { label: '关于我们', to: '/about' },
     ] as NavigationMenuItem[],
 
     designAssets: {
