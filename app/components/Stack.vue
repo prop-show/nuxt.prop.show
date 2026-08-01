@@ -1,14 +1,5 @@
 <script lang="ts" setup>
 const { stacks } = useAppConfig()
-
-const stackIcons: Record<string, string> = {
-    'Nuxt.js': 'i-tabler-brand-nuxt',
-    'Vue': 'i-tabler-brand-vue',
-    'TypeScript': 'i-tabler-brand-typescript',
-    'Tailwind CSS': 'i-tabler-brand-tailwind',
-    'Nuxt UI': 'i-tabler-components',
-    'Vercel': 'i-tabler-brand-vercel',
-}
 </script>
 
 <template>
@@ -34,7 +25,7 @@ const stackIcons: Record<string, string> = {
                 class="group flex min-h-36 flex-col justify-between border-b border-default p-5 transition-colors hover:bg-elevated/70 sm:border-r"
             >
                 <div class="flex items-start justify-between">
-                    <Icon :name="stackIcons[stack.name] || 'i-tabler-code'" class="size-7 text-toned transition-colors group-hover:text-primary" />
+                    <Icon :name="stack.icon || 'i-tabler-code'" class="size-7 text-toned transition-colors group-hover:text-primary" />
                     <span class="font-mono text-[10px] font-bold tracking-[0.18em] text-dimmed">
                         {{ String(index + 1).padStart(2, '0') }}
                     </span>

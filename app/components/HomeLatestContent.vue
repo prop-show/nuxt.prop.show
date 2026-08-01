@@ -58,14 +58,8 @@ function formatDate(date: string) {
                         </span>
                         <div class="min-w-0">
                             <div class="truncate font-black transition-colors group-hover:text-primary">
-                                {{ `${video.series}:` || '' }}
+                                <span v-if="video.series"> {{ `${video.series}:` }}</span>
                                 {{ video.title }}
-                            </div>
-                            <div class="mt-1 font-mono text-[9px] font-bold tracking-[0.14em] text-dimmed">
-                                <template v-if="video.series">
-                                    {{ video.series }} /
-                                </template>
-                                {{ video.category }}
                             </div>
                         </div>
                         <Icon name="i-tabler-arrow-right" class="size-4 text-muted transition-transform group-hover:translate-x-1" />

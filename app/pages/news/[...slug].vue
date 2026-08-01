@@ -125,12 +125,36 @@ useSeoMeta({
                         VERIFY<br>
                         CONTINUE
                     </div>
+
+                    <div class="mt-6 grid gap-4 text-sm">
+                        <UButton
+                            v-if="letter.source"
+                            :to="letter.source"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            color="neutral"
+                            variant="outline"
+                            icon="i-tabler-external-link"
+                        >
+                            消息来源
+                        </UButton>
+                    </div>
                 </aside>
 
-                <article class="min-w-0 border-y border-default py-2 sm:border sm:bg-default/55 sm:p-8 lg:p-12">
-                    <div class="prose prose-neutral max-w-none dark:prose-invert prose-headings:font-black prose-headings:tracking-tight prose-a:text-primary prose-a:decoration-primary/40 prose-blockquote:border-primary prose-blockquote:bg-elevated/50 prose-blockquote:px-5 prose-blockquote:py-1">
-                        <ContentRenderer :value="letter" />
+                <!-- 只在移动端展示 -->
+                <NewsSource :letter />
+
+                <article class="border-y border-default py-7 sm:border sm:bg-default/55 sm:p-8 lg:p-10">
+                    <div class="mb-6 border-b border-default pb-5">
+                        <div class="font-mono text-[10px] font-bold tracking-[0.2em] text-primary">
+                            NEWSLETTER CONTENT
+                        </div>
+                        <h2 class="mt-2 text-2xl font-black">
+                            讯号内容
+                        </h2>
                     </div>
+
+                    <Content :value="letter" />
                 </article>
             </div>
 

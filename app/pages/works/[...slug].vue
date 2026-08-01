@@ -164,9 +164,7 @@ useSeoMeta({
                             </h2>
                         </div>
 
-                        <div class="prose prose-neutral max-w-none dark:prose-invert prose-headings:font-black prose-a:text-primary prose-a:decoration-primary/40">
-                            <ContentRenderer :value="work" />
-                        </div>
+                        <Content :value="work" />
                     </article>
 
                     <section v-if="work.tags?.length" class="border-t border-default pt-5">

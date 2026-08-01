@@ -72,7 +72,7 @@ const { platforms: platformOptions } = useAppConfig()
             <div class="font-mono text-[9px] font-bold tracking-[0.18em] text-dimmed">
                 AVAILABLE ON
             </div>
-            <div class="mt-3 flex flex-wrap gap-2">
+            <div v-if="video.platforms" class="mt-3 flex flex-wrap gap-2">
                 <span
                     v-for="platform in platformOptions"
                     :key="platform.key"

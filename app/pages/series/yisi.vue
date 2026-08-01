@@ -19,7 +19,7 @@ useSeoMeta({
 
 <template>
     <section>
-        <YisiSeriesHero :count="seriesVideos.length" />
+        <SeriesYisiHero :count="seriesVideos.length" />
 
         <section v-if="pending" class="my-20">
             <div class="mb-8 border-b border-default pb-5">

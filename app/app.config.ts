@@ -1,7 +1,3 @@
-import type { NavigationMenuItem } from '@nuxt/ui'
-
-import type { Platform, Social } from './types/app.config.type'
-
 export default defineAppConfig({
     paginationPageSize: 10,
 
@@ -17,21 +13,21 @@ export default defineAppConfig({
         { key: 'bilibili', name: 'BiliBili', icon: 'i-tabler-brand-bilibili' },
         { key: 'douyin', name: '抖音', icon: 'i-tabler-brand-tiktok' },
         { key: 'youtube', name: 'YouTube', icon: 'i-tabler-brand-youtube' },
-    ] as Platform[],
+    ],
 
     socials: [
         { href: 'https://github.com/prop-show', platform: 'GitHub', icon: 'i-tabler-brand-github' },
         { href: 'https://space.bilibili.com/104376935', platform: '哔哩哔哩', icon: 'i-tabler-brand-bilibili' },
         { href: 'https://www.youtube.com/@PropShowFM', platform: 'YouTube', icon: 'i-tabler-brand-youtube' },
         { href: '/rss.xml', platform: 'RSS', icon: 'i-tabler-rss' },
-    ] as Social[],
+    ],
 
     navigationLinks: [
         { label: '首页', to: '/' },
         { label: '视频', to: '/videos' },
         { label: '速报', to: '/news' },
         { label: '关于我们', to: '/about' },
-    ] as NavigationMenuItem[],
+    ],
 
     designAssets: {
         logos: [
@@ -86,7 +82,7 @@ export default defineAppConfig({
         { label: 'PropShowKit', to: 'https://kit.prop.show' },
         { label: '月空人', to: 'https://weilog.me' },
         { label: 'Himavanta', to: 'https://www.unsun.cc/' },
-    ] as NavigationMenuItem[],
+    ],
 
     techLogos: [
         { icon: 'i-tabler-brand-react', title: 'React', href: 'https://react.dev' },
@@ -96,14 +92,14 @@ export default defineAppConfig({
         { icon: 'i-tabler-brand-typescript', title: 'TypeScript', href: 'https://www.typescriptlang.org' },
         { icon: 'i-tabler-brand-tailwind', title: 'Tailwind CSS', href: 'https://tailwindcss.com' },
         { icon: 'i-tabler-brand-nodejs', title: 'Nodejs', href: 'https://nodejs.org/' },
-    ] as { icon: string, title: string, href: string }[],
+    ],
 
     stacks: [
-        { name: 'Nuxt.js' },
-        { name: 'Vue' },
-        { name: 'TypeScript' },
-        { name: 'Tailwind CSS' },
-        { name: 'Nuxt UI' },
-        { name: 'Vercel' },
+        { name: 'Nuxt.js', icon: 'i-tabler-brand-nuxt' },
+        { name: 'Vue', icon: 'i-tabler-brand-vue' },
+        { name: 'TypeScript', icon: 'i-tabler-brand-typescript' },
+        { name: 'Tailwind CSS', icon: 'i-tabler-brand-tailwind' },
+        { name: 'Nuxt UI', icon: 'i-tabler-components' },
+        { name: 'Vercel', icon: 'i-tabler-brand-vercel' },
     ],
 })

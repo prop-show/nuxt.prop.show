@@ -60,6 +60,7 @@ function getCategoryColor(category?: string) {
             return 'bg-gray-500'
     }
 }
+const { platforms } = useAppConfig()
 
 useSeoMeta({
     title: () => video.value ? seoTitle(video.value) : '视频 - prop.show',
@@ -165,6 +166,58 @@ useSeoMeta({
                         PLATFORM<br>
                         PLAY
                     </div>
+
+                    <div class="mt-6 grid gap-4 text-sm">
+                        <UButton
+                            v-if="video.repository"
+                            :to="video.repository"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            color="neutral"
+                            variant="outline"
+                            icon="i-tabler-brand-github"
+                        >
+                            查看源码
+                        </UButton>
+
+                        <h2 class="font-bold">
+                            观看平台
+                        </h2>
+
+                        <UButton
+                            v-if="video.platforms?.bilibili"
+                            :to="video.platforms.bilibili"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            color="neutral"
+                            variant="outline"
+                            :icon="platforms.find(p => p.key === 'bilibili')?.icon"
+                        >
+                            哔哩哔哩
+                        </UButton>
+                        <UButton
+                            v-if="video.platforms?.youtube"
+                            :to="video.platforms.youtube"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            color="neutral"
+                            variant="outline"
+                            :icon="platforms.find(p => p.key === 'youtube')?.icon"
+                        >
+                            Youtube
+                        </UButton>
+                        <UButton
+                            v-if="video.platforms?.douyin"
+                            :to="video.platforms.douyin"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            color="neutral"
+                            variant="outline"
+                            :icon="platforms.find(p => p.key === 'douyin')?.icon"
+                        >
+                            抖音
+                        </UButton>
+                    </div>
                 </aside>
 
                 <div class="min-w-0 space-y-8">
@@ -180,7 +233,8 @@ useSeoMeta({
                         <Icon name="i-tabler-route" class="size-5 text-muted transition-transform group-hover:translate-x-1" />
                     </NuxtLink>
 
-                    <section class="border border-default bg-default/55 p-6 sm:p-8">
+                    <!-- 只在移动端展示 -->
+                    <section v-if="video.platforms" class="border border-default bg-default/55 p-6 sm:p-8 block lg:hidden">
                         <div class="mb-6">
                             <div class="font-mono text-[10px] font-bold tracking-[0.2em] text-primary">
                                 WATCH PROGRAM
@@ -191,6 +245,37 @@ useSeoMeta({
                         </div>
 
                         <VideoPlatformButtons :platforms="video.platforms" :show-title="false" />
+                    </section>
+                    <section v-if="video.repository" class="border border-default bg-default/55 p-6 sm:p-8 block lg:hidden">
+                        <div class="mb-6">
+                            <div class="font-mono text-[10px] font-bold tracking-[0.2em] text-primary">
+                                SOURCE CODE
+                            </div>
+                            <h2 class="mt-2 text-2xl font-black">
+                                查看源码
+                            </h2>
+                        </div>
+
+                        <NuxtLink
+                            :to="video.repository"
+                            target="_blank"
+                            class="group flex items-center justify-between border border-default p-4 outline-none transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:bg-elevated/70 focus-visible:ring-2 focus-visible:ring-primary"
+                        >
+                            <div class="flex items-center gap-3">
+                                <span class="flex size-10 items-center justify-center bg-muted">
+                                    <Icon name="i-tabler-brand-github" class="size-5" />
+                                </span>
+                                <div>
+                                    <div class="font-mono text-[9px] font-bold tracking-[0.18em] text-dimmed">
+                                        WATCH ON
+                                    </div>
+                                    <div class="mt-1 font-black">
+                                        GitHub
+                                    </div>
+                                </div>
+                            </div>
+                            <Icon name="i-tabler-arrow-up-right" class="size-5 text-muted transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-primary" />
+                        </NuxtLink>
                     </section>
 
                     <article class="border-y border-default py-7 sm:border sm:bg-default/55 sm:p-8">
@@ -207,9 +292,7 @@ useSeoMeta({
                             {{ video.description }}
                         </p>
 
-                        <div class="prose prose-neutral mt-6 max-w-none dark:prose-invert prose-headings:font-black prose-a:text-primary prose-a:decoration-primary/40">
-                            <ContentRenderer :value="video" />
-                        </div>
+                        <Content :value="video" />
                     </article>
                 </div>
             </section>

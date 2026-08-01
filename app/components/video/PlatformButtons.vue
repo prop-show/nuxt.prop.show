@@ -9,7 +9,7 @@ const { platforms, showTitle = true } = defineProps<{
 const { platforms: staticPlatforms } = useAppConfig()
 
 const availablePlatforms = computed(() => staticPlatforms.filter(platform =>
-    platforms[platform.key as keyof typeof platforms],
+    platforms && platforms[platform.key as keyof typeof platforms],
 ))
 </script>
 
@@ -19,7 +19,7 @@ const availablePlatforms = computed(() => staticPlatforms.filter(platform =>
             观看平台
         </h3>
 
-        <div class="grid gap-3 sm:grid-cols-2">
+        <div v-if="platforms" class="grid gap-3 sm:grid-cols-2">
             <NuxtLink
                 v-for="platform in availablePlatforms"
                 :key="platform.key"

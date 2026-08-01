@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import NewsLine from '~/components/NewsLine.vue'
-
 const route = useRoute()
 const { paginationPageSize } = useAppConfig()
 
