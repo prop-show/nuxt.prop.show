@@ -33,6 +33,13 @@ export default defineNuxtConfig({
 
     // Nitro 预渲染配置
     nitro: {
+        cloudflare: {
+            // 禁用自动生成 wrangler.json / .wrangler/deploy/config.json。
+            // 否则 Cloudflare Pages 构建时会读取生成的 wrangler.json（含 pages_build_output_dir），
+            // 转而执行 `wrangler deploy`（Workers 命令），触发：
+            // "It looks like you've run a Workers-specific command in a Pages project"
+            deployConfig: false,
+        },
         compressPublicAssets: true,
         prerender: {
             crawlLinks: true,
