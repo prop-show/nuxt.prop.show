@@ -25,7 +25,6 @@ export default defineAppConfig({
     navigationLinks: [
         { label: '首页', to: '/' },
         { label: '视频', to: '/videos' },
-        { label: '速报', to: '/news' },
         { label: '关于我们', to: '/about' },
     ],
 
@@ -79,7 +78,7 @@ export default defineAppConfig({
     },
 
     friendLinks: [
-        { label: '在线图片压缩', to: 'https://compress.bitmc.club' },
+        { label: '在线图片压缩', to: 'https://compress.weilog.me' },
         { label: 'PropShowKit', to: 'https://kit.prop.show' },
         { label: '月空人', to: 'https://weilog.me' },
         { label: 'Himavanta', to: 'https://www.unsun.cc/' },

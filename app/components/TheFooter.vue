@@ -82,7 +82,7 @@ const currentYear = new Date().getFullYear()
             </aside>
         </div>
 
-        <nav class="grid border-b border-default sm:grid-cols-2 lg:grid-cols-4" aria-label="页脚导航">
+        <nav class="grid border-b border-default sm:grid-cols-2 lg:grid-cols-3" aria-label="页脚导航">
             <NuxtLink
                 v-for="(link, index) in navigationLinks"
                 :key="link.label"
