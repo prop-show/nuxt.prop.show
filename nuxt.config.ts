@@ -21,7 +21,7 @@ const keywords = [
 export default defineNuxtConfig({
     compatibilityDate: '2025-07-15',
     devtools: { enabled: true },
-    modules: ['@nuxt/ui', '@nuxt/icon', '@nuxt/content', '@nuxtjs/seo', '@nuxt/hints', '@nuxtjs/seo', '@nuxt/eslint', '@nuxt/image', '@vercel/analytics'],
+    modules: ['@nuxt/ui', '@nuxt/icon', '@nuxt/content', '@nuxtjs/seo', '@nuxt/hints', '@nuxtjs/seo', '@nuxt/eslint', '@nuxt/image'],
 
     css: ['~/assets/css/main.css'],
 
