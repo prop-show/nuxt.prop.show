@@ -100,6 +100,6 @@ export default defineAppConfig({
         { name: 'TypeScript', icon: 'i-tabler-brand-typescript' },
         { name: 'Tailwind CSS', icon: 'i-tabler-brand-tailwind' },
         { name: 'Nuxt UI', icon: 'i-tabler-components' },
-        { name: 'Vercel', icon: 'i-tabler-brand-vercel' },
+        { name: 'Cloudflare', icon: 'i-tabler-brand-cloudflare' },
     ],
 })
