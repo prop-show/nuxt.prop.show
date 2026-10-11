@@ -39,12 +39,8 @@ function formatDate(date: string) {
                 v-for="(item, index) in news"
                 :key="item.id"
                 :to="item.path"
-                class="group grid gap-5 border-b border-default px-1 py-6 outline-none transition-colors last:border-b-0 hover:bg-elevated/55 focus-visible:bg-elevated/55 sm:px-5 md:grid-cols-[5rem_8rem_1fr_2.5rem] md:items-center"
+                class="group grid gap-5 border-b border-default px-1 py-6 outline-none transition-colors last:border-b-0 hover:bg-elevated/55 focus-visible:bg-elevated/55 sm:px-5 md:grid-cols-[8rem_1fr_2.5rem] md:items-center"
             >
-                <div class="font-mono text-xs font-bold tracking-[0.16em] text-dimmed">
-                    SIG.{{ String(total - offset - index).padStart(2, '0') }}
-                </div>
-
                 <time :datetime="item.date" class="flex items-baseline gap-2 font-mono">
                     <span class="text-lg font-black">{{ formatDate(item.date).date }}</span>
                     <span class="text-[10px] font-bold text-dimmed">{{ formatDate(item.date).year }}</span>

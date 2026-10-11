@@ -15,7 +15,7 @@
                 </h1>
 
                 <p class="relative z-10 mt-7 max-w-2xl text-base leading-7 text-muted">
-                    汇集团队成员完成的网站、产品与开源项目，记录每项工作的目标、实现和结果。
+                    汇集团队成员完成的项目，记录每项工作的目标、实现和结果。
                 </p>
             </section>
 

@@ -5,28 +5,28 @@ const missions = [
         icon: 'i-tabler-route',
         title: '从实践出发',
         description: '不复述文档，只分享真正验证过的路径。',
-        content: '选题来自真实项目、工具使用和团队协作。我们关心一个方案为什么有效，也会诚实记录它在什么情况下并不适用。',
+        content: '选题来自真实项目与团队协作。我们关心一个方案为什么有效，也记录它什么时候并不适用。',
     },
     {
         number: '02',
         icon: 'i-tabler-bulb',
         title: '把原理讲清楚',
         description: '让技术选择拥有上下文，而不只是结论。',
-        content: '我们希望每一期内容都能回答“为什么”。不仅展示代码如何写，也说明它解决的问题、取舍与可以继续探索的方向。',
+        content: '每一期都回答“为什么”：不只展示代码怎么写，也说明它解决的问题和取舍。',
     },
     {
         number: '03',
         icon: 'i-tabler-radio',
         title: '保持持续输出',
         description: '用长期记录，对抗短暂的信息噪音。',
-        content: '框架和工具不断变化，但深入理解与清晰表达始终有价值。我们持续追踪变化，也沉淀经得起时间检验的基础内容。',
+        content: '框架和工具不断变化，但深入理解始终有价值。我们持续追踪变化，也沉淀经得起时间检验的基础内容。',
     },
     {
         number: '04',
         icon: 'i-tabler-message-circle-2',
         title: '欢迎不同声音',
         description: '技术讨论不需要唯一答案。',
-        content: 'prop.show 希望成为开放的交流现场。不同经验、观点和技术路线都可以被认真讨论，并帮助彼此看见更多可能。',
+        content: 'prop.show 希望成为开放的交流现场：不同经验、观点和技术路线都可以被认真讨论。',
     },
 ]
 </script>
@@ -43,7 +43,7 @@ const missions = [
                 </h2>
             </div>
             <p class="max-w-md text-sm leading-6 text-muted md:text-right">
-                四条简单的原则，决定我们选择什么、如何表达，以及希望留下什么。
+                四条原则，决定我们选择什么、如何表达。
             </p>
         </div>
 

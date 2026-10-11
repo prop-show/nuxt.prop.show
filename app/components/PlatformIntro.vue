@@ -43,7 +43,7 @@ const features = [
                 </h2>
             </div>
             <p class="max-w-md text-sm leading-6 text-muted md:text-right">
-                围绕真实开发场景，把复杂技术拆成可以理解、复现和继续探索的内容。
+                把复杂技术拆成可以理解、复现、继续探索的内容。
             </p>
         </div>
 

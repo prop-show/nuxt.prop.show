@@ -32,7 +32,7 @@ function formatDate(date?: string) {
                 </h1>
 
                 <p class="relative z-10 mt-7 max-w-2xl text-base leading-7 text-muted">
-                    追踪框架、工具与开源社区的最新变化，把值得关注的消息整理成简短、直接的前端速报。
+                    追踪框架、工具与开源社区的变化，整理成简短、直接的前端速报。
                 </p>
             </section>
 

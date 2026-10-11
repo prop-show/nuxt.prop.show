@@ -14,7 +14,7 @@ const { designAssets } = useAppConfig()
                 </h2>
             </div>
             <p class="max-w-md text-sm leading-6 text-muted md:text-right">
-                标志的图形与比例保持不变，仅根据背景明度切换版本。
+                标志的图形与比例不变，仅根据背景明度切换版本。
             </p>
         </div>
 

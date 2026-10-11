@@ -35,7 +35,7 @@ const { data: creators, pending, error } = useAsyncData(
         variant="subtle"
         icon="i-tabler-alert-triangle"
         title="创作者资料加载失败"
-        description="请稍后刷新页面重试。"
+        description="刷新页面重试。"
     />
 
     <UEmpty

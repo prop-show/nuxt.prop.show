@@ -23,7 +23,7 @@ const assetFacts = [
                         <span class="block text-primary">保持一致。</span>
                     </h1>
                     <p class="mt-7 max-w-2xl text-base leading-8 text-muted">
-                        这里收录 prop.show 当前使用的 Logo、品牌主色与基础应用规则。请优先使用 SVG 文件，并根据背景选择对应版本。
+                        收录 prop.show 的 Logo、品牌主色与基础应用规则。请使用 SVG，并按背景选择对应版本。
                     </p>
                 </div>
 

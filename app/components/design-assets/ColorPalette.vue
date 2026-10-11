@@ -48,7 +48,7 @@ onBeforeUnmount(() => {
                 </h2>
             </div>
             <p class="max-w-md text-sm leading-6 text-muted md:text-right">
-                黄色是唯一品牌强调色，黑与白用于建立清晰的内容层级。点击色值即可复制。
+                黄色是唯一品牌强调色，黑白用于建立内容层级。点击色值即可复制。
             </p>
         </div>
 

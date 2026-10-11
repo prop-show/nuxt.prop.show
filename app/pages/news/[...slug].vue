@@ -42,7 +42,7 @@ const publishedAt = computed(() => {
 })
 
 useSeoMeta({
-    title: () => letter.value ? letter.value.title : '速报 - prop.show',
+    title: () => letter.value ? letter.value.title : '速报',
     description: () => letter.value ? letter.value.description : '第一时间获得前端库和工具的最新动态和更新消息。',
 })
 </script>
@@ -103,9 +103,6 @@ useSeoMeta({
                             <div class="font-mono text-6xl font-black tracking-[-0.12em]">
                                 {{ signalNumber }}
                             </div>
-                            <div class="mt-2 font-mono text-xs font-bold tracking-[0.18em]">
-                                SIG.{{ signalNumber }}
-                            </div>
                         </div>
                     </aside>
                 </div>
@@ -164,7 +161,7 @@ useSeoMeta({
                         END OF TRANSMISSION
                     </div>
                     <p class="mt-1 text-sm font-bold">
-                        讯号已归档，继续浏览其他前端动态。
+                        讯号已归档，看看其他动态。
                     </p>
                 </div>
                 <UButton to="/news" color="neutral" variant="outline" trailing-icon="i-tabler-arrow-right">

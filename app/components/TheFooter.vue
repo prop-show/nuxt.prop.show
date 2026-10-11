@@ -38,7 +38,7 @@ const currentYear = new Date().getFullYear()
                         <span class="block text-primary ">持续记录真实经验。</span>
                     </h2>
                     <p class="mt-5 max-w-xl text-sm leading-7 text-muted">
-                        视频、速报与开发者对谈持续更新。欢迎随时回来，看看我们最近在关注什么。
+                        视频、速报与开发者对谈持续更新。欢迎随时回来。
                     </p>
                 </div>
 

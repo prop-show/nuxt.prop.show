@@ -4,7 +4,7 @@ const rules = [
         number: '01',
         icon: 'i-tabler-spacing-horizontal',
         title: '保留呼吸空间',
-        description: '让标志周围保持充足空白，避免与文字、图像或容器边界拥挤。',
+        description: '标志周围保持充足空白，避免与文字、图像或容器边界拥挤。',
     },
     {
         number: '02',
@@ -39,7 +39,7 @@ const rules = [
                 </h2>
             </div>
             <p class="max-w-md text-sm leading-6 text-muted md:text-right">
-                让标志保持清晰、可识别，比增加额外效果更重要。
+                清晰、可识别，比额外效果更重要。
             </p>
         </div>
 

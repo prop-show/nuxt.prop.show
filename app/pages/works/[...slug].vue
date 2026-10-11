@@ -21,7 +21,7 @@ const work = computed(() => pageData.value?.work)
 const creator = computed(() => pageData.value?.creator)
 
 useSeoMeta({
-    title: () => work.value ? `${work.value.title} - prop.show` : '团队作品 - prop.show',
+    title: () => work.value ? work.value.title : '团队作品',
     description: () => work.value?.description || '浏览 prop.show 团队成员完成的网站、产品、工具与开源项目。',
 })
 </script>
@@ -52,7 +52,7 @@ useSeoMeta({
             variant="subtle"
             icon="i-tabler-alert-triangle"
             title="作品资料加载失败"
-            description="请稍后刷新页面重试。"
+            description="刷新页面重试。"
         />
 
         <template v-else-if="work">
@@ -190,7 +190,7 @@ useSeoMeta({
                         END OF PROJECT FILE
                     </div>
                     <p class="mt-1 text-sm font-bold">
-                        继续浏览团队归档中的其他作品。
+                        看看团队的其他作品。
                     </p>
                 </div>
                 <UButton to="/works" color="neutral" variant="outline" trailing-icon="i-tabler-arrow-right">

@@ -14,7 +14,7 @@ const { stacks } = useAppConfig()
                 </h2>
             </div>
             <p class="max-w-md text-sm leading-6 text-muted md:text-right">
-                这个网站本身也是我们的实验场，用熟悉的前端工具持续迭代内容体验。
+                这个网站也是我们的实验场，用熟悉的前端工具持续迭代。
             </p>
         </div>
 

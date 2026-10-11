@@ -40,7 +40,7 @@ const signals = computed(() => [
                     </h1>
 
                     <p class="mt-8 max-w-2xl text-base leading-7 text-muted sm:text-lg">
-                        prop.show 由前端开发者共同维护，分享真实项目里的实践、工具使用和技术动态。想看完整演示，或快速了解一条新消息，都可以从这里开始。
+                        由前端开发者共同维护，分享真实项目里的实践、工具使用和技术动态。
                     </p>
 
                     <div class="mt-10 flex flex-wrap gap-3">

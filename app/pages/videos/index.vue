@@ -57,7 +57,7 @@ watch(
 )
 
 useSeoMeta({
-    title: '视频 - prop.show',
+    title: '视频',
     description: '观看 prop.show 前端开发视频，包含项目实战、技术解析、工具使用等高质量内容。',
 })
 </script>
@@ -110,7 +110,7 @@ useSeoMeta({
             v-else-if="!filteredVideos.length"
             icon="i-tabler-player-play"
             title="没有匹配的节目"
-            description="换一个频道或标签，或者清除当前筛选。"
+            description="换个频道或标签，或清除筛选。"
         >
             <template #actions>
                 <UButton to="/videos" color="neutral" variant="outline">

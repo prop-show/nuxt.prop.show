@@ -3,7 +3,7 @@ const upcomingFeatures = [
     {
         number: '01',
         title: '交互式代码练习',
-        description: '提供在线编码环境，把节目中的知识直接变成可以动手验证的练习。',
+        description: '在线编码环境，把节目里的知识变成可以动手验证的练习。',
         status: '设计中',
         statusLabel: 'IN DEVELOPMENT',
         accent: 'bg-green-500',
@@ -12,7 +12,7 @@ const upcomingFeatures = [
     {
         number: '02',
         title: '技术问答社区',
-        description: '围绕节目与真实项目展开讨论，让经验可以继续补充和交流。',
+        description: '围绕节目与真实项目讨论，让经验继续沉淀。',
         status: '设计中',
         statusLabel: 'IN DESIGN',
         accent: 'bg-blue-500',
@@ -21,7 +21,7 @@ const upcomingFeatures = [
     {
         number: '03',
         title: '专属学习路径',
-        description: '按照技术方向组织内容，帮助开发者找到更连贯的学习顺序。',
+        description: '按技术方向组织内容，给出更连贯的学习顺序。',
         status: '规划中',
         statusLabel: 'PLANNED',
         accent: 'bg-purple-500',
@@ -92,7 +92,7 @@ const upcomingFeatures = [
                         HAVE AN IDEA?
                     </div>
                     <h3 class="mt-3 text-2xl font-black">
-                        你的建议也可以进入路线图
+                        你的建议也能进入路线图
                     </h3>
                 </div>
 

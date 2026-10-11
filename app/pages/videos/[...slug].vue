@@ -63,7 +63,7 @@ function getCategoryColor(category?: string) {
 const { platforms } = useAppConfig()
 
 useSeoMeta({
-    title: () => video.value ? seoTitle(video.value) : '视频 - prop.show',
+    title: () => video.value ? seoTitle(video.value) : '视频',
     description: () => video.value ? video.value.description : '观看 prop.show 前端开发视频。',
 })
 </script>

@@ -26,7 +26,7 @@ defineProps<{
         </div>
 
         <div class="grid border-y border-default lg:grid-cols-1">
-            <section class="lg:border-r lg:border-default">
+            <section class="lg:border-default">
                 <div class="flex items-center justify-between border-b border-default px-1 py-4 sm:px-5">
                     <div class="flex items-center gap-3">
                         <Icon name="i-tabler-player-play-filled" class="size-5 text-primary" />

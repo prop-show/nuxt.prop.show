@@ -66,7 +66,7 @@ watch(
 )
 
 useSeoMeta({
-    title: '团队作品 - prop.show',
+    title: '团队作品',
     description: '浏览 prop.show 团队成员完成的网站、产品、工具与开源项目。',
 })
 </script>
@@ -107,7 +107,7 @@ useSeoMeta({
             variant="subtle"
             icon="i-tabler-alert-triangle"
             title="作品档案加载失败"
-            description="请稍后刷新页面重试。"
+            description="刷新页面重试。"
         />
 
         <UEmpty
@@ -130,7 +130,7 @@ useSeoMeta({
                 class="my-20"
                 icon="i-tabler-user-search"
                 title="没有匹配的作品"
-                description="该作者不存在或暂时没有已归档作品。"
+                description="该作者不存在，或暂无归档作品。"
             >
                 <template #actions>
                     <UButton to="/works" color="neutral" variant="outline">

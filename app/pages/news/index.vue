@@ -59,7 +59,7 @@ watch(
 )
 
 useSeoMeta({
-    title: '速报 - prop.show',
+    title: '速报',
     description: '第一时间获得前端库和工具的最新动态和更新消息。',
 })
 </script>
@@ -90,8 +90,8 @@ useSeoMeta({
         <UEmpty
             v-else-if="!newsPage.total"
             icon="i-tabler-hourglass-empty"
-            title="还没有东西哦"
-            description="暂时没有新的速报内容。请稍后再来看看！"
+            title="暂无速报"
+            description="新内容还在路上。"
         />
 
         <template v-else>

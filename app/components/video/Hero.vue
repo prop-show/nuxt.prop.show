@@ -24,7 +24,7 @@ defineProps<{
                 </h1>
 
                 <p class="relative z-10 mt-7 max-w-2xl text-base leading-7 text-muted">
-                    从项目构建到工具发现，用完整演示和真实经验，把每一个前端问题讲清楚。
+                    用完整演示和真实经验，把每个前端问题讲清楚。
                 </p>
             </section>
 
