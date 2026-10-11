@@ -29,7 +29,6 @@ export default defineNuxtConfig({
 
     // 性能优化配置
     experimental: {
-        payloadExtraction: true,
         viewTransition: true,
     },
 
