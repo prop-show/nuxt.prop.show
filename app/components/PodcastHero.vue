@@ -25,7 +25,7 @@ const signals = computed(() => [
     <header class="hero-shell my-8 overflow-hidden border border-default/50 bg-default/85 md:my-12" role="banner">
         <div class="grid lg:grid-cols-[1.35fr_0.65fr]">
             <section class="relative flex min-h-125 flex-col justify-between overflow-hidden p-6 sm:p-10 lg:p-14">
-                <div class="hero-grid absolute inset-0 opacity-50" />
+                <div class="grid-texture absolute inset-0 opacity-50" />
                 <div class="hero-orbit absolute -right-32 top-1/2 size-96 -translate-y-1/2 rounded-full border border-primary/30" />
 
                 <div class="relative z-10">
@@ -92,15 +92,6 @@ const signals = computed(() => [
 <style scoped>
 .hero-shell {
     border-radius: calc(var(--ui-radius) * 2);
-}
-
-.hero-grid {
-    background-image:
-        linear-gradient(to right, color-mix(in srgb, var(--ui-border) 65%, transparent) 1px, transparent 1px),
-        linear-gradient(to bottom, color-mix(in srgb, var(--ui-border) 65%, transparent) 1px, transparent 1px);
-    background-size: 42px 42px;
-    mask-image: linear-gradient(to right, black, transparent 88%);
-    contain: strict;
 }
 
 .hero-orbit::before,

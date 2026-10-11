@@ -59,7 +59,7 @@ useSeoMeta({
             <header class="overflow-hidden border border-default bg-default/85 shadow-sm">
                 <div class="grid lg:grid-cols-[1fr_17rem]">
                     <section class="relative overflow-hidden p-6 sm:p-10 lg:p-12">
-                        <div class="work-detail-grid absolute inset-0 opacity-45" />
+                        <div class="grid-texture absolute inset-0 opacity-45" />
 
                         <div class="relative z-10 flex flex-wrap items-center gap-3 font-mono text-[10px] font-bold tracking-[0.2em] text-dimmed">
                             <span class="text-primary">TEAM WORK</span>
@@ -83,7 +83,7 @@ useSeoMeta({
                     </section>
 
                     <aside class="flex min-h-48 flex-col justify-between border-t border-default bg-primary p-6 text-black lg:min-h-full lg:border-t-0 lg:border-l">
-                        <span class="font-mono text-[10px] font-bold tracking-[0.2em] text-black/55">PROJECT TYPE</span>
+                        <span class="meta-label-on-primary">PROJECT TYPE</span>
                         <div>
                             <Icon name="i-tabler-box" class="mb-5 size-10" />
                             <strong class="block text-3xl leading-tight font-black">{{ work.type }}</strong>
@@ -105,14 +105,7 @@ useSeoMeta({
                         rel="noopener noreferrer"
                         class="group mt-4 flex items-center gap-3 outline-none focus-visible:ring-2 focus-visible:ring-primary lg:items-start"
                     >
-                        <img
-                            width="48"
-                            height="48"
-                            :src="creator.avatar"
-                            :alt="`${creator.name} avatar`"
-                            class="size-12 shrink-0 rounded-sm object-cover"
-                            decoding="async"
-                        >
+                        <CreatorAvatar :creator="creator" size="md" class="shrink-0" />
                         <div class="min-w-0">
                             <div class="flex items-center gap-1 font-black group-hover:text-primary">
                                 {{ creator.name }}
@@ -171,15 +164,7 @@ useSeoMeta({
                         <div class="font-mono text-[10px] font-bold tracking-[0.2em] text-dimmed">
                             TECHNOLOGY / TOPICS
                         </div>
-                        <div class="mt-4 flex flex-wrap gap-2">
-                            <span
-                                v-for="tag in work.tags"
-                                :key="tag"
-                                class="border border-default bg-default/55 px-2.5 py-1 font-mono text-[10px] font-bold tracking-wider text-toned"
-                            >
-                                {{ tag }}
-                            </span>
-                        </div>
+                        <TagList :tags="work.tags" size="md" class="mt-4" />
                     </section>
                 </div>
             </section>
@@ -201,7 +186,7 @@ useSeoMeta({
 
         <UEmpty
             v-else
-            icon="i-tabler-file-unknown"
+            icon="i-tabler-archive-off"
             title="作品不存在"
             description="这份作品资料可能已被移动或删除。"
         >
@@ -213,13 +198,3 @@ useSeoMeta({
         </UEmpty>
     </main>
 </template>
-
-<style scoped>
-.work-detail-grid {
-    background-image:
-        linear-gradient(to right, color-mix(in srgb, var(--ui-border) 65%, transparent) 1px, transparent 1px),
-        linear-gradient(to bottom, color-mix(in srgb, var(--ui-border) 65%, transparent) 1px, transparent 1px);
-    background-size: 42px 42px;
-    mask-image: linear-gradient(to right, black, transparent 92%);
-}
-</style>

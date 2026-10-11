@@ -4,19 +4,11 @@ const { techLogos } = useAppConfig()
 
 <template>
     <section class="my-20">
-        <div class="mb-8 flex flex-col justify-between gap-4 border-b border-default pb-5 sm:flex-row sm:items-end">
-            <div>
-                <div class="mb-2 font-mono text-xs font-bold tracking-[0.22em] text-primary">
-                    TECH FREQUENCIES
-                </div>
-                <h2 class="text-3xl font-black tracking-tight md:text-4xl">
-                    持续关注的技术方向
-                </h2>
-            </div>
-            <span class="font-mono text-xs font-bold tracking-[0.18em] text-dimmed">
+        <SectionHeading eyebrow="TECH FREQUENCIES" title="持续关注的技术方向">
+            <span class="section-count">
                 {{ String(techLogos.length).padStart(2, '0') }} TOPICS
             </span>
-        </div>
+        </SectionHeading>
 
         <div class="grid overflow-hidden border border-default sm:grid-cols-2 lg:grid-cols-4">
             <NuxtLink

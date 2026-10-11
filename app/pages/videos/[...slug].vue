@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import type { VideosCollectionItem } from '@nuxt/content'
-
 const route = useRoute()
 
 const { data: pageData, pending } = useAsyncData(
@@ -18,7 +16,7 @@ const { data: pageData, pending } = useAsyncData(
             : await queryCollection('videos').order('order', 'ASC').all()
 
         if (video.series)
-            videos.sort((a, b) => (a.episode ?? a.order!) - (b.episode ?? b.order!))
+            videos.sort((a, b) => videoEpisode(a) - videoEpisode(b))
 
         const index = videos.findIndex(item => item.path === route.path)
 
@@ -34,36 +32,11 @@ const video = computed(() => pageData.value?.video)
 const previousVideo = computed(() => pageData.value?.previous)
 const nextVideo = computed(() => pageData.value?.next)
 const isYisiSeries = computed(() => video.value?.series === '乙巳')
-const displayEpisode = computed(() => video.value?.series
-    ? video.value.episode ?? video.value.order
-    : video.value?.order)
-
-function episodeNumber(item: VideosCollectionItem) {
-    return item.series ? item.episode ?? item.order : item.order
-}
-
-function seoTitle(item: VideosCollectionItem) {
-    return item.series
-        ? `${item.series} EP.${String(episodeNumber(item)).padStart(2, '0')}：${item.title}`
-        : item.title
-}
-
-function getCategoryColor(category?: string) {
-    switch (category) {
-        case '构建现场':
-            return 'bg-blue-500'
-        case '工具雷达':
-            return 'bg-green-500'
-        case '开发者会客厅':
-            return 'bg-purple-500'
-        default:
-            return 'bg-gray-500'
-    }
-}
+const displayEpisode = computed(() => videoEpisode(video.value))
 const { platforms } = useAppConfig()
 
 useSeoMeta({
-    title: () => video.value ? seoTitle(video.value) : '视频',
+    title: () => video.value ? videoLabel(video.value) : '视频',
     description: () => video.value ? video.value.description : '观看 prop.show 前端开发视频。',
 })
 </script>
@@ -96,7 +69,7 @@ useSeoMeta({
             <header class="overflow-hidden border border-default bg-default/85 shadow-sm">
                 <div class="grid lg:grid-cols-[1fr_23rem]">
                     <section class="relative flex min-h-105 flex-col justify-between overflow-hidden p-6 sm:p-10 lg:p-12">
-                        <div class="program-grid absolute inset-0 opacity-45" />
+                        <div class="grid-texture absolute inset-0 opacity-45" />
 
                         <div class="relative z-10">
                             <div class="flex flex-wrap items-center gap-3 font-mono text-[10px] font-bold tracking-[0.2em] text-dimmed">
@@ -121,23 +94,15 @@ useSeoMeta({
                             </p>
                         </div>
 
-                        <div class="relative z-10 mt-10 flex flex-wrap items-center gap-2">
-                            <span
-                                v-for="tag in video.tags"
-                                :key="tag"
-                                class="border border-default bg-default/50 px-2.5 py-1 font-mono text-[10px] font-bold tracking-wider text-toned"
-                            >
-                                {{ tag }}
-                            </span>
-                        </div>
+                        <TagList :tags="video.tags" size="md" class="relative z-10 mt-10 items-center" />
                     </section>
 
                     <aside class="relative flex min-h-72 flex-col justify-between overflow-hidden border-t border-default bg-primary text-black lg:min-h-full lg:border-t-0 lg:border-l">
                         <div class="absolute inset-5 border border-black/15" />
 
-                        <div class="relative z-10 flex items-center justify-between p-7 font-mono text-[10px] font-bold tracking-[0.2em] text-black/55">
+                        <div class="relative z-10 flex items-center justify-between p-7 meta-label-on-primary">
                             <span>EPISODE FILE</span>
-                            <span class="size-2 rounded-full" :class="getCategoryColor(video.category)" />
+                            <span class="size-2 rounded-full" :class="videoCategoryColor(video.category)" />
                         </div>
 
                         <div class="relative z-10 p-7">
@@ -303,13 +268,13 @@ useSeoMeta({
                     :to="previousVideo.path"
                     class="group flex min-h-32 flex-col justify-between border-b border-default p-5 transition-colors hover:bg-elevated/55 md:border-r md:border-b-0"
                 >
-                    <div class="flex items-center gap-2 font-mono text-[10px] font-bold tracking-[0.18em] text-dimmed">
+                    <div class="flex items-center gap-2 meta-label">
                         <Icon name="i-tabler-arrow-left" class="size-4 transition-transform group-hover:-translate-x-1" />
                         PREVIOUS EPISODE
                     </div>
                     <div>
                         <div class="font-mono text-xs font-bold text-primary">
-                            EP.{{ String(episodeNumber(previousVideo)).padStart(2, '0') }}
+                            EP.{{ String(videoEpisode(previousVideo)).padStart(2, '0') }}
                         </div>
                         <div class="mt-1 line-clamp-1 font-black">
                             {{ previousVideo.title }}
@@ -323,13 +288,13 @@ useSeoMeta({
                     :to="nextVideo.path"
                     class="group flex min-h-32 flex-col items-end justify-between p-5 text-right transition-colors hover:bg-elevated/55"
                 >
-                    <div class="flex items-center gap-2 font-mono text-[10px] font-bold tracking-[0.18em] text-dimmed">
+                    <div class="flex items-center gap-2 meta-label">
                         NEXT EPISODE
                         <Icon name="i-tabler-arrow-right" class="size-4 transition-transform group-hover:translate-x-1" />
                     </div>
                     <div>
                         <div class="font-mono text-xs font-bold text-primary">
-                            EP.{{ String(episodeNumber(nextVideo)).padStart(2, '0') }}
+                            EP.{{ String(videoEpisode(nextVideo)).padStart(2, '0') }}
                         </div>
                         <div class="mt-1 line-clamp-1 font-black">
                             {{ nextVideo.title }}
@@ -353,13 +318,3 @@ useSeoMeta({
         </UEmpty>
     </main>
 </template>
-
-<style scoped>
-.program-grid {
-    background-image:
-        linear-gradient(to right, color-mix(in srgb, var(--ui-border) 65%, transparent) 1px, transparent 1px),
-        linear-gradient(to bottom, color-mix(in srgb, var(--ui-border) 65%, transparent) 1px, transparent 1px);
-    background-size: 42px 42px;
-    mask-image: linear-gradient(to right, black, transparent 92%);
-}
-</style>

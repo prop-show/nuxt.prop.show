@@ -16,7 +16,7 @@ function creatorKey(creator: CreatorsCollectionItem) {
     <section class="my-16">
         <div class="border-y border-default">
             <div class="grid gap-5 px-1 py-5 sm:px-5 lg:grid-cols-[8rem_1fr] lg:items-center">
-                <div class="font-mono text-[10px] font-bold tracking-[0.18em] text-dimmed">
+                <div class="meta-label">
                     CREATOR
                 </div>
 
@@ -36,15 +36,7 @@ function creatorKey(creator: CreatorsCollectionItem) {
                         class="inline-flex min-h-9 items-center gap-2 border px-2.5 py-1 text-sm font-bold outline-none transition-colors focus-visible:ring-2 focus-visible:ring-primary"
                         :class="activeAuthor === creatorKey(creator) ? 'border-primary bg-primary text-black' : 'border-default text-muted hover:border-primary hover:text-highlighted'"
                     >
-                        <img
-                            width="24"
-                            height="24"
-                            :src="creator.avatar"
-                            :alt="`${creator.name} avatar`"
-                            class="size-6 rounded-full object-cover"
-                            loading="lazy"
-                            decoding="async"
-                        >
+                        <CreatorAvatar :creator="creator" size="xs" />
                         {{ creator.name }}
                     </NuxtLink>
                 </div>

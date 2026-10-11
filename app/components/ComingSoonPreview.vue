@@ -32,19 +32,11 @@ const upcomingFeatures = [
 
 <template>
     <section class="my-20">
-        <div class="mb-8 flex flex-col justify-between gap-4 border-b border-default pb-5 sm:flex-row sm:items-end">
-            <div>
-                <div class="mb-2 font-mono text-xs font-bold tracking-[0.22em] text-primary">
-                    NEXT ON THE ROADMAP
-                </div>
-                <h2 class="text-3xl font-black tracking-tight md:text-4xl">
-                    下一阶段，我们想做这些
-                </h2>
-            </div>
-            <span class="font-mono text-xs font-bold tracking-[0.18em] text-dimmed">
+        <SectionHeading eyebrow="NEXT ON THE ROADMAP" title="下一阶段，我们想做这些">
+            <span class="section-count">
                 03 IDEAS IN PROGRESS
             </span>
-        </div>
+        </SectionHeading>
 
         <div class="grid border-y border-default lg:grid-cols-[1fr_17rem]">
             <div class="lg:border-r lg:border-default">
@@ -88,7 +80,7 @@ const upcomingFeatures = [
                     ?
                 </div>
                 <div class="relative z-10">
-                    <div class="font-mono text-[10px] font-bold tracking-[0.2em] text-black/55">
+                    <div class="meta-label-on-primary">
                         HAVE AN IDEA?
                     </div>
                     <h3 class="mt-3 text-2xl font-black">

@@ -1,14 +1,7 @@
 <script setup lang="ts">
 const route = useRoute()
-const { paginationPageSize } = useAppConfig()
 
 const activeAuthor = computed(() => typeof route.query.author === 'string' ? route.query.author : undefined)
-const requestedPage = computed(() => {
-    const page = Number.parseInt(String(route.query.page || '1'), 10)
-
-    return Math.max(Number.isNaN(page) ? 1 : page, 1)
-})
-
 const { data: archive, pending, error } = useAsyncData(
     'works-archive',
     async () => {
@@ -39,31 +32,9 @@ const filteredWorks = computed(() => {
 
     return archive.value.works.filter(work => work.author === activeAuthor.value)
 })
-const lastPage = computed(() => Math.max(1, Math.ceil(filteredWorks.value.length / paginationPageSize)))
-const currentPage = computed(() => Math.min(requestedPage.value, lastPage.value))
-const paginatedWorks = computed(() => filteredWorks.value.slice(
-    (currentPage.value - 1) * paginationPageSize,
-    currentPage.value * paginationPageSize,
-))
 const paginationQuery = computed(() => activeAuthor.value ? { author: activeAuthor.value } : undefined)
 
-watch(
-    [requestedPage, currentPage],
-    async ([requested, page]) => {
-        if (page === requested)
-            return
-
-        const query = { ...route.query }
-
-        if (page === 1)
-            delete query.page
-        else
-            query.page = String(page)
-
-        await navigateTo({ path: route.path, query }, { replace: true })
-    },
-    { immediate: true },
-)
+const { currentPage, pageSize, paginated } = useArchivePagination(filteredWorks)
 
 useSeoMeta({
     title: '团队作品',
@@ -141,13 +112,13 @@ useSeoMeta({
 
             <template v-else>
                 <WorkList
-                    :works="paginatedWorks"
+                    :works="paginated"
                     :creators="archive.creators"
                     :total="filteredWorks.length"
                 />
                 <ContentPagination
                     :page="currentPage"
-                    :page-size="paginationPageSize"
+                    :page-size="pageSize"
                     :total="filteredWorks.length"
                     base-path="/works"
                     :query="paginationQuery"

@@ -26,9 +26,7 @@ export default defineEventHandler(async (event) => {
         ...news.map(item => ({ ...item, category: '前端速报', sortOrder: 0 })),
         ...videos.map(item => ({
             ...item,
-            title: item.series
-                ? `${item.series} EP.${String(item.episode ?? item.order).padStart(2, '0')}：${item.title}`
-                : item.title,
+            title: videoLabel(item),
             category: item.category,
             sortOrder: item.order ?? 0,
         })),

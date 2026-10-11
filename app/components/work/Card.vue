@@ -23,28 +23,12 @@ defineProps<{
                 {{ work.description }}
             </p>
 
-            <div v-if="work.tags?.length" class="mt-3 flex flex-wrap gap-2">
-                <span
-                    v-for="tag in work.tags.slice(0, 4)"
-                    :key="tag"
-                    class="border border-default px-2 py-0.5 font-mono text-[9px] font-bold tracking-wider text-toned"
-                >
-                    {{ tag }}
-                </span>
-            </div>
+            <TagList v-if="work.tags?.length" :tags="work.tags" :limit="4" class="mt-3" />
         </div>
 
         <div>
             <div v-if="creator" class="mt-3 flex items-center gap-3">
-                <img
-                    width="40"
-                    height="40"
-                    :src="creator.avatar"
-                    :alt="`${creator.name} avatar`"
-                    class="size-10 rounded-sm object-cover"
-                    loading="lazy"
-                    decoding="async"
-                >
+                <CreatorAvatar :creator="creator" />
                 <div class="min-w-0">
                     <div class="truncate text-sm font-black">
                         {{ creator.name }}

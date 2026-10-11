@@ -22,17 +22,9 @@ function formatDate(date: string) {
 
 <template>
     <section class="my-20">
-        <div class="mb-8 flex items-end justify-between border-b border-default pb-5">
-            <div>
-                <div class="mb-2 font-mono text-xs font-bold tracking-[0.22em] text-primary">
-                    SIGNAL ARCHIVE
-                </div>
-                <h2 class="text-3xl font-black tracking-tight md:text-4xl">
-                    最新讯号
-                </h2>
-            </div>
+        <SectionHeading eyebrow="SIGNAL ARCHIVE" title="最新讯号">
             <Icon name="i-tabler-antenna-bars-5" class="hidden size-9 text-primary sm:block" />
-        </div>
+        </SectionHeading>
 
         <div class="overflow-hidden border-y border-default">
             <NuxtLink

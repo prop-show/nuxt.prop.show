@@ -30,7 +30,7 @@ const facts = [
             </aside>
 
             <section class="relative flex min-h-110 flex-col justify-between overflow-hidden p-6 sm:p-10 lg:p-14">
-                <div class="about-grid absolute inset-0 opacity-45" />
+                <div class="grid-texture grid-texture-left absolute inset-0 opacity-45" />
 
                 <div class="relative z-10">
                     <p class="font-mono text-xs font-bold tracking-[0.22em] text-primary">
@@ -59,13 +59,3 @@ const facts = [
         </div>
     </header>
 </template>
-
-<style scoped>
-.about-grid {
-    background-image:
-        linear-gradient(to right, color-mix(in srgb, var(--ui-border) 65%, transparent) 1px, transparent 1px),
-        linear-gradient(to bottom, color-mix(in srgb, var(--ui-border) 65%, transparent) 1px, transparent 1px);
-    background-size: 42px 42px;
-    mask-image: linear-gradient(to left, black, transparent 92%);
-}
-</style>

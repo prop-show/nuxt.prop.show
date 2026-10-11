@@ -33,19 +33,11 @@ const missions = [
 
 <template>
     <section class="my-20">
-        <div class="mb-8 flex flex-col justify-between gap-4 border-b border-default pb-5 md:flex-row md:items-end">
-            <div>
-                <div class="mb-2 font-mono text-xs font-bold tracking-[0.22em] text-primary">
-                    OUR PRINCIPLES
-                </div>
-                <h2 class="text-3xl font-black tracking-tight md:text-4xl">
-                    我们如何制作内容
-                </h2>
-            </div>
+        <SectionHeading eyebrow="OUR PRINCIPLES" title="我们如何制作内容" stack-at="md">
             <p class="max-w-md text-sm leading-6 text-muted md:text-right">
                 四条原则，决定我们选择什么、如何表达。
             </p>
-        </div>
+        </SectionHeading>
 
         <div class="grid gap-6 md:grid-cols-2">
             <UCard

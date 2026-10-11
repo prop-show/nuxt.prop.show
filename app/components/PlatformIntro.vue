@@ -33,19 +33,11 @@ const features = [
 
 <template>
     <section class="my-20">
-        <div class="mb-8 flex flex-col justify-between gap-4 border-b border-default pb-5 md:flex-row md:items-end">
-            <div>
-                <div class="mb-2 font-mono text-xs font-bold tracking-[0.22em] text-primary">
-                    WHAT WE TRANSMIT
-                </div>
-                <h2 class="text-3xl font-black tracking-tight md:text-4xl">
-                    围绕真实场景讲解
-                </h2>
-            </div>
+        <SectionHeading eyebrow="WHAT WE TRANSMIT" title="围绕真实场景讲解" stack-at="md">
             <p class="max-w-md text-sm leading-6 text-muted md:text-right">
                 把复杂技术拆成可以理解、复现、继续探索的内容。
             </p>
-        </div>
+        </SectionHeading>
 
         <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             <UCard

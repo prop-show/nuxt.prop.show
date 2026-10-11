@@ -9,21 +9,20 @@ const props = withDefaults(defineProps<{
 })
 
 const displayEpisode = computed(() => props.numbering === 'series'
-    ? props.video.episode ?? props.video.order
+    ? videoEpisode(props.video)
     : props.video.order)
 
-function getCategoryColor(category: string) {
-    switch (category) {
-        case '构建现场':
-            return 'bg-blue-500'
-        case '工具雷达':
-            return 'bg-green-500'
-        case '开发者会客厅':
-            return 'bg-purple-500'
-        default:
-            return 'bg-gray-500'
-    }
-}
+// 全局归档里的序号是全局节目号，所以旁边要带上系列自己的集数，避免读成系列集数。
+const metaLabel = computed(() => {
+    if (!props.video.series)
+        return props.video.category
+
+    const label = `${props.video.category} / ${props.video.series}`
+
+    return props.numbering === 'series'
+        ? label
+        : `${label} EP.${String(videoEpisode(props.video)).padStart(2, '0')}`
+})
 
 const { platforms: platformOptions } = useAppConfig()
 </script>
@@ -38,34 +37,22 @@ const { platforms: platformOptions } = useAppConfig()
                 EP.{{ String(displayEpisode).padStart(2, '0') }}
             </div>
             <div class="mt-2 flex items-center gap-2">
-                <span class="size-2 rounded-full" :class="getCategoryColor(video.category)" />
+                <span class="size-2 rounded-full" :class="videoCategoryColor(video.category)" />
                 <span class="font-mono text-[10px] font-bold tracking-[0.14em] text-dimmed">
-                    {{ video.category }}
-                    <template v-if="video.series">
-                        / {{ video.series }}
-                    </template>
+                    {{ metaLabel }}
                 </span>
             </div>
         </div>
 
         <div class="min-w-0">
             <h3 class="text-lg font-black transition-colors group-hover:text-primary md:text-xl">
-                {{ video.series && `${video.series}:` || '' }}
                 {{ video.title }}
             </h3>
             <p class="mt-2 line-clamp-2 text-sm leading-6 text-muted">
                 {{ video.description }}
             </p>
 
-            <div v-if="video.tags?.length" class="mt-3 flex flex-wrap gap-2">
-                <span
-                    v-for="tag in video.tags.slice(0, 4)"
-                    :key="tag"
-                    class="border border-default px-2 py-0.5 font-mono text-[9px] font-bold tracking-wider text-toned"
-                >
-                    {{ tag }}
-                </span>
-            </div>
+            <TagList v-if="video.tags?.length" :tags="video.tags" :limit="4" class="mt-3" />
         </div>
 
         <div>

@@ -12,7 +12,7 @@ const assetFacts = [
     <header class="my-8 overflow-hidden border border-default bg-default/85 shadow-sm md:my-12">
         <div class="grid lg:grid-cols-[1.28fr_0.72fr]">
             <section class="relative flex min-h-110 flex-col justify-between overflow-hidden p-6 sm:p-10 lg:p-14">
-                <div class="asset-grid absolute inset-0 opacity-45" />
+                <div class="grid-texture absolute inset-0 opacity-45" />
 
                 <div class="relative z-10">
                     <p class="font-mono text-xs font-bold tracking-[0.22em] text-primary">
@@ -62,13 +62,3 @@ const assetFacts = [
         </div>
     </header>
 </template>
-
-<style scoped>
-.asset-grid {
-    background-image:
-        linear-gradient(to right, color-mix(in srgb, var(--ui-border) 65%, transparent) 1px, transparent 1px),
-        linear-gradient(to bottom, color-mix(in srgb, var(--ui-border) 65%, transparent) 1px, transparent 1px);
-    background-size: 42px 42px;
-    mask-image: linear-gradient(to right, black, transparent 92%);
-}
-</style>

@@ -4,19 +4,11 @@ const { designAssets } = useAppConfig()
 
 <template>
     <section class="my-20" aria-labelledby="logo-assets-heading">
-        <div class="mb-8 flex flex-col justify-between gap-4 border-b border-default pb-5 md:flex-row md:items-end">
-            <div>
-                <div class="mb-2 font-mono text-xs font-bold tracking-[0.22em] text-primary">
-                    LOGO SYSTEM
-                </div>
-                <h2 id="logo-assets-heading" class="text-3xl font-black tracking-tight md:text-4xl">
-                    Logo 版本
-                </h2>
-            </div>
+        <SectionHeading eyebrow="LOGO SYSTEM" title="Logo 版本" title-id="logo-assets-heading" stack-at="md">
             <p class="max-w-md text-sm leading-6 text-muted md:text-right">
                 标志的图形与比例不变，仅根据背景明度切换版本。
             </p>
-        </div>
+        </SectionHeading>
 
         <div class="grid border-y border-default lg:grid-cols-2">
             <article

@@ -26,17 +26,9 @@ const modules = [
 
 <template>
     <section class="my-20">
-        <div class="mb-8 flex items-end justify-between border-b border-default pb-5">
-            <div>
-                <div class="mb-2 font-mono text-xs font-bold tracking-[0.22em] text-primary">
-                    PROGRAM CHANNELS
-                </div>
-                <h2 class="text-3xl font-black tracking-tight md:text-4xl">
-                    三个频道，持续更新
-                </h2>
-            </div>
+        <SectionHeading eyebrow="PROGRAM CHANNELS" title="三个频道，持续更新">
             <Icon name="i-tabler-wave-sine" class="hidden size-10 text-primary md:block" />
-        </div>
+        </SectionHeading>
 
         <div class="overflow-hidden border-y border-default">
             <NuxtLink
@@ -61,15 +53,7 @@ const modules = [
                     </p>
                 </div>
 
-                <div class="flex flex-wrap gap-2">
-                    <span
-                        v-for="tag in module.tags"
-                        :key="tag"
-                        class="border border-default px-2.5 py-1 font-mono text-[10px] font-bold tracking-wider text-toned"
-                    >
-                        {{ tag }}
-                    </span>
-                </div>
+                <TagList :tags="module.tags" size="md" />
 
                 <div class="hidden size-10 items-center justify-center border border-default text-muted transition-all duration-300 group-hover:border-primary group-hover:bg-primary group-hover:text-black md:flex">
                     <Icon name="i-tabler-arrow-right" class="size-5 transition-transform group-hover:translate-x-0.5" />

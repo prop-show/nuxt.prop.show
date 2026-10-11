@@ -16,19 +16,11 @@ withDefaults(defineProps<{
 
 <template>
     <section class="my-20">
-        <div class="mb-8 flex items-end justify-between border-b border-default pb-5">
-            <div>
-                <div class="mb-2 font-mono text-xs font-bold tracking-[0.22em] text-primary">
-                    {{ eyebrow }}
-                </div>
-                <h2 class="text-3xl font-black tracking-tight md:text-4xl">
-                    {{ title }}
-                </h2>
-            </div>
-            <span class="hidden font-mono text-xs font-bold tracking-[0.18em] text-dimmed sm:block">
+        <SectionHeading :eyebrow="eyebrow" :title="title">
+            <span class="section-count hidden sm:block">
                 {{ String(total).padStart(2, '0') }} EPISODES
             </span>
-        </div>
+        </SectionHeading>
 
         <div class="overflow-hidden border-y border-default">
             <VideoCard v-for="video in videos" :key="video.id" :video="video" :numbering />

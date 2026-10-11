@@ -50,7 +50,7 @@ function applyFilter(type: 'category' | 'tag', value?: string) {
 
         <div class="border-y border-default">
             <div class="grid gap-5 px-1 py-5 sm:px-5 lg:grid-cols-[8rem_1fr]">
-                <div class="font-mono text-[10px] font-bold tracking-[0.18em] text-dimmed">
+                <div class="meta-label">
                     CHANNEL
                 </div>
                 <div class="flex flex-wrap gap-2">
@@ -76,7 +76,7 @@ function applyFilter(type: 'category' | 'tag', value?: string) {
             </div>
 
             <div class="grid gap-5 border-t border-default px-1 py-5 sm:px-5 lg:grid-cols-[8rem_1fr]">
-                <div class="font-mono text-[10px] font-bold tracking-[0.18em] text-dimmed">
+                <div class="meta-label">
                     TOPIC
                 </div>
                 <div class="flex flex-wrap gap-2">

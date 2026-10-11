@@ -29,19 +29,11 @@ const rules = [
 
 <template>
     <section class="my-20" aria-labelledby="usage-rules-heading">
-        <div class="mb-8 flex flex-col justify-between gap-4 border-b border-default pb-5 md:flex-row md:items-end">
-            <div>
-                <div class="mb-2 font-mono text-xs font-bold tracking-[0.22em] text-primary">
-                    BASIC USAGE
-                </div>
-                <h2 id="usage-rules-heading" class="text-3xl font-black tracking-tight md:text-4xl">
-                    基础使用规则
-                </h2>
-            </div>
+        <SectionHeading eyebrow="BASIC USAGE" title="基础使用规则" title-id="usage-rules-heading" stack-at="md">
             <p class="max-w-md text-sm leading-6 text-muted md:text-right">
                 清晰、可识别，比额外效果更重要。
             </p>
-        </div>
+        </SectionHeading>
 
         <div class="grid border-y border-default md:grid-cols-2">
             <article

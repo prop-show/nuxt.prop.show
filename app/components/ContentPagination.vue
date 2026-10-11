@@ -19,7 +19,7 @@ function pageLink(page: number) {
 
 <template>
     <div v-if="total > pageSize" class="mt-8 flex flex-col items-center justify-between gap-4 border-y border-default py-5 sm:flex-row">
-        <div class="font-mono text-[10px] font-bold tracking-[0.18em] text-dimmed">
+        <div class="meta-label">
             PAGE {{ String(page).padStart(2, '0') }} / {{ String(Math.ceil(total / pageSize)).padStart(2, '0') }}
         </div>
 

@@ -1,15 +1,8 @@
 <script lang="ts" setup>
 const route = useRoute()
-const { paginationPageSize } = useAppConfig()
 
 const activeCategory = computed(() => typeof route.query.category === 'string' ? route.query.category : undefined)
 const activeTag = computed(() => typeof route.query.tag === 'string' ? route.query.tag : undefined)
-
-const requestedPage = computed(() => {
-    const page = Number.parseInt(String(route.query.page || '1'), 10)
-
-    return Math.max(Number.isNaN(page) ? 1 : page, 1)
-})
 
 const { data: videos, pending } = useAsyncData(
     'videos-archive',
@@ -27,34 +20,12 @@ const filteredVideos = computed(() => videos.value.filter((video) => {
     const tagMatches = !activeTag.value || video.tags?.includes(activeTag.value)
     return categoryMatches && tagMatches
 }))
-const lastPage = computed(() => Math.max(1, Math.ceil(filteredVideos.value.length / paginationPageSize)))
-const currentPage = computed(() => Math.min(requestedPage.value, lastPage.value))
-const paginatedVideos = computed(() => filteredVideos.value.slice(
-    (currentPage.value - 1) * paginationPageSize,
-    currentPage.value * paginationPageSize,
-))
 const filterQuery = computed(() => ({
     ...(activeCategory.value ? { category: activeCategory.value } : {}),
     ...(activeTag.value ? { tag: activeTag.value } : {}),
 }))
 
-watch(
-    [requestedPage, currentPage],
-    async ([requested, page]) => {
-        if (page === requested)
-            return
-
-        const query = { ...route.query }
-
-        if (page === 1)
-            delete query.page
-        else
-            query.page = String(page)
-
-        await navigateTo({ path: route.path, query }, { replace: true })
-    },
-    { immediate: true },
-)
+const { currentPage, pageSize, paginated } = useArchivePagination(filteredVideos)
 
 useSeoMeta({
     title: '视频',
@@ -120,10 +91,10 @@ useSeoMeta({
         </UEmpty>
 
         <template v-else>
-            <VideoList :videos="paginatedVideos" :total="filteredVideos.length" />
+            <VideoList :videos="paginated" :total="filteredVideos.length" />
             <ContentPagination
                 :page="currentPage"
-                :page-size="paginationPageSize"
+                :page-size="pageSize"
                 :total="filteredVideos.length"
                 base-path="/videos"
                 :query="filterQuery"

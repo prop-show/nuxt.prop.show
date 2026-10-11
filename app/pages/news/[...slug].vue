@@ -71,7 +71,7 @@ useSeoMeta({
             <header class="overflow-hidden border border-default bg-default/85 shadow-sm">
                 <div class="grid lg:grid-cols-[1fr_15rem]">
                     <section class="relative overflow-hidden p-6 sm:p-10 lg:p-12">
-                        <div class="signal-grid absolute inset-0 opacity-45" />
+                        <div class="grid-texture absolute inset-0 opacity-45" />
 
                         <div class="relative z-10 flex flex-wrap items-center gap-3 font-mono text-[10px] font-bold tracking-[0.2em] text-dimmed">
                             <span class="inline-flex items-center gap-2 text-primary">
@@ -96,7 +96,7 @@ useSeoMeta({
                     </section>
 
                     <aside class="flex min-h-44 flex-col justify-between border-t border-default bg-primary p-6 text-black lg:min-h-full lg:border-t-0 lg:border-l">
-                        <div class="font-mono text-[10px] font-bold tracking-[0.2em] text-black/55">
+                        <div class="meta-label-on-primary">
                             ARCHIVE NUMBER
                         </div>
                         <div>
@@ -184,13 +184,3 @@ useSeoMeta({
         </UEmpty>
     </main>
 </template>
-
-<style scoped>
-.signal-grid {
-    background-image:
-        linear-gradient(to right, color-mix(in srgb, var(--ui-border) 65%, transparent) 1px, transparent 1px),
-        linear-gradient(to bottom, color-mix(in srgb, var(--ui-border) 65%, transparent) 1px, transparent 1px);
-    background-size: 42px 42px;
-    mask-image: linear-gradient(to right, black, transparent 92%);
-}
-</style>

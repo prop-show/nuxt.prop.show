@@ -38,19 +38,11 @@ onBeforeUnmount(() => {
 
 <template>
     <section class="my-20" aria-labelledby="brand-colors-heading">
-        <div class="mb-8 flex flex-col justify-between gap-4 border-b border-default pb-5 md:flex-row md:items-end">
-            <div>
-                <div class="mb-2 font-mono text-xs font-bold tracking-[0.22em] text-primary">
-                    CORE PALETTE
-                </div>
-                <h2 id="brand-colors-heading" class="text-3xl font-black tracking-tight md:text-4xl">
-                    品牌主色
-                </h2>
-            </div>
+        <SectionHeading eyebrow="CORE PALETTE" title="品牌主色" title-id="brand-colors-heading" stack-at="md">
             <p class="max-w-md text-sm leading-6 text-muted md:text-right">
                 黄色是唯一品牌强调色，黑白用于建立内容层级。点击色值即可复制。
             </p>
-        </div>
+        </SectionHeading>
 
         <div class="border-y border-default">
             <button

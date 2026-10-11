@@ -11,19 +11,11 @@ defineProps<{
 
 <template>
     <section class="my-20">
-        <div class="mb-8 flex flex-col justify-between gap-4 border-b border-default pb-5 sm:flex-row sm:items-end">
-            <div>
-                <div class="mb-2 font-mono text-xs font-bold tracking-[0.22em] text-primary">
-                    LATEST TRANSMISSIONS
-                </div>
-                <h2 class="text-3xl font-black tracking-tight md:text-4xl">
-                    最近更新
-                </h2>
-            </div>
+        <SectionHeading eyebrow="LATEST TRANSMISSIONS" title="最近更新">
             <p class="max-w-md text-sm leading-6 text-muted sm:text-right">
                 从最新节目和前端速报开始。
             </p>
-        </div>
+        </SectionHeading>
 
         <div class="grid border-y border-default lg:grid-cols-1">
             <section class="lg:border-default">

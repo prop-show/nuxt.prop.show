@@ -67,7 +67,7 @@ const currentYear = new Date().getFullYear()
                 <div class="absolute -right-8 -bottom-16 font-mono text-[10rem] leading-none font-black tracking-[-0.16em] text-black/8">
                     P
                 </div>
-                <div class="relative z-10 font-mono text-[10px] font-bold tracking-[0.2em] text-black/55">
+                <div class="relative z-10 meta-label-on-primary">
                     SIGNAL STATUS
                 </div>
                 <div class="relative z-10">

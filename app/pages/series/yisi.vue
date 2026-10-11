@@ -6,7 +6,7 @@ const { data: seriesVideos, pending } = useAsyncData(
             .where('series', '=', '乙巳')
             .all()
 
-        return videos.sort((a, b) => (a.episode ?? a.order!) - (b.episode ?? b.order!))
+        return videos.sort((a, b) => videoEpisode(a) - videoEpisode(b))
     },
     { default: () => [] },
 )

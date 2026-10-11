@@ -8,7 +8,7 @@ defineProps<{
     <header class="my-8 overflow-hidden border border-default bg-default/85 md:my-12">
         <div class="grid lg:grid-cols-[1fr_18rem]">
             <section class="relative overflow-hidden p-6 sm:p-10 lg:p-12">
-                <div class="series-grid absolute inset-0 opacity-45" />
+                <div class="grid-texture absolute inset-0 opacity-45" />
                 <div class="relative z-10 font-mono text-[10px] font-bold tracking-[0.2em] text-primary">
                     PROP.SHOW / BUILD SERIES
                 </div>
@@ -28,7 +28,7 @@ defineProps<{
                 <div class="absolute -right-7 -bottom-10 font-mono text-[10rem] leading-none font-black tracking-[-0.14em] text-black/8">
                     乙
                 </div>
-                <div class="relative z-10 font-mono text-[10px] font-bold tracking-[0.2em] text-black/55">
+                <div class="relative z-10 meta-label-on-primary">
                     COMPLETE CURRICULUM
                 </div>
                 <div class="relative z-10">
@@ -43,13 +43,3 @@ defineProps<{
         </div>
     </header>
 </template>
-
-<style scoped>
-.series-grid {
-    background-image:
-        linear-gradient(to right, color-mix(in srgb, var(--ui-border) 65%, transparent) 1px, transparent 1px),
-        linear-gradient(to bottom, color-mix(in srgb, var(--ui-border) 65%, transparent) 1px, transparent 1px);
-    background-size: 42px 42px;
-    mask-image: linear-gradient(to right, black, transparent 92%);
-}
-</style>
