@@ -3,7 +3,10 @@ import { defineConfig } from 'void/config'
 export default defineConfig({
     sourceDir: 'src',
     target: 'cloudflare',
-    cloudflare: { name: 'prop-show-void-preview' },
+    cloudflare: {
+        name: 'nuxt-prop-show',
+        previews: {},
+    },
     worker: { compatibility_date: '2026-10-18', compatibility_flags: ['nodejs_compat'] },
     head: {
         titleTemplate: '%s | prop.show',

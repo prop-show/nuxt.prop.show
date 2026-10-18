@@ -15,6 +15,7 @@
         "lint": "eslint .",
         "lint:fix": "eslint --fix .",
         "deploy": "void deploy",
+        "deploy:preview": "wrangler preview --config dist/ssr/wrangler.json",
         "check:content": "node scripts/check-content.mjs",
         "typecheck": "vue-tsc --noEmit",
         "check:seo": "node scripts/check-seo.mjs"
@@ -44,7 +45,8 @@
         "undici": "^8.12.2",
         "vite": "^8.3.4",
         "void": "1.1.11",
-        "vue-tsc": "^3.3.7"
+        "vue-tsc": "^3.3.7",
+        "wrangler": "4.151.1"
     },
     "simple-git-hooks": {
         "pre-commit": "./node_modules/.bin/nano-staged"

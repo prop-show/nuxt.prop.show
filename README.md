@@ -56,7 +56,18 @@ pnpm exec void connect --platform cloudflare
 pnpm deploy
 ```
 
-`void.config.ts` 使用独立 Worker 名 `prop-show-void-preview`，没有生产自定义域名配置。首次部署需要登录并选择 Cloudflare 账户；部署命令会创建或更新远程资源。验证预览站后再配置生产域名，不要把 `dist/client` 单独当作完整站点部署。
+`void.config.ts` 使用 Worker 名 `nuxt-prop-show`，没有生产自定义域名配置。首次部署需要登录并选择 Cloudflare 账户；部署命令会创建或更新远程资源。验证预览站后再配置生产域名，不要把 `dist/client` 单独当作完整站点部署。
+
+`pnpm deploy`（即 `void deploy`）发布到上述 Worker 的正式部署。分支预览使用独立的 `pnpm deploy:preview` 命令。若要使用 Cloudflare 控制台的分支预览功能，`void.config.ts` 的 `cloudflare` 配置需保留 `previews: {}`（Wrangler 4.151.1 要求存在这个块；当前应用没有需要单独配置的资源绑定）。先构建，再明确传入包含 SSR 入口和静态资源的生成配置：
+
+```sh
+pnpm build
+pnpm deploy:preview
+```
+
+Cloudflare Workers Builds 控制台的构建命令填写 `pnpm build`，非生产分支部署命令填写 `pnpm deploy:preview`。项目已直接依赖 Wrangler 4.151.1，安装依赖时需包含开发依赖；避免只从间接依赖查找 Wrangler 而出现 `wrangler: not found`。
+
+预览名称默认取当前 Git 分支，也可通过 `--name <预览名称>` 指定；所属 Worker 默认取生成配置中的 `name`。如需在另一个已有 Worker 下创建预览，追加 `--worker-name <目标Worker名称>`。该参数指定预览所属 Worker，不会修改 `void.config.ts` 或 `void.lock.json`。单独运行 `pnx wrangler preview` 不会直接读取 `void.config.ts`，因此可能报 `Required Worker name missing`；仅传 `.void-wrangler.jsonc` 也缺少完整构建入口。本地预览仍使用 `pnpm build` 后运行 `pnpm preview`。
 
 Void 生成 `.void/`、`.void-wrangler.jsonc` 和构建产物，这些不提交；如果部署生成 `void.lock.json`，应保留并提交资源记录。HTTPS 在 Cloudflare 域名设置中开启 Always Use HTTPS；www 主域名跳转由服务端中间件处理。
 
