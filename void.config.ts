@@ -8,6 +8,16 @@ export default defineConfig({
         previews: {},
     },
     worker: { compatibility_date: '2026-10-18', compatibility_flags: ['nodejs_compat'] },
+    routing: {
+        // 内容全部在构建期打包，部署会清空 ISR 缓存；这里只是给不常发版时兜个底。
+        revalidate: { '/api/*': 0, '*': 604800 },
+        // 归档页按查询参数分页/筛选，不加入 allowlist 会共用一个缓存条目。
+        revalidateQueryAllowlist: {
+            '/videos': ['category', 'tag', 'page'],
+            '/works': ['author', 'page'],
+            '/news': ['page'],
+        },
+    },
     head: {
         titleTemplate: '%s | prop.show',
         htmlAttrs: { lang: 'zh-CN' },
