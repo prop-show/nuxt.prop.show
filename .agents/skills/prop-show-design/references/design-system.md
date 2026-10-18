@@ -28,14 +28,14 @@ The visual signature consists of:
 
 Read the current implementation before applying this document. Prefer current code when the system evolves.
 
-- `app/app.config.ts`: colors, navigation, platforms, creators, and shared data.
-- `app/assets/css/main.css`: radius, page background, texture, and color mode foundation.
+- `src/site-config.ts`: colors, navigation, platforms, creators, and shared data.
+- `src/assets/css/main.css`: radius, page background, texture, and color mode foundation.
 - `TheHeader.vue` and `TheFooter.vue`: shell, navigation, focus, logo, and terminal patterns.
 - `PodcastHero.vue`, `NewsHero.vue`, and `VideoHero.vue`: hero and status-panel patterns.
 - `NewsLine.vue`, `VideoCard.vue`, and `Modules.vue`: archive row patterns.
 - `Creators.vue` and `TechLogos.vue`: directory and matrix patterns.
 - Detail pages: dense content hierarchy and previous/next navigation.
-- `public/rss.xsl`: standalone surface adaptation outside Nuxt UI.
+- `src/pages/` and `src/routes/`: Void SSR pages, metadata, RSS and sitemap.
 
 ## Mandatory Rules
 
@@ -97,7 +97,7 @@ Read the current implementation before applying this document. Prefer current co
 
 - Use semantic links, buttons, navigation, headings, lists, time elements, and landmarks.
 - Add accessible names to icon-only controls and useful alt text to content images.
-- Use Tabler through Nuxt Icon and the existing prop.show custom icon collection. Do not hand-draw replacement icons.
+- Use Tabler through `Icon.vue` and the generated `src/icons.ts` collection; use the mode-correct SVGs in `public/` for prop.show. Do not hand-draw replacement icons.
 - Maintain readable contrast in both themes and on yellow panels.
 - Keep high-frequency state out of Vue renders. Prefer CSS for responsive layout and simple visual motion.
 - Avoid new dependencies for styling or animation unless existing platform capabilities cannot meet a real requirement.
@@ -195,4 +195,4 @@ Read the current implementation before applying this document. Prefer current co
 - [ ] Hover and active states do not cause unexpected layout movement.
 - [ ] Reduced-motion mode removes continuous decoration without hiding information.
 - [ ] Media dimensions prevent layout shift and animations stay on transform/opacity/color.
-- [ ] Run targeted ESLint and `nuxt prepare`; report any unrelated environment blocker accurately.
+- [ ] Run targeted ESLint, `pnpm typecheck`, and `pnpm build`; report any unrelated environment blocker accurately.

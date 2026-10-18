@@ -1,8 +1,4 @@
-# Nuxt dev/build outputs
-.output
-.data
-.nuxt
-.nitro
+# Build outputs and caches
 .cache
 dist
 
@@ -25,3 +21,10 @@ logs
 
 # Generated video lists
 .video-list
+
+# Void generated runtime and local state
+.void/
+.void-wrangler.jsonc
+.wrangler/
+src/auto-imports.d.ts
+src/components.d.ts

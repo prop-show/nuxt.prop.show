@@ -1,18 +1,17 @@
 {
-    "references": [
-        {
-            "path": "./.nuxt/tsconfig.app.json"
-        },
-        {
-            "path": "./.nuxt/tsconfig.server.json"
-        },
-        {
-            "path": "./.nuxt/tsconfig.shared.json"
-        },
-        {
-            "path": "./.nuxt/tsconfig.node.json"
-        }
-    ],
-    // https://nuxt.com/docs/guide/concepts/typescript
-    "files": []
+    "compilerOptions": {
+        "target": "ES2023",
+        "lib": ["ES2023", "DOM", "DOM.Iterable"],
+        "module": "ESNext",
+        "moduleResolution": "Bundler",
+        "paths": { "@/*": ["./src/*"] },
+        "resolveJsonModule": true,
+        "types": ["vite/client", "node"],
+        "allowImportingTsExtensions": true,
+        "strict": true,
+        "noEmit": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true
+    },
+    "include": ["src/**/*.vue", "src/**/*.ts", "vite.config.ts", "void.config.ts"]
 }

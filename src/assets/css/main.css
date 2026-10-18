@@ -1,0 +1,56 @@
+@import 'tailwindcss';
+@import '@nuxt/ui';
+
+@plugin "@tailwindcss/typography";
+
+:root {
+    --ui-radius: 0.2rem;
+}
+
+html {
+    background-color: var(--ui-bg);
+    color-scheme: light;
+}
+
+html.dark {
+    color-scheme: dark;
+}
+
+body {
+    min-height: 100svh;
+    background-color: var(--ui-bg);
+    background-image: url('/texture.png');
+    transition: background-color 200ms ease-in;
+}
+
+/* 共享的 42px 细网格底纹（hero / 详情页头部），配合 absolute inset-0 + opacity-* 使用。 */
+.grid-texture {
+    background-image:
+        linear-gradient(to right, color-mix(in srgb, var(--ui-border) 65%, transparent) 1px, transparent 1px),
+        linear-gradient(to bottom, color-mix(in srgb, var(--ui-border) 65%, transparent) 1px, transparent 1px);
+    background-size: 42px 42px;
+    mask-image: linear-gradient(to right, black, transparent 90%);
+    contain: strict;
+}
+
+.grid-texture-left {
+    mask-image: linear-gradient(to left, black, transparent 90%);
+}
+
+/* mono 元信息标签与区块 eyebrow。全站唯一来源，见 .agents/skills/prop-show-design/references/design-system.md */
+.meta-label {
+    @apply font-mono text-[10px] font-bold tracking-[0.18em] text-dimmed;
+}
+
+.eyebrow {
+    @apply mb-2 font-mono text-xs font-bold tracking-[0.22em] text-primary;
+}
+
+.meta-label-on-primary {
+    @apply font-mono text-[10px] font-bold tracking-[0.2em] text-black/55;
+}
+
+/* 区块标题右侧的计数（EPISODES / WORKS / CONTRIBUTORS …） */
+.section-count {
+    @apply font-mono text-xs font-bold tracking-[0.18em] text-dimmed;
+}
