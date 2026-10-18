@@ -1,4 +1,5 @@
 import { defineConfig } from 'void/config'
+import { themeScript } from './src/theme-script'
 
 export default defineConfig({
     sourceDir: 'src',
@@ -27,9 +28,10 @@ export default defineConfig({
             { name: 'robots', content: 'index, follow, max-image-preview:large' },
         ],
         link: [
-            { rel: 'icon', type: 'image/svg+xml', href: '/prop-light.svg' },
+            { rel: 'icon', type: 'image/svg+xml', href: '/prop-dark.svg', media: '(prefers-color-scheme: dark)' },
+            { rel: 'icon', type: 'image/svg+xml', href: '/prop-light.svg', media: '(prefers-color-scheme: light)' },
             { rel: 'alternate', type: 'application/rss+xml', href: '/rss.xml', title: 'prop.show RSS' },
         ],
-        script: [{ innerHTML: 'try{const t=localStorage.getItem("vueuse-color-scheme");if(t==="dark"||((!t||t==="auto")&&matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.classList.add("dark")}catch{}' }],
+        script: [{ innerHTML: themeScript }],
     },
 })
