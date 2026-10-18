@@ -4,80 +4,121 @@
 
 prop.show 由前端开发者共同维护，分享真实项目里的实践、工具使用和技术动态。
 
-## Void SSR 试验
+## 技术栈
 
-当前分支使用 Void 1.1.11、Vue 3、Nuxt UI 的独立 Vite 集成和 Cloudflare Workers。页面通过 Void loader 与 head 在请求时生成 HTML，分页使用 `/videos?page=2`。旧 Nuxt 应用、配置和迁移备份已清理，当前仓库只保留 Void 实现。
+Void 1.1.11 + Vue 3 + Nuxt UI（独立 Vite 集成）+ Tailwind CSS 4，部署到 Cloudflare Workers。页面通过 Void 的 loader 与 head 在请求时生成 HTML，分页、筛选走查询参数（例如 `/videos?page=2&category=编程技巧`）。仓库只有 Void 实现，没有 Nuxt 应用或迁移备份。
 
-Markdown/YAML 仍是内容源，使用 Comark 与 `@comark/html` 在服务端解析和渲染，源文件通过构建打包进 Worker；服务端不查询数据库，浏览器只接收 loader 返回的数据。现有 `::note`、`::alert`、`::poetry` 内容块保留语义样式；代码块暂不带语法高亮。新增或修改内容后需要重新构建部署。
+内容源是 `content/` 下的 Markdown/YAML，由 Comark 与 `@comark/html` 在服务端解析渲染。源文件通过 Vite 的 `import.meta.glob` 打包进 Worker，服务端不查数据库，浏览器只接收 loader 返回的数据。`::note`、`::alert`、`::poetry` 内容块保留语义样式；代码块没有语法高亮。**新增或修改内容后需要重新构建部署。**
 
-## 目录结构与别名
+## 目录结构
 
-采用 Void 官方支持的 `sourceDir: 'src'` 布局，在 `void.config.ts` 中声明。`vite.config.ts` 的 `resolve.alias` 与 `tsconfig.json` 的 `paths` 同步配置 `@/` 指向 `src/`，应用内部文件和类型导入统一使用别名，例如 `@/content`、`@/components/SiteLink.vue`、`@/pages/videos/index.server`。
+`void.config.ts` 声明 `sourceDir: 'src'`。`vite.config.ts` 的 `resolve.alias` 与 `tsconfig.json` 的 `paths` 同步把 `@/` 指向 `src/`，应用内部的文件和类型导入统一走别名。
 
 ```text
 src/
-  pages/          # Vue 页面、布局及服务端 loader/head
-  routes/         # RSS、robots 和 sitemap HTTP 端点
-  middleware/     # 请求中间件
-  components/     # 共享界面组件
-  assets/         # 样式资源
+  pages/          # *.vue 页面，配套 *.server.ts 提供 loader 与 head
+  routes/         # RSS、robots、sitemap HTTP 端点
+  middleware/     # www 跳转、旧分页 301、安全响应头
+  components/     # 共享界面组件（按目录自动命名空间）
+  assets/css/     # Tailwind 入口与设计令牌
   utils/          # 共享工具
-  content.ts      # 内容索引
-  markdown.ts     # Comark 解析和渲染
+  content.ts      # 内容索引、分页与日期处理
+  markdown.ts     # Comark 解析、渲染与安全过滤
+  site-config.ts  # 导航、平台、社交、品牌色等站点配置
+  navigation.ts   # 链接规范化
+  icons.ts        # 构建时生成的按需图标集合（已提交）
 content/          # Markdown/YAML 内容源
 public/           # 直接分发的静态资源
-scripts/          # 图标生成、抓取和验证工具
+scripts/          # 图标生成、视频抓取和校验工具
 ```
 
-根目录保留 Void、Vite、TypeScript、包管理配置；不存在另一套根目录 `pages/`、`routes/` 或 `middleware/`。脚本按文件系统路径读写资源，应用模块导入使用 `@/`。
+根目录没有另一套 `pages/`、`routes/` 或 `middleware/`；脚本按文件系统路径读写资源，应用模块导入用 `@/`。`src/auto-imports.d.ts`、`src/components.d.ts` 由 Vite 插件生成且不提交。
+
+## 内容
+
+四类内容，各自一个目录：
+
+| 目录 | 格式 | 必要字段 |
+| --- | --- | --- |
+| `content/videos/` | Markdown + frontmatter | `title`、`category`；可选 `description`、`date`、`status`、`platforms.{bilibili,youtube,douyin}`、`tags`、`series`、`episode`、`repository`、`order` |
+| `content/news/` | Markdown + frontmatter | `title`、`date`（`YYYY-MM-DD HH:mm`，无时区按东八区）；可选 `description`、`source` |
+| `content/works/` | Markdown + frontmatter | `title`、`author`（creator slug）、`type`；可选 `description`、`order`、`tags`、`website`、`repository` |
+| `content/creators/` | YAML | `name`、`avatar`、`href`、`role`；可选 `order` |
+
+- 文件名前缀的数字只用于排序，会被去掉：`27.npm-supply-chain-simple-defense.md` → `/videos/npm-supply-chain-simple-defense`，路径统一转小写。
+- 缺少 `description` 时取正文第一段（最多 200 字）。
+- 正文里的内嵌 HTML 会经过 Comark 安全过滤：脚本、iframe、`svg`、表单等标签和非 http/https/mailto/tel 链接被剥除。这是有意的限制，不要为了排版去放宽。
+- `src/content.ts` 会校验字段类型（例如 `order` 必须是非负整数），字段写错直接构建失败。
+
+### 页面与端点
+
+- `/`、`/about`、`/design-assets`、`/series/yisi`（乙巳系列，按集数排序）
+- `/videos`、`/news`、`/works`：查询参数分页与筛选，每页 10 条（`src/content.ts` 的 `pageSize`）
+- `/videos/:slug`、`/news/:slug`、`/works/:slug`
+- `/rss.xml`、`/robots.txt`、`/sitemap.xml`
+- `/*/page/:n` → `/*?page=n` 的 301 重定向，`www.prop.show` → `prop.show` 的 301
 
 ## 开发与验证
 
-需要 Node.js >= 24.21.0 和 pnpm 12.11.2。
+需要 Node.js >= 24.21.0（见 `.nvmrc`）和 pnpm 12.11.2。
 
 ```sh
 pnpm install
-pnpm dev
-pnpm typecheck
-pnpm lint
-pnpm check:content
-pnpm build
-pnpm preview
+pnpm dev            # vite --port 4399
+pnpm typecheck      # vue-tsc --noEmit
+pnpm lint           # eslint，pnpm lint:fix 自动修复
+pnpm check:content  # 校验内容索引、Markdown 渲染、安全过滤、RSS/robots/sitemap 输出
+pnpm build          # 生成图标 + vite build
+pnpm preview        # vite preview --port 4399
+pnpm fetch:videos   # 抓取 B 站/YouTube 已发布视频到 .video-list/（已 gitignore）
 ```
 
-开发或预览服务启动后，另一个终端运行 `pnpm check:seo`；可传入其他地址，例如 `pnpm check:seo http://localhost:4400`。它检查真实 HTTP 响应中的分页、canonical、摘要、404、RSS、sitemap 和旧分页重定向。
+`pnpm check:content` 不需要启动服务，直接构建 `src/content.ts`、`src/markdown.ts` 和三个端点并断言结果。
 
-`pnpm build` 自动生成按需图标集合。主题支持系统偏好和手动切换，保留原站点黄黑色、边框、纹理与归档布局。静态资源由 Cloudflare 分发，HTML 当前不设置共享缓存，先建立 SSR 正确性和性能基线。
+`pnpm check:seo` 需要真实 HTTP 响应，先启动 `pnpm dev` 或 `pnpm preview`：
 
-## 预览部署
+```sh
+pnpm check:seo                      # 默认 http://localhost:4399
+pnpm check:seo http://localhost:4400
+```
+
+它检查分页不重复、分页链接数量、canonical、meta description、404、RSS、sitemap、robots 和旧分页重定向。断言里的视频总数是硬编码的，增删视频后要同步更新 `scripts/check-seo.mjs`。
+
+`pnpm build` 会先运行 `scripts/generate-icons.mjs`，扫描组件和 `src/site-config.ts` 中出现的 Tabler/Lucide 图标，只把用到的图标写进 `src/icons.ts`。新增图标名后重新构建即可，不要手改该文件。如果图标名拼错，构建会警告并渲染为空。
+
+`pnpm fetch:videos` 支持 `HTTPS_PROXY` / `HTTP_PROXY` 环境变量；抓取失败会跳过对应来源并输出警告。抓取结果只落在 `.video-list/`，不会自动写入 `content/videos/`。
+
+## 部署
 
 ```sh
 pnpm exec void connect --platform cloudflare
+pnpm build
 pnpm deploy
 ```
 
-`void.config.ts` 使用 Worker 名 `nuxt-prop-show`，没有生产自定义域名配置。首次部署需要登录并选择 Cloudflare 账户；部署命令会创建或更新远程资源。验证预览站后再配置生产域名，不要把 `dist/client` 单独当作完整站点部署。
+`void.config.ts` 使用 Worker 名 `nuxt-prop-show`，兼容日期 `2026-10-18`、`nodejs_compat`，未配置生产自定义域名。首次部署需要登录并选择 Cloudflare 账户；`void deploy` 会构建、创建或更新远程资源并发布。不要把 `dist/client` 单独当完整站点部署。
 
-`pnpm deploy`（即 `void deploy`）发布到上述 Worker 的正式部署。分支预览使用独立的 `pnpm deploy:preview` 命令。若要使用 Cloudflare 控制台的分支预览功能，`void.config.ts` 的 `cloudflare` 配置需保留 `previews: {}`（Wrangler 4.151.1 要求存在这个块；当前应用没有需要单独配置的资源绑定）。先构建，再明确传入包含 SSR 入口和静态资源的生成配置：
+带 `void.lock.json` 资源记录时保留并提交；当前项目没有资源绑定，所以该文件不存在。Void 生成的 `.void/`、`.void-wrangler.jsonc`、`dist/` 和 `.wrangler/` 都不提交。
+
+### 分支预览
 
 ```sh
 pnpm build
-pnpm deploy:preview
+pnpm deploy:preview   # wrangler preview --config dist/ssr/wrangler.json
 ```
 
-Cloudflare Workers Builds 控制台的构建命令填写 `pnpm build`，非生产分支部署命令填写 `pnpm deploy:preview`。项目已直接依赖 Wrangler 4.151.1，安装依赖时需包含开发依赖；避免只从间接依赖查找 Wrangler 而出现 `wrangler: not found`。
+`void.config.ts` 的 `cloudflare.previews: {}` 必须保留，Wrangler 4.151.1 读取生成的配置时要求这个块存在。
 
-预览名称默认取当前 Git 分支，也可通过 `--name <预览名称>` 指定；所属 Worker 默认取生成配置中的 `name`。如需在另一个已有 Worker 下创建预览，追加 `--worker-name <目标Worker名称>`。该参数指定预览所属 Worker，不会修改 `void.config.ts` 或 `void.lock.json`。单独运行 `pnx wrangler preview` 不会直接读取 `void.config.ts`，因此可能报 `Required Worker name missing`；仅传 `.void-wrangler.jsonc` 也缺少完整构建入口。本地预览仍使用 `pnpm build` 后运行 `pnpm preview`。
+Cloudflare Workers Builds 控制台：构建命令 `pnpm build`，非生产分支部署命令 `pnpm deploy:preview`。Wrangler 4.151.1 是直接开发依赖，安装依赖时必须包含 devDependencies，否则会出现 `wrangler: not found`。
 
-Void 生成 `.void/`、`.void-wrangler.jsonc` 和构建产物，这些不提交；如果部署生成 `void.lock.json`，应保留并提交资源记录。HTTPS 在 Cloudflare 域名设置中开启 Always Use HTTPS；www 主域名跳转由服务端中间件处理。
+预览名称默认取当前 Git 分支，可用 `--name <名称>` 覆盖；`--worker-name <目标Worker>` 可把预览挂到另一个已有 Worker 下，不会修改 `void.config.ts`。单独运行 `wrangler preview` 不会读 `void.config.ts`，容易报 `Required Worker name missing`；本地预览请用 `pnpm build` + `pnpm preview`。
 
-## 迁移记录与后续素材
+HTTPS 在 Cloudflare 域名设置中开启 Always Use HTTPS；www 主域名跳转由 `src/middleware/01.site.ts` 处理。
 
-- Nuxt 文件路由和 `useAsyncData` → Void 页面与 `.server.ts` loader。
-- Nuxt Content SQLite → 构建时 Markdown 索引，无 D1 依赖。
-- Nuxt SEO → Void head、原生 RSS、robots、sitemap。
-- 静态 HTML 查询参数失效 → 请求时解析分页和筛选。
-- Nuxt UI 通过独立 Vite 集成保留；Nuxt 自动导入、导航和内容组件逐项迁出。
-- Void 1.1 的本地构建使用 `vite build`；`void build` 是平台构建管理入口。
+### 缓存
 
-上线前仍需测试真实 Cloudflare 环境和大陆线路，比较首访与重复访问的 TTFB、首屏及资源耗时，再决定 HTML 缓存策略。
+页面 HTML 不设置共享缓存，`/rss.xml`、`/robots.txt`、`/sitemap.xml` 设置 `s-maxage=3600`。上线后仍需在真实 Cloudflare 环境和大陆线路对比首访与重复访问的 TTFB、首屏和资源耗时，再决定是否给 HTML 加缓存。
+
+## 界面规范
+
+改动 UI 前先读 `.agents/skills/prop-show-design/SKILL.md` 及其 `references/design-system.md`。站点配置在 `src/site-config.ts`，设计令牌和自定义类在 `src/assets/css/main.css`，两者是视觉的唯一来源。主题跟随系统偏好，也可手动切换（`vueuse-color-scheme` 存储在 localStorage）。
