@@ -72,7 +72,14 @@ function isActive(to?: string) {
                     class="size-10 justify-center rounded-none border border-default hover:border-primary"
                 />
 
-                <UDrawer v-model:open="mobileMenuOpen" title="站点导航" description="浏览 prop.show 的节目、速报与团队档案" direction="top" inset>
+                <UDrawer
+                    v-model:open="mobileMenuOpen"
+                    title="站点导航"
+                    description="浏览 prop.show 的节目、速报与团队档案"
+                    direction="top"
+                    inset
+                    :ui="{ overlay: 'z-50', content: 'z-50' }"
+                >
                     <UButton
                         color="neutral"
                         variant="ghost"
