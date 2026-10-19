@@ -8,7 +8,7 @@ prop.show 由前端开发者共同维护，分享真实项目里的实践、工�
 
 Void 1.1.11 + Vue 3 + Nuxt UI（独立 Vite 集成）+ Tailwind CSS 4，部署到 Cloudflare Workers。页面通过 Void 的 loader 与 head 在请求时生成 HTML，分页、筛选走查询参数（例如 `/videos?page=2&category=编程技巧`）。仓库只有 Void 实现，没有 Nuxt 应用或迁移备份。
 
-内容源是 `content/` 下的 Markdown/YAML，由 Comark 与 `@comark/html` 在服务端解析渲染。源文件通过 Vite 的 `import.meta.glob` 打包进 Worker，服务端不查数据库，浏览器只接收 loader 返回的数据。`::note`、`::alert`、`::poetry` 内容块保留语义样式；代码块没有语法高亮。**新增或修改内容后需要重新构建部署。**
+内容源是 `content/` 下的 Markdown/YAML，由 Vite 插件调用 `scripts/generate-content.ts` 校验并通过 Comark、Shiki 与 `@comark/html` 渲染，通过 `virtual:prop-content` 虚拟模块直接参与打包，不生成中间文件。Worker 只打包元数据和 HTML，不在运行时解析 Markdown；浏览器只接收 loader 返回的数据，列表不包含正文。`::note`、`::alert`、`::poetry` 内容块保留语义样式，代码块支持明暗主题语法高亮。**新增或修改内容后需要重新构建部署。**
 
 ## 目录结构
 
@@ -29,7 +29,8 @@ src/
   icons.ts        # 构建时生成的按需图标集合（已提交）
 content/          # Markdown/YAML 内容源
 public/           # 直接分发的静态资源
-scripts/          # 图标生成、视频抓取和校验工具
+scripts/          # 图标生成、视频抓取等构建/抓取脚本
+tests/            # vitest：内容、Markdown、端点和在线 SEO 校验
 ```
 
 根目录没有另一套 `pages/`、`routes/` 或 `middleware/`；脚本按文件系统路径读写资源，应用模块导入用 `@/`。`src/auto-imports.d.ts`、`src/components.d.ts` 由 Vite 插件生成且不提交。
@@ -48,7 +49,7 @@ scripts/          # 图标生成、视频抓取和校验工具
 - 文件名前缀的数字只用于排序，会被去掉：`27.npm-supply-chain-simple-defense.md` → `/videos/npm-supply-chain-simple-defense`，路径统一转小写。
 - 缺少 `description` 时取正文第一段（最多 200 字）。
 - 正文里的内嵌 HTML 会经过 Comark 安全过滤：脚本、iframe、`svg`、表单等标签和非 http/https/mailto/tel 链接被剥除。这是有意的限制，不要为了排版去放宽。
-- `src/content.ts` 会校验字段类型（例如 `order` 必须是非负整数），字段写错直接构建失败。
+- `scripts/generate-content.ts` 会校验字段类型（例如 `order` 必须是非负整数），字段写错直接构建失败。
 
 ### 页面与端点
 
@@ -67,22 +68,24 @@ pnpm install
 pnpm dev            # vite --port 4399
 pnpm typecheck      # vue-tsc --noEmit
 pnpm lint           # eslint，pnpm lint:fix 自动修复
-pnpm check:content  # 校验内容索引、Markdown 渲染、安全过滤、RSS/robots/sitemap 输出
+pnpm test           # vitest：内容索引、Markdown 渲染/安全过滤、RSS/robots/sitemap
 pnpm build          # 生成图标 + vite build
 pnpm preview        # vite preview --port 4399
 pnpm fetch:videos   # 抓取 B 站/YouTube 已发布视频到 .video-list/（已 gitignore）
 ```
 
-`pnpm check:content` 不需要启动服务，直接构建 `src/content.ts`、`src/markdown.ts` 和三个端点并断言结果。
+`pnpm test`（vitest，配置见 `vitest.config.ts`）不需要启动服务，先生成内容数据，再导入 `src/content.ts`、`src/markdown.ts` 和三个端点并断言结果；`pnpm test:watch` 为监听模式。测试放在 `tests/`：`generate-content.test.ts`、`content.test.ts`、`markdown.test.ts`、`routes.test.ts`（unit 项目）和 `seo.e2e.test.ts`（e2e 项目）。
+
+Vite 插件在加载虚拟模块时编译内容数据，同一次构建复用编译结果；开发时监听 `content/` 的新增、修改和删除，使各环境的虚拟模块失效并刷新页面。虚拟模块有独立类型声明，`pnpm typecheck` 不需要预先生成数据；内容校验由测试和构建执行。
 
 `pnpm check:seo` 需要真实 HTTP 响应，先启动 `pnpm dev` 或 `pnpm preview`：
 
 ```sh
-pnpm check:seo                      # 默认 http://localhost:4399
-pnpm check:seo http://localhost:4400
+pnpm check:seo                            # 默认 http://localhost:4399
+SEO_BASE_URL=http://localhost:4400 pnpm check:seo
 ```
 
-它检查分页不重复、分页链接数量、canonical、meta description、404、RSS、sitemap、robots 和旧分页重定向。断言里的视频总数是硬编码的，增删视频后要同步更新 `scripts/check-seo.mjs`。
+它检查分页不重复、分页链接数量、canonical、meta description、404、RSS、sitemap、robots 和旧分页重定向。视频总数和每页数量分别取自 `content/videos/` 与 `pageSize`，增删视频不需要改测试。
 
 `pnpm build` 会先运行 `scripts/generate-icons.mjs`，扫描组件和 `src/site-config.ts` 中出现的 Tabler/Lucide 图标，只把用到的图标写进 `src/icons.ts`。新增图标名后重新构建即可，不要手改该文件。如果图标名拼错，构建会警告并渲染为空。
 

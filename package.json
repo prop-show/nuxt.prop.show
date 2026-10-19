@@ -16,9 +16,10 @@
         "lint:fix": "eslint --fix .",
         "deploy": "void deploy",
         "deploy:preview": "wrangler preview --config dist/ssr/wrangler.json",
-        "check:content": "node scripts/check-content.mjs",
-        "typecheck": "vue-tsc --noEmit",
-        "check:seo": "node scripts/check-seo.mjs"
+        "test": "vitest run --project unit",
+        "test:watch": "vitest --project unit",
+        "check:seo": "vitest run --project e2e",
+        "typecheck": "vue-tsc --noEmit"
     },
     "dependencies": {
         "@comark/html": "^0.7.0",
@@ -29,6 +30,7 @@
         "@void/vue": "1.1.11",
         "comark": "^0.7.0",
         "hono": "^4.13.13",
+        "shiki": "^4.5.0",
         "vue": "^3.5.43",
         "yaml": "^2.8.0"
     },
@@ -44,6 +46,7 @@
         "typescript": "^5.9.3",
         "undici": "^8.12.2",
         "vite": "^8.3.4",
+        "vitest": "^5.0.5",
         "void": "1.1.11",
         "vue-tsc": "^3.3.7",
         "wrangler": "4.151.1"

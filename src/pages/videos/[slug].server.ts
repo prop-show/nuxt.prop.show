@@ -1,13 +1,13 @@
-import type { Video } from '@/content'
+import type { ContentDocument, Video } from '@/content'
 import { HTTPException } from 'hono/http-exception'
 
 import { defineHandler, defineHead } from 'void'
 
-import { getContent, videos } from '@/content'
+import { getContent, renderContent, videos } from '@/content'
 import { videoEpisode, videoLabel } from '@/utils/video'
 
 export interface Props {
-    video: Video
+    video: Video & ContentDocument
     previousVideo: Video | null
     nextVideo: Video | null
     pending: boolean
@@ -17,9 +17,10 @@ export interface Props {
 }
 
 export const loader = defineHandler((c): Props => {
-    const video = getContent('videos', c.req.param('slug')!)
-    if (!video)
+    const found = getContent('videos', c.req.param('slug')!)
+    if (!found)
         throw new HTTPException(404, { message: '视频不存在' })
+    const video = renderContent(found)
     const sequence = video.series
         ? videos.filter(item => item.series === video.series).sort((a, b) => videoEpisode(a) - videoEpisode(b))
         : [...videos].sort((a, b) => a.order - b.order)

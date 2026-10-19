@@ -1,21 +1,22 @@
-import type { Creator, Work } from '@/content'
+import type { ContentDocument, Creator, Work } from '@/content'
 import { HTTPException } from 'hono/http-exception'
 
 import { defineHandler, defineHead } from 'void'
 
-import { getContent, getCreator } from '@/content'
+import { getContent, getCreator, renderContent } from '@/content'
 
 export interface Props {
-    work: Work
+    work: Work & ContentDocument
     creator: Creator | null
     pending: boolean
     error: null
 }
 
 export const loader = defineHandler((c): Props => {
-    const work = getContent('works', c.req.param('slug')!)
-    if (!work)
+    const found = getContent('works', c.req.param('slug')!)
+    if (!found)
         throw new HTTPException(404, { message: '作品不存在' })
+    const work = renderContent(found)
     return { work, creator: getCreator(work.author) ?? null, pending: false, error: null }
 })
 

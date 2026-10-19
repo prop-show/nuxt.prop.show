@@ -1,0 +1,52 @@
+import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
+import { afterEach, beforeEach, describe, expect, it } from 'vitest'
+import { generateContent } from '../scripts/generate-content'
+
+let root: string
+const article = '---\ntitle: Example\ncategory: Test\n---\nHello **world**.'
+
+beforeEach(async () => {
+    root = await mkdtemp(join(tmpdir(), 'prop-content-'))
+    for (const collection of ['videos', 'news', 'works', 'creators'])
+        await mkdir(join(root, 'content', collection), { recursive: true })
+})
+
+afterEach(async () => {
+    await rm(root, { recursive: true, force: true })
+})
+
+describe('content generation', () => {
+    it('compiles metadata and bodies after additions, edits and deletions', async () => {
+        const file = join(root, 'content/videos/01.example.md')
+        await writeFile(file, article)
+        const initial = await generateContent(root)
+        expect(initial.videos[0]).toMatchObject({ path: '/videos/example', description: 'Hello world.' })
+        expect(initial.videos[0]).not.toHaveProperty('html')
+        expect(initial.bodies['/videos/example']).toContain('<strong>world</strong>')
+
+        await writeFile(file, article.replace('world', 'readers'))
+        expect((await generateContent(root)).bodies['/videos/example']).toContain('<strong>readers</strong>')
+        await rm(file)
+        expect(await generateContent(root)).toMatchObject({ videos: [], bodies: {} })
+    })
+
+    it('rejects invalid fields and recovers after they are fixed', async () => {
+        const file = join(root, 'content/videos/example.md')
+        await writeFile(file, article)
+        await generateContent(root)
+        await writeFile(file, article.replace('category: Test', 'category: 42'))
+        await expect(generateContent(root)).rejects.toThrow('videos/example.md: category must be a nonempty string')
+        await writeFile(file, article)
+        expect((await generateContent(root)).videos).toHaveLength(1)
+    })
+
+    it('includes the source path in YAML errors and rejects normalized path collisions', async () => {
+        await writeFile(join(root, 'content/videos/example.md'), '---\ntitle: [\n---\n')
+        await expect(generateContent(root)).rejects.toThrow('videos/example.md: invalid content')
+        await writeFile(join(root, 'content/videos/example.md'), article)
+        await writeFile(join(root, 'content/videos/01.example.md'), article)
+        await expect(generateContent(root)).rejects.toThrow('duplicate content path /videos/example')
+    })
+})

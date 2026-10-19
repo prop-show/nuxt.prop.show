@@ -54,3 +54,54 @@ body {
 .section-count {
     @apply font-mono text-xs font-bold tracking-[0.18em] text-dimmed;
 }
+
+/* Markdown 组件块 ::note / ::alert / ::poetry，标记由 src/markdown.ts 生成。 */
+.content-note,
+.content-alert {
+    @apply my-8 border px-5 py-4 text-muted;
+}
+
+.content-note {
+    @apply border-default bg-elevated/60;
+}
+
+.content-alert {
+    @apply border-primary bg-primary/5 text-highlighted;
+}
+
+.content-note > :first-child,
+.content-alert > :first-child {
+    margin-top: 0;
+}
+
+.content-note > :last-child,
+.content-alert > :last-child {
+    margin-bottom: 0;
+}
+
+/* 诗歌保留原文换行，并去掉 prose 默认的引号与左边线。 */
+.content-poetry {
+    @apply my-10 border-0 p-0 text-center text-base leading-8 font-medium text-highlighted;
+    font-style: normal;
+    quotes: none;
+}
+
+/* 需高于 typography 插件给 blockquote p 加引号的 (0,2,0) 优先级。 */
+.prose .content-poetry p::before,
+.prose .content-poetry p::after {
+    content: none;
+}
+
+.content-poetry p {
+    white-space: pre-line;
+}
+
+/* 两种主题共用半透明中性灰底，覆盖 Shiki 的内联主题背景。 */
+.shiki {
+    background-color: #8881 !important;
+}
+
+html.dark .shiki,
+html.dark .shiki span {
+    color: var(--shiki-dark) !important;
+}

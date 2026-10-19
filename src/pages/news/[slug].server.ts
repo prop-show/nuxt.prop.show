@@ -1,21 +1,22 @@
-import type { News } from '@/content'
+import type { ContentDocument, News } from '@/content'
 import { HTTPException } from 'hono/http-exception'
 
 import { defineHandler, defineHead } from 'void'
 
-import { contentDate, getContent, news } from '@/content'
+import { contentDate, getContent, news, renderContent } from '@/content'
 
 export interface Props {
-    letter: News
+    letter: News & ContentDocument
     pending: boolean
     signalNumber: string
     publishedAt: { date: string, time: string }
 }
 
 export const loader = defineHandler((c): Props => {
-    const letter = getContent('news', c.req.param('slug')!)
-    if (!letter)
+    const found = getContent('news', c.req.param('slug')!)
+    if (!found)
         throw new HTTPException(404, { message: '速报不存在' })
+    const letter = renderContent(found)
     const value = contentDate(letter.date)
     return {
         letter,

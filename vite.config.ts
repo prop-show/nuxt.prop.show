@@ -3,10 +3,12 @@ import ui from '@nuxt/ui/vite'
 import { voidVue } from '@void/vue/plugin'
 import { defineConfig } from 'vite'
 import { voidPlugin } from 'void'
+import { contentPlugin } from './scripts/content-plugin.ts'
 
 export default defineConfig({
     resolve: { alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) } },
     plugins: [
+        contentPlugin(),
         voidPlugin(),
         voidVue(),
         ui({
