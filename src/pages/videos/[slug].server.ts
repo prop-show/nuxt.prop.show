@@ -41,8 +41,12 @@ export const loader = defineHandler((c): Props => {
     }
 })
 
-export const head = defineHead<Props>((_c, { video }) => seoHead({
-    title: videoLabel(video),
-    description: video.description.trim() || `观看「${videoLabel(video)}」，了解${video.tags.join('、') || video.category}相关实践。`,
-    canonical: `https://prop.show${video.path}`,
-}))
+export const head = defineHead<Props>((_c, { video }) => {
+    const title = videoLabel(video)
+    const description = video.description.trim() || `观看「${title}」，了解${video.tags.join('、') || video.category}相关实践。`
+    return seoHead({
+        title,
+        description: video.series ? `「${title}」：${description}` : description,
+        canonical: `https://prop.show${video.path}`,
+    })
+})

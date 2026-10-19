@@ -4,8 +4,10 @@ import { Hono } from 'hono'
 import { describe, expect, it } from 'vitest'
 import { renderHeadToString, resolveHead } from 'void/pages'
 import { videos } from '@/content'
+import { head as videoHead, loader as videoLoader } from '@/pages/videos/[slug].server'
 import { head, loader } from '@/pages/videos/index.server'
 import { seoHead } from '@/utils/seo'
+import { videoLabel } from '@/utils/video'
 
 const input = {
     title: '视频 · 第 2 页',
@@ -30,7 +32,11 @@ describe('seoHead', () => {
             { property: 'og:title', content: `${input.title} | prop.show` },
             { property: 'og:description', content: input.description },
             { property: 'og:url', content: input.canonical },
-            { name: 'twitter:card', content: 'summary' },
+            { property: 'og:image', content: 'https://prop.show/og/videos.png' },
+            { property: 'og:image:width', content: '1200' },
+            { property: 'og:image:height', content: '630' },
+            { name: 'twitter:card', content: 'summary_large_image' },
+            { name: 'twitter:image', content: 'https://prop.show/og/videos.png' },
             { name: 'twitter:title', content: `${input.title} | prop.show` },
             { name: 'twitter:description', content: input.description },
         ]))
@@ -88,5 +94,33 @@ describe('video archive SEO', () => {
             const descriptor = await (await app.request(`/videos${query}`)).json()
             expect(descriptor.meta.some((meta: { name?: string }) => meta.name === 'robots')).toBe(false)
         }
+    })
+})
+
+describe('video detail series metadata', () => {
+    const app = new Hono<CloudEnv>()
+    app.get('/videos/:slug', async c => c.json(videoHead(c, await videoLoader(c) as import('@/pages/videos/[slug].server').Props)))
+
+    it('shares series and episode context across SEO, social metadata and JSON-LD', async () => {
+        const video = videos.find(video => video.series && video.episode === 0)!
+        const descriptor = await (await app.request(video.path)).json()
+        const title = videoLabel(video)
+        const description = `「${title}」：${video.description.trim()}`
+        expect(title).toContain('EP.00')
+        expect(descriptor.title).toBe(title)
+        expect(descriptor.meta).toEqual(expect.arrayContaining([
+            { name: 'description', content: description },
+            { property: 'og:title', content: `${title} | prop.show` },
+            { property: 'og:description', content: description },
+            { name: 'twitter:description', content: description },
+        ]))
+        expect(graph(descriptor)[1]).toMatchObject({ name: `${title} | prop.show`, description })
+    })
+
+    it('preserves the title and description of videos outside a series', async () => {
+        const video = videos.find(video => !video.series)!
+        const descriptor = await (await app.request(video.path)).json()
+        expect(descriptor.title).toBe(video.title)
+        expect(descriptor.meta).toContainEqual({ name: 'description', content: video.description.trim() })
     })
 })

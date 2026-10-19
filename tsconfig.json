@@ -13,5 +13,5 @@
         "esModuleInterop": true,
         "skipLibCheck": true
     },
-    "include": ["src/**/*.vue", "src/**/*.ts", "tests/**/*.ts", "scripts/generate-content.ts", "scripts/content-plugin.ts", "vite.config.ts", "vitest.config.ts", "void.config.ts"]
+    "include": ["src/**/*.vue", "src/**/*.ts", "tests/**/*.ts", "scripts/generate-content.ts", "scripts/generate-og.ts", "scripts/content-plugin.ts", "vite.config.ts", "vitest.config.ts", "void.config.ts"]
 }

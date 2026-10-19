@@ -66,6 +66,21 @@ describe('seo', () => {
         }
     })
 
+    it('serves a Takumi PNG for each share image URL', async () => {
+        for (const path of ['/', '/videos?page=2', '/videos/npm-supply-chain-simple-defense', '/news', '/works', '/about']) {
+            const html = await read(path)
+            const image = html.match(/<meta property="og:image" content="([^"]+)"/)![1]!
+            const response = await fetch(new URL(new URL(image).pathname, base))
+            expect(response.status).toBe(200)
+            expect(response.headers.get('content-type')).toContain('image/png')
+            const bytes = new Uint8Array(await response.arrayBuffer())
+            expect([...bytes.slice(0, 8)]).toEqual([137, 80, 78, 71, 13, 10, 26, 10])
+            const view = new DataView(bytes.buffer)
+            expect(view.getUint32(16)).toBe(1200)
+            expect(view.getUint32(20)).toBe(630)
+        }
+    })
+
     it('serves sitemap, RSS and robots', async () => {
         const sitemap = await read('/sitemap.xml')
         for (let page = 2; page <= pageCount; page++)

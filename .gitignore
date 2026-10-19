@@ -19,6 +19,9 @@ logs
 .env.*
 !.env.example
 
+# Generated Open Graph images
+public/og/
+
 # Generated video lists
 .video-list
 

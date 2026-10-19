@@ -89,6 +89,12 @@ SEO_BASE_URL=http://localhost:4400 pnpm check:seo
 
 `pnpm build` 会先运行 `scripts/generate-icons.mjs`，扫描组件和 `src/site-config.ts` 中出现的 Tabler/Lucide 图标，只把用到的图标写进 `src/icons.ts`。新增图标名后重新构建即可，不要手改该文件。如果图标名拼错，构建会警告并渲染为空。
 
+### Open Graph 图片
+
+`pnpm generate:og` 使用 Takumi 的 Node 原生渲染器，为固定页面及每篇视频、速报、作品生成 1200×630 PNG，输出到 `public/og/`（不提交）。`pnpm dev` 和 `pnpm build` 自动执行生成，Cloudflare 只分发静态图片，不加载 Takumi、字体或 WASM。字体来自开发依赖 `@fontsource-variable/noto-sans-sc`（约 4.9 MB）的 Noto Sans SC 可变字体，使用 900 字重，构建不需要请求远程字体。
+
+`src/utils/seo.ts` 自动输出绝对地址的 `og:image`、尺寸、alt 和 Twitter 大图信息；分页、筛选共用对应栏目的图片。图片标题或内容修改后运行 `pnpm generate:og`（开发热更新不会重新生成图片）。添加固定页面时同步维护 `scripts/generate-og.ts` 的页面清单。图片仅生成暗色黄黑版式，使用深色底、浅色标题与黄色品牌区，便于社交平台一致展示。
+
 `pnpm fetch:videos` 支持 `HTTPS_PROXY` / `HTTP_PROXY` 环境变量；抓取失败会跳过对应来源并输出警告。抓取结果只落在 `.video-list/`，不会自动写入 `content/videos/`。
 
 ## 部署

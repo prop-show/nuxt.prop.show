@@ -8,6 +8,8 @@ export function seoHead({ title, description, canonical, noindex = false }: {
 }): HeadDescriptor {
     const name = `${title} | prop.show`
     const website = 'https://prop.show/#website'
+    const path = new URL(canonical).pathname.replace(/\/+$/, '')
+    const image = `https://prop.show/og/${path ? path.slice(1) : 'index'}.png`
     return {
         title,
         meta: [
@@ -18,7 +20,14 @@ export function seoHead({ title, description, canonical, noindex = false }: {
             { property: 'og:title', content: name },
             { property: 'og:description', content: description },
             { property: 'og:url', content: canonical },
-            { name: 'twitter:card', content: 'summary' },
+            { property: 'og:image', content: image },
+            { property: 'og:image:width', content: '1200' },
+            { property: 'og:image:height', content: '630' },
+            { property: 'og:image:type', content: 'image/png' },
+            { property: 'og:image:alt', content: name },
+            { name: 'twitter:card', content: 'summary_large_image' },
+            { name: 'twitter:image', content: image },
+            { name: 'twitter:image:alt', content: name },
             { name: 'twitter:title', content: name },
             { name: 'twitter:description', content: description },
             ...(noindex ? [{ name: 'robots', content: 'noindex, follow' }] : []),
