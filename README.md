@@ -105,7 +105,7 @@ pnpm build
 pnpm deploy
 ```
 
-`void.config.ts` 使用 Worker 名 `nuxt-prop-show`，兼容日期 `2026-10-18`、`nodejs_compat`，未配置生产自定义域名。首次部署需要登录并选择 Cloudflare 账户；`void deploy` 会构建、创建或更新远程资源并发布。不要把 `dist/client` 单独当完整站点部署。
+`void.config.ts` 使用 Worker 名 `nuxt-prop-show`，兼容日期 `2026-10-18`、`nodejs_compat`；显式保留现有 `prop.show`、`www.prop.show` 自定义域名，以及已启用的 `workers_dev`、`preview_urls`。这些值需与 Cloudflare 当前配置保持一致，否则 Void 可能拒绝接管控制台管理的路由和可见性。首次部署需要登录并选择 Cloudflare 账户；`void deploy` 会构建、创建或更新远程资源并发布。不要把 `dist/client` 单独当完整站点部署。
 
 带 `void.lock.json` 资源记录时保留并提交；当前项目没有资源绑定，所以该文件不存在。Void 生成的 `.void/`、`.void-wrangler.jsonc`、`dist/` 和 `.wrangler/` 都不提交。
 
@@ -118,7 +118,7 @@ pnpm deploy:preview   # wrangler preview --config dist/ssr/wrangler.json
 
 `void.config.ts` 的 `cloudflare.previews: {}` 必须保留，Wrangler 4.151.1 读取生成的配置时要求这个块存在。
 
-Cloudflare Workers Builds 控制台：构建命令 `pnpm build`，非生产分支部署命令 `pnpm deploy:preview`。Wrangler 4.151.1 是直接开发依赖，安装依赖时必须包含 devDependencies，否则会出现 `wrangler: not found`。
+Cloudflare Workers Builds 控制台：构建命令 `pnpm build`，生产部署命令 `pnpm deploy`，非生产分支部署命令 `pnpm deploy:preview`。`pnpm deploy` 显式运行 `void deploy --platform cloudflare`，不依赖本地 `.void/project.json` 保存的部署目标；CI 中不要配置裸 `void deploy`，否则全新检出会要求交互关联 Worker。CI 需要 `CLOUDFLARE_API_TOKEN`，令牌可访问多个账户时还需 `CLOUDFLARE_ACCOUNT_ID`；凭据通过构建环境提供，不写入仓库。Wrangler 4.151.1 是直接开发依赖，安装依赖时必须包含 devDependencies，否则会出现 `wrangler: not found`。
 
 预览名称默认取当前 Git 分支，可用 `--name <名称>` 覆盖；`--worker-name <目标Worker>` 可把预览挂到另一个已有 Worker 下，不会修改 `void.config.ts`。单独运行 `wrangler preview` 不会读 `void.config.ts`，容易报 `Required Worker name missing`；本地预览请用 `pnpm build` + `pnpm preview`。
 

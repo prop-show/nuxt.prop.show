@@ -6,6 +6,12 @@ export default defineConfig({
     target: 'cloudflare',
     cloudflare: {
         name: 'nuxt-prop-show',
+        workers_dev: true,
+        preview_urls: true,
+        routes: [
+            { pattern: 'prop.show', custom_domain: true },
+            { pattern: 'www.prop.show', custom_domain: true },
+        ],
         previews: {},
     },
     worker: { compatibility_date: '2026-10-18', compatibility_flags: ['nodejs_compat'] },

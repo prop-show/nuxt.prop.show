@@ -15,7 +15,7 @@
         "postinstall": "simple-git-hooks",
         "lint": "eslint .",
         "lint:fix": "eslint --fix .",
-        "deploy": "void deploy",
+        "deploy": "void deploy --platform cloudflare",
         "deploy:preview": "wrangler preview --config dist/ssr/wrangler.json",
         "test": "vitest run --project unit",
         "test:watch": "vitest --project unit",
