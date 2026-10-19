@@ -1,3 +1,8 @@
+declare module 'virtual:void-routes' {
+    const app: import('hono').Hono<import('void').CloudEnv>
+    export default app
+}
+
 declare module 'virtual:prop-content' {
     const content: {
         videos: readonly import('./content').Video[]

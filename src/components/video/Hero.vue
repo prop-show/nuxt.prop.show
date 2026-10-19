@@ -33,7 +33,7 @@ defineProps<{
                     <span class="meta-label-on-primary">EPISODES / ACTIVE CHANNELS</span>
                     <div class="flex items-end gap-3 font-mono font-black">
                         <strong class="text-5xl tracking-[-0.1em]">{{ String(count).padStart(2, '0') }}</strong>
-                        <span class="pb-1 text-sm text-black/55">/ {{ String(channelCount).padStart(2, '0') }}</span>
+                        <span class="pb-1 text-sm text-black/70">/ {{ String(channelCount).padStart(2, '0') }}</span>
                     </div>
                 </div>
 

@@ -4,6 +4,7 @@ import { HTTPException } from 'hono/http-exception'
 import { defineHandler, defineHead } from 'void'
 
 import { getContent, getCreator, renderContent } from '@/content'
+import { seoHead } from '@/utils/seo'
 
 export interface Props {
     work: Work & ContentDocument
@@ -20,8 +21,8 @@ export const loader = defineHandler((c): Props => {
     return { work, creator: getCreator(work.author) ?? null, pending: false, error: null }
 })
 
-export const head = defineHead<Props>((_c, { work }) => ({
+export const head = defineHead<Props>((_c, { work }) => seoHead({
     title: work.title,
-    meta: [{ name: 'description', content: work.description }],
-    link: [{ rel: 'canonical', href: `https://prop.show${work.path}` }],
+    description: work.description,
+    canonical: `https://prop.show${work.path}`,
 }))

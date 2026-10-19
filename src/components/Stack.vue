@@ -40,7 +40,7 @@ const { stacks } = siteConfig
                     <div class="text-lg font-black">
                         持续迭代中
                     </div>
-                    <div class="mt-1 font-mono text-[10px] font-bold tracking-[0.18em] text-black/55">
+                    <div class="mt-1 font-mono text-[10px] font-bold tracking-[0.18em] text-black/70">
                         NEXT RELEASE
                     </div>
                 </div>

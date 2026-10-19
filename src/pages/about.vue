@@ -5,7 +5,7 @@ defineProps<Props>()
 </script>
 
 <template>
-    <section>
+    <main>
         <AboutHero />
 
         <OurMission />
@@ -15,5 +15,5 @@ defineProps<Props>()
         <Creators variant="directory" />
 
         <Stack />
-    </section>
+    </main>
 </template>

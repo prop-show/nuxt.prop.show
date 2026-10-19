@@ -77,7 +77,7 @@ const currentYear = new Date().getFullYear()
                         <span class="size-2 rounded-full bg-black" />
                         CHANNEL OPEN
                     </div>
-                    <div class="mt-2 font-mono text-[10px] font-bold tracking-[0.16em] text-black/55">
+                    <div class="mt-2 font-mono text-[10px] font-bold tracking-[0.16em] text-black/70">
                         NEXT BROADCAST PENDING
                     </div>
                 </div>

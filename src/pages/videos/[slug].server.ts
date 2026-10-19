@@ -4,6 +4,7 @@ import { HTTPException } from 'hono/http-exception'
 import { defineHandler, defineHead } from 'void'
 
 import { getContent, renderContent, videos } from '@/content'
+import { seoHead } from '@/utils/seo'
 import { videoEpisode, videoLabel } from '@/utils/video'
 
 export interface Props {
@@ -40,8 +41,8 @@ export const loader = defineHandler((c): Props => {
     }
 })
 
-export const head = defineHead<Props>((_c, { video }) => ({
+export const head = defineHead<Props>((_c, { video }) => seoHead({
     title: videoLabel(video),
-    meta: [{ name: 'description', content: video.description.trim() || `观看「${videoLabel(video)}」，了解${video.tags.join('、') || video.category}相关实践。` }],
-    link: [{ rel: 'canonical', href: `https://prop.show${video.path}` }],
+    description: video.description.trim() || `观看「${videoLabel(video)}」，了解${video.tags.join('、') || video.category}相关实践。`,
+    canonical: `https://prop.show${video.path}`,
 }))

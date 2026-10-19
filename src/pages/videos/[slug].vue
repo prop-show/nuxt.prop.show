@@ -218,10 +218,6 @@ defineProps<Props>()
                             </h2>
                         </div>
 
-                        <p class="text-base leading-8 text-muted">
-                            {{ video.description }}
-                        </p>
-
                         <Content :value="video" />
                     </article>
                 </div>

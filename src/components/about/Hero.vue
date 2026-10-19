@@ -20,7 +20,7 @@ const facts = [
                 </div>
 
                 <div class="relative z-10">
-                    <div class="font-mono text-xs font-bold tracking-[0.2em] text-black/55">
+                    <div class="font-mono text-xs font-bold tracking-[0.2em] text-black/70">
                         EST. FRONTEND
                     </div>
                     <div class="mt-3 text-6xl font-black tracking-[-0.09em] sm:text-7xl">

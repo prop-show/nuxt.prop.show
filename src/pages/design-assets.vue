@@ -5,10 +5,10 @@ defineProps<Props>()
 </script>
 
 <template>
-    <div>
+    <main>
         <DesignAssetsHero />
         <DesignAssetsLogoGallery />
         <DesignAssetsColorPalette />
         <DesignAssetsUsageRules />
-    </div>
+    </main>
 </template>

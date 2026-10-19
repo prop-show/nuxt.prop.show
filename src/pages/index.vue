@@ -5,7 +5,7 @@ defineProps<Props>()
 </script>
 
 <template>
-    <section>
+    <main>
         <PodcastHero
             :video-count="homeContent.videoTotal"
             :news-count="homeContent.newsTotal"
@@ -26,5 +26,5 @@ defineProps<Props>()
             <Modules />
             <ComingSoonPreview />
         </div>
-    </section>
+    </main>
 </template>

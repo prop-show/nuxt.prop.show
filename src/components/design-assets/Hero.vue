@@ -56,7 +56,7 @@ const assetFacts = [
                     <div class="mt-7 font-mono text-xs font-black tracking-[0.22em]">
                         PROP.SHOW
                     </div>
-                    <div class="mt-2 font-mono text-[10px] font-bold tracking-[0.18em] text-black/55">
+                    <div class="mt-2 font-mono text-[10px] font-bold tracking-[0.18em] text-black/70">
                         VISUAL IDENTITY / SVG
                     </div>
                 </div>

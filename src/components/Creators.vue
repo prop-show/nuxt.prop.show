@@ -43,7 +43,7 @@ const error = shallowRef<Error | null>(null)
     <UEmpty
         v-else-if="!creators.length"
         class="my-20"
-        icon="i-tabler-users-off"
+        icon="i-tabler-users"
         title="暂无创作者资料"
         description="团队成员资料更新后会显示在这里。"
     />

@@ -35,13 +35,35 @@ describe('seo', () => {
         for (const path of ['/', '/about', '/design-assets', '/series/yisi', '/news', '/works']) {
             const html = await read(path)
             expect(html).toMatch(/<h1\b/)
+            expect(html.match(/<main\b/g)).toHaveLength(1)
+            expect(html).toContain('property="og:title"')
+            expect(html).toContain('name="twitter:card"')
+            const structured = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)
+            expect(JSON.parse(structured![1]!)['@graph'].map((entry: { '@type': string }) => entry['@type'])).toEqual(['WebSite', 'WebPage'])
             expect(html).not.toMatch(/<(?:NuxtLink|Lazy[A-Z])/)
         }
     })
 
-    it('returns 404 for unknown entries', async () => {
-        for (const collection of ['videos', 'news', 'works'])
-            expect((await fetch(`${base}/${collection}/seo-check-missing`)).status).toBe(404)
+    it('renders the Vue error page with a real 404 for unknown routes and entries', async () => {
+        for (const path of ['/404', '/seo-check-missing', '/videos/seo-check-missing', '/news/seo-check-missing', '/works/seo-check-missing']) {
+            const response = await fetch(`${base}${path}`, { headers: { accept: 'text/html' } })
+            expect(response.status, path).toBe(404)
+            expect(response.headers.get('x-robots-tag')).toBe('noindex, follow')
+            const html = await response.text()
+            expect(html).toContain('页面不存在')
+            expect(html).toContain('__VOID_PAGE_DATA__')
+            expect(html).toContain('主要导航')
+            expect(html).toContain('href="/videos"')
+            expect(html.match(/<main\b/g)).toHaveLength(1)
+        }
+    })
+
+    it('keeps API and asset 404s out of the Vue error page', async () => {
+        for (const path of ['/api/seo-check-missing', '/seo-check-missing.js']) {
+            const response = await fetch(`${base}${path}`, { headers: { accept: 'text/html' } })
+            expect(response.status).toBe(404)
+            expect(await response.text()).not.toContain('__VOID_PAGE_DATA__')
+        }
     })
 
     it('serves sitemap, RSS and robots', async () => {

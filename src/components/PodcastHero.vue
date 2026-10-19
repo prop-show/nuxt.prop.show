@@ -44,7 +44,7 @@ const signals = computed(() => [
                     </p>
 
                     <div class="mt-10 flex flex-wrap gap-3">
-                        <UButton to="/videos" icon="i-tabler-player-play-filled" size="xl">
+                        <UButton to="/videos" icon="i-tabler-player-play-filled" size="xl" class="text-black">
                             看视频
                         </UButton>
                         <UButton to="/news" icon="i-tabler-news" size="xl" color="neutral" variant="outline">
@@ -67,7 +67,7 @@ const signals = computed(() => [
 
             <aside class="relative flex min-h-100 items-center justify-center overflow-hidden border-t border-default bg-primary lg:min-h-full lg:border-t-0 lg:border-l">
                 <div class="absolute inset-5 border border-black/15" />
-                <div class="absolute top-8 right-8 font-mono text-xs font-bold tracking-[0.2em] text-black/55">
+                <div class="absolute top-8 right-8 font-mono text-xs font-bold tracking-[0.2em] text-black/70">
                     VIDEOS / REPORTS
                 </div>
 

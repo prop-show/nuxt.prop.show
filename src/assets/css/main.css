@@ -47,7 +47,7 @@ body {
 }
 
 .meta-label-on-primary {
-    @apply font-mono text-[10px] font-bold tracking-[0.2em] text-black/55;
+    @apply font-mono text-[10px] font-bold tracking-[0.2em] text-black/70;
 }
 
 /* 区块标题右侧的计数（EPISODES / WORKS / CONTRIBUTORS …） */

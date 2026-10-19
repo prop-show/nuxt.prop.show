@@ -7,10 +7,10 @@ defineProps<Props>()
 <template>
     <main>
         <VideoHero
-            :count="videos.length"
+            :count="videoTotal"
             :channel-count="categories.length"
-            :latest-order="videos[0]?.order"
-            :latest-title="videos[0]?.title"
+            :latest-order="latestVideo?.order"
+            :latest-title="latestVideo?.title"
         />
 
         <VideoArchiveFilters
@@ -18,7 +18,7 @@ defineProps<Props>()
             :tags
             :active-category="activeCategory"
             :active-tag="activeTag"
-            :result-count="filteredVideos.length"
+            :result-count="resultCount"
             :series-count
         />
 
@@ -49,7 +49,7 @@ defineProps<Props>()
         </section>
 
         <UEmpty
-            v-else-if="!filteredVideos.length"
+            v-else-if="!resultCount"
             icon="i-tabler-player-play"
             title="没有匹配的节目"
             description="换个频道或标签，或清除筛选。"
@@ -62,11 +62,11 @@ defineProps<Props>()
         </UEmpty>
 
         <template v-else>
-            <VideoList :videos="paginated" :total="filteredVideos.length" />
+            <VideoList :videos="paginated" :total="resultCount" />
             <ContentPagination
                 :page="currentPage"
                 :page-size="pageSize"
-                :total="filteredVideos.length"
+                :total="resultCount"
                 base-path="/videos"
                 :query="filterQuery"
             />

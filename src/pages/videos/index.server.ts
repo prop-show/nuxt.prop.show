@@ -3,16 +3,18 @@ import type { Video } from '@/content'
 import { defineHandler, defineHead } from 'void'
 
 import { pageSize, videos } from '@/content'
+import { seoHead } from '@/utils/seo'
 
 export interface Props {
-    videos: readonly Video[]
+    videoTotal: number
+    latestVideo: Video | null
     pending: boolean
     categories: string[]
     tags: string[]
     seriesCount: number
     activeCategory: string
     activeTag: string
-    filteredVideos: readonly Video[]
+    resultCount: number
     filterQuery: { category?: string, tag?: string }
     currentPage: number
     pageSize: number
@@ -30,14 +32,15 @@ export const loader = defineHandler((c): Props => {
     const currentPage = Math.min(Math.max(1, requested), Math.max(1, Math.ceil(filteredVideos.length / pageSize)))
 
     return {
-        videos,
+        videoTotal: videos.length,
+        latestVideo: videos[0] ?? null,
         pending: false,
         categories: [...new Set(videos.map(video => video.category))],
         tags: [...new Set(videos.flatMap(video => video.tags))].sort(),
         seriesCount: videos.filter(video => video.series === '乙巳').length,
         activeCategory,
         activeTag,
-        filteredVideos,
+        resultCount: filteredVideos.length,
         filterQuery: { ...(activeCategory ? { category: activeCategory } : {}), ...(activeTag ? { tag: activeTag } : {}) },
         currentPage,
         pageSize,
@@ -50,9 +53,10 @@ export const head = defineHead<Props>((_c, props) => {
     const query = new URLSearchParams(props.filterQuery)
     if (props.currentPage > 1)
         query.set('page', String(props.currentPage))
-    return {
+    return seoHead({
         title: props.currentPage > 1 ? `视频 · 第 ${props.currentPage} 页` : '视频',
-        meta: [{ name: 'description', content: '观看 prop.show 前端开发视频，包含项目实战、技术解析、工具使用等高质量内容。' }],
-        link: [{ rel: 'canonical', href: `https://prop.show/videos${query.size ? `?${query}` : ''}` }],
-    }
+        description: '观看 prop.show 前端开发视频，包含项目实战、技术解析、工具使用等高质量内容。',
+        noindex: !!(props.activeCategory || props.activeTag) && props.resultCount === 0,
+        canonical: `https://prop.show/videos${query.size ? `?${query}` : ''}`,
+    })
 })

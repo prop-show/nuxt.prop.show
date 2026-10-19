@@ -53,7 +53,7 @@ const { techLogos } = siteConfig
                     <div class="text-lg font-black">
                         保持扫描
                     </div>
-                    <div class="mt-1 font-mono text-[9px] font-bold tracking-[0.18em] text-black/55">
+                    <div class="mt-1 font-mono text-[9px] font-bold tracking-[0.18em] text-black/70">
                         MORE TO DISCOVER
                     </div>
                 </div>

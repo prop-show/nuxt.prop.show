@@ -3,6 +3,7 @@ import type { Creator, Work } from '@/content'
 import { defineHandler, defineHead } from 'void'
 
 import { creators, pageSize, works } from '@/content'
+import { seoHead } from '@/utils/seo'
 
 export interface Props {
     archive: { works: readonly Work[], creators: readonly Creator[] }
@@ -42,9 +43,9 @@ export const head = defineHead<Props>((_c, props) => {
     const query = new URLSearchParams(props.paginationQuery)
     if (props.currentPage > 1)
         query.set('page', String(props.currentPage))
-    return {
+    return seoHead({
         title: props.currentPage > 1 ? `团队作品 · 第 ${props.currentPage} 页` : '团队作品',
-        meta: [{ name: 'description', content: '浏览 prop.show 团队成员完成的网站、产品、工具与开源项目。' }],
-        link: [{ rel: 'canonical', href: `https://prop.show/works${query.size ? `?${query}` : ''}` }],
-    }
+        description: '浏览 prop.show 团队成员完成的网站、产品、工具与开源项目。',
+        canonical: `https://prop.show/works${query.size ? `?${query}` : ''}`,
+    })
 })

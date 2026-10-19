@@ -5,7 +5,7 @@ defineProps<Props>()
 </script>
 
 <template>
-    <section>
+    <main>
         <SeriesYisiHero :count="seriesVideos.length" />
 
         <section v-if="pending" class="my-20">
@@ -33,5 +33,5 @@ defineProps<Props>()
             title="完整课程目录"
             numbering="series"
         />
-    </section>
+    </main>
 </template>
