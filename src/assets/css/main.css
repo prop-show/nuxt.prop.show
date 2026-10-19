@@ -1,0 +1,107 @@
+@import 'tailwindcss';
+@import '@nuxt/ui';
+
+@plugin "@tailwindcss/typography";
+
+:root {
+    --ui-radius: 0.2rem;
+}
+
+html {
+    background-color: var(--ui-bg);
+    color-scheme: light;
+}
+
+html.dark {
+    color-scheme: dark;
+}
+
+body {
+    min-height: 100svh;
+    background-color: var(--ui-bg);
+    background-image: url('/texture.png');
+    transition: background-color 200ms ease-in;
+}
+
+/* 共享的 42px 细网格底纹（hero / 详情页头部），配合 absolute inset-0 + opacity-* 使用。 */
+.grid-texture {
+    background-image:
+        linear-gradient(to right, color-mix(in srgb, var(--ui-border) 65%, transparent) 1px, transparent 1px),
+        linear-gradient(to bottom, color-mix(in srgb, var(--ui-border) 65%, transparent) 1px, transparent 1px);
+    background-size: 42px 42px;
+    mask-image: linear-gradient(to right, black, transparent 90%);
+    contain: strict;
+}
+
+.grid-texture-left {
+    mask-image: linear-gradient(to left, black, transparent 90%);
+}
+
+/* mono 元信息标签与区块 eyebrow。全站唯一来源，见 .agents/skills/prop-show-design/references/design-system.md */
+.meta-label {
+    @apply font-mono text-[10px] font-bold tracking-[0.18em] text-dimmed;
+}
+
+.eyebrow {
+    @apply mb-2 font-mono text-xs font-bold tracking-[0.22em] text-primary;
+}
+
+.meta-label-on-primary {
+    @apply font-mono text-[10px] font-bold tracking-[0.2em] text-black/70;
+}
+
+/* 区块标题右侧的计数（EPISODES / WORKS / CONTRIBUTORS …） */
+.section-count {
+    @apply font-mono text-xs font-bold tracking-[0.18em] text-dimmed;
+}
+
+/* Markdown 组件块 ::note / ::alert / ::poetry，标记由 src/markdown.ts 生成。 */
+.content-note,
+.content-alert {
+    @apply my-8 border px-5 py-4 text-muted;
+}
+
+.content-note {
+    @apply border-default bg-elevated/60;
+}
+
+.content-alert {
+    @apply border-primary bg-primary/5 text-highlighted;
+}
+
+.content-note > :first-child,
+.content-alert > :first-child {
+    margin-top: 0;
+}
+
+.content-note > :last-child,
+.content-alert > :last-child {
+    margin-bottom: 0;
+}
+
+/* 诗歌保留原文换行，并去掉 prose 默认的引号与左边线。 */
+.content-poetry {
+    @apply my-10 border-0 p-0 text-center text-base leading-8 font-medium text-highlighted;
+    font-style: normal;
+    quotes: none;
+}
+
+/* 需高于 typography 插件给 blockquote p 加引号的 (0,2,0) 优先级。 */
+.prose .content-poetry p::before,
+.prose .content-poetry p::after {
+    content: none;
+}
+
+.content-poetry p {
+    white-space: pre-line;
+}
+
+/* 两种主题共用半透明中性灰底，覆盖 Shiki 的内联主题背景。 */
+.shiki {
+    background-color: #8881 !important;
+}
+
+html.dark .shiki,
+html.dark .shiki span {
+    color: var(--shiki-dark) !important;
+}
