@@ -4,7 +4,7 @@ export default antfu({
     typescript: true,
     vue: true,
     stylistic: { indent: 4 },
-    ignores: ['.vscode/**', 'pnpm-workspace.yaml', '.void/**', 'dist/**', 'src/auto-imports.d.ts', 'src/components.d.ts', 'content/**', 'pnpm-lock.yaml'],
+    ignores: ['.vscode/**', 'pnpm-workspace.yaml', '.void/**', 'dist/**', 'src/auto-imports.d.ts', 'src/components.d.ts', 'content/**', 'pnpm-lock.yaml', 'void.lock.json'],
     rules: { 'vue/multi-word-component-names': 'off' },
 }, {
     files: ['scripts/**/*.mjs'],

@@ -8,3 +8,12 @@ allowBuilds:
   unrs-resolver: true
   vue-demi: true
   workerd: true
+
+minimumReleaseAgeExclude:
+  - '@void/deploy-cloudflare@1.1.12'
+  - '@void/deploy-core@1.1.12'
+  - '@void/edge@1.1.12'
+  - '@void/isr@1.1.12'
+  - '@void/platform@1.1.12'
+  - void@1.1.12
+  - '@void/vue@1.1.12'

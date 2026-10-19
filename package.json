@@ -28,7 +28,7 @@
         "@iconify-json/tabler": "^1.2.42",
         "@iconify/vue": "^5.0.3",
         "@nuxt/ui": "^4.11.3",
-        "@void/vue": "1.1.11",
+        "@void/vue": "1.1.12",
         "comark": "^0.7.0",
         "hono": "^4.13.13",
         "shiki": "^4.5.0",
@@ -50,7 +50,7 @@
         "undici": "^8.12.2",
         "vite": "^8.3.4",
         "vitest": "^5.0.5",
-        "void": "1.1.11",
+        "void": "1.1.12",
         "vue-tsc": "^3.3.7",
         "wrangler": "4.151.1"
     },

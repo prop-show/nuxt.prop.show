@@ -182,8 +182,8 @@ importers:
         specifier: ^4.11.3
         version: 4.11.3(9fc76bf16ce6db03e394c04e4addf399)
       '@void/vue':
-        specifier: 1.1.11
-        version: 1.1.11(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1))(void@1.1.11(@types/node@24.19.2)(arktype@2.2.8)(kysely@0.29.6)(valibot@1.5.0(typescript@5.9.3))(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1))(vitest@5.0.5(@types/node@24.19.2)(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))(vue@3.5.44(typescript@5.9.3))(wrangler@4.151.1(@cloudflare/workers-types@5.20261016.1)(@types/node@24.19.2))(zod@4.6.7))(vue@3.5.44(typescript@5.9.3))
+        specifier: 1.1.12
+        version: 1.1.12(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1))(void@1.1.12(@types/node@24.19.2)(arktype@2.2.8)(kysely@0.29.6)(valibot@1.5.0(typescript@5.9.3))(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1))(vitest@5.0.5(@types/node@24.19.2)(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))(vue@3.5.44(typescript@5.9.3))(wrangler@4.151.1(@cloudflare/workers-types@5.20261016.1)(@types/node@24.19.2))(zod@4.6.7))(vue@3.5.44(typescript@5.9.3))
       comark:
         specifier: ^0.7.0
         version: 0.7.0(shiki@4.5.0)
@@ -243,8 +243,8 @@ importers:
         specifier: ^5.0.5
         version: 5.0.5(@types/node@24.19.2)(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1))
       void:
-        specifier: 1.1.11
-        version: 1.1.11(@types/node@24.19.2)(arktype@2.2.8)(kysely@0.29.6)(valibot@1.5.0(typescript@5.9.3))(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1))(vitest@5.0.5(@types/node@24.19.2)(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))(vue@3.5.44(typescript@5.9.3))(wrangler@4.151.1(@cloudflare/workers-types@5.20261016.1)(@types/node@24.19.2))(zod@4.6.7)
+        specifier: 1.1.12
+        version: 1.1.12(@types/node@24.19.2)(arktype@2.2.8)(kysely@0.29.6)(valibot@1.5.0(typescript@5.9.3))(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1))(vitest@5.0.5(@types/node@24.19.2)(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))(vue@3.5.44(typescript@5.9.3))(wrangler@4.151.1(@cloudflare/workers-types@5.20261016.1)(@types/node@24.19.2))(zod@4.6.7)
       vue-tsc:
         specifier: ^3.3.7
         version: 3.3.13(typescript@5.9.3)
@@ -3095,26 +3095,26 @@ packages:
   '@vitest/spy@5.0.5':
     resolution: {integrity: sha512-lwJRExuH417257Q5wv9QYugN9IMJkoxcrKrYxGPQkBzl7wlNpTUxD/5yNX4ESKVUIShKPgkGchYPFMWOOk0wzw==}
 
-  '@void/deploy-cloudflare@1.1.11':
-    resolution: {integrity: sha512-uCZL/C7SwaBQiAGqFwLjo191BASPrtfJJmNGH2bzMS8Pv0fU8O+lthYzg6006jCertrJBA2MEekK1ToBBX/9sQ==}
+  '@void/deploy-cloudflare@1.1.12':
+    resolution: {integrity: sha512-zUNDNFiAAxNRHJjwPSydVt122XJVQR16Ky2YVIYMVIhHKdHTFaBkgTbAiC/Wz3M/lj6P3hxJcBZwkFiJsQD1Qw==}
 
-  '@void/deploy-core@1.1.11':
-    resolution: {integrity: sha512-THuYngqF+3Sg8uhpkQ4jGa3A/LN45kQpgoJPmhJHsl9PXNQtsv+KFZvgoHeStC1th7/cAfQXKPTLS2pR81R/pw==}
+  '@void/deploy-core@1.1.12':
+    resolution: {integrity: sha512-bZkTuD+/16GEAGHkbR4L2Zqp+/Cv8mbJRsXJuPUUwiS0wsTIuPHSmF7V+lGzxpXKvctuX+jDnq8zLOYa1LKKCw==}
 
-  '@void/edge@1.1.11':
-    resolution: {integrity: sha512-jpZC28ozvfyxkvaIE6R9uYCvHrqJ7t3ssX9DmzykymROM1yrMagsqyCOLNZ+o4pS8aRr41hwG16lpF7/wbzwcA==}
+  '@void/edge@1.1.12':
+    resolution: {integrity: sha512-HYW45JW6zh+QOQ7HZ/+b+UEykF+JPL58etKEkOngCgGm/dZx/4P7n5rAxncEWXDhmOT0TdWVMxWp1IFnKVoEOw==}
 
-  '@void/isr@1.1.11':
-    resolution: {integrity: sha512-1bX3MP+G61rb1Js0YJmjbtl72qZPKkZkv8LmAN2I6vTitAHMGQCX1oeGevDUgyhzWTXOLIdYr9/ayHymSOgdAw==}
+  '@void/isr@1.1.12':
+    resolution: {integrity: sha512-IaDtCCBtJpWr0mXOT12PdP+9zc6GooPQ5rmmfjY/448ozRxfm6x896aO53fTmsNvV1eQZEr1HuHMnHzuCRYOxA==}
 
-  '@void/platform@1.1.11':
-    resolution: {integrity: sha512-sfAQu7vWUxYsgNnIkPODezagdryXArXDWbpSmSCMdnzd4i9RSEXUjR9+U3tLV5qYHzxjkYYwdDhoweSe9RENNw==}
+  '@void/platform@1.1.12':
+    resolution: {integrity: sha512-pX6OkTYL8yjhIAOb7FDHdydNfRhryDaBvnzxBtlzxNsKjvd6SYrrMyyyEslYWlTL8RidZ+G495k7rDp/CVBWZw==}
 
-  '@void/vue@1.1.11':
-    resolution: {integrity: sha512-k9vBcm6cHyoAbYC3zQdGu2iicxG8jB3i3nSAr/lAyL2Jak1IYK8PdTrLfjeVMYWgnMDlxMOQ98OCxxhDdd0tSw==}
+  '@void/vue@1.1.12':
+    resolution: {integrity: sha512-JI/OQCoee0vGgn2IGovc5Sm+WAWNO4LWOY/HU7BHbWpi4BzIbPdpPsixhS4eBT0MEYmNq1uy7fMxmxcLiOHafg==}
     peerDependencies:
       vite: ^8.0.0
-      void: 1.1.11
+      void: 1.1.12
       vue: ^3.5.0
 
   '@volar/language-core@2.4.28':
@@ -6279,12 +6279,12 @@ packages:
       jsdom:
         optional: true
 
-  void@1.1.11:
-    resolution: {integrity: sha512-3AAXsbv13bdrBL0Rd8C0peyE1VZs14eGnRBUyVN21VWWDuKJROeNTSDaRbKkDayVIs0WkKY8ZPUvYZ/VvTtHAw==}
+  void@1.1.12:
+    resolution: {integrity: sha512-EC8e57AAtQ/JhiDlDMF2RH1dE9NbbVpX54vpkPXpS45hAfSslY7CLnYpkX8Xs5vv+dbWWt7Z2xmLsNqH12fedA==}
     engines: {node: '>=24.21.0'}
     hasBin: true
     peerDependencies:
-      '@void/md': 1.1.11
+      '@void/md': 1.1.12
       arktype: '>=2.0.0'
       valibot: '>=1.0.0-beta.7'
       vite: ^8.0.0
@@ -8944,31 +8944,31 @@ snapshots:
 
   '@vitest/spy@5.0.5': {}
 
-  '@void/deploy-cloudflare@1.1.11':
+  '@void/deploy-cloudflare@1.1.12':
     dependencies:
-      '@void/deploy-core': 1.1.11
+      '@void/deploy-core': 1.1.12
       jsonc-parser: 3.3.1
 
-  '@void/deploy-core@1.1.11': {}
+  '@void/deploy-core@1.1.12': {}
 
-  '@void/edge@1.1.11':
+  '@void/edge@1.1.12':
     dependencies:
-      '@void/deploy-core': 1.1.11
+      '@void/deploy-core': 1.1.12
 
-  '@void/isr@1.1.11':
+  '@void/isr@1.1.12':
     dependencies:
       '@cloudflare/workers-types': 5.20261016.1
-      '@void/edge': 1.1.11
+      '@void/edge': 1.1.12
 
-  '@void/platform@1.1.11':
+  '@void/platform@1.1.12':
     dependencies:
       pathslash: 0.1.0
 
-  '@void/vue@1.1.11(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1))(void@1.1.11(@types/node@24.19.2)(arktype@2.2.8)(kysely@0.29.6)(valibot@1.5.0(typescript@5.9.3))(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1))(vitest@5.0.5(@types/node@24.19.2)(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))(vue@3.5.44(typescript@5.9.3))(wrangler@4.151.1(@cloudflare/workers-types@5.20261016.1)(@types/node@24.19.2))(zod@4.6.7))(vue@3.5.44(typescript@5.9.3))':
+  '@void/vue@1.1.12(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1))(void@1.1.12(@types/node@24.19.2)(arktype@2.2.8)(kysely@0.29.6)(valibot@1.5.0(typescript@5.9.3))(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1))(vitest@5.0.5(@types/node@24.19.2)(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))(vue@3.5.44(typescript@5.9.3))(wrangler@4.151.1(@cloudflare/workers-types@5.20261016.1)(@types/node@24.19.2))(zod@4.6.7))(vue@3.5.44(typescript@5.9.3))':
     dependencies:
       '@vitejs/plugin-vue': 6.0.10(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1))(vue@3.5.44(typescript@5.9.3))
       vite: 8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)
-      void: 1.1.11(@types/node@24.19.2)(arktype@2.2.8)(kysely@0.29.6)(valibot@1.5.0(typescript@5.9.3))(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1))(vitest@5.0.5(@types/node@24.19.2)(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))(vue@3.5.44(typescript@5.9.3))(wrangler@4.151.1(@cloudflare/workers-types@5.20261016.1)(@types/node@24.19.2))(zod@4.6.7)
+      void: 1.1.12(@types/node@24.19.2)(arktype@2.2.8)(kysely@0.29.6)(valibot@1.5.0(typescript@5.9.3))(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1))(vitest@5.0.5(@types/node@24.19.2)(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))(vue@3.5.44(typescript@5.9.3))(wrangler@4.151.1(@cloudflare/workers-types@5.20261016.1)(@types/node@24.19.2))(zod@4.6.7)
       vue: 3.5.44(typescript@5.9.3)
 
   '@volar/language-core@2.4.28':
@@ -12716,7 +12716,7 @@ snapshots:
     transitivePeerDependencies:
       - msw
 
-  void@1.1.11(@types/node@24.19.2)(arktype@2.2.8)(kysely@0.29.6)(valibot@1.5.0(typescript@5.9.3))(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1))(vitest@5.0.5(@types/node@24.19.2)(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))(vue@3.5.44(typescript@5.9.3))(wrangler@4.151.1(@cloudflare/workers-types@5.20261016.1)(@types/node@24.19.2))(zod@4.6.7):
+  void@1.1.12(@types/node@24.19.2)(arktype@2.2.8)(kysely@0.29.6)(valibot@1.5.0(typescript@5.9.3))(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1))(vitest@5.0.5(@types/node@24.19.2)(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))(vue@3.5.44(typescript@5.9.3))(wrangler@4.151.1(@cloudflare/workers-types@5.20261016.1)(@types/node@24.19.2))(zod@4.6.7):
     dependencies:
       '@cloudflare/build-output-utils': 0.9.3
       '@cloudflare/codemods': 0.5.0
@@ -12726,11 +12726,11 @@ snapshots:
       '@cloudflare/workers-auth': 0.14.0(vitest@5.0.5(@types/node@24.19.2)(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
       '@cloudflare/workers-types': 5.20261016.1
       '@napi-rs/keyring': 2.1.1
-      '@void/deploy-cloudflare': 1.1.11
-      '@void/deploy-core': 1.1.11
-      '@void/edge': 1.1.11
-      '@void/isr': 1.1.11
-      '@void/platform': 1.1.11
+      '@void/deploy-cloudflare': 1.1.12
+      '@void/deploy-core': 1.1.12
+      '@void/edge': 1.1.12
+      '@void/isr': 1.1.12
+      '@void/platform': 1.1.12
       better-auth: 1.7.10(drizzle-kit@0.31.11)(drizzle-orm@0.45.4(@cloudflare/workers-types@5.20261016.1)(better-sqlite3@13.0.3)(kysely@0.29.6)(mysql2@3.24.6(@types/node@24.19.2))(pg@8.23.1))(mysql2@3.24.6(@types/node@24.19.2))(pg@8.23.1)(vitest@5.0.5(@types/node@24.19.2)(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))(vue@3.5.44(typescript@5.9.3))
       better-sqlite3: 13.0.3
       blake3-jit: 1.1.0
