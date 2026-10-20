@@ -37,9 +37,37 @@ describe('content generation', () => {
         await writeFile(file, article)
         await generateContent(root)
         await writeFile(file, article.replace('category: Test', 'category: 42'))
-        await expect(generateContent(root)).rejects.toThrow('videos/example.md: category must be a nonempty string')
+        await expect(generateContent(root)).rejects.toThrow(/videos\/example\.md: invalid content:[\s\S]*category/)
         await writeFile(file, article)
         expect((await generateContent(root)).videos).toHaveLength(1)
+    })
+
+    it.each([
+        ['videos', 'category: Test\nepisode: -1', 'episode'],
+        ['videos', 'category: Test\nplatforms:\n  youtube: 42', 'youtube'],
+        ['videos', 'category: Test\ntags: [42]', 'tags'],
+        ['videos', 'category: Test\nseries: ""', 'series'],
+        ['videos', 'category: Test\nrepository: invalid', 'repository'],
+        ['news', 'date: 2026-10-20\nsource: invalid', 'source'],
+        ['works', 'author: Example\ntype: Tool\nwebsite: invalid', 'website'],
+    ])('rejects invalid %s metadata (%s)', async (collection, fields, field) => {
+        await writeFile(join(root, `content/${collection}/example.md`), `---\ntitle: Example\n${fields}\n---\nHello.`)
+        await expect(generateContent(root)).rejects.toThrow(new RegExp(`${collection}/example\\.md: invalid content:[\\s\\S]*${field}`))
+    })
+
+    it('preserves metadata defaults and description fallbacks', async () => {
+        await writeFile(join(root, 'content/videos/example.md'), article.replace('category: Test', 'category: Test\norder: null\ntags: null'))
+        await writeFile(join(root, 'content/works/example.md'), '---\ntitle: Work\nauthor: Example\ntype: Tool\ndescription: "  "\n---\n')
+        await writeFile(join(root, 'content/creators/example.yml'), 'name: Example\navatar: /avatar.png\nhref: /about\nrole: Author\n')
+        const content = await generateContent(root)
+        expect(content.videos[0]).toMatchObject({ order: 0, tags: [], platforms: {}, description: 'Hello world.' })
+        expect(content.works[0]).toMatchObject({ order: 0, tags: [], description: 'Work' })
+        expect(content.creators[0]).toMatchObject({ slug: 'example', order: 0 })
+    })
+
+    it('includes the source path and field in creator validation errors', async () => {
+        await writeFile(join(root, 'content/creators/example.yml'), 'name: Example\navatar: /avatar.png\nhref: /about\nrole: Author\norder: -1\n')
+        await expect(generateContent(root)).rejects.toThrow(/creators\/example\.yml: invalid creator:[\s\S]*order/)
     })
 
     it('includes the source path in YAML errors and rejects normalized path collisions', async () => {
