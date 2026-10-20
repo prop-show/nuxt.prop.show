@@ -1,39 +1,40 @@
 <script setup lang="ts">
+import IconArrowsMaximize from '~icons/tabler/arrows-maximize'
+import IconContrast2 from '~icons/tabler/contrast-2'
+import IconPaletteOff from '~icons/tabler/palette-off'
+import IconSpacingHorizontal from '~icons/tabler/spacing-horizontal'
+
 const rules = [
     {
         number: '01',
-        icon: 'i-tabler-spacing-horizontal',
-        title: '保留呼吸空间',
-        description: '标志周围保持充足空白，避免与文字、图像或容器边界拥挤。',
+        icon: IconSpacingHorizontal,
+        title: '留出空白',
+        description: '标志与文字、图像及容器边界保持距离。',
     },
     {
         number: '02',
-        icon: 'i-tabler-palette-off',
+        icon: IconPaletteOff,
         title: '不要自行改色',
-        description: '只使用黑色、品牌黄两种标志版本，不使用渐变、描边或其他装饰色。',
+        description: '仅使用黑色或品牌黄版本，不添加渐变、描边或装饰色。',
     },
     {
         number: '03',
-        icon: 'i-tabler-arrows-maximize',
+        icon: IconArrowsMaximize,
         title: '保持原始比例',
-        description: '等比缩放标志，不拉伸、压缩、旋转或重新排列内部图形。',
+        description: '等比缩放，不拉伸、压缩、旋转或重排图形。',
     },
     {
         number: '04',
-        icon: 'i-tabler-contrast-2',
+        icon: IconContrast2,
         title: '确保背景对比',
-        description: '浅色背景使用黑色版，深色背景使用品牌黄版，避免放在杂乱图像上。',
+        description: '浅底用黑色版，深底用品牌黄版，避免杂乱背景。',
     },
 ]
 </script>
 
 <template>
     <section class="my-20" aria-labelledby="usage-rules-heading">
-        <SectionHeading eyebrow="BASIC USAGE" title="基础使用规则" title-id="usage-rules-heading" stack-at="md">
-            <p class="max-w-md text-sm leading-6 text-muted md:text-right">
-                清晰、可识别，比额外效果更重要。
-            </p>
-        </SectionHeading>
+        <SectionHeading eyebrow="USAGE" title="使用规则" title-id="usage-rules-heading" />
 
         <div class="grid border-y border-default md:grid-cols-2">
             <article
@@ -43,13 +44,13 @@ const rules = [
             >
                 <div class="flex items-start justify-between">
                     <span class="flex size-11 items-center justify-center border border-default bg-muted">
-                        <Icon :name="rule.icon" class="size-5 text-primary" />
+                        <component :is="rule.icon" class="size-5 text-primary" aria-hidden="true" />
                     </span>
-                    <span class="font-mono text-4xl font-black tracking-[-0.1em] text-dimmed/35 transition-colors group-hover:text-primary">
+                    <span class="font-mono text-xl font-bold tracking-tight lg:text-2xl text-dimmed/35 transition-colors group-hover:text-primary">
                         {{ rule.number }}
                     </span>
                 </div>
-                <h3 class="mt-10 text-xl font-black">
+                <h3 class="mt-10 text-lg leading-[1.4] font-bold lg:text-xl">
                     {{ rule.title }}
                 </h3>
                 <p class="mt-3 max-w-xl text-sm leading-7 text-muted">

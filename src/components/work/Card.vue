@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import type { Creator, Work } from '@/content'
+import IconArrowRight from '~icons/tabler/arrow-right'
+import IconUserQuestion from '~icons/tabler/user-question'
 
 defineProps<{
     work: Work
@@ -16,7 +18,7 @@ defineProps<{
             <div class="font-mono text-[10px] font-bold tracking-[0.14em] text-dimmed">
                 {{ work.type }}
             </div>
-            <h3 class="mt-2 text-lg font-black transition-colors group-hover:text-primary md:text-xl">
+            <h3 class="mt-2  transition-colors group-hover:text-primary text-lg leading-[1.4] font-bold lg:text-xl">
                 {{ work.title }}
             </h3>
             <p class="mt-2 line-clamp-2 text-sm leading-6 text-muted">
@@ -39,13 +41,13 @@ defineProps<{
                 </div>
             </div>
             <div v-else class="mt-3 flex items-center gap-2 text-sm font-bold text-muted">
-                <Icon name="i-tabler-user-question" class="size-5" />
+                <IconUserQuestion aria-hidden="true" class="size-5" />
                 未知作者
             </div>
         </div>
 
         <div class="hidden size-10 items-center justify-center border border-default text-muted transition-colors group-hover:border-primary group-hover:bg-primary group-hover:text-black lg:flex">
-            <Icon name="i-tabler-arrow-right" class="size-5 transition-transform group-hover:translate-x-1" />
+            <IconArrowRight aria-hidden="true" class="size-5 transition-transform group-hover:translate-x-1" />
         </div>
     </SiteLink>
 </template>

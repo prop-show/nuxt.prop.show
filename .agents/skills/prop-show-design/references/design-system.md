@@ -50,10 +50,14 @@ Read the current implementation before applying this document. Prefer current co
 
 ### Typography
 
-- Use heavy sans type for Chinese headings: `font-black`, tight or negative tracking, and compact line height.
+- Reserve `font-black` for Chinese homepage, channel, and section headings. Use `font-bold` for detail titles, content items, names, and supporting headings.
 - Use mono type for numbers, dates, episode identifiers, technical metadata, and short English labels.
 - Keep metadata around 9-12px with `font-bold` and tracking near `0.14em-0.22em`.
-- Keep section headings near `text-3xl md:text-4xl`; scale hero headings from `text-5xl` upward only when the available viewport and copy length support it.
+- Scale homepage headings through 36/48/60px at base/sm/lg, with line height 1.15 and tracking -0.035em. Scale channel, about, series, design-assets, and 404 headings through 32/40/48px, with line height 1.2 and tracking -0.025em.
+- Scale dynamic detail titles through 28/32/40px at base/sm/lg, with `font-bold`, line height 1.3, and tracking -0.02em. Let long titles wrap naturally.
+- Keep shared section headings at `text-2xl lg:text-3xl`, with line height 1.3. Keep content-item and supporting headings at `text-lg lg:text-xl`, with `font-bold` and line height 1.4.
+- Keep main statistics and detail episode numbers at 32/36/40px at base/sm/lg; prefixed episode numbers and dates at 24/28px at base/sm; ancillary card numbers at 20/24px at base/lg. Use `font-bold` and relaxed tight tracking rather than extreme negative tracking.
+- Keep footer statements at 24/28px at base/lg. In Markdown content, use `font-bold` headings with H1/H2 at 24px, H3 at 20px, and lower levels no larger than 18px. Preserve readable paragraph and code sizes.
 - Keep body copy readable with `text-sm` or `text-base`, `leading-6` to `leading-8`, and semantic muted color.
 - Make English labels short and factual. Chinese carries the main narrative and actions.
 

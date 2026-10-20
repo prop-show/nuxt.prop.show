@@ -14,7 +14,7 @@ export interface Props {
     pending: boolean
     isYisiSeries: boolean
     displayEpisode: number
-    platforms: { key: string, name: string, icon: string }[]
+    platforms: { key: string, name: string }[]
 }
 
 export const loader = defineHandler((c): Props => {
@@ -34,9 +34,9 @@ export const loader = defineHandler((c): Props => {
         isYisiSeries: video.series === '乙巳',
         displayEpisode: videoEpisode(video),
         platforms: [
-            { key: 'bilibili', name: 'BiliBili', icon: 'i-tabler-brand-bilibili' },
-            { key: 'douyin', name: '抖音', icon: 'i-tabler-brand-tiktok' },
-            { key: 'youtube', name: 'YouTube', icon: 'i-tabler-brand-youtube' },
+            { key: 'bilibili', name: 'BiliBili' },
+            { key: 'douyin', name: '抖音' },
+            { key: 'youtube', name: 'YouTube' },
         ],
     }
 })

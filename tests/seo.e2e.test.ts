@@ -30,6 +30,18 @@ describe('seo', () => {
         expect(seen.size).toBe(videos.length)
     })
 
+    it('renders pagination as accessible links to real archive pages', async () => {
+        const html = await read('/videos?page=2')
+        const pagination = html.match(/<nav\s[^>]*aria-label="内容分页"[\s\S]*?<\/nav>/)?.[0]
+        expect(pagination).toBeDefined()
+        const links = pagination!.match(/<a\s[^>]+>/g) ?? []
+        expect(links.find(link => link.includes('aria-current="page"'))).toContain('href="/videos?page=2"')
+        expect(links.find(link => link.includes('rel="prev"'))).toContain('href="/videos"')
+        if (pageCount > 2)
+            expect(links.find(link => link.includes('rel="next"'))).toContain('href="/videos?page=3"')
+        expect(pagination).not.toMatch(/<button\b/)
+    })
+
     it('renders metadata and headings', async () => {
         expect(await read('/videos/npm-supply-chain-simple-defense')).toMatch(/<meta name="description" content="[^"]+"/)
         for (const path of ['/', '/about', '/design-assets', '/series/yisi', '/news', '/works']) {

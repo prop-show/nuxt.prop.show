@@ -1,32 +1,31 @@
+import IconBrandBilibili from '~icons/tabler/brand-bilibili'
+import IconBrandCloudflare from '~icons/tabler/brand-cloudflare'
+import IconBrandGithub from '~icons/tabler/brand-github'
+import IconBrandNextjs from '~icons/tabler/brand-nextjs'
+import IconBrandNodejs from '~icons/tabler/brand-nodejs'
+import IconBrandNuxt from '~icons/tabler/brand-nuxt'
+import IconBrandReact from '~icons/tabler/brand-react'
+import IconBrandTailwind from '~icons/tabler/brand-tailwind'
+import IconBrandTiktok from '~icons/tabler/brand-tiktok'
+import IconBrandTypescript from '~icons/tabler/brand-typescript'
+import IconBrandVue from '~icons/tabler/brand-vue'
+import IconBrandYoutube from '~icons/tabler/brand-youtube'
+import IconRss from '~icons/tabler/rss'
+
 export const siteConfig = {
     paginationPageSize: 10,
 
-    ui: {
-        colors: {
-            primary: 'yellow',
-            secondary: 'sky',
-            neutral: 'neutral',
-        },
-        prose: {
-            pre: {
-                slots: {
-                    base: 'text-default',
-                },
-            },
-        },
-    },
-
     platforms: [
-        { key: 'bilibili', name: 'BiliBili', icon: 'i-tabler-brand-bilibili' },
-        { key: 'douyin', name: '抖音', icon: 'i-tabler-brand-tiktok' },
-        { key: 'youtube', name: 'YouTube', icon: 'i-tabler-brand-youtube' },
+        { key: 'bilibili', name: 'BiliBili', icon: IconBrandBilibili },
+        { key: 'douyin', name: '抖音', icon: IconBrandTiktok },
+        { key: 'youtube', name: 'YouTube', icon: IconBrandYoutube },
     ],
 
     socials: [
-        { href: 'https://github.com/prop-show', platform: 'GitHub', icon: 'i-tabler-brand-github' },
-        { href: 'https://space.bilibili.com/104376935', platform: '哔哩哔哩', icon: 'i-tabler-brand-bilibili' },
-        { href: 'https://www.youtube.com/@PropShowFM', platform: 'YouTube', icon: 'i-tabler-brand-youtube' },
-        { href: '/rss.xml', platform: 'RSS', icon: 'i-tabler-rss' },
+        { href: 'https://github.com/prop-show', platform: 'GitHub', icon: IconBrandGithub },
+        { href: 'https://space.bilibili.com/104376935', platform: '哔哩哔哩', icon: IconBrandBilibili },
+        { href: 'https://www.youtube.com/@PropShowFM', platform: 'YouTube', icon: IconBrandYoutube },
+        { href: '/rss.xml', platform: 'RSS', icon: IconRss },
     ],
 
     navigationLinks: [
@@ -92,21 +91,21 @@ export const siteConfig = {
     ],
 
     techLogos: [
-        { icon: 'i-tabler-brand-react', title: 'React', href: 'https://react.dev' },
-        { icon: 'i-tabler-brand-nextjs', title: 'Next.js', href: 'https://nextjs.org' },
-        { icon: 'i-tabler-brand-vue', title: 'Vue.js', href: 'https://vuejs.org/' },
-        { icon: 'i-tabler-brand-nuxt', title: 'Nuxt.js', href: 'https://nuxt.com/' },
-        { icon: 'i-tabler-brand-typescript', title: 'TypeScript', href: 'https://www.typescriptlang.org' },
-        { icon: 'i-tabler-brand-tailwind', title: 'Tailwind CSS', href: 'https://tailwindcss.com' },
-        { icon: 'i-tabler-brand-nodejs', title: 'Nodejs', href: 'https://nodejs.org/' },
+        { icon: IconBrandReact, title: 'React', href: 'https://react.dev' },
+        { icon: IconBrandNextjs, title: 'Next.js', href: 'https://nextjs.org' },
+        { icon: IconBrandVue, title: 'Vue.js', href: 'https://vuejs.org/' },
+        { icon: IconBrandNuxt, title: 'Nuxt.js', href: 'https://nuxt.com/' },
+        { icon: IconBrandTypescript, title: 'TypeScript', href: 'https://www.typescriptlang.org' },
+        { icon: IconBrandTailwind, title: 'Tailwind CSS', href: 'https://tailwindcss.com' },
+        { icon: IconBrandNodejs, title: 'Nodejs', href: 'https://nodejs.org/' },
     ],
 
     stacks: [
-        { name: 'Void', icon: 'i-tabler-bolt' },
-        { name: 'Vue', icon: 'i-tabler-brand-vue' },
-        { name: 'TypeScript', icon: 'i-tabler-brand-typescript' },
-        { name: 'Tailwind CSS', icon: 'i-tabler-brand-tailwind' },
-        { name: 'Nuxt UI', icon: 'i-tabler-components' },
-        { name: 'Cloudflare', icon: 'i-tabler-brand-cloudflare' },
+        { name: 'Void', logo: '/brands/void-light.svg', darkLogo: '/brands/void-dark.svg' },
+        { name: 'Vue', icon: IconBrandVue },
+        { name: 'TypeScript', icon: IconBrandTypescript },
+        { name: 'Tailwind CSS', icon: IconBrandTailwind },
+        { name: 'shadcn-vue', logo: '/brands/shadcn-vue.svg' },
+        { name: 'Cloudflare', icon: IconBrandCloudflare },
     ],
 }

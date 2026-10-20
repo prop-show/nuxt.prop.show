@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useRouter } from '@void/vue'
+import IconRoute from '~icons/tabler/route'
 import { resolveLink } from '@/navigation'
 
 const props = defineProps<{
@@ -41,15 +42,15 @@ function applyFilter(type: 'category' | 'tag', value?: string) {
                 <div class="font-mono text-[10px] font-bold tracking-[0.2em] text-primary">
                     FEATURED SERIES / {{ String(seriesCount).padStart(2, '0') }} EPISODES
                 </div>
-                <h2 class="mt-2 text-2xl font-black md:text-3xl">
+                <h2 class="mt-2 text-lg leading-[1.4] font-bold lg:text-xl">
                     乙巳：从零构建完整产品
                 </h2>
                 <p class="mt-2 max-w-2xl text-sm leading-6 text-muted">
-                    从技术选型到 API、数据库、前端、登录与缓存，按顺序查看完整课程目录。
+                    依次学习 API、数据库、前端、登录与缓存。
                 </p>
             </div>
             <div class="flex size-12 items-center justify-center border border-default text-muted transition-colors group-hover:border-primary group-hover:bg-primary group-hover:text-black">
-                <Icon name="i-tabler-route" class="size-6" />
+                <IconRoute aria-hidden="true" class="size-6" />
             </div>
         </SiteLink>
 
@@ -114,7 +115,7 @@ function applyFilter(type: 'category' | 'tag', value?: string) {
         <div class="mt-4 flex items-center justify-between gap-4 font-mono text-[10px] font-bold tracking-[0.16em] text-dimmed">
             <span>{{ String(resultCount).padStart(2, '0') }} MATCHES</span>
             <SiteLink v-if="activeCategory || activeTag" to="/videos" class="transition-colors hover:text-highlighted">
-                CLEAR FILTERS
+                清除筛选
             </SiteLink>
         </div>
     </section>

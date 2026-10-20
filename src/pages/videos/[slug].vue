@@ -1,5 +1,14 @@
 <script setup lang="ts">
 import type { Props } from '@/pages/videos/[slug].server'
+import IconArrowLeft from '~icons/tabler/arrow-left'
+import IconArrowRight from '~icons/tabler/arrow-right'
+import IconArrowUpRight from '~icons/tabler/arrow-up-right'
+import IconBrandBilibili from '~icons/tabler/brand-bilibili'
+import IconBrandGithub from '~icons/tabler/brand-github'
+import IconBrandTiktok from '~icons/tabler/brand-tiktok'
+import IconBrandYoutube from '~icons/tabler/brand-youtube'
+import IconRoute from '~icons/tabler/route'
+import IconVideoOff from '~icons/tabler/video-off'
 
 import { videoCategoryColor, videoEpisode } from '@/utils/video'
 
@@ -10,30 +19,30 @@ defineProps<Props>()
     <main>
         <div class="my-8 md:my-12">
             <SiteLink to="/videos" class="group inline-flex items-center gap-2 font-mono text-xs font-bold tracking-[0.16em] text-muted transition-colors hover:text-highlighted">
-                <Icon name="i-tabler-arrow-left" class="size-4 transition-transform group-hover:-translate-x-1" />
-                BACK TO PROGRAM ARCHIVE
+                <IconArrowLeft class="size-4 transition-transform group-hover:-translate-x-1" />
+                返回视频
             </SiteLink>
         </div>
 
         <section v-if="pending" class="overflow-hidden border border-default">
             <div class="grid lg:grid-cols-[1fr_23rem]">
                 <div class="space-y-6 p-6 sm:p-10 lg:p-12">
-                    <USkeleton class="h-3 w-40" />
-                    <USkeleton class="h-14 w-4/5" />
-                    <USkeleton class="h-5 w-full" />
+                    <UiSkeleton class="h-3 w-40" />
+                    <UiSkeleton class="h-9 w-4/5 sm:h-11 lg:h-13" />
+                    <UiSkeleton class="h-5 w-full" />
                     <div class="flex gap-2">
-                        <USkeleton class="h-6 w-16" />
-                        <USkeleton class="h-6 w-20" />
+                        <UiSkeleton class="h-6 w-16" />
+                        <UiSkeleton class="h-6 w-20" />
                     </div>
                 </div>
-                <USkeleton class="aspect-video rounded-none lg:aspect-auto lg:min-h-full" />
+                <UiSkeleton class="aspect-video rounded-none lg:aspect-auto lg:min-h-full" />
             </div>
         </section>
 
         <template v-else-if="video">
             <header class="overflow-hidden border border-default bg-default/85 shadow-sm">
                 <div class="grid lg:grid-cols-[1fr_23rem]">
-                    <section class="relative flex min-h-105 flex-col justify-between overflow-hidden p-6 sm:p-10 lg:p-12">
+                    <section class="relative flex flex-col justify-between overflow-hidden p-6 sm:p-10 lg:p-12">
                         <div class="grid-texture absolute inset-0 opacity-45" />
 
                         <div class="relative z-10">
@@ -50,7 +59,7 @@ defineProps<Props>()
                                 </template>
                             </div>
 
-                            <h1 class="mt-7 max-w-4xl text-4xl leading-tight font-black tracking-[-0.045em] sm:text-6xl">
+                            <h1 class="mt-7 max-w-4xl text-[1.75rem] leading-[1.3] font-bold tracking-[-0.02em] sm:text-[2rem] lg:text-[2.5rem]">
                                 {{ video.title }}
                             </h1>
 
@@ -71,7 +80,7 @@ defineProps<Props>()
                         </div>
 
                         <div class="relative z-10 p-7">
-                            <div class="font-mono text-7xl font-black tracking-[-0.12em]">
+                            <div class="font-mono text-[2rem] leading-[1.1] font-bold tracking-tight sm:text-4xl lg:text-[2.5rem]">
                                 {{ String(displayEpisode).padStart(2, '0') }}
                             </div>
                             <div class="mt-2 font-mono text-xs font-bold tracking-[0.2em]">
@@ -91,62 +100,52 @@ defineProps<Props>()
                         <span class="size-2 rounded-full bg-green-500" />
                         可观看
                     </div>
-                    <div class="mt-6 font-mono text-[10px] font-bold leading-5 tracking-[0.14em] text-dimmed">
-                        SELECT<br>
-                        PLATFORM<br>
-                        PLAY
-                    </div>
-
                     <div class="mt-6 grid gap-4 text-sm">
-                        <UButton
+                        <UiButton
                             v-if="video.repository"
                             :to="video.repository"
                             target="_blank"
                             rel="noopener noreferrer"
-                            color="neutral"
                             variant="outline"
-                            icon="i-tabler-brand-github"
                         >
+                            <IconBrandGithub aria-hidden="true" />
                             查看源码
-                        </UButton>
+                        </UiButton>
 
                         <h2 class="font-bold">
                             观看平台
                         </h2>
 
-                        <UButton
+                        <UiButton
                             v-if="video.platforms?.bilibili"
                             :to="video.platforms.bilibili"
                             target="_blank"
                             rel="noopener noreferrer"
-                            color="neutral"
                             variant="outline"
-                            :icon="platforms.find(p => p.key === 'bilibili')?.icon"
                         >
+                            <IconBrandBilibili aria-hidden="true" />
                             哔哩哔哩
-                        </UButton>
-                        <UButton
+                        </UiButton>
+                        <UiButton
                             v-if="video.platforms?.youtube"
                             :to="video.platforms.youtube"
                             target="_blank"
                             rel="noopener noreferrer"
-                            color="neutral"
                             variant="outline"
-                            :icon="platforms.find(p => p.key === 'youtube')?.icon"
                         >
+                            <IconBrandYoutube aria-hidden="true" />
                             Youtube
-                        </UButton>
-                        <UButton
+                        </UiButton>
+                        <UiButton
                             v-if="video.platforms?.douyin"
                             :to="video.platforms.douyin"
                             target="_blank"
                             rel="noopener noreferrer"
-                            color="neutral"
                             variant="outline"
-                            :icon="platforms.find(p => p.key === 'douyin')?.icon"
                         >
+                            <IconBrandTiktok aria-hidden="true" />
                             抖音
-                        </UButton>
+                        </UiButton>
                     </div>
                 </aside>
 
@@ -158,9 +157,9 @@ defineProps<Props>()
                     >
                         <span>
                             <span class="block font-mono text-[10px] tracking-[0.18em] text-primary">PART OF YISI SERIES</span>
-                            <span class="mt-1 block">查看「{{ video.series }}」完整课程目录</span>
+                            <span class="mt-1 block">查看「{{ video.series }}」课程目录</span>
                         </span>
-                        <Icon name="i-tabler-route" class="size-5 text-muted transition-transform group-hover:translate-x-1" />
+                        <IconRoute class="size-5 text-muted transition-transform group-hover:translate-x-1" />
                     </SiteLink>
 
                     <!-- 只在移动端展示 -->
@@ -169,8 +168,8 @@ defineProps<Props>()
                             <div class="font-mono text-[10px] font-bold tracking-[0.2em] text-primary">
                                 WATCH PROGRAM
                             </div>
-                            <h2 class="mt-2 text-2xl font-black">
-                                选择观看平台
+                            <h2 class="mt-2 text-lg leading-[1.4] font-bold lg:text-xl">
+                                观看视频
                             </h2>
                         </div>
 
@@ -181,7 +180,7 @@ defineProps<Props>()
                             <div class="font-mono text-[10px] font-bold tracking-[0.2em] text-primary">
                                 SOURCE CODE
                             </div>
-                            <h2 class="mt-2 text-2xl font-black">
+                            <h2 class="mt-2 text-lg leading-[1.4] font-bold lg:text-xl">
                                 查看源码
                             </h2>
                         </div>
@@ -193,18 +192,15 @@ defineProps<Props>()
                         >
                             <div class="flex items-center gap-3">
                                 <span class="flex size-10 items-center justify-center bg-muted">
-                                    <Icon name="i-tabler-brand-github" class="size-5" />
+                                    <IconBrandGithub class="size-5" />
                                 </span>
                                 <div>
-                                    <div class="font-mono text-[9px] font-bold tracking-[0.18em] text-dimmed">
-                                        WATCH ON
-                                    </div>
-                                    <div class="mt-1 font-black">
+                                    <div class="font-bold">
                                         GitHub
                                     </div>
                                 </div>
                             </div>
-                            <Icon name="i-tabler-arrow-up-right" class="size-5 text-muted transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-primary" />
+                            <IconArrowUpRight class="size-5 text-muted transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-primary" />
                         </SiteLink>
                     </section>
 
@@ -213,7 +209,7 @@ defineProps<Props>()
                             <div class="font-mono text-[10px] font-bold tracking-[0.2em] text-primary">
                                 EPISODE NOTES
                             </div>
-                            <h2 class="mt-2 text-2xl font-black">
+                            <h2 class="mt-2 text-lg leading-[1.4] font-bold lg:text-xl">
                                 节目说明
                             </h2>
                         </div>
@@ -230,7 +226,7 @@ defineProps<Props>()
                     class="group flex min-h-32 flex-col justify-between border-b border-default p-5 transition-colors hover:bg-elevated/55 md:border-r md:border-b-0"
                 >
                     <div class="flex items-center gap-2 meta-label">
-                        <Icon name="i-tabler-arrow-left" class="size-4 transition-transform group-hover:-translate-x-1" />
+                        <IconArrowLeft class="size-4 transition-transform group-hover:-translate-x-1" />
                         PREVIOUS EPISODE
                     </div>
                     <div>
@@ -251,7 +247,7 @@ defineProps<Props>()
                 >
                     <div class="flex items-center gap-2 meta-label">
                         NEXT EPISODE
-                        <Icon name="i-tabler-arrow-right" class="size-4 transition-transform group-hover:translate-x-1" />
+                        <IconArrowRight class="size-4 transition-transform group-hover:translate-x-1" />
                     </div>
                     <div>
                         <div class="font-mono text-xs font-bold text-primary">
@@ -265,17 +261,19 @@ defineProps<Props>()
             </nav>
         </template>
 
-        <UEmpty
-            v-else
-            icon="i-tabler-video-off"
-            title="节目不存在"
-            description="这期节目可能已被移动或删除。"
-        >
-            <template #actions>
-                <UButton to="/videos">
-                    返回节目档案
-                </UButton>
-            </template>
-        </UEmpty>
+        <UiEmpty v-else class="my-20">
+            <UiEmptyHeader>
+                <UiEmptyMedia variant="icon">
+                    <IconVideoOff aria-hidden="true" />
+                </UiEmptyMedia>
+                <UiEmptyTitle>视频不存在</UiEmptyTitle>
+                <UiEmptyDescription>该视频可能已移动或删除。</UiEmptyDescription>
+            </UiEmptyHeader>
+            <UiEmptyContent>
+                <UiButton to="/videos">
+                    返回视频
+                </UiButton>
+            </UiEmptyContent>
+        </UiEmpty>
     </main>
 </template>

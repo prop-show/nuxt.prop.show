@@ -18,21 +18,21 @@ defineProps<{
                     PROP.SHOW / PROGRAM LIBRARY
                 </div>
 
-                <h1 class="relative z-10 mt-8 max-w-3xl text-5xl leading-[0.95] font-black tracking-[-0.065em] sm:text-7xl">
+                <h1 class="relative z-10 mt-8 max-w-3xl text-[2rem] leading-[1.2] font-black tracking-[-0.025em] sm:text-[2.5rem] lg:text-5xl">
                     前端节目，
                     <span class="mt-2 block text-primary ">随时开播。</span>
                 </h1>
 
                 <p class="relative z-10 mt-7 max-w-2xl text-base leading-7 text-muted">
-                    用完整演示和真实经验，把每个前端问题讲清楚。
+                    用代码演示，分享前端实践。
                 </p>
             </section>
 
             <aside class="grid grid-cols-2 border-t border-default bg-primary text-black lg:grid-cols-1 lg:border-t-0 lg:border-l">
                 <div class="flex min-h-32 flex-col justify-between border-r border-black/15 p-5 lg:border-r-0 lg:border-b">
                     <span class="meta-label-on-primary">EPISODES / ACTIVE CHANNELS</span>
-                    <div class="flex items-end gap-3 font-mono font-black">
-                        <strong class="text-5xl tracking-[-0.1em]">{{ String(count).padStart(2, '0') }}</strong>
+                    <div class="flex items-end gap-3 font-mono font-bold">
+                        <strong class="text-[2rem] leading-[1.1] font-bold tracking-tight sm:text-4xl lg:text-[2.5rem]">{{ String(count).padStart(2, '0') }}</strong>
                         <span class="pb-1 text-sm text-black/70">/ {{ String(channelCount).padStart(2, '0') }}</span>
                     </div>
                 </div>
@@ -40,7 +40,7 @@ defineProps<{
                 <div class="flex min-h-32 flex-col justify-between p-5">
                     <span class="meta-label-on-primary">LATEST PROGRAM</span>
                     <div>
-                        <strong class="font-mono text-4xl font-black tracking-[-0.08em]">EP.{{ String(latestOrder || 0).padStart(2, '0') }}</strong>
+                        <strong class="font-mono text-2xl font-bold tracking-tight sm:text-[1.75rem]">EP.{{ String(latestOrder || 0).padStart(2, '0') }}</strong>
                         <p class="mt-2 line-clamp-1 text-xs font-bold">
                             {{ latestTitle || '等待新节目' }}
                         </p>

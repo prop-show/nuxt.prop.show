@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+import IconNews from '~icons/tabler/news'
+import IconPlayerPlayFilled from '~icons/tabler/player-play-filled'
+
 const props = defineProps<{
     videoCount: number
     newsCount: number
@@ -16,7 +19,7 @@ const signals = computed(() => [
     },
     {
         label: `${String(props.creatorCount).padStart(2, '0')} CREATORS`,
-        value: '内容创作者',
+        value: '创作者',
     },
 ])
 </script>
@@ -34,22 +37,24 @@ const signals = computed(() => [
                         PROP.SHOW / VIDEOS & NEWS
                     </div>
 
-                    <h1 class="max-w-4xl text-5xl leading-[0.95] font-black tracking-[-0.07em] sm:text-7xl lg:text-8xl">
+                    <h1 class="max-w-4xl text-4xl leading-[1.15] font-black tracking-[-0.035em] sm:text-5xl lg:text-6xl">
                         看前端视频，
                         <span class="mt-2 block text-primary ">读技术速报。</span>
                     </h1>
 
                     <p class="mt-8 max-w-2xl text-base leading-7 text-muted sm:text-lg">
-                        由前端开发者共同维护，分享真实项目里的实践、工具使用和技术动态。
+                        前端开发者共创，分享项目实践、实用工具与技术动态。
                     </p>
 
                     <div class="mt-10 flex flex-wrap gap-3">
-                        <UButton to="/videos" icon="i-tabler-player-play-filled" size="xl" class="text-black">
+                        <UiButton to="/videos" size="lg" class="text-black">
+                            <IconPlayerPlayFilled aria-hidden="true" />
                             看视频
-                        </UButton>
-                        <UButton to="/news" icon="i-tabler-news" size="xl" color="neutral" variant="outline">
+                        </UiButton>
+                        <UiButton to="/news" size="lg" variant="outline">
+                            <IconNews aria-hidden="true" />
                             读速报
-                        </UButton>
+                        </UiButton>
                     </div>
                 </div>
 
@@ -73,16 +78,16 @@ const signals = computed(() => [
 
                 <div class="hero-logo relative flex size-72 items-center justify-center rounded-full border border-black/20 sm:size-80">
                     <div class="absolute inset-5 rounded-full border border-dashed border-black/25" />
-                    <Icon
-                        name="prop:prop-light-transparent"
-                        :size="230"
+                    <img
+                        src="/prop-light-transparent.svg" alt=""
+                        width="230" height="230"
                         class="relative z-10"
-                    />
+                    >
                 </div>
 
                 <div class="absolute bottom-8 left-8 right-8 flex items-end justify-between font-mono text-black">
                     <span class="text-xs font-bold tracking-[0.2em]">MADE BY DEVELOPERS</span>
-                    <span class="text-5xl font-black tracking-[-0.08em]">P.</span>
+                    <span class="text-[2rem] font-bold tracking-tight">P.</span>
                 </div>
             </aside>
         </div>

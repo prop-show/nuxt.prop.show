@@ -23,7 +23,7 @@ const facts = [
                     <div class="font-mono text-xs font-bold tracking-[0.2em] text-black/70">
                         EST. FRONTEND
                     </div>
-                    <div class="mt-3 text-6xl font-black tracking-[-0.09em] sm:text-7xl">
+                    <div class="mt-3 text-[2rem] leading-[1.1] font-bold tracking-tight sm:text-[2.5rem]">
                         ABOUT
                     </div>
                 </div>
@@ -34,14 +34,14 @@ const facts = [
 
                 <div class="relative z-10">
                     <p class="font-mono text-xs font-bold tracking-[0.22em] text-primary">
-                        WHY WE KEEP BROADCASTING
+                        ABOUT US
                     </p>
-                    <h1 class="mt-6 max-w-3xl text-4xl leading-tight font-black tracking-[-0.055em] sm:text-6xl">
+                    <h1 class="mt-6 max-w-3xl text-[2rem] leading-[1.2] font-black tracking-[-0.025em] sm:text-[2.5rem] lg:text-5xl">
                         记录技术变化，
                         <span class="block text-primary ">分享真实经验。</span>
                     </h1>
                     <p class="mt-7 max-w-2xl text-base leading-8 text-muted">
-                        prop.show 是一个由前端开发者共同维护的内容项目。我们从实际工作出发，把踩过的坑、验证过的方法，整理成值得反复观看的内容。
+                        prop.show 由前端开发者共同维护，记录工作中踩过的坑与验证过的方法。
                     </p>
                 </div>
 

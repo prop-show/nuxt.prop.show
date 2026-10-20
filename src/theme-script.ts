@@ -1,6 +1,6 @@
 /**
  * 首屏渲染前把配色类名挂到 `<html>` 上，避免暗色用户看到亮色闪烁。
- * 内联执行，所以写成字符串；`vueuse-color-scheme` 是 UColorModeButton 用的 localStorage 键。
+ * 内联执行，所以写成字符串；`vueuse-color-scheme` 与 ColorModeButton 共用 localStorage 键。
  */
 export const themeScript = `
 try {

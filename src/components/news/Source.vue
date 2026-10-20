@@ -1,5 +1,7 @@
 <script lang='ts' setup>
 import type { News } from '@/content'
+import IconArrowUpRight from '~icons/tabler/arrow-up-right'
+import IconExternalLink from '~icons/tabler/external-link'
 
 defineProps<{
     letter: News
@@ -10,9 +12,9 @@ defineProps<{
     <section v-if="letter.source" class="border border-default bg-default/55 p-6 sm:p-8 block lg:hidden">
         <div class="mb-6">
             <div class="font-mono text-[10px] font-bold tracking-[0.2em] text-primary">
-                SOURCE CODE
+                SOURCE
             </div>
-            <h2 class="mt-2 text-2xl font-black">
+            <h2 class="mt-2 text-lg leading-[1.4] font-bold lg:text-xl">
                 消息来源
             </h2>
         </div>
@@ -24,18 +26,15 @@ defineProps<{
         >
             <div class="flex items-center gap-3">
                 <span class="flex size-10 items-center justify-center bg-muted">
-                    <Icon name="i-tabler-external-link" class="size-5" />
+                    <IconExternalLink aria-hidden="true" class="size-5" />
                 </span>
                 <div>
-                    <div class="font-mono text-[9px] font-bold tracking-[0.18em] text-dimmed">
-                        READ ON
-                    </div>
-                    <div class="mt-1 font-black">
-                        IN DEPTH ARTICLE
+                    <div class="font-bold">
+                        查看原文
                     </div>
                 </div>
             </div>
-            <Icon name="i-tabler-arrow-up-right" class="size-5 text-muted transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-primary" />
+            <IconArrowUpRight aria-hidden="true" class="size-5 text-muted transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-primary" />
         </SiteLink>
     </section>
 </template>

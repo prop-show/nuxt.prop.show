@@ -1,10 +1,149 @@
 @import 'tailwindcss';
-@import '@nuxt/ui';
 
 @plugin "@tailwindcss/typography";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+
+    /* Keep the established Nuxt UI radius scale around the shadcn radius-lg. */
+    --radius-xs: calc(var(--radius) * 0.25);
+    --radius-sm: calc(var(--radius) * 0.5);
+    --radius-md: calc(var(--radius) * 0.75);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) * 1.5);
+    --radius-2xl: calc(var(--radius) * 2);
+    --radius-3xl: calc(var(--radius) * 3);
+
+    /* Separate namespaces preserve text-muted as a foreground, including /opacity. */
+    --text-color-default: var(--foreground);
+    --text-color-highlighted: var(--foreground-highlighted);
+    --text-color-muted: var(--muted-foreground);
+    --text-color-dimmed: var(--foreground-dimmed);
+    --text-color-toned: var(--foreground-toned);
+    --text-color-inverted: var(--foreground-inverted);
+    --background-color-default: var(--background);
+    --background-color-elevated: var(--surface-elevated);
+    --background-color-muted: var(--muted);
+    --background-color-accented: var(--accent);
+    --background-color-inverted: var(--surface-inverted);
+    --border-color-default: var(--border);
+    --border-color-muted: var(--border-muted);
+    --border-color-accented: var(--border-accented);
+    --border-color-inverted: var(--surface-inverted);
+    --border-color-bg: var(--background);
+    --ring-color-default: var(--border);
+    --ring-color-muted: var(--border-muted);
+    --ring-color-accented: var(--border-accented);
+    --ring-color-inverted: var(--surface-inverted);
+    --ring-color-bg: var(--background);
+    --ring-offset-color-default: var(--border);
+    --ring-offset-color-muted: var(--border-muted);
+    --ring-offset-color-accented: var(--border-accented);
+    --ring-offset-color-inverted: var(--surface-inverted);
+    --ring-offset-color-bg: var(--background);
+    --divide-color-default: var(--border);
+    --divide-color-muted: var(--border-muted);
+    --divide-color-accented: var(--border-accented);
+    --divide-color-inverted: var(--surface-inverted);
+    --outline-color-default: var(--border);
+    --outline-color-inverted: var(--surface-inverted);
+}
+
 :root {
+    --background: var(--color-white);
+    --foreground: var(--color-neutral-700);
+    --card: var(--background);
+    --card-foreground: var(--foreground);
+    --popover: var(--background);
+    --popover-foreground: var(--foreground);
+    --primary: var(--color-yellow-500);
+    --primary-foreground: var(--color-black);
+    --secondary: var(--color-neutral-100);
+    --secondary-foreground: var(--color-neutral-900);
+    --muted: var(--color-neutral-50);
+    --muted-foreground: var(--color-neutral-500);
+    --accent: var(--color-neutral-200);
+    --accent-foreground: var(--color-neutral-900);
+    --destructive: var(--color-red-500);
+    --destructive-foreground: var(--color-white);
+    --border: var(--color-neutral-200);
+    --input: var(--border);
+    --ring: var(--primary);
+    --radius: 0.4rem;
+
+    --foreground-highlighted: var(--color-neutral-900);
+    --foreground-dimmed: var(--color-neutral-400);
+    --foreground-toned: var(--color-neutral-600);
+    --foreground-inverted: var(--color-white);
+    --surface-elevated: var(--color-neutral-100);
+    --surface-inverted: var(--color-neutral-900);
+    --border-muted: var(--color-neutral-200);
+    --border-accented: var(--color-neutral-300);
+
+    /* Compatibility for existing custom CSS; the theme is owned here. */
+    --ui-bg: var(--background);
+    --ui-border: var(--border);
+    --ui-primary: var(--primary);
     --ui-radius: 0.2rem;
+}
+
+.dark {
+    --background: var(--color-neutral-900);
+    --foreground: var(--color-neutral-200);
+    --popover: var(--color-neutral-800);
+    --primary: var(--color-yellow-400);
+    --secondary: var(--color-neutral-800);
+    --secondary-foreground: var(--color-white);
+    --muted: var(--color-neutral-800);
+    --muted-foreground: var(--color-neutral-400);
+    --accent: var(--color-neutral-700);
+    --accent-foreground: var(--color-white);
+    --destructive: var(--color-red-400);
+    --destructive-foreground: var(--color-black);
+    --border: var(--color-neutral-800);
+
+    --foreground-highlighted: var(--color-white);
+    --foreground-dimmed: var(--color-neutral-500);
+    --foreground-toned: var(--color-neutral-300);
+    --foreground-inverted: var(--color-neutral-900);
+    --surface-elevated: var(--color-neutral-800);
+    --surface-inverted: var(--color-white);
+    --border-muted: var(--color-neutral-700);
+    --border-accented: var(--color-neutral-700);
+}
+
+@layer base {
+    body {
+        @apply bg-background text-foreground antialiased;
+    }
+
+    /* Tailwind v4 默认 border-color 是 currentColor，会让裸 `border` 变成文字色（近黑）。
+       这里改回语义边框色，等价于 Nuxt UI 原来的全局 reset。 */
+    *,
+    ::before,
+    ::after {
+        border-color: var(--border);
+    }
 }
 
 html {

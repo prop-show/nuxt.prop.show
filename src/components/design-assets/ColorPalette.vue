@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { onBeforeUnmount, shallowRef } from 'vue'
+import IconCheck from '~icons/tabler/check'
+import IconCopy from '~icons/tabler/copy'
 
 import { siteConfig } from '@/site-config'
 
@@ -42,7 +44,7 @@ onBeforeUnmount(() => {
     <section class="my-20" aria-labelledby="brand-colors-heading">
         <SectionHeading eyebrow="CORE PALETTE" title="品牌主色" title-id="brand-colors-heading" stack-at="md">
             <p class="max-w-md text-sm leading-6 text-muted md:text-right">
-                黄色是唯一品牌强调色，黑白用于建立内容层级。点击色值即可复制。
+                仅用黄色强调，黑白区分层级。点击复制色值。
             </p>
         </SectionHeading>
 
@@ -72,10 +74,11 @@ onBeforeUnmount(() => {
 
                 <span class="flex items-center justify-between gap-6 border-t border-default px-5 py-4 font-mono text-sm font-black md:border-t-0 md:px-8">
                     {{ color.hex }}
-                    <Icon
-                        :name="copiedColor === color.hex ? 'i-tabler-check' : 'i-tabler-copy'"
+                    <component
+                        :is="copiedColor === color.hex ? IconCheck : IconCopy"
                         class="size-5 text-muted transition-colors group-hover:text-primary"
                         :class="{ 'text-primary': copiedColor === color.hex }"
+                        aria-hidden="true"
                     />
                 </span>
             </button>

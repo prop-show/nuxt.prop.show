@@ -6,7 +6,7 @@ prop.show 由前端开发者共同维护，分享真实项目里的实践、工�
 
 ## 技术栈
 
-Void 1.1.11 + Vue 3 + Nuxt UI（独立 Vite 集成）+ Tailwind CSS 4，部署到 Cloudflare Workers。页面通过 Void 的 loader 与 head 在请求时生成 HTML，分页、筛选走查询参数（例如 `/videos?page=2&category=编程技巧`）。仓库只有 Void 实现，没有 Nuxt 应用或迁移备份。
+Void 1.1.11 + Vue 3 + shadcn-vue + Tailwind CSS 4，部署到 Cloudflare Workers。界面组件通过官方 `shadcn-vue` CLI 安装至 `src/components/ui/`，交互基于 Reka UI；`components.json` 配置组件与工具路径。Tailwind、Vue 自动导入和组件注册使用独立 Vite 插件。页面通过 Void 的 loader 与 head 在请求时生成 HTML，分页、筛选走查询参数（例如 `/videos?page=2&category=编程技巧`）。仓库只有 Void 实现，没有 Nuxt 应用或迁移备份。
 
 内容源是 `content/` 下的 Markdown/YAML，由 Vite 插件调用 `scripts/generate-content.ts` 校验并通过 Comark、Shiki 与 `@comark/html` 渲染，通过 `virtual:prop-content` 虚拟模块直接参与打包，不生成中间文件。Worker 只打包元数据和 HTML，不在运行时解析 Markdown；浏览器只接收 loader 返回的数据，列表不包含正文。`::note`、`::alert`、`::poetry` 内容块保留语义样式，代码块支持明暗主题语法高亮。**新增或修改内容后需要重新构建部署。**
 
@@ -26,7 +26,6 @@ src/
   markdown.ts     # Comark 解析、渲染与安全过滤
   site-config.ts  # 导航、平台、社交、品牌色等站点配置
   navigation.ts   # 链接规范化
-  icons.ts        # 构建时生成的按需图标集合（已提交）
 content/          # Markdown/YAML 内容源
 public/           # 直接分发的静态资源
 scripts/          # 图标生成、视频抓取等构建/抓取脚本
@@ -69,7 +68,7 @@ pnpm dev            # vite --port 4399
 pnpm typecheck      # vue-tsc --noEmit
 pnpm lint           # eslint，pnpm lint:fix 自动修复
 pnpm test           # vitest：内容索引、Markdown 渲染/安全过滤、RSS/robots/sitemap
-pnpm build          # 生成图标 + vite build
+pnpm build          # 生成 OG 图片 + vite build
 pnpm preview        # vite preview --port 4399
 pnpm fetch:videos   # 抓取 B 站/YouTube 已发布视频到 .video-list/（已 gitignore）
 ```
@@ -87,7 +86,7 @@ SEO_BASE_URL=http://localhost:4400 pnpm check:seo
 
 它检查分页不重复、分页链接数量、canonical、meta description、404、RSS、sitemap、robots 和旧分页重定向。视频总数和每页数量分别取自 `content/videos/` 与 `pageSize`，增删视频不需要改测试。
 
-`pnpm build` 会先运行 `scripts/generate-icons.mjs`，扫描组件和 `src/site-config.ts` 中出现的 Tabler/Lucide 图标，只把用到的图标写进 `src/icons.ts`。新增图标名后重新构建即可，不要手改该文件。如果图标名拼错，构建会警告并渲染为空。
+图标在组件使用处通过 `~icons/tabler/图标名` 静态导入，由 `unplugin-icons` 在 Vite 构建时编译成 Vue 组件，SVG 随构建产物发布，无需运行时请求图标服务或维护名称映射。列表配置直接引用导入的图标组件；官方品牌 SVG 保存在 `public/`。
 
 ### Open Graph 图片
 

@@ -8,8 +8,8 @@ withDefaults(defineProps<{
     title?: string
     numbering?: 'global' | 'series'
 }>(), {
-    eyebrow: 'PROGRAM ARCHIVE',
-    title: '全部节目',
+    eyebrow: 'VIDEOS',
+    title: '全部视频',
     numbering: 'global',
 })
 </script>

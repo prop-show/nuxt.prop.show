@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { Video } from '@/content'
+import IconArrowUpRight from '~icons/tabler/arrow-up-right'
 
 import { siteConfig } from '@/site-config'
 
@@ -18,7 +19,7 @@ const availablePlatforms = computed(() => staticPlatforms.flatMap((platform) => 
 
 <template>
     <div>
-        <h3 v-if="showTitle" class="mb-4 text-xl font-black">
+        <h3 v-if="showTitle" class="mb-4 text-lg leading-[1.4] font-bold lg:text-xl">
             观看平台
         </h3>
 
@@ -32,18 +33,15 @@ const availablePlatforms = computed(() => staticPlatforms.flatMap((platform) => 
             >
                 <div class="flex items-center gap-3">
                     <span class="flex size-10 items-center justify-center bg-muted">
-                        <Icon :name="platform.icon" class="size-5" />
+                        <component :is="platform.icon" class="size-5" aria-hidden="true" />
                     </span>
                     <div>
-                        <div class="font-mono text-[9px] font-bold tracking-[0.18em] text-dimmed">
-                            WATCH ON
-                        </div>
-                        <div class="mt-1 font-black">
+                        <div class="font-bold">
                             {{ platform.name }}
                         </div>
                     </div>
                 </div>
-                <Icon name="i-tabler-arrow-up-right" class="size-5 text-muted transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-primary" />
+                <IconArrowUpRight aria-hidden="true" class="size-5 text-muted transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-primary" />
             </SiteLink>
         </div>
     </div>
