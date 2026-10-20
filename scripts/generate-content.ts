@@ -3,39 +3,51 @@ import { readdir, readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { parse as parseYaml } from 'yaml'
+import { z } from 'zod'
 import { renderMarkdown } from '../src/markdown.ts'
 import { contentDate } from '../src/utils/content-date.ts'
 
-function record(value: unknown, source: string): Record<string, unknown> {
-    if (!value || typeof value !== 'object' || Array.isArray(value))
-        throw new Error(`${source}: expected a YAML mapping`)
-    return value as Record<string, unknown>
-}
-
-function text(data: Record<string, unknown>, key: string, source: string, required = false): string | undefined {
-    const value = data[key]
-    if (value === undefined && !required)
-        return undefined
-    if (typeof value !== 'string' || (required && !value.trim()))
-        throw new Error(`${source}: ${key} must be ${required ? 'a nonempty' : 'a'} string`)
-    return value as string
-}
-
-function number(data: Record<string, unknown>, key: string, source: string, fallback?: number): number | undefined {
-    const value = data[key] ?? fallback
-    if (value === undefined)
-        return undefined
-    if (typeof value !== 'number' || !Number.isInteger(value) || value < 0)
-        throw new Error(`${source}: ${key} must be a nonnegative integer`)
-    return value
-}
-
-function tags(data: Record<string, unknown>, source: string): string[] {
-    const value = data.tags ?? []
-    if (!Array.isArray(value) || value.some(tag => typeof tag !== 'string'))
-        throw new Error(`${source}: tags must be an array of strings`)
-    return value
-}
+const requiredText = z.string().refine(value => value.trim().length > 0, 'Must be a nonempty string')
+const orderSchema = z.number().int().nonnegative().nullish().transform(value => value ?? 0)
+const tagsSchema = z.array(z.string()).nullish().transform(value => value ?? [])
+const documentSchema = z.object({
+    title: requiredText,
+    description: z.string().optional(),
+})
+const videoSchema = z.object({
+    category: requiredText,
+    date: z.string().optional(),
+    status: z.string().optional(),
+    platforms: z.object({
+        bilibili: z.string().optional(),
+        youtube: z.string().optional(),
+        douyin: z.string().optional(),
+    }).default({}),
+    tags: tagsSchema,
+    series: z.string().min(1).optional(),
+    episode: z.number().int().nonnegative().nullish().transform(value => value ?? undefined),
+    repository: z.url().optional(),
+    order: orderSchema,
+})
+const newsSchema = z.object({
+    date: requiredText,
+    source: z.url().optional(),
+})
+const workSchema = z.object({
+    author: requiredText,
+    type: requiredText,
+    order: orderSchema,
+    tags: tagsSchema,
+    website: z.url().optional(),
+    repository: z.url().optional(),
+})
+const creatorSchema = z.object({
+    name: requiredText,
+    avatar: requiredText,
+    href: requiredText,
+    role: requiredText,
+    order: orderSchema,
+})
 
 function identity(source: string) {
     const stem = source.replace(/\.(md|ya?ml)$/, '')
@@ -50,14 +62,14 @@ async function document(source: string, raw: string) {
         throw new Error(`${source}: missing YAML frontmatter`)
     // Nuxt accepted the existing unquoted @nestjs title; YAML reserves @.
     const frontmatter = match[1]!.replace(/^(\s*[\w-]+:\s+)(@[^\r\n]*)$/gm, (_, key: string, value: string) => `${key}${JSON.stringify(value)}`)
-    const data = record(parseYaml(frontmatter), source)
+    const data: unknown = parseYaml(frontmatter)
     const markdown = raw.slice(match[0].length).trim()
-    const title = text(data, 'title', source, true)!
+    const { title, description } = documentSchema.parse(data)
     const { html, excerpt } = await renderMarkdown(markdown)
     const entry: ContentEntry = {
         ...identity(source),
         title,
-        description: text(data, 'description', source)?.trim() || excerpt || title,
+        description: description?.trim() || excerpt || title,
     }
     return { data, entry, html }
 }
@@ -79,49 +91,20 @@ export async function generateContent(root = fileURLToPath(new URL('../', import
     const newsEntries: News[] = []
     const workEntries: Work[] = []
     for (const [source, raw] of markdownFiles) {
-        let parsed
         try {
-            parsed = await document(source, raw)
+            const { data, entry, html } = await document(source, raw)
+            if (Object.hasOwn(bodies, entry.path))
+                throw new Error(`duplicate content path ${entry.path}`)
+            bodies[entry.path] = html
+            if (entry.stem.startsWith('videos/'))
+                videoEntries.push({ ...entry, ...videoSchema.parse(data) })
+            else if (entry.stem.startsWith('news/'))
+                newsEntries.push({ ...entry, ...newsSchema.parse(data) })
+            else
+                workEntries.push({ ...entry, ...workSchema.parse(data) })
         }
         catch (error) {
-            throw new Error(`${source}: invalid content`, { cause: error })
-        }
-        const { data, entry, html } = parsed
-        if (Object.hasOwn(bodies, entry.path))
-            throw new Error(`${source}: duplicate content path ${entry.path}`)
-        bodies[entry.path] = html
-        if (entry.stem.startsWith('videos/')) {
-            const platforms = data.platforms === undefined ? {} : record(data.platforms, source)
-            videoEntries.push({
-                ...entry,
-                category: text(data, 'category', source, true)!,
-                date: text(data, 'date', source),
-                status: text(data, 'status', source),
-                platforms: {
-                    bilibili: text(platforms, 'bilibili', source),
-                    youtube: text(platforms, 'youtube', source),
-                    douyin: text(platforms, 'douyin', source),
-                },
-                tags: tags(data, source),
-                series: text(data, 'series', source),
-                episode: number(data, 'episode', source),
-                repository: text(data, 'repository', source),
-                order: number(data, 'order', source, 0)!,
-            })
-        }
-        else if (entry.stem.startsWith('news/')) {
-            newsEntries.push({ ...entry, date: text(data, 'date', source, true)!, source: text(data, 'source', source) })
-        }
-        else {
-            workEntries.push({
-                ...entry,
-                author: text(data, 'author', source, true)!,
-                type: text(data, 'type', source, true)!,
-                order: number(data, 'order', source, 0)!,
-                tags: tags(data, source),
-                website: text(data, 'website', source),
-                repository: text(data, 'repository', source),
-            })
+            throw new Error(`${source}: invalid content: ${error instanceof Error ? error.message : String(error)}`, { cause: error })
         }
     }
 
@@ -129,22 +112,13 @@ export async function generateContent(root = fileURLToPath(new URL('../', import
     const news: readonly News[] = newsEntries.sort((a, b) => (contentDate(b.date)?.getTime() ?? 0) - (contentDate(a.date)?.getTime() ?? 0))
     const works: readonly Work[] = workEntries.sort((a, b) => b.order - a.order)
     const creators: readonly Creator[] = creatorFiles.map(([source, raw]) => {
-        let data
         try {
-            data = record(parseYaml(raw), source)
+            const data = creatorSchema.parse(parseYaml(raw))
+            const { stem, slug } = identity(source)
+            return { stem, slug, ...data }
         }
         catch (error) {
-            throw new Error(`${source}: invalid creator`, { cause: error })
-        }
-        const { stem, slug } = identity(source)
-        return {
-            stem,
-            slug,
-            name: text(data, 'name', source, true)!,
-            avatar: text(data, 'avatar', source, true)!,
-            href: text(data, 'href', source, true)!,
-            role: text(data, 'role', source, true)!,
-            order: number(data, 'order', source, 0)!,
+            throw new Error(`${source}: invalid creator: ${error instanceof Error ? error.message : String(error)}`, { cause: error })
         }
     }).sort((a, b) => a.order - b.order)
 
