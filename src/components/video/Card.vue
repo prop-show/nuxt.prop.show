@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { Video } from '@/content'
+import IconPlayerPlayFilled from '~icons/tabler/player-play-filled'
 import { siteConfig } from '@/site-config'
 
 import { videoCategoryColor, videoEpisode } from '@/utils/video'
@@ -36,7 +37,7 @@ const { platforms: platformOptions } = siteConfig
         class="group grid gap-5 border-b border-default px-1 py-7 outline-none transition-colors last:border-b-0 hover:bg-elevated/55 focus-visible:bg-elevated/55 sm:px-5 lg:grid-cols-[7rem_1fr_12rem_2.5rem] lg:items-center"
     >
         <div>
-            <div class="font-mono text-2xl font-black tracking-[-0.06em] transition-colors group-hover:text-primary">
+            <div class="font-mono text-xl font-bold tracking-tight lg:text-2xl transition-colors group-hover:text-primary">
                 EP.{{ String(displayEpisode).padStart(2, '0') }}
             </div>
             <div class="mt-2 flex items-center gap-2">
@@ -48,7 +49,7 @@ const { platforms: platformOptions } = siteConfig
         </div>
 
         <div class="min-w-0">
-            <h3 class="text-lg font-black transition-colors group-hover:text-primary md:text-xl">
+            <h3 class="transition-colors group-hover:text-primary text-lg leading-[1.4] font-bold lg:text-xl">
                 {{ video.title }}
             </h3>
             <p class="mt-2 line-clamp-2 text-sm leading-6 text-muted">
@@ -70,13 +71,13 @@ const { platforms: platformOptions } = siteConfig
                     :class="{ 'opacity-25': !video.platforms[platform.key as keyof typeof video.platforms] }"
                     :title="platform.name"
                 >
-                    <Icon :name="platform.icon" class="size-4" />
+                    <component :is="platform.icon" class="size-4" aria-hidden="true" />
                 </span>
             </div>
         </div>
 
         <div class="hidden size-10 items-center justify-center border border-default text-muted transition-all duration-300 group-hover:border-primary group-hover:bg-primary group-hover:text-black lg:flex">
-            <Icon name="i-tabler-player-play-filled" class="size-5 transition-transform group-hover:scale-110" />
+            <IconPlayerPlayFilled aria-hidden="true" class="size-5 transition-transform group-hover:scale-110" />
         </div>
     </SiteLink>
 </template>

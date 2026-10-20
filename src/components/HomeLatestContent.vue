@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import type { News, Video } from '@/content'
+import IconArrowRight from '~icons/tabler/arrow-right'
+import IconPlayerPlayFilled from '~icons/tabler/player-play-filled'
 
 defineProps<{
     videos: Video[]
@@ -11,18 +13,14 @@ defineProps<{
 
 <template>
     <section class="my-20">
-        <SectionHeading eyebrow="LATEST TRANSMISSIONS" title="最近更新">
-            <p class="max-w-md text-sm leading-6 text-muted sm:text-right">
-                从最新节目和前端速报开始。
-            </p>
-        </SectionHeading>
+        <SectionHeading eyebrow="LATEST VIDEOS" title="最近更新" />
 
         <div class="grid border-y border-default lg:grid-cols-1">
             <section class="lg:border-default">
                 <div class="flex items-center justify-between border-b border-default px-1 py-4 sm:px-5">
                     <div class="flex items-center gap-3">
-                        <Icon name="i-tabler-player-play-filled" class="size-5 text-primary" />
-                        <h3 class="text-lg font-black">
+                        <IconPlayerPlayFilled aria-hidden="true" class="size-5 text-primary" />
+                        <h3 class=" text-lg leading-[1.4] font-bold lg:text-xl">
                             最新视频
                         </h3>
                     </div>
@@ -47,7 +45,7 @@ defineProps<{
                                 {{ video.title }}
                             </div>
                         </div>
-                        <Icon name="i-tabler-arrow-right" class="size-4 text-muted transition-transform group-hover:translate-x-1" />
+                        <IconArrowRight aria-hidden="true" class="size-4 text-muted transition-transform group-hover:translate-x-1" />
                     </SiteLink>
                 </div>
                 <div v-else class="px-1 py-8 text-sm text-muted sm:px-5">
@@ -55,8 +53,8 @@ defineProps<{
                 </div>
 
                 <SiteLink to="/videos" class="group flex items-center justify-between border-t border-default px-1 py-4 text-sm font-bold outline-none transition-colors hover:bg-elevated/55 focus-visible:bg-elevated/55 sm:px-5">
-                    查看节目档案
-                    <Icon name="i-tabler-arrow-right" class="size-4 transition-transform group-hover:translate-x-1" />
+                    全部视频
+                    <IconArrowRight aria-hidden="true" class="size-4 transition-transform group-hover:translate-x-1" />
                 </SiteLink>
             </section>
         </div>

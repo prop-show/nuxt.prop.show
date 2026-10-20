@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import IconArrowRight from '~icons/tabler/arrow-right'
+import IconArrowUpRight from '~icons/tabler/arrow-up-right'
 import { siteConfig } from '@/site-config'
 
 const { socials, navigationLinks, friendLinks } = siteConfig
@@ -13,16 +15,16 @@ const currentYear = new Date().getFullYear()
                 <div>
                     <div class="flex items-center gap-3">
                         <span class="flex size-11 items-center justify-center border border-default">
-                            <Icon
-                                name="prop:prop-light-transparent"
-                                :size="36"
+                            <img
+                                src="/prop-light-transparent.svg" alt=""
+                                width="36" height="36"
                                 class="dark:hidden"
-                            />
-                            <Icon
-                                name="prop:prop-dark-transparent"
-                                :size="36"
+                            >
+                            <img
+                                src="/prop-dark-transparent.svg" alt=""
+                                width="36" height="36"
                                 class="hidden dark:block"
-                            />
+                            >
                         </span>
                         <div>
                             <div class="font-mono text-sm font-black tracking-[0.08em]">
@@ -35,18 +37,18 @@ const currentYear = new Date().getFullYear()
                         </div>
                     </div>
 
-                    <h2 class="mt-8 max-w-xl text-3xl leading-tight font-black tracking-[-0.045em] sm:text-4xl">
+                    <h2 class="mt-8 max-w-xl text-2xl leading-[1.35] font-bold tracking-[-0.02em] lg:text-[1.75rem]">
                         把前端技术讲明白，
-                        <span class="block text-primary ">持续记录真实经验。</span>
+                        <span class="block text-primary ">记录实践经验。</span>
                     </h2>
                     <p class="mt-5 max-w-xl text-sm leading-7 text-muted">
-                        视频、速报与开发者对谈持续更新。欢迎随时回来。
+                        订阅更新，或关注我们。
                     </p>
                 </div>
 
                 <div>
                     <div class="mb-3 font-mono text-[10px] font-bold tracking-[0.2em] text-dimmed">
-                        LISTENING TERMINALS
+                        FOLLOW US
                     </div>
                     <div class="flex flex-wrap gap-2">
                         <SiteLink
@@ -59,7 +61,7 @@ const currentYear = new Date().getFullYear()
                             class="group flex size-11 items-center justify-center border border-default text-muted outline-none transition-all hover:-translate-y-0.5 hover:border-primary hover:bg-elevated/70 hover:text-highlighted focus-visible:ring-2 focus-visible:ring-primary"
                             :title="social.platform"
                         >
-                            <Icon :name="social.icon" class="size-5" />
+                            <component :is="social.icon" class="size-5" aria-hidden="true" />
                         </SiteLink>
                     </div>
                 </div>
@@ -70,15 +72,15 @@ const currentYear = new Date().getFullYear()
                     P
                 </div>
                 <div class="relative z-10 meta-label-on-primary">
-                    SIGNAL STATUS
+                    PROP.SHOW
                 </div>
                 <div class="relative z-10">
                     <div class="flex items-center gap-2 text-lg font-black">
                         <span class="size-2 rounded-full bg-black" />
-                        CHANNEL OPEN
+                        前端开发者共创
                     </div>
                     <div class="mt-2 font-mono text-[10px] font-bold tracking-[0.16em] text-black/70">
-                        NEXT BROADCAST PENDING
+                        VIDEOS / NEWS
                     </div>
                 </div>
             </aside>
@@ -97,7 +99,7 @@ const currentYear = new Date().getFullYear()
                     </span>
                     <span class="font-black">{{ link.label }}</span>
                 </div>
-                <Icon name="i-tabler-arrow-right" class="size-4 text-muted transition-transform group-hover:translate-x-1 group-hover:text-primary" />
+                <IconArrowRight aria-hidden="true" class="size-4 text-muted transition-transform group-hover:translate-x-1 group-hover:text-primary" />
             </SiteLink>
         </nav>
 
@@ -114,13 +116,13 @@ const currentYear = new Date().getFullYear()
                     to="/works"
                     class="text-[10px] tracking-[0.12em] text-dimmed outline-none transition-colors hover:text-muted focus-visible:ring-2 focus-visible:ring-primary"
                 >
-                    团队成员作品
+                    团队作品
                 </SiteLink>
             </div>
 
             <div class="flex flex-wrap items-center gap-x-5 gap-y-2">
                 <span class="font-mono text-[9px] font-bold tracking-[0.18em] text-dimmed">
-                    FRIEND SIGNALS
+                    FRIENDS
                 </span>
                 <SiteLink
                     v-for="link in friendLinks"
@@ -131,7 +133,7 @@ const currentYear = new Date().getFullYear()
                     class="group inline-flex items-center gap-1.5 font-bold transition-colors hover:text-highlighted"
                 >
                     {{ link.label }}
-                    <Icon name="i-tabler-arrow-up-right" class="size-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    <IconArrowUpRight aria-hidden="true" class="size-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </SiteLink>
             </div>
         </div>

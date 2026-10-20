@@ -9,25 +9,25 @@
                     PROP.SHOW / TEAM WORKS
                 </div>
 
-                <h1 class="relative z-10 mt-8 max-w-3xl text-5xl leading-[0.95] font-black sm:text-7xl">
+                <h1 class="relative z-10 mt-8 max-w-3xl text-[2rem] leading-[1.2] font-black tracking-[-0.025em] sm:text-[2.5rem] lg:text-5xl">
                     团队作品，
                     <span class="mt-2 block text-primary">持续归档。</span>
                 </h1>
 
                 <p class="relative z-10 mt-7 max-w-2xl text-base leading-7 text-muted">
-                    汇集团队成员完成的项目，记录每项工作的目标、实现和结果。
+                    收录团队项目，记录目标、实现与成果。
                 </p>
             </section>
 
             <aside class="grid grid-cols-2 border-t border-default bg-primary text-black lg:grid-cols-1 lg:border-t-0 lg:border-l">
                 <div class="flex min-h-32 flex-col justify-between border-r border-black/15 p-5 lg:border-r-0 lg:border-b">
                     <span class="meta-label-on-primary">ARCHIVE SCOPE</span>
-                    <strong class="text-2xl leading-tight font-black">网站、产品<br>与开源项目</strong>
+                    <strong class="text-lg leading-[1.4] font-bold lg:text-xl">网站、产品<br>与开源项目</strong>
                 </div>
 
                 <div class="flex min-h-32 flex-col justify-between p-5">
                     <span class="meta-label-on-primary">ARCHIVE STATUS</span>
-                    <strong class="text-2xl leading-tight font-black">持续收录<br>定期更新</strong>
+                    <strong class="text-lg leading-[1.4] font-bold lg:text-xl">持续收录<br>定期更新</strong>
                 </div>
             </aside>
         </div>

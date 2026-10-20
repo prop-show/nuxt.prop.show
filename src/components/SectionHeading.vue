@@ -24,7 +24,7 @@ withDefaults(defineProps<{
             <div v-if="eyebrow" class="eyebrow">
                 {{ eyebrow }}
             </div>
-            <h2 :id="titleId" class="text-3xl font-black tracking-tight md:text-4xl">
+            <h2 :id="titleId" class="text-2xl leading-[1.3] font-black tracking-tight lg:text-3xl">
                 {{ title }}
             </h2>
         </div>

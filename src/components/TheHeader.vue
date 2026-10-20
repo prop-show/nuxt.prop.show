@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { useRouter } from '@void/vue'
+import IconArrowRight from '~icons/tabler/arrow-right'
+import IconMenu2 from '~icons/tabler/menu-2'
 import { siteConfig } from '@/site-config'
 
 const { navigationLinks } = siteConfig
@@ -22,16 +24,16 @@ function isActive(to?: string) {
         <div class="flex min-h-18 items-center gap-4">
             <SiteLink to="/" class="group flex shrink-0 items-center gap-3 outline-none focus-visible:ring-2 focus-visible:ring-primary">
                 <span class="flex size-10 items-center justify-center border border-default bg-default transition-colors group-hover:border-primary">
-                    <Icon
-                        name="prop:prop-light-transparent"
-                        :size="34"
+                    <img
+                        src="/prop-light-transparent.svg" alt=""
+                        width="34" height="34"
                         class="dark:hidden"
-                    />
-                    <Icon
-                        name="prop:prop-dark-transparent"
-                        :size="34"
+                    >
+                    <img
+                        src="/prop-dark-transparent.svg" alt=""
+                        width="34" height="34"
                         class="hidden dark:block"
-                    />
+                    >
                 </span>
                 <div>
                     <div class="font-mono text-sm font-black tracking-[0.08em]">
@@ -66,42 +68,30 @@ function isActive(to?: string) {
             </nav>
 
             <div class="flex items-center gap-2">
-                <UColorModeButton
-                    color="neutral"
-                    variant="ghost"
+                <ColorModeButton
                     class="size-10 justify-center rounded-none border border-default hover:border-primary"
                 />
 
-                <UDrawer
+                <UiSheet
                     v-model:open="mobileMenuOpen"
-                    title="站点导航"
-                    description="浏览 prop.show 的节目、速报与团队档案"
-                    direction="top"
-                    inset
-                    :ui="{ overlay: 'z-50', content: 'z-50' }"
                 >
-                    <UButton
-                        color="neutral"
-                        variant="ghost"
-                        icon="i-tabler-menu-2"
-                        aria-label="打开导航菜单"
-                        class="size-10 justify-center rounded-none border border-default hover:border-primary md:hidden"
-                    />
+                    <UiSheetTrigger as-child>
+                        <UiButton
+                            variant="ghost"
+                            aria-label="打开导航菜单"
+                            class="size-10 justify-center rounded-none border border-default hover:border-primary md:hidden"
+                        >
+                            <IconMenu2 aria-hidden="true" />
+                        </UiButton>
+                    </UiSheetTrigger>
 
-                    <template #body>
+                    <UiSheetContent side="top">
+                        <UiSheetHeader>
+                            <UiSheetTitle>站点导航</UiSheetTitle>
+                            <UiSheetDescription>首页、视频与关于我们</UiSheetDescription>
+                        </UiSheetHeader>
+
                         <div class="mx-auto w-full max-w-6xl px-4 pb-5">
-                            <div class="mb-5 flex items-center justify-between border-b border-default pb-4">
-                                <div>
-                                    <div class="font-mono text-[10px] font-bold tracking-[0.2em] text-primary">
-                                        PROP.SHOW / NAVIGATION
-                                    </div>
-                                    <div class="mt-1 text-xl font-black">
-                                        选择频道
-                                    </div>
-                                </div>
-                                <span class="font-mono text-xs font-bold text-dimmed">ON AIR</span>
-                            </div>
-
                             <nav class="grid sm:grid-cols-2" aria-label="移动端导航">
                                 <SiteLink
                                     v-for="(link, index) in navigationLinks"
@@ -118,12 +108,12 @@ function isActive(to?: string) {
                                             {{ link.label }}
                                         </span>
                                     </div>
-                                    <Icon name="i-tabler-arrow-right" class="size-5 text-muted transition-transform group-hover:translate-x-1" />
+                                    <IconArrowRight aria-hidden="true" class="size-5 text-muted transition-transform group-hover:translate-x-1" />
                                 </SiteLink>
                             </nav>
                         </div>
-                    </template>
-                </UDrawer>
+                    </UiSheetContent>
+                </UiSheet>
             </div>
         </div>
     </header>

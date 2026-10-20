@@ -26,24 +26,24 @@ function formatDate(date?: string) {
                     PROP.SHOW / NEWSWIRE
                 </div>
 
-                <h1 class="relative z-10 mt-8 max-w-3xl text-5xl leading-[0.95] font-black tracking-[-0.065em] sm:text-7xl">
-                    前端讯号，
-                    <span class="mt-2 block text-primary ">正在接收。</span>
+                <h1 class="relative z-10 mt-8 max-w-3xl text-[2rem] leading-[1.2] font-black tracking-[-0.025em] sm:text-[2.5rem] lg:text-5xl">
+                    前端速报，
+                    <span class="mt-2 block text-primary ">及时了解。</span>
                 </h1>
 
                 <p class="relative z-10 mt-7 max-w-2xl text-base leading-7 text-muted">
-                    追踪框架、工具与开源社区的变化，整理成简短、直接的前端速报。
+                    速览框架、工具与开源动态。
                 </p>
             </section>
 
             <aside class="grid grid-cols-2 border-t border-default bg-primary text-black lg:grid-cols-1 lg:border-t-0 lg:border-l">
                 <div class="flex min-h-32 flex-col justify-between border-r border-black/15 p-5 lg:border-r-0 lg:border-b">
-                    <span class="meta-label-on-primary">SIGNALS LOGGED</span>
-                    <strong class="font-mono text-5xl font-black tracking-[-0.1em]">{{ String(count).padStart(2, '0') }}</strong>
+                    <span class="meta-label-on-primary">REPORTS</span>
+                    <strong class="font-mono text-[2rem] leading-[1.1] font-bold tracking-tight sm:text-4xl lg:text-[2.5rem]">{{ String(count).padStart(2, '0') }}</strong>
                 </div>
                 <div class="flex min-h-32 flex-col justify-between p-5">
                     <span class="meta-label-on-primary">LATEST UPDATE</span>
-                    <strong class="font-mono text-4xl font-black tracking-[-0.08em]">{{ formatDate(latestDate) }}</strong>
+                    <strong class="font-mono text-2xl font-bold tracking-tight sm:text-[1.75rem]">{{ formatDate(latestDate) }}</strong>
                 </div>
             </aside>
         </div>

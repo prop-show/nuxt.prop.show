@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import IconPlayerPlayFilled from '~icons/tabler/player-play-filled'
+
 defineProps<{
     count: number
 }>()
@@ -12,16 +14,17 @@ defineProps<{
                 <div class="relative z-10 font-mono text-[10px] font-bold tracking-[0.2em] text-primary">
                     PROP.SHOW / BUILD SERIES
                 </div>
-                <h1 class="relative z-10 mt-7 max-w-4xl text-5xl leading-[0.98] font-black tracking-[-0.06em] sm:text-7xl">
+                <h1 class="relative z-10 mt-7 max-w-4xl text-[2rem] leading-[1.2] font-black tracking-[-0.025em] sm:text-[2.5rem] lg:text-5xl">
                     乙巳：从零构建
                     <span class="block text-primary">完整产品。</span>
                 </h1>
                 <p class="relative z-10 mt-7 max-w-2xl text-base leading-8 text-muted">
-                    围绕一个真实项目，依次完成工程配置、NestJS API、数据库、Vue 前端、JWT 登录与 Redis 缓存。
+                    通过一个项目，学习工程配置、NestJS API、数据库、Vue 前端、JWT 登录与 Redis 缓存。
                 </p>
-                <UButton to="/videos/ys-00-starter" icon="i-tabler-player-play-filled" size="xl" class="relative z-10 mt-9">
+                <UiButton to="/videos/ys-00-starter" size="lg" class="relative z-10 mt-9">
+                    <IconPlayerPlayFilled aria-hidden="true" />
                     从前言开始
-                </UButton>
+                </UiButton>
             </section>
 
             <aside class="relative flex min-h-64 flex-col justify-between overflow-hidden border-t border-default bg-primary p-7 text-black lg:min-h-full lg:border-t-0 lg:border-l">
@@ -29,14 +32,14 @@ defineProps<{
                     乙
                 </div>
                 <div class="relative z-10 meta-label-on-primary">
-                    COMPLETE CURRICULUM
+                    CURRICULUM
                 </div>
                 <div class="relative z-10">
-                    <div class="font-mono text-7xl font-black tracking-[-0.12em]">
+                    <div class="font-mono text-[2rem] leading-[1.1] font-bold tracking-tight sm:text-4xl lg:text-[2.5rem]">
                         {{ String(count).padStart(2, '0') }}
                     </div>
                     <div class="mt-2 font-mono text-xs font-bold tracking-[0.18em]">
-                        EPISODES / 按顺序更新
+                        EPISODES
                     </div>
                 </div>
             </aside>

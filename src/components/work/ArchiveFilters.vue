@@ -46,7 +46,7 @@ function creatorKey(creator: Creator) {
         <div class="mt-4 flex items-center justify-between gap-4 font-mono text-[10px] font-bold tracking-[0.16em] text-dimmed">
             <span>{{ String(resultCount).padStart(2, '0') }} MATCHES</span>
             <SiteLink v-if="activeAuthor" to="/works" class="transition-colors hover:text-highlighted">
-                CLEAR FILTER
+                清除筛选
             </SiteLink>
         </div>
     </section>

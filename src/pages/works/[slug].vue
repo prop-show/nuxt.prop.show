@@ -1,5 +1,14 @@
 <script setup lang="ts">
 import type { Props } from '@/pages/works/[slug].server'
+import IconAlertTriangle from '~icons/tabler/alert-triangle'
+import IconArchiveOff from '~icons/tabler/archive-off'
+import IconArrowLeft from '~icons/tabler/arrow-left'
+import IconArrowRight from '~icons/tabler/arrow-right'
+import IconArrowUpRight from '~icons/tabler/arrow-up-right'
+import IconBox from '~icons/tabler/box'
+import IconBrandGithub from '~icons/tabler/brand-github'
+import IconExternalLink from '~icons/tabler/external-link'
+import IconUserQuestion from '~icons/tabler/user-question'
 
 defineProps<Props>()
 </script>
@@ -8,30 +17,31 @@ defineProps<Props>()
     <main>
         <div class="my-8 md:my-12">
             <SiteLink to="/works" class="group inline-flex items-center gap-2 font-mono text-xs font-bold tracking-[0.16em] text-muted transition-colors hover:text-highlighted">
-                <Icon name="i-tabler-arrow-left" class="size-4 transition-transform group-hover:-translate-x-1" />
-                BACK TO WORK ARCHIVE
+                <IconArrowLeft aria-hidden="true" class="size-4 transition-transform group-hover:-translate-x-1" />
+                返回作品
             </SiteLink>
         </div>
 
         <section v-if="pending" class="overflow-hidden border border-default">
             <div class="grid lg:grid-cols-[1fr_17rem]">
                 <div class="space-y-6 p-6 sm:p-10 lg:p-12">
-                    <USkeleton class="h-3 w-36" />
-                    <USkeleton class="h-14 w-4/5" />
-                    <USkeleton class="h-5 w-2/3" />
+                    <UiSkeleton class="h-3 w-36" />
+                    <UiSkeleton class="h-9 w-4/5 sm:h-11 lg:h-13" />
+                    <UiSkeleton class="h-5 w-2/3" />
                 </div>
-                <USkeleton class="min-h-52 rounded-none lg:min-h-full" />
+                <UiSkeleton class="min-h-52 rounded-none lg:min-h-full" />
             </div>
         </section>
 
-        <UAlert
+        <UiAlert
             v-else-if="error"
-            color="error"
-            variant="subtle"
-            icon="i-tabler-alert-triangle"
-            title="作品资料加载失败"
-            description="刷新页面重试。"
-        />
+            class="my-20"
+            variant="destructive"
+        >
+            <IconAlertTriangle aria-hidden="true" />
+            <UiAlertTitle>作品资料加载失败</UiAlertTitle>
+            <UiAlertDescription>刷新页面重试。</UiAlertDescription>
+        </UiAlert>
 
         <template v-else-if="work">
             <header class="overflow-hidden border border-default bg-default/85 shadow-sm">
@@ -45,7 +55,7 @@ defineProps<Props>()
                             <span>{{ work.type }}</span>
                         </div>
 
-                        <h1 class="relative z-10 mt-7 max-w-4xl text-4xl leading-tight font-black sm:text-6xl">
+                        <h1 class="relative z-10 mt-7 max-w-4xl text-[1.75rem] leading-[1.3] font-bold tracking-[-0.02em] sm:text-[2rem] lg:text-[2.5rem]">
                             {{ work.title }}
                         </h1>
 
@@ -63,8 +73,8 @@ defineProps<Props>()
                     <aside class="flex min-h-48 flex-col justify-between border-t border-default bg-primary p-6 text-black lg:min-h-full lg:border-t-0 lg:border-l">
                         <span class="meta-label-on-primary">PROJECT TYPE</span>
                         <div>
-                            <Icon name="i-tabler-box" class="mb-5 size-10" />
-                            <strong class="block text-3xl leading-tight font-black">{{ work.type }}</strong>
+                            <IconBox aria-hidden="true" class="mb-5 size-10" />
+                            <strong class="block text-lg leading-[1.4] font-bold lg:text-xl">{{ work.type }}</strong>
                         </div>
                     </aside>
                 </div>
@@ -87,7 +97,7 @@ defineProps<Props>()
                         <div class="min-w-0">
                             <div class="flex items-center gap-1 font-black group-hover:text-primary">
                                 {{ creator.name }}
-                                <Icon name="i-tabler-arrow-up-right" class="size-4" />
+                                <IconArrowUpRight aria-hidden="true" class="size-4" />
                             </div>
                             <p class="mt-1 text-xs leading-5 text-muted">
                                 {{ creator.role }}
@@ -96,31 +106,30 @@ defineProps<Props>()
                     </SiteLink>
 
                     <div v-else class="mt-4 flex items-center gap-2 text-sm font-bold text-muted">
-                        <Icon name="i-tabler-user-question" class="size-5" />
+                        <IconUserQuestion aria-hidden="true" class="size-5" />
                         未知作者
                     </div>
 
                     <div v-if="work.website || work.repository" class="mt-6 grid gap-2">
-                        <UButton
+                        <UiButton
                             v-if="work.website"
                             :to="work.website"
                             target="_blank"
                             rel="noopener noreferrer"
-                            icon="i-tabler-external-link"
                         >
+                            <IconExternalLink aria-hidden="true" />
                             在线查看
-                        </UButton>
-                        <UButton
+                        </UiButton>
+                        <UiButton
                             v-if="work.repository"
                             :to="work.repository"
                             target="_blank"
                             rel="noopener noreferrer"
-                            color="neutral"
                             variant="outline"
-                            icon="i-tabler-brand-github"
                         >
+                            <IconBrandGithub aria-hidden="true" />
                             查看源码
-                        </UButton>
+                        </UiButton>
                     </div>
                 </aside>
 
@@ -130,7 +139,7 @@ defineProps<Props>()
                             <div class="font-mono text-[10px] font-bold tracking-[0.2em] text-primary">
                                 PROJECT NOTES
                             </div>
-                            <h2 class="mt-2 text-2xl font-black">
+                            <h2 class="mt-2 text-lg leading-[1.4] font-bold lg:text-xl">
                                 作品说明
                             </h2>
                         </div>
@@ -147,32 +156,27 @@ defineProps<Props>()
                 </div>
             </section>
 
-            <footer class="mb-20 flex flex-col justify-between gap-5 border-y border-default py-5 sm:flex-row sm:items-center">
-                <div>
-                    <div class="font-mono text-[10px] font-bold tracking-[0.2em] text-dimmed">
-                        END OF PROJECT FILE
-                    </div>
-                    <p class="mt-1 text-sm font-bold">
-                        看看团队的其他作品。
-                    </p>
-                </div>
-                <UButton to="/works" color="neutral" variant="outline" trailing-icon="i-tabler-arrow-right">
-                    返回作品索引
-                </UButton>
+            <footer class="mb-20 flex justify-end border-y border-default py-5">
+                <UiButton to="/works" variant="outline">
+                    全部作品
+                    <IconArrowRight aria-hidden="true" />
+                </UiButton>
             </footer>
         </template>
 
-        <UEmpty
-            v-else
-            icon="i-tabler-archive-off"
-            title="作品不存在"
-            description="这份作品资料可能已被移动或删除。"
-        >
-            <template #actions>
-                <UButton to="/works">
-                    返回作品归档
-                </UButton>
-            </template>
-        </UEmpty>
+        <UiEmpty v-else class="my-20">
+            <UiEmptyHeader>
+                <UiEmptyMedia variant="icon">
+                    <IconArchiveOff aria-hidden="true" />
+                </UiEmptyMedia>
+                <UiEmptyTitle>作品不存在</UiEmptyTitle>
+                <UiEmptyDescription>这份作品资料可能已被移动或删除。</UiEmptyDescription>
+            </UiEmptyHeader>
+            <UiEmptyContent>
+                <UiButton to="/works">
+                    返回作品
+                </UiButton>
+            </UiEmptyContent>
+        </UiEmpty>
     </main>
 </template>

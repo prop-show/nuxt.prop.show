@@ -1,5 +1,7 @@
 <script lang="ts" setup>
 import type { News } from '@/content'
+import IconAntennaBars5 from '~icons/tabler/antenna-bars-5'
+import IconArrowRight from '~icons/tabler/arrow-right'
 
 defineProps<{
     news: News[]
@@ -22,8 +24,8 @@ function formatDate(date: string) {
 
 <template>
     <section class="my-20">
-        <SectionHeading eyebrow="SIGNAL ARCHIVE" title="最新讯号">
-            <Icon name="i-tabler-antenna-bars-5" class="hidden size-9 text-primary sm:block" />
+        <SectionHeading eyebrow="NEWS" title="全部速报">
+            <IconAntennaBars5 aria-hidden="true" class="hidden size-9 text-primary sm:block" />
         </SectionHeading>
 
         <div class="overflow-hidden border-y border-default">
@@ -39,13 +41,12 @@ function formatDate(date: string) {
                 </time>
 
                 <div class="min-w-0">
-                    <div class="mb-2 flex items-center gap-2">
-                        <span v-if="offset === 0 && index === 0" class="bg-primary px-2 py-0.5 font-mono text-[9px] font-black tracking-wider text-black">
+                    <div v-if="offset === 0 && index === 0" class="mb-2">
+                        <span class="bg-primary px-2 py-0.5 font-mono text-[9px] font-black tracking-wider text-black">
                             LATEST
                         </span>
-                        <span class="font-mono text-[9px] font-bold tracking-[0.18em] text-dimmed">FRONTEND NEWS</span>
                     </div>
-                    <h3 class="text-lg font-black transition-colors group-hover:text-primary md:text-xl">
+                    <h3 class="transition-colors group-hover:text-primary text-lg leading-[1.4] font-bold lg:text-xl">
                         {{ item.title }}
                     </h3>
                     <p v-if="item.description" class="mt-2 line-clamp-2 text-sm leading-6 text-muted">
@@ -54,7 +55,7 @@ function formatDate(date: string) {
                 </div>
 
                 <div class="hidden size-10 items-center justify-center border border-default text-muted transition-all duration-300 group-hover:border-primary group-hover:bg-primary group-hover:text-black md:flex">
-                    <Icon name="i-tabler-arrow-right" class="size-5 transition-transform group-hover:translate-x-0.5" />
+                    <IconArrowRight aria-hidden="true" class="size-5 transition-transform group-hover:translate-x-0.5" />
                 </div>
             </SiteLink>
         </div>

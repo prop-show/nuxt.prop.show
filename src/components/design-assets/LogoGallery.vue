@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import IconDownload from '~icons/tabler/download'
 import { siteConfig } from '@/site-config'
 
 const { designAssets } = siteConfig
@@ -8,7 +9,7 @@ const { designAssets } = siteConfig
     <section class="my-20" aria-labelledby="logo-assets-heading">
         <SectionHeading eyebrow="LOGO SYSTEM" title="Logo 版本" title-id="logo-assets-heading" stack-at="md">
             <p class="max-w-md text-sm leading-6 text-muted md:text-right">
-                标志的图形与比例不变，仅根据背景明度切换版本。
+                按背景选择版本。
             </p>
         </SectionHeading>
 
@@ -37,7 +38,7 @@ const { designAssets } = siteConfig
                             <div class="font-mono text-[10px] font-bold tracking-[0.2em] text-dimmed">
                                 {{ String(index + 1).padStart(2, '0') }} / {{ logo.channel }}
                             </div>
-                            <h3 class="mt-2 text-xl font-black">
+                            <h3 class="mt-2 text-lg leading-[1.4] font-bold lg:text-xl">
                                 {{ logo.label }}
                             </h3>
                         </div>
@@ -46,10 +47,6 @@ const { designAssets } = siteConfig
                         </span>
                     </div>
 
-                    <p class="mt-4 max-w-xl text-sm leading-7 text-muted">
-                        {{ logo.description }}
-                    </p>
-
                     <div class="mt-6 grid gap-2 sm:grid-cols-2">
                         <a
                             :href="logo.asset"
@@ -57,7 +54,7 @@ const { designAssets } = siteConfig
                             class="group flex min-h-11 items-center justify-between border border-default px-4 text-sm font-black outline-none transition-colors hover:border-primary hover:bg-elevated/70 focus-visible:ring-2 focus-visible:ring-primary"
                         >
                             下载带底 SVG
-                            <Icon name="i-tabler-download" class="size-4 text-muted transition-transform group-hover:translate-y-0.5 group-hover:text-primary" />
+                            <IconDownload aria-hidden="true" class="size-4 text-muted transition-transform group-hover:translate-y-0.5 group-hover:text-primary" />
                         </a>
                         <a
                             :href="logo.transparentAsset"
@@ -65,7 +62,7 @@ const { designAssets } = siteConfig
                             class="group flex min-h-11 items-center justify-between border border-default px-4 text-sm font-black outline-none transition-colors hover:border-primary hover:bg-elevated/70 focus-visible:ring-2 focus-visible:ring-primary"
                         >
                             下载透明 SVG
-                            <Icon name="i-tabler-download" class="size-4 text-muted transition-transform group-hover:translate-y-0.5 group-hover:text-primary" />
+                            <IconDownload aria-hidden="true" class="size-4 text-muted transition-transform group-hover:translate-y-0.5 group-hover:text-primary" />
                         </a>
                     </div>
                 </div>

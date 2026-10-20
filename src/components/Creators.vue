@@ -2,6 +2,10 @@
 import type { Creator } from '@/content'
 import { useShared } from '@void/vue'
 import { shallowRef } from 'vue'
+import IconAlertTriangle from '~icons/tabler/alert-triangle'
+import IconArrowRight from '~icons/tabler/arrow-right'
+import IconArrowUpRight from '~icons/tabler/arrow-up-right'
+import IconUsers from '~icons/tabler/users'
 
 const { variant = 'default' } = defineProps<{
     variant?: 'default' | 'directory'
@@ -15,48 +19,53 @@ const error = shallowRef<Error | null>(null)
 <template>
     <section v-if="pending" class="my-20">
         <div class="mb-8 border-b border-default pb-5">
-            <USkeleton class="mb-2 h-3 w-28" />
-            <USkeleton class="h-10 w-64" />
+            <UiSkeleton class="mb-2 h-3 w-28" />
+            <UiSkeleton class="h-8 w-64 lg:h-10" />
         </div>
         <div class="grid gap-5 md:grid-cols-2">
             <div v-for="index in 2" :key="index" class="flex items-center gap-5 border border-default p-5">
-                <USkeleton :class="variant === 'directory' ? 'size-22' : 'size-16'" />
+                <UiSkeleton :class="variant === 'directory' ? 'size-22' : 'size-16'" />
                 <div class="flex-1 space-y-3">
-                    <USkeleton class="h-3 w-24" />
-                    <USkeleton class="h-7 w-32" />
-                    <USkeleton class="h-4 w-48" />
+                    <UiSkeleton class="h-3 w-24" />
+                    <UiSkeleton class="h-7 w-32" />
+                    <UiSkeleton class="h-4 w-48" />
                 </div>
             </div>
         </div>
     </section>
 
-    <UAlert
+    <UiAlert
         v-else-if="error"
         class="my-20"
-        color="error"
-        variant="subtle"
-        icon="i-tabler-alert-triangle"
-        title="创作者资料加载失败"
-        description="刷新页面重试。"
-    />
+        variant="destructive"
+    >
+        <IconAlertTriangle aria-hidden="true" />
+        <UiAlertTitle>创作者资料加载失败</UiAlertTitle>
+        <UiAlertDescription>刷新页面重试。</UiAlertDescription>
+    </UiAlert>
 
-    <UEmpty
+    <UiEmpty
         v-else-if="!creators.length"
         class="my-20"
-        icon="i-tabler-users"
-        title="暂无创作者资料"
-        description="团队成员资料更新后会显示在这里。"
-    />
+    >
+        <UiEmptyHeader>
+            <UiEmptyMedia variant="icon">
+                <IconUsers aria-hidden="true" />
+            </UiEmptyMedia>
+            <UiEmptyTitle>暂无创作者资料</UiEmptyTitle>
+            <UiEmptyDescription>成员资料整理中。</UiEmptyDescription>
+        </UiEmptyHeader>
+    </UiEmpty>
 
     <section v-else-if="variant === 'directory'" class="my-20">
-        <SectionHeading eyebrow="PEOPLE ON AIR" title="节目背后的创作者">
+        <SectionHeading eyebrow="CREATORS" title="创作团队">
             <div class="flex flex-wrap items-center gap-x-5 gap-y-2">
                 <span class="section-count hidden md:block">
                     {{ String(creators.length).padStart(2, '0') }} CONTRIBUTORS
                 </span>
                 <SiteLink to="/works" class="group inline-flex items-center gap-2 text-sm font-bold text-muted outline-none transition-colors hover:text-highlighted focus-visible:ring-2 focus-visible:ring-primary">
-                    查看团队成员作品
-                    <Icon name="i-tabler-arrow-right" class="size-4 transition-transform group-hover:translate-x-1" />
+                    查看团队作品
+                    <IconArrowRight aria-hidden="true" class="size-4 transition-transform group-hover:translate-x-1" />
                 </SiteLink>
             </div>
         </SectionHeading>
@@ -76,10 +85,10 @@ const error = shallowRef<Error | null>(null)
                         CONTRIBUTOR {{ String(index + 1).padStart(2, '0') }}
                     </div>
                     <div class="mt-2 flex items-center justify-between gap-3">
-                        <h3 class="truncate text-2xl font-black">
+                        <h3 class="truncate text-lg leading-[1.4] font-bold lg:text-xl">
                             {{ creator.name }}
                         </h3>
-                        <Icon name="i-tabler-arrow-up-right" class="size-5 shrink-0 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                        <IconArrowUpRight aria-hidden="true" class="size-5 shrink-0 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
                     </div>
                     <p class="mt-2 text-sm text-muted">
                         {{ creator.role }}
@@ -90,15 +99,15 @@ const error = shallowRef<Error | null>(null)
     </section>
 
     <section v-else class="my-20">
-        <SectionHeading eyebrow="PEOPLE ON AIR" title="正在发声的人">
+        <SectionHeading eyebrow="CREATORS" title="创作团队">
             <div class="flex flex-wrap items-center gap-x-5 gap-y-2">
                 <SiteLink to="/about" class="group inline-flex items-center gap-2 text-sm font-bold text-muted outline-none transition-colors hover:text-highlighted focus-visible:ring-2 focus-visible:ring-primary">
-                    认识创作团队
-                    <Icon name="i-tabler-arrow-right" class="size-4 transition-transform group-hover:translate-x-1" />
+                    认识团队
+                    <IconArrowRight aria-hidden="true" class="size-4 transition-transform group-hover:translate-x-1" />
                 </SiteLink>
                 <SiteLink to="/works" class="group inline-flex items-center gap-2 text-sm font-bold text-muted outline-none transition-colors hover:text-highlighted focus-visible:ring-2 focus-visible:ring-primary">
                     查看团队作品
-                    <Icon name="i-tabler-arrow-right" class="size-4 transition-transform group-hover:translate-x-1" />
+                    <IconArrowRight aria-hidden="true" class="size-4 transition-transform group-hover:translate-x-1" />
                 </SiteLink>
             </div>
         </SectionHeading>
@@ -115,10 +124,10 @@ const error = shallowRef<Error | null>(null)
 
                 <div class="min-w-0 flex-1">
                     <div class="flex items-center justify-between gap-3">
-                        <h3 class="truncate text-xl font-black">
+                        <h3 class="truncate text-lg leading-[1.4] font-bold lg:text-xl">
                             {{ creator.name }}
                         </h3>
-                        <Icon name="i-tabler-arrow-up-right" class="size-4 shrink-0 text-muted transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                        <IconArrowUpRight aria-hidden="true" class="size-4 shrink-0 text-muted transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </div>
                     <p class="mt-1 text-sm text-muted">
                         {{ creator.role }}

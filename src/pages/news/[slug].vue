@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import type { Props } from '@/pages/news/[slug].server'
+import IconArrowLeft from '~icons/tabler/arrow-left'
+import IconArrowRight from '~icons/tabler/arrow-right'
+import IconExternalLink from '~icons/tabler/external-link'
+import IconSatelliteOff from '~icons/tabler/satellite-off'
 
 defineProps<Props>()
 </script>
@@ -8,19 +12,19 @@ defineProps<Props>()
     <main>
         <div class="my-8 md:my-12">
             <SiteLink to="/news" class="group inline-flex items-center gap-2 font-mono text-xs font-bold tracking-[0.16em] text-muted transition-colors hover:text-highlighted">
-                <Icon name="i-tabler-arrow-left" class="size-4 transition-transform group-hover:-translate-x-1" />
-                BACK TO SIGNAL ARCHIVE
+                <IconArrowLeft aria-hidden="true" class="size-4 transition-transform group-hover:-translate-x-1" />
+                返回速报
             </SiteLink>
         </div>
 
         <section v-if="pending" class="overflow-hidden border border-default">
             <div class="grid lg:grid-cols-[1fr_15rem]">
                 <div class="space-y-6 p-6 sm:p-10 lg:p-12">
-                    <USkeleton class="h-3 w-36" />
-                    <USkeleton class="h-14 w-4/5" />
-                    <USkeleton class="h-5 w-48" />
+                    <UiSkeleton class="h-3 w-36" />
+                    <UiSkeleton class="h-9 w-4/5 sm:h-11 lg:h-13" />
+                    <UiSkeleton class="h-5 w-48" />
                 </div>
-                <USkeleton class="min-h-48 rounded-none lg:min-h-full" />
+                <UiSkeleton class="min-h-48 rounded-none lg:min-h-full" />
             </div>
         </section>
 
@@ -33,13 +37,11 @@ defineProps<Props>()
                         <div class="relative z-10 flex flex-wrap items-center gap-3 font-mono text-[10px] font-bold tracking-[0.2em] text-dimmed">
                             <span class="inline-flex items-center gap-2 text-primary">
                                 <span class="size-2 rounded-full bg-primary" />
-                                SIGNAL RECEIVED
+                                NEWS
                             </span>
-                            <span>/</span>
-                            <span>FRONTEND NEWS</span>
                         </div>
 
-                        <h1 class="relative z-10 mt-7 max-w-4xl text-4xl leading-tight font-black tracking-[-0.045em] sm:text-6xl">
+                        <h1 class="relative z-10 mt-7 max-w-4xl text-[1.75rem] leading-[1.3] font-bold tracking-[-0.02em] sm:text-[2rem] lg:text-[2.5rem]">
                             {{ letter.title }}
                         </h1>
 
@@ -47,8 +49,6 @@ defineProps<Props>()
                             <time :datetime="letter.date">{{ publishedAt.date }}</time>
                             <span class="hidden h-3 w-px bg-default sm:block" />
                             <span>{{ publishedAt.time }}</span>
-                            <span class="hidden h-3 w-px bg-default sm:block" />
-                            <span>PROP.SHOW NEWSWIRE</span>
                         </div>
                     </section>
 
@@ -57,7 +57,7 @@ defineProps<Props>()
                             ARCHIVE NUMBER
                         </div>
                         <div>
-                            <div class="font-mono text-6xl font-black tracking-[-0.12em]">
+                            <div class="font-mono text-[2rem] leading-[1.1] font-bold tracking-tight sm:text-4xl lg:text-[2.5rem]">
                                 {{ signalNumber }}
                             </div>
                         </div>
@@ -74,24 +74,17 @@ defineProps<Props>()
                         <span class="size-2 rounded-full bg-green-500" />
                         已归档
                     </div>
-                    <div class="mt-6 font-mono text-[10px] font-bold leading-5 tracking-[0.14em] text-dimmed">
-                        READ<br>
-                        VERIFY<br>
-                        CONTINUE
-                    </div>
-
                     <div class="mt-6 grid gap-4 text-sm">
-                        <UButton
+                        <UiButton
                             v-if="letter.source"
                             :to="letter.source"
                             target="_blank"
                             rel="noopener noreferrer"
-                            color="neutral"
                             variant="outline"
-                            icon="i-tabler-external-link"
                         >
+                            <IconExternalLink aria-hidden="true" />
                             消息来源
-                        </UButton>
+                        </UiButton>
                     </div>
                 </aside>
 
@@ -101,10 +94,10 @@ defineProps<Props>()
                 <article class="border-y border-default py-7 sm:border sm:bg-default/55 sm:p-8 lg:p-10">
                     <div class="mb-6 border-b border-default pb-5">
                         <div class="font-mono text-[10px] font-bold tracking-[0.2em] text-primary">
-                            NEWSLETTER CONTENT
+                            ARTICLE
                         </div>
-                        <h2 class="mt-2 text-2xl font-black">
-                            讯号内容
+                        <h2 class="mt-2 text-lg leading-[1.4] font-bold lg:text-xl">
+                            速报正文
                         </h2>
                     </div>
 
@@ -112,32 +105,27 @@ defineProps<Props>()
                 </article>
             </div>
 
-            <footer class="mb-20 flex flex-col justify-between gap-5 border-y border-default py-5 sm:flex-row sm:items-center">
-                <div>
-                    <div class="font-mono text-[10px] font-bold tracking-[0.2em] text-dimmed">
-                        END OF TRANSMISSION
-                    </div>
-                    <p class="mt-1 text-sm font-bold">
-                        讯号已归档，看看其他动态。
-                    </p>
-                </div>
-                <UButton to="/news" color="neutral" variant="outline" trailing-icon="i-tabler-arrow-right">
-                    返回速报索引
-                </UButton>
+            <footer class="mb-20 flex justify-end border-y border-default py-5">
+                <UiButton to="/news" variant="outline">
+                    全部速报
+                    <IconArrowRight aria-hidden="true" />
+                </UiButton>
             </footer>
         </template>
 
-        <UEmpty
-            v-else
-            icon="i-tabler-satellite-off"
-            title="讯号不存在"
-            description="这条速报可能已被移动或删除。"
-        >
-            <template #actions>
-                <UButton to="/news">
+        <UiEmpty v-else class="my-20">
+            <UiEmptyHeader>
+                <UiEmptyMedia variant="icon">
+                    <IconSatelliteOff aria-hidden="true" />
+                </UiEmptyMedia>
+                <UiEmptyTitle>速报不存在</UiEmptyTitle>
+                <UiEmptyDescription>这条速报可能已被移动或删除。</UiEmptyDescription>
+            </UiEmptyHeader>
+            <UiEmptyContent>
+                <UiButton to="/news">
                     返回速报
-                </UButton>
-            </template>
-        </UEmpty>
+                </UiButton>
+            </UiEmptyContent>
+        </UiEmpty>
     </main>
 </template>

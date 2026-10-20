@@ -1,6 +1,9 @@
 import { fileURLToPath } from 'node:url'
-import ui from '@nuxt/ui/vite'
+import tailwindcss from '@tailwindcss/vite'
 import { voidVue } from '@void/vue/plugin'
+import AutoImport from 'unplugin-auto-import/vite'
+import Icons from 'unplugin-icons/vite'
+import Components from 'unplugin-vue-components/vite'
 import { defineConfig } from 'vite'
 import { voidPlugin } from 'void'
 import { contentPlugin } from './scripts/content-plugin.ts'
@@ -11,11 +14,9 @@ export default defineConfig({
         contentPlugin(),
         voidPlugin(),
         voidVue(),
-        ui({
-            router: false,
-            ui: { colors: { primary: 'yellow', secondary: 'sky', neutral: 'neutral' } },
-            autoImport: { imports: ['vue'], dirs: ['./src/utils'], dts: 'src/auto-imports.d.ts' },
-            components: { dirs: ['src/components'], directoryAsNamespace: true, collapseSamePrefixes: true, dts: 'src/components.d.ts' },
-        }),
+        tailwindcss(),
+        Icons({ compiler: 'vue3' }),
+        AutoImport({ imports: ['vue'], dirs: ['./src/utils'], dts: 'src/auto-imports.d.ts' }),
+        Components({ dirs: ['src/components'], directoryAsNamespace: true, collapseSamePrefixes: true, dts: 'src/components.d.ts' }),
     ],
 })

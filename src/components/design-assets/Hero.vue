@@ -20,12 +20,12 @@ const assetFacts = [
                     <p class="font-mono text-xs font-bold tracking-[0.22em] text-primary">
                         PROP.SHOW / DESIGN ASSETS
                     </p>
-                    <h1 class="mt-6 max-w-3xl text-4xl leading-tight font-black tracking-[-0.055em] sm:text-6xl">
+                    <h1 class="mt-6 max-w-3xl text-[2rem] leading-[1.2] font-black tracking-[-0.025em] sm:text-[2.5rem] lg:text-5xl">
                         设计资产，
                         <span class="block text-primary">保持一致。</span>
                     </h1>
                     <p class="mt-7 max-w-2xl text-base leading-8 text-muted">
-                        收录 prop.show 的 Logo、品牌主色与基础应用规则。请使用 SVG，并按背景选择对应版本。
+                        下载 SVG 标志，查看品牌色与使用规则。
                     </p>
                 </div>
 

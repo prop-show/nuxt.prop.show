@@ -1,78 +1,68 @@
 <script lang="ts" setup>
+import IconCode from '~icons/tabler/code'
+import IconHeadphones from '~icons/tabler/headphones'
+import IconUsers from '~icons/tabler/users'
+import IconVideo from '~icons/tabler/video'
+
 const features = [
     {
         number: '01',
-        icon: 'i-tabler-headphones',
+        icon: IconHeadphones,
         iconColor: 'text-blue-500',
         title: '音频播客',
-        description: '通勤时间也能学习前端技术',
+        description: '通勤路上，听听前端',
     },
     {
         number: '02',
-        icon: 'i-tabler-video',
+        icon: IconVideo,
         iconColor: 'text-green-500',
         title: '视频教程',
-        description: '可视化的编程实战演示',
+        description: '跟着演示动手做',
     },
     {
         number: '03',
-        icon: 'i-tabler-code',
+        icon: IconCode,
         iconColor: 'text-purple-500',
         title: '技术分享',
-        description: '前沿技术与最佳实践',
+        description: '分享方法与经验',
     },
     {
         number: '04',
-        icon: 'i-tabler-users',
+        icon: IconUsers,
         iconColor: 'text-orange-500',
         title: '社区交流',
-        description: '与开发者共同成长进步',
+        description: '交流问题与想法',
     },
 ]
 </script>
 
 <template>
     <section class="my-20">
-        <SectionHeading eyebrow="WHAT WE TRANSMIT" title="围绕真实场景讲解" stack-at="md">
-            <p class="max-w-md text-sm leading-6 text-muted md:text-right">
-                把复杂技术拆成可以理解、复现、继续探索的内容。
-            </p>
-        </SectionHeading>
+        <SectionHeading eyebrow="FORMATS" title="从实际问题出发" />
 
         <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            <UCard
+            <UiCard
                 v-for="feature in features"
                 :key="feature.number"
-                class="group relative overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-primary/60 hover:shadow-lg"
-                variant="subtle"
+                class="group relative gap-0 overflow-hidden rounded-sm bg-elevated/50 py-4 shadow-none transition-all duration-300 hover:-translate-y-1 hover:border-primary/60 hover:shadow-lg sm:py-6 motion-reduce:transform-none motion-reduce:transition-none"
             >
-                <div class="mb-12 flex items-start justify-between">
-                    <div class="flex size-11 items-center justify-center rounded-sm bg-muted transition-transform duration-300 group-hover:rotate-3 group-hover:scale-110">
-                        <Icon :name="feature.icon" size="24" :class="feature.iconColor" />
+                <UiCardContent class="px-4 sm:px-6">
+                    <div class="mb-12 flex items-start justify-between">
+                        <div class="flex size-11 items-center justify-center rounded-sm bg-muted transition-transform duration-300 group-hover:rotate-3 group-hover:scale-110 motion-reduce:transform-none motion-reduce:transition-none">
+                            <component :is="feature.icon" width="24" height="24" :class="feature.iconColor" aria-hidden="true" />
+                        </div>
+                        <span class="font-mono text-xl font-bold tracking-tight lg:text-2xl text-dimmed/45 transition-colors group-hover:text-primary">
+                            {{ feature.number }}
+                        </span>
                     </div>
-                    <span class="font-mono text-4xl font-black tracking-[-0.08em] text-dimmed/45 transition-colors group-hover:text-primary">
-                        {{ feature.number }}
-                    </span>
-                </div>
-                <h3 class="mb-2 text-lg font-black">
-                    {{ feature.title }}
-                </h3>
-                <p class="text-sm text-muted">
-                    {{ feature.description }}
-                </p>
-            </UCard>
-        </div>
-
-        <div class="mt-8 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 font-mono text-xs font-bold tracking-wider text-muted">
-            <span>NOW COVERING</span>
-            <span class="h-px w-8 bg-default" />
-            <span class="text-highlighted">React</span>
-            <span>/</span>
-            <span class="text-highlighted">Vue</span>
-            <span>/</span>
-            <span class="text-highlighted">Node.js</span>
-            <span>/</span>
-            <span class="text-highlighted">TypeScript</span>
+                    <h3 class="mb-2 text-lg leading-[1.4] font-bold lg:text-xl">
+                        {{ feature.title }}
+                    </h3>
+                    <p class="text-sm text-muted">
+                        {{ feature.description }}
+                    </p>
+                </UiCardContent>
+            </UiCard>
         </div>
     </section>
 </template>
