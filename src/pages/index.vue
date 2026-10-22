@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import type { Props } from '@/pages/index.server'
+import HomeLatestContent from '@/pages/_home/HomeLatestContent.vue'
+import PodcastHero from '@/pages/_home/PodcastHero.vue'
 
 defineProps<Props>()
 </script>

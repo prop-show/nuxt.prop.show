@@ -5,6 +5,7 @@ import IconArrowRight from '~icons/tabler/arrow-right'
 import IconBrandGithub from '~icons/tabler/brand-github'
 import IconRoute from '~icons/tabler/route'
 import IconVideoOff from '~icons/tabler/video-off'
+import VideoPlatformButtons from '@/pages/videos/_components/PlatformButtons.vue'
 
 import { videoEpisode } from '@/utils/video'
 

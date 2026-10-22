@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { Video } from '@/content'
+import VideoCard from '@/pages/videos/_components/Card.vue'
 
 withDefaults(defineProps<{
     videos: Video[]

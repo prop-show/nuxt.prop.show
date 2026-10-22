@@ -32,6 +32,8 @@ scripts/          # 图标生成、视频抓取等构建/抓取脚本
 tests/            # vitest：内容、Markdown、端点和在线 SEO 校验
 ```
 
+模块专用组件与页面就近存放：`pages/videos/_components/`、`pages/news/_components/`、`pages/works/_components/`、`pages/about/_components/`、`pages/design-assets/_components/`、`pages/series/_components/`；首页使用 `pages/_home/`。这些组件使用显式导入，不注册为全局组件。Void 路由扫描忽略以下划线开头的文件和目录，因此不会生成额外页面。跨模块复用组件及 shadcn-vue 基础组件保留在 `src/components/`，继续自动导入；系列页复用的视频列表直接从视频模块导入。
+
 根目录没有另一套 `pages/`、`routes/` 或 `middleware/`；脚本按文件系统路径读写资源，应用模块导入用 `@/`。`src/auto-imports.d.ts`、`src/components.d.ts` 由 Vite 插件生成且不提交。
 
 ## 内容

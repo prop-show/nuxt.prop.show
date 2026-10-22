@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Creator, Work } from '@/content'
+import WorkCard from '@/pages/works/_components/Card.vue'
 
 const props = defineProps<{
     works: Work[]

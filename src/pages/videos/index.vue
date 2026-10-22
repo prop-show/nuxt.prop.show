@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import type { Props } from '@/pages/videos/index.server'
 import IconPlayerPlay from '~icons/tabler/player-play'
+import VideoArchiveFilters from '@/pages/videos/_components/ArchiveFilters.vue'
+import VideoHero from '@/pages/videos/_components/Hero.vue'
+import VideoList from '@/pages/videos/_components/List.vue'
 
 defineProps<Props>()
 </script>

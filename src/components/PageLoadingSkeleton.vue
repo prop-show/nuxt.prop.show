@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import HomePageSkeleton from '@/pages/_home/HomePageSkeleton.vue'
+
 const { path } = defineProps<{ path: string }>()
 const detail = computed(() => /^\/(?:videos|news|works)\/[^/]+\/?$/.test(path))
 </script>

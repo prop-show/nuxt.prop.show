@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { Props } from '@/pages/series/yisi.server'
 import IconRouteOff from '~icons/tabler/route-off'
+import SeriesYisiHero from '@/pages/series/_components/YisiHero.vue'
+import VideoList from '@/pages/videos/_components/List.vue'
 
 defineProps<Props>()
 </script>

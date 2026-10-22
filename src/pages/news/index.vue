@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { Props } from '@/pages/news/index.server'
 import IconHourglassEmpty from '~icons/tabler/hourglass-empty'
+import NewsHero from '@/pages/news/_components/Hero.vue'
+import NewsLine from '@/pages/news/_components/Line.vue'
 
 defineProps<Props>()
 </script>

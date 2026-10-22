@@ -3,6 +3,9 @@ import type { Props } from '@/pages/works/index.server'
 import IconAlertTriangle from '~icons/tabler/alert-triangle'
 import IconArchiveOff from '~icons/tabler/archive-off'
 import IconUserSearch from '~icons/tabler/user-search'
+import WorkArchiveFilters from '@/pages/works/_components/ArchiveFilters.vue'
+import WorkHero from '@/pages/works/_components/Hero.vue'
+import WorkList from '@/pages/works/_components/List.vue'
 
 defineProps<Props>()
 </script>
