@@ -1,11 +1,12 @@
 import { defineMiddleware } from 'void'
+import { site } from '@/config'
 import { creators } from '@/content'
 
 export default defineMiddleware(async (c, next) => {
     const url = new URL(c.req.url)
-    if (url.hostname === 'www.prop.show') {
-        url.hostname = 'prop.show'
-        url.protocol = 'https:'
+    if (url.hostname === `www.${new URL(site.url).hostname}`) {
+        url.hostname = new URL(site.url).hostname
+        url.protocol = new URL(site.url).protocol
         return c.redirect(url.toString(), 301)
     }
     const legacy = url.pathname.match(/^\/(videos|news|works)\/page\/(\d+)\/?$/)

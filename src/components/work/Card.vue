@@ -12,41 +12,43 @@ defineProps<{
 <template>
     <SiteLink
         :to="work.path"
-        class="group grid gap-5 border-b border-default px-1 py-7 outline-none transition-colors last:border-b-0 hover:bg-elevated/55 focus-visible:bg-elevated/55 sm:px-5 lg:grid-cols-[minmax(0,1fr)_14rem_2.5rem] lg:items-center"
+        class="group grid gap-5 border-b border-default px-1 py-7 outline-none transition-colors last:border-b-0 hover:bg-elevated/55 focus-visible:bg-elevated/55 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary sm:px-5 lg:grid-cols-[minmax(0,1fr)_14rem_1.25rem] lg:items-center"
     >
         <div class="min-w-0">
-            <div class="font-mono text-[10px] font-bold tracking-[0.14em] text-dimmed">
+            <div class="text-[13px] leading-6 text-muted">
                 {{ work.type }}
             </div>
-            <h3 class="mt-2  transition-colors group-hover:text-primary text-lg leading-[1.4] font-bold lg:text-xl">
+            <h3 class="mt-2 text-[22px] leading-[1.4] font-bold text-highlighted transition-colors group-hover:text-primary">
                 {{ work.title }}
             </h3>
-            <p class="mt-2 line-clamp-2 text-sm leading-6 text-muted">
+            <p class="mt-2 line-clamp-2 text-base leading-7 text-muted">
                 {{ work.description }}
             </p>
 
-            <TagList v-if="work.tags?.length" :tags="work.tags" :limit="4" class="mt-3" />
+            <div v-if="work.tags?.length" class="mt-3 flex flex-wrap gap-x-3 gap-y-1 text-[13px] leading-6 text-muted">
+                <span v-for="tag in work.tags.slice(0, 4)" :key="tag">{{ tag }}</span>
+            </div>
         </div>
 
         <div>
-            <div v-if="creator" class="mt-3 flex items-center gap-3">
+            <div v-if="creator" class="flex items-center gap-3">
                 <CreatorAvatar :creator="creator" />
                 <div class="min-w-0">
-                    <div class="truncate text-sm font-black">
+                    <div class="truncate text-sm font-medium text-highlighted">
                         {{ creator.name }}
                     </div>
-                    <div class="mt-0.5 truncate text-xs text-muted">
+                    <div class="mt-0.5 truncate text-[13px] leading-6 text-muted">
                         {{ creator.role }}
                     </div>
                 </div>
             </div>
-            <div v-else class="mt-3 flex items-center gap-2 text-sm font-bold text-muted">
+            <div v-else class="flex items-center gap-2 text-sm text-muted">
                 <IconUserQuestion aria-hidden="true" class="size-5" />
                 未知作者
             </div>
         </div>
 
-        <div class="hidden size-10 items-center justify-center border border-default text-muted transition-colors group-hover:border-primary group-hover:bg-primary group-hover:text-black lg:flex">
+        <div class="hidden text-muted transition-colors group-hover:text-primary lg:block">
             <IconArrowRight aria-hidden="true" class="size-5 transition-transform group-hover:translate-x-1" />
         </div>
     </SiteLink>

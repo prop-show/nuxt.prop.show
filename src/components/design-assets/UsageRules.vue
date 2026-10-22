@@ -33,27 +33,24 @@ const rules = [
 </script>
 
 <template>
-    <section class="my-20" aria-labelledby="usage-rules-heading">
-        <SectionHeading eyebrow="USAGE" title="使用规则" title-id="usage-rules-heading" />
+    <section class="my-12 md:my-16" aria-labelledby="usage-rules-heading">
+        <SectionHeading title="使用规则" title-id="usage-rules-heading" />
 
-        <div class="grid border-y border-default md:grid-cols-2">
+        <div class="grid gap-x-12 gap-y-8 md:grid-cols-2">
             <article
                 v-for="rule in rules"
                 :key="rule.number"
-                class="group border-b border-default p-6 transition-colors hover:bg-elevated/55 md:p-8 md:odd:border-r md:[&:nth-last-child(-n+2)]:border-b-0"
+                class="min-w-0"
             >
                 <div class="flex items-start justify-between">
-                    <span class="flex size-11 items-center justify-center border border-default bg-muted">
+                    <span class="flex size-8 items-center justify-center">
                         <component :is="rule.icon" class="size-5 text-primary" aria-hidden="true" />
                     </span>
-                    <span class="font-mono text-xl font-bold tracking-tight lg:text-2xl text-dimmed/35 transition-colors group-hover:text-primary">
-                        {{ rule.number }}
-                    </span>
                 </div>
-                <h3 class="mt-10 text-lg leading-[1.4] font-bold lg:text-xl">
+                <h3 class="mt-3 text-lg leading-[1.4] font-bold lg:text-xl">
                     {{ rule.title }}
                 </h3>
-                <p class="mt-3 max-w-xl text-sm leading-7 text-muted">
+                <p class="mt-3 max-w-xl text-base leading-8 text-muted">
                     {{ rule.description }}
                 </p>
             </article>

@@ -41,10 +41,10 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-    <section class="my-20" aria-labelledby="brand-colors-heading">
-        <SectionHeading eyebrow="CORE PALETTE" title="品牌主色" title-id="brand-colors-heading" stack-at="md">
+    <section class="my-12 md:my-16" aria-labelledby="brand-colors-heading">
+        <SectionHeading title="品牌主色" title-id="brand-colors-heading" stack-at="md">
             <p class="max-w-md text-sm leading-6 text-muted md:text-right">
-                仅用黄色强调，黑白区分层级。点击复制色值。
+                黄色用于强调，黑白构成基础表面。点击复制 HEX 色值。
             </p>
         </SectionHeading>
 
@@ -53,26 +53,24 @@ onBeforeUnmount(() => {
                 v-for="color in designAssets.colors"
                 :key="color.hex"
                 type="button"
-                class="group grid w-full border-b border-default text-left outline-none transition-colors last:border-b-0 hover:bg-elevated/55 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset md:grid-cols-[13rem_1fr_auto]"
+                class="group grid w-full border-b border-default text-left outline-none transition-colors last:border-b-0 hover:bg-elevated/55 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset sm:grid-cols-[6rem_minmax(0,1fr)_auto]"
                 :aria-label="`复制 ${color.name} 色值 ${color.hex}`"
                 @click="copyColor(color.hex)"
             >
                 <span
-                    class="flex min-h-36 items-end p-5 font-mono text-[10px] font-black tracking-[0.18em] md:min-h-40"
+                    class="flex min-h-20 items-end p-5 text-sm font-medium sm:min-h-32"
                     :style="{ backgroundColor: color.hex, color: color.textColor }"
-                >
-                    {{ color.channel }}
-                </span>
+                />
 
-                <span class="flex flex-col justify-center px-5 py-6 md:px-8">
-                    <span class="text-xl font-black">{{ color.name }}</span>
+                <span class="flex flex-col justify-center px-5 py-5">
+                    <span class="text-xl font-bold">{{ color.name }}</span>
                     <span class="mt-2 text-sm leading-6 text-muted">{{ color.description }}</span>
-                    <span class="mt-5 font-mono text-[10px] font-bold tracking-[0.16em] text-dimmed">
+                    <span class="mt-5 text-sm tabular-nums text-dimmed">
                         RGB {{ color.rgb }}
                     </span>
                 </span>
 
-                <span class="flex items-center justify-between gap-6 border-t border-default px-5 py-4 font-mono text-sm font-black md:border-t-0 md:px-8">
+                <span class="flex items-center justify-between gap-6 border-t border-default px-5 py-4 text-sm font-medium tabular-nums sm:border-t-0 sm:px-5">
                     {{ color.hex }}
                     <component
                         :is="copiedColor === color.hex ? IconCheck : IconCopy"
@@ -84,7 +82,7 @@ onBeforeUnmount(() => {
             </button>
         </div>
 
-        <p class="sr-only" aria-live="polite">
+        <p class="mt-3 min-h-6 text-sm text-muted" aria-live="polite">
             {{ copyStatus }}
         </p>
     </section>

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useRouter } from '@void/vue'
-import IconRoute from '~icons/tabler/route'
 import { resolveLink } from '@/navigation'
 
 const props = defineProps<{
@@ -28,54 +27,44 @@ function filterLink(type: 'category' | 'tag', value?: string) {
 }
 
 function applyFilter(type: 'category' | 'tag', value?: string) {
-    return router.visit(resolveLink(filterLink(type, value)))
+    return router.visit(resolveLink(filterLink(type, value)), { preserveScroll: true })
 }
 </script>
 
 <template>
-    <section class="my-16">
+    <section class="my-8 md:my-10">
         <SiteLink
             to="/series/yisi"
-            class="group mb-8 grid gap-5 border border-default bg-default/70 p-5 outline-none transition-colors hover:border-primary focus-visible:ring-2 focus-visible:ring-primary sm:p-7 md:grid-cols-[1fr_auto] md:items-center"
+            class="mb-4 inline-flex flex-wrap items-center gap-x-3 gap-y-1 py-2 text-sm outline-none transition-colors hover:text-primary focus-visible:ring-2 focus-visible:ring-primary"
         >
-            <div>
-                <div class="font-mono text-[10px] font-bold tracking-[0.2em] text-primary">
-                    FEATURED SERIES / {{ String(seriesCount).padStart(2, '0') }} EPISODES
-                </div>
-                <h2 class="mt-2 text-lg leading-[1.4] font-bold lg:text-xl">
-                    乙巳：从零构建完整产品
-                </h2>
-                <p class="mt-2 max-w-2xl text-sm leading-6 text-muted">
-                    依次学习 API、数据库、前端、登录与缓存。
-                </p>
-            </div>
-            <div class="flex size-12 items-center justify-center border border-default text-muted transition-colors group-hover:border-primary group-hover:bg-primary group-hover:text-black">
-                <IconRoute aria-hidden="true" class="size-6" />
-            </div>
+            <span class="min-w-0">
+                乙巳：从零构建完整产品
+            </span>
+            <span class="whitespace-nowrap text-[13px] text-muted">{{ seriesCount }} 集 →</span>
         </SiteLink>
 
-        <div class="border-y border-default">
-            <div class="grid gap-5 px-1 py-5 sm:px-5 lg:grid-cols-[8rem_1fr]">
-                <div class="meta-label">
-                    CHANNEL
+        <div>
+            <div class="flex flex-col gap-2 py-2 sm:flex-row sm:items-start sm:gap-4">
+                <div class="py-3 text-[13px] text-muted sm:shrink-0">
+                    分类
                 </div>
                 <div class="flex flex-wrap gap-2">
                     <button
                         type="button"
-                        class="border px-3 py-1.5 text-sm font-bold outline-none transition-colors focus-visible:ring-2 focus-visible:ring-primary"
+                        class="filter-control px-3 py-1.5 text-sm outline-none transition-colors focus-visible:ring-2 focus-visible:ring-primary"
                         :aria-pressed="!activeCategory"
-                        :class="!activeCategory ? 'border-primary bg-primary text-black' : 'border-default text-muted hover:border-primary hover:text-highlighted'"
+                        :class="!activeCategory ? 'bg-primary text-black' : 'text-muted hover:bg-elevated hover:text-highlighted'"
                         @click="applyFilter('category')"
                     >
-                        全部频道
+                        全部分类
                     </button>
                     <button
                         v-for="category in categories"
                         :key="category"
                         type="button"
-                        class="border px-3 py-1.5 text-sm font-bold outline-none transition-colors focus-visible:ring-2 focus-visible:ring-primary"
+                        class="filter-control px-3 py-1.5 text-sm outline-none transition-colors focus-visible:ring-2 focus-visible:ring-primary"
                         :aria-pressed="category === activeCategory"
-                        :class="category === activeCategory ? 'border-primary bg-primary text-black' : 'border-default text-muted hover:border-primary hover:text-highlighted'"
+                        :class="category === activeCategory ? 'bg-primary text-black' : 'text-muted hover:bg-elevated hover:text-highlighted'"
                         @click="applyFilter('category', category === activeCategory ? undefined : category)"
                     >
                         {{ category }}
@@ -83,38 +72,40 @@ function applyFilter(type: 'category' | 'tag', value?: string) {
                 </div>
             </div>
 
-            <div class="grid gap-5 border-t border-default px-1 py-5 sm:px-5 lg:grid-cols-[8rem_1fr]">
-                <div class="meta-label">
-                    TOPIC
-                </div>
-                <div class="flex flex-wrap gap-2">
+            <details class="group/tags">
+                <summary class="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 py-3 text-sm outline-none focus-visible:ring-2 focus-visible:ring-primary [&::-webkit-details-marker]:hidden">
+                    <span><span class="mr-3 text-[13px] text-muted">标签</span>{{ activeTag || '全部标签' }}</span>
+                    <span class="text-[13px] text-muted group-open/tags:hidden">展开标签</span>
+                    <span class="hidden text-[13px] text-muted group-open/tags:inline">收起标签</span>
+                </summary>
+                <div class="flex flex-wrap gap-2 pb-4">
                     <button
                         type="button"
-                        class="border px-2.5 py-1 font-mono text-[10px] font-bold tracking-wider outline-none transition-colors focus-visible:ring-2 focus-visible:ring-primary"
+                        class="filter-control px-2.5 py-1 text-[13px] outline-none transition-colors focus-visible:ring-2 focus-visible:ring-primary"
                         :aria-pressed="!activeTag"
-                        :class="!activeTag ? 'border-primary bg-primary text-black' : 'border-default text-toned hover:border-primary hover:text-highlighted'"
+                        :class="!activeTag ? 'bg-primary text-black' : 'text-muted hover:bg-elevated hover:text-highlighted'"
                         @click="applyFilter('tag')"
                     >
-                        ALL TAGS
+                        全部标签
                     </button>
                     <button
                         v-for="tag in tags"
                         :key="tag"
                         type="button"
-                        class="border px-2.5 py-1 font-mono text-[10px] font-bold tracking-wider outline-none transition-colors focus-visible:ring-2 focus-visible:ring-primary"
+                        class="filter-control px-2.5 py-1 text-[13px] outline-none transition-colors focus-visible:ring-2 focus-visible:ring-primary"
                         :aria-pressed="tag === activeTag"
-                        :class="tag === activeTag ? 'border-primary bg-primary text-black' : 'border-default text-toned hover:border-primary hover:text-highlighted'"
+                        :class="tag === activeTag ? 'bg-primary text-black' : 'text-muted hover:bg-elevated hover:text-highlighted'"
                         @click="applyFilter('tag', tag === activeTag ? undefined : tag)"
                     >
                         {{ tag }}
                     </button>
                 </div>
-            </div>
+            </details>
         </div>
 
-        <div class="mt-4 flex items-center justify-between gap-4 font-mono text-[10px] font-bold tracking-[0.16em] text-dimmed">
-            <span>{{ String(resultCount).padStart(2, '0') }} MATCHES</span>
-            <SiteLink v-if="activeCategory || activeTag" to="/videos" class="transition-colors hover:text-highlighted">
+        <div class="mt-4 flex items-center justify-between gap-4 text-sm text-muted">
+            <span>找到 {{ resultCount }} 条视频</span>
+            <SiteLink v-if="activeCategory || activeTag" preserve-scroll to="/videos" class="outline-none transition-colors hover:text-highlighted focus-visible:ring-2 focus-visible:ring-primary">
                 清除筛选
             </SiteLink>
         </div>

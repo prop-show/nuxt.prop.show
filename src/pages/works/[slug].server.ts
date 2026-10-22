@@ -1,7 +1,8 @@
 import type { ContentDocument, Creator, Work } from '@/content'
 import { HTTPException } from 'hono/http-exception'
-
 import { defineHandler, defineHead } from 'void'
+
+import { site } from '@/config'
 
 import { getContent, getCreator, renderContent } from '@/content'
 import { seoHead } from '@/utils/seo'
@@ -24,5 +25,5 @@ export const loader = defineHandler((c): Props => {
 export const head = defineHead<Props>((_c, { work }) => seoHead({
     title: work.title,
     description: work.description,
-    canonical: `https://prop.show${work.path}`,
+    canonical: `${site.url}${work.path}`,
 }))

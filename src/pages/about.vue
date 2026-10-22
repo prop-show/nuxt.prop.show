@@ -5,15 +5,13 @@ defineProps<Props>()
 </script>
 
 <template>
-    <main>
+    <main class="mx-auto max-w-5xl">
         <AboutHero />
-
-        <OurMission />
-
-        <Modules />
 
         <Creators variant="directory" />
 
-        <Stack />
+        <Modules />
+
+        <OurMission />
     </main>
 </template>

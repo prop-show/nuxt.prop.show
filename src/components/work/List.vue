@@ -13,20 +13,20 @@ const creatorsByKey = computed(() => new Map(
 </script>
 
 <template>
-    <section class="my-20">
-        <SectionHeading eyebrow="WORK ARCHIVE" title="团队作品">
-            <span class="section-count hidden sm:block">
-                {{ String(total).padStart(2, '0') }} WORKS
+    <section class="my-8 md:my-10">
+        <SectionHeading title="作品目录">
+            <span class="text-sm text-muted">
+                共 {{ total }} 件作品
             </span>
         </SectionHeading>
 
-        <div class="overflow-hidden border-y border-default">
+        <TransitionGroup name="archive" tag="div" class="overflow-hidden border-y border-default">
             <WorkCard
                 v-for="work in works"
                 :key="work.stem"
                 :work
                 :creator="creatorsByKey.get(work.author)"
             />
-        </div>
+        </TransitionGroup>
     </section>
 </template>

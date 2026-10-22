@@ -1,61 +1,47 @@
 <script lang="ts" setup>
 import type { News } from '@/content'
-import IconAntennaBars5 from '~icons/tabler/antenna-bars-5'
-import IconArrowRight from '~icons/tabler/arrow-right'
+import { site } from '@/config'
+import { contentDate } from '@/utils/content-date'
 
 defineProps<{
     news: News[]
     total: number
-    offset: number
 }>()
 
 function formatDate(date: string) {
-    const value = new Date(date.replace(' ', 'T'))
-
-    return {
-        date: new Intl.DateTimeFormat('zh-CN', {
-            month: '2-digit',
-            day: '2-digit',
-        }).format(value),
-        year: value.getFullYear(),
-    }
+    return new Intl.DateTimeFormat('zh-CN', {
+        timeZone: site.timeZone,
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+    }).format(contentDate(date))
 }
 </script>
 
 <template>
-    <section class="my-20">
-        <SectionHeading eyebrow="NEWS" title="全部速报">
-            <IconAntennaBars5 aria-hidden="true" class="hidden size-9 text-primary sm:block" />
-        </SectionHeading>
+    <section class="my-8 md:my-12" aria-label="速报列表">
+        <div class="mb-4 text-sm text-muted">
+            共 {{ total }} 条速报
+        </div>
 
-        <div class="overflow-hidden border-y border-default">
+        <div>
             <SiteLink
-                v-for="(item, index) in news"
+                v-for="item in news"
                 :key="item.stem"
                 :to="item.path"
-                class="group grid gap-5 border-b border-default px-1 py-6 outline-none transition-colors last:border-b-0 hover:bg-elevated/55 focus-visible:bg-elevated/55 sm:px-5 md:grid-cols-[8rem_1fr_2.5rem] md:items-center"
+                class="content-link group block border-b border-default px-1 py-7 outline-none transition-colors last:border-b-0 hover:bg-elevated/55 focus-visible:bg-elevated/55 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary sm:px-5"
             >
-                <time :datetime="item.date" class="flex items-baseline gap-2 font-mono">
-                    <span class="text-lg font-black">{{ formatDate(item.date).date }}</span>
-                    <span class="text-[10px] font-bold text-dimmed">{{ formatDate(item.date).year }}</span>
+                <time :datetime="contentDate(item.date)?.toISOString()" class="block text-[13px] leading-6 text-muted tabular-nums">
+                    {{ formatDate(item.date) }}
                 </time>
 
-                <div class="min-w-0">
-                    <div v-if="offset === 0 && index === 0" class="mb-2">
-                        <span class="bg-primary px-2 py-0.5 font-mono text-[9px] font-black tracking-wider text-black">
-                            LATEST
-                        </span>
-                    </div>
-                    <h3 class="transition-colors group-hover:text-primary text-lg leading-[1.4] font-bold lg:text-xl">
+                <div class="mt-2 min-w-0">
+                    <h3 class="text-[22px] leading-[1.4] font-bold text-highlighted transition-colors group-hover:text-primary">
                         {{ item.title }}
                     </h3>
-                    <p v-if="item.description" class="mt-2 line-clamp-2 text-sm leading-6 text-muted">
+                    <p v-if="item.description" class="mt-2 line-clamp-2 text-base leading-7 text-muted">
                         {{ item.description }}
                     </p>
-                </div>
-
-                <div class="hidden size-10 items-center justify-center border border-default text-muted transition-all duration-300 group-hover:border-primary group-hover:bg-primary group-hover:text-black md:flex">
-                    <IconArrowRight aria-hidden="true" class="size-5 transition-transform group-hover:translate-x-0.5" />
                 </div>
             </SiteLink>
         </div>

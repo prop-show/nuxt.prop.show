@@ -6,7 +6,7 @@ prop.show 由前端开发者共同维护，分享真实项目里的实践、工�
 
 ## 技术栈
 
-Void 1.1.11 + Vue 3 + shadcn-vue + Tailwind CSS 4，部署到 Cloudflare Workers。界面组件通过官方 `shadcn-vue` CLI 安装至 `src/components/ui/`，交互基于 Reka UI；`components.json` 配置组件与工具路径。Tailwind、Vue 自动导入和组件注册使用独立 Vite 插件。页面通过 Void 的 loader 与 head 在请求时生成 HTML，分页、筛选走查询参数（例如 `/videos?page=2&category=编程技巧`）。仓库只有 Void 实现，没有 Nuxt 应用或迁移备份。
+Void 1.1.11 + Vue 3 + shadcn-vue + Tailwind CSS 4，部署到 Cloudflare Workers。界面组件通过官方 `shadcn-vue` CLI 安装至 `src/components/ui/`，业务组件优先使用 `src/components/ui/` 中的 shadcn-vue 组件；shadcn-vue 已提供的组件不在业务层直接使用 Reka UI。新增或更新组件通过官方 CLI（例如 `pnpm dlx shadcn-vue@latest add pagination`），不手写替代实现。底层交互基于 Reka UI；`components.json` 配置组件与工具路径。Tailwind、Vue 自动导入和组件注册使用独立 Vite 插件。页面通过 Void 的 loader 与 head 在请求时生成 HTML，分页、筛选走查询参数（例如 `/videos?page=2&category=编程技巧`）。仓库只有 Void 实现，没有 Nuxt 应用或迁移备份。
 
 内容源是 `content/` 下的 Markdown/YAML，由 Vite 插件调用 `scripts/generate-content.ts` 校验并通过 Comark、Shiki 与 `@comark/html` 渲染，通过 `virtual:prop-content` 虚拟模块直接参与打包，不生成中间文件。Worker 只打包元数据和 HTML，不在运行时解析 Markdown；浏览器只接收 loader 返回的数据，列表不包含正文。`::note`、`::alert`、`::poetry` 内容块保留语义样式，代码块支持明暗主题语法高亮。**新增或修改内容后需要重新构建部署。**
 
@@ -53,7 +53,7 @@ tests/            # vitest：内容、Markdown、端点和在线 SEO 校验
 ### 页面与端点
 
 - `/`、`/about`、`/design-assets`、`/series/yisi`（乙巳系列，按集数排序）
-- `/videos`、`/news`、`/works`：查询参数分页与筛选，每页 10 条（`src/content.ts` 的 `pageSize`）
+- `/videos`、`/news`、`/works`：查询参数分页与筛选，每页条数统一由 `src/config.ts` 的 `contentConfig.pageSize` 配置（`src/content.ts` 导出供内容模块使用）
 - `/videos/:slug`、`/news/:slug`、`/works/:slug`
 - `/rss.xml`、`/robots.txt`、`/sitemap.xml`
 - `/*/page/:n` → `/*?page=n` 的 301 重定向，`www.prop.show` → `prop.show` 的 301
@@ -129,4 +129,4 @@ HTTPS 在 Cloudflare 域名设置中开启 Always Use HTTPS；www 主域名跳�
 
 ## 界面规范
 
-改动 UI 前先读 `.agents/skills/prop-show-design/SKILL.md` 及其 `references/design-system.md`。站点配置在 `src/site-config.ts`，设计令牌和自定义类在 `src/assets/css/main.css`，两者是视觉的唯一来源。主题跟随系统偏好，也可手动切换（`vueuse-color-scheme` 存储在 localStorage）。
+改动 UI 前先读 `.agents/skills/prop-show-design/SKILL.md` 及其 `references/design-system.md`。共享配置在 `src/config.ts`：站点名称和地址、语言与时区、每页条数与首页展示数量、社交账号、主题存储键、OG 图片规格、XML 缓存、开发端口。该文件不导入 Vue 或图标，可供应用、Void/Vite 配置和 Node 脚本共用。系列配置单独放在 `src/series-config.ts`，以路由 slug 为键，包含名称、路径、标题、描述和 OG 标签；新增系列时在此添加条目并实现对应页面，OG 图片会自动遍历生成。带图标的导航、社交链接和品牌资产展示配置保留在 `src/site-config.ts`；设计令牌和自定义类在 `src/assets/css/main.css`。部署、ISR 和查询参数缓存规则仍由 `void.config.ts` 管理。主题跟随系统偏好，也可手动切换（`vueuse-color-scheme` 存储在 localStorage）。

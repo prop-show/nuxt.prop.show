@@ -1,9 +1,11 @@
 import type { ContentDocument, Video } from '@/content'
 import { HTTPException } from 'hono/http-exception'
-
 import { defineHandler, defineHead } from 'void'
 
+import { site } from '@/config'
 import { getContent, renderContent, videos } from '@/content'
+
+import { seriesConfig } from '@/series-config'
 import { seoHead } from '@/utils/seo'
 import { videoEpisode, videoLabel } from '@/utils/video'
 
@@ -31,7 +33,7 @@ export const loader = defineHandler((c): Props => {
         previousVideo: sequence[index - 1] ?? null,
         nextVideo: sequence[index + 1] ?? null,
         pending: false,
-        isYisiSeries: video.series === '乙巳',
+        isYisiSeries: video.series === seriesConfig.yisi.name,
         displayEpisode: videoEpisode(video),
         platforms: [
             { key: 'bilibili', name: 'BiliBili' },
@@ -47,6 +49,6 @@ export const head = defineHead<Props>((_c, { video }) => {
     return seoHead({
         title,
         description: video.series ? `「${title}」：${description}` : description,
-        canonical: `https://prop.show${video.path}`,
+        canonical: `${site.url}${video.path}`,
     })
 })

@@ -6,21 +6,21 @@ const { designAssets } = siteConfig
 </script>
 
 <template>
-    <section class="my-20" aria-labelledby="logo-assets-heading">
-        <SectionHeading eyebrow="LOGO SYSTEM" title="Logo 版本" title-id="logo-assets-heading" stack-at="md">
+    <section class="my-12 md:my-16" aria-labelledby="logo-assets-heading">
+        <SectionHeading title="Logo 版本" title-id="logo-assets-heading" stack-at="md">
             <p class="max-w-md text-sm leading-6 text-muted md:text-right">
                 按背景选择版本。
             </p>
         </SectionHeading>
 
-        <div class="grid border-y border-default lg:grid-cols-2">
+        <div class="grid gap-8 md:grid-cols-2">
             <article
-                v-for="(logo, index) in designAssets.logos"
+                v-for="logo in designAssets.logos"
                 :key="logo.key"
-                class="border-b border-default last:border-b-0 lg:border-b-0 lg:odd:border-r"
+                class="min-w-0"
             >
                 <div
-                    class="flex min-h-80 items-center justify-center border-b border-default p-10 sm:min-h-96"
+                    class="flex min-h-56 items-center justify-center border border-default p-8 sm:min-h-64"
                     :style="{ backgroundColor: logo.surfaceColor }"
                 >
                     <img
@@ -28,30 +28,27 @@ const { designAssets } = siteConfig
                         width="200"
                         height="200"
                         :alt="`prop.show ${logo.label} Logo`"
-                        class="size-44 sm:size-52"
+                        class="size-36 sm:size-40"
                     >
                 </div>
 
-                <div class="p-6 sm:p-8">
+                <div class="py-5">
                     <div class="flex items-start justify-between gap-4">
                         <div>
-                            <div class="font-mono text-[10px] font-bold tracking-[0.2em] text-dimmed">
-                                {{ String(index + 1).padStart(2, '0') }} / {{ logo.channel }}
-                            </div>
-                            <h3 class="mt-2 text-lg leading-[1.4] font-bold lg:text-xl">
+                            <h3 class="text-xl font-bold">
                                 {{ logo.label }}
                             </h3>
                         </div>
-                        <span class="font-mono text-[10px] font-bold tracking-[0.14em] text-dimmed">
+                        <span class="text-sm text-dimmed">
                             200 × 200
                         </span>
                     </div>
 
-                    <div class="mt-6 grid gap-2 sm:grid-cols-2">
+                    <div class="mt-5 grid gap-3 sm:grid-cols-2">
                         <a
                             :href="logo.asset"
                             :download="logo.asset.slice(1)"
-                            class="group flex min-h-11 items-center justify-between border border-default px-4 text-sm font-black outline-none transition-colors hover:border-primary hover:bg-elevated/70 focus-visible:ring-2 focus-visible:ring-primary"
+                            class="group flex min-h-12 items-center justify-between border border-default px-4 text-sm font-medium outline-none transition-colors hover:border-primary hover:bg-elevated/70 focus-visible:ring-2 focus-visible:ring-primary"
                         >
                             下载带底 SVG
                             <IconDownload aria-hidden="true" class="size-4 text-muted transition-transform group-hover:translate-y-0.5 group-hover:text-primary" />
@@ -59,7 +56,7 @@ const { designAssets } = siteConfig
                         <a
                             :href="logo.transparentAsset"
                             :download="logo.transparentAsset.slice(1)"
-                            class="group flex min-h-11 items-center justify-between border border-default px-4 text-sm font-black outline-none transition-colors hover:border-primary hover:bg-elevated/70 focus-visible:ring-2 focus-visible:ring-primary"
+                            class="group flex min-h-12 items-center justify-between border border-default px-4 text-sm font-medium outline-none transition-colors hover:border-primary hover:bg-elevated/70 focus-visible:ring-2 focus-visible:ring-primary"
                         >
                             下载透明 SVG
                             <IconDownload aria-hidden="true" class="size-4 text-muted transition-transform group-hover:translate-y-0.5 group-hover:text-primary" />

@@ -37,6 +37,7 @@
     /* Separate namespaces preserve text-muted as a foreground, including /opacity. */
     --text-color-default: var(--foreground);
     --text-color-highlighted: var(--foreground-highlighted);
+    --text-color-primary: var(--primary-text);
     --text-color-muted: var(--muted-foreground);
     --text-color-dimmed: var(--foreground-dimmed);
     --text-color-toned: var(--foreground-toned);
@@ -76,7 +77,8 @@
     --card-foreground: var(--foreground);
     --popover: var(--background);
     --popover-foreground: var(--foreground);
-    --primary: var(--color-yellow-500);
+    --primary: #F0DB4F;
+    --primary-text: #806400;
     --primary-foreground: var(--color-black);
     --secondary: var(--color-neutral-100);
     --secondary-foreground: var(--color-neutral-900);
@@ -90,9 +92,12 @@
     --input: var(--border);
     --ring: var(--primary);
     --radius: 0.4rem;
+    --motion-fast: 160ms;
+    --motion-standard: 240ms;
+    --motion-ease: cubic-bezier(0.2, 0, 0, 1);
 
     --foreground-highlighted: var(--color-neutral-900);
-    --foreground-dimmed: var(--color-neutral-400);
+    --foreground-dimmed: var(--color-neutral-500);
     --foreground-toned: var(--color-neutral-600);
     --foreground-inverted: var(--color-white);
     --surface-elevated: var(--color-neutral-100);
@@ -111,7 +116,8 @@
     --background: var(--color-neutral-900);
     --foreground: var(--color-neutral-200);
     --popover: var(--color-neutral-800);
-    --primary: var(--color-yellow-400);
+    --primary: #F0DB4F;
+    --primary-text: var(--primary);
     --secondary: var(--color-neutral-800);
     --secondary-foreground: var(--color-white);
     --muted: var(--color-neutral-800);
@@ -123,7 +129,7 @@
     --border: var(--color-neutral-800);
 
     --foreground-highlighted: var(--color-white);
-    --foreground-dimmed: var(--color-neutral-500);
+    --foreground-dimmed: var(--color-neutral-400);
     --foreground-toned: var(--color-neutral-300);
     --foreground-inverted: var(--color-neutral-900);
     --surface-elevated: var(--color-neutral-800);
@@ -158,8 +164,113 @@ html.dark {
 body {
     min-height: 100svh;
     background-color: var(--ui-bg);
-    background-image: url('/texture.png');
-    transition: background-color 200ms ease-in;
+    transition: background-color var(--motion-fast) var(--motion-ease);
+}
+
+/* Shared interaction timing; content never waits for an entrance animation. */
+@layer utilities {
+    .transition-colors,
+    .transition-transform,
+    .transition-opacity,
+    .transition-all {
+        transition-duration: var(--motion-fast);
+        transition-timing-function: var(--motion-ease);
+    }
+}
+
+.motion-button,
+.filter-control {
+    transition-property: color, background-color, border-color, opacity, transform;
+    transition-duration: var(--motion-fast);
+    transition-timing-function: var(--motion-ease);
+}
+
+.motion-button:active:not(:disabled):not([aria-disabled='true']),
+.filter-control:active {
+    transform: scale(0.97);
+}
+
+.filter-control {
+    min-height: 44px;
+}
+
+.nav-indicator {
+    transition: transform var(--motion-fast) var(--motion-ease);
+}
+
+.content-ready-enter-active {
+    transition: opacity 150ms var(--motion-ease);
+}
+
+.content-ready-enter-from {
+    opacity: 0.85;
+}
+
+.content-link:active {
+    background-color: var(--surface-elevated);
+}
+
+[data-slot='sheet-content'] {
+    --sheet-x: 0;
+    --sheet-y: 0;
+    animation: sheet-enter var(--motion-standard) var(--motion-ease);
+}
+
+[data-slot='sheet-content'][data-side='top'] { --sheet-y: -16px; }
+[data-slot='sheet-content'][data-side='bottom'] { --sheet-y: 16px; }
+[data-slot='sheet-content'][data-side='left'] { --sheet-x: -16px; }
+[data-slot='sheet-content'][data-side='right'] { --sheet-x: 16px; }
+
+[data-slot='sheet-content'][data-state='closed'] {
+    animation: sheet-exit var(--motion-fast) var(--motion-ease);
+    pointer-events: none;
+}
+
+[data-slot='sheet-overlay'] {
+    animation: overlay-enter var(--motion-standard) var(--motion-ease);
+}
+
+[data-slot='sheet-overlay'][data-state='closed'] {
+    animation: overlay-exit var(--motion-fast) var(--motion-ease);
+}
+
+@keyframes sheet-enter {
+    from { opacity: 0; transform: translate(var(--sheet-x), var(--sheet-y)); }
+    to { opacity: 1; transform: translate(0, 0); }
+}
+
+@keyframes sheet-exit {
+    to { opacity: 0; transform: translate(var(--sheet-x), var(--sheet-y)); }
+}
+
+@keyframes overlay-enter {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes overlay-exit {
+    to { opacity: 0; }
+}
+
+.archive-move {
+    transition: transform var(--motion-standard) var(--motion-ease);
+}
+
+/* No enter/leave fade: results are readable immediately, including on first load. */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0s !important;
+        scroll-behavior: auto !important;
+    }
+
+    .motion-button:active,
+    .filter-control:active {
+        transform: none !important;
+    }
 }
 
 /* 共享的 42px 细网格底纹（hero / 详情页头部），配合 absolute inset-0 + opacity-* 使用。 */

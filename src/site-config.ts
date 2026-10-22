@@ -11,10 +11,9 @@ import IconBrandTypescript from '~icons/tabler/brand-typescript'
 import IconBrandVue from '~icons/tabler/brand-vue'
 import IconBrandYoutube from '~icons/tabler/brand-youtube'
 import IconRss from '~icons/tabler/rss'
+import { accounts } from './config'
 
 export const siteConfig = {
-    paginationPageSize: 10,
-
     platforms: [
         { key: 'bilibili', name: 'BiliBili', icon: IconBrandBilibili },
         { key: 'douyin', name: '抖音', icon: IconBrandTiktok },
@@ -22,15 +21,17 @@ export const siteConfig = {
     ],
 
     socials: [
-        { href: 'https://github.com/prop-show', platform: 'GitHub', icon: IconBrandGithub },
-        { href: 'https://space.bilibili.com/104376935', platform: '哔哩哔哩', icon: IconBrandBilibili },
-        { href: 'https://www.youtube.com/@PropShowFM', platform: 'YouTube', icon: IconBrandYoutube },
+        { href: `https://github.com/${accounts.github}`, platform: 'GitHub', icon: IconBrandGithub },
+        { href: `https://space.bilibili.com/${accounts.bilibili}`, platform: '哔哩哔哩', icon: IconBrandBilibili },
+        { href: `https://www.youtube.com/@${accounts.youtube}`, platform: 'YouTube', icon: IconBrandYoutube },
         { href: '/rss.xml', platform: 'RSS', icon: IconRss },
     ],
 
     navigationLinks: [
         { label: '首页', to: '/' },
         { label: '视频', to: '/videos' },
+        { label: '速报', to: '/news' },
+        { label: '作品', to: '/works' },
         { label: '关于我们', to: '/about' },
     ],
 
@@ -61,7 +62,7 @@ export const siteConfig = {
                 channel: 'PRIMARY',
                 hex: '#F0DB4F',
                 rgb: '240 219 79',
-                description: '标志、主要交互与重点信息',
+                description: '标志、主要按钮与重点色块；浅色背景上的强调文字使用深黄色以保证对比度。',
                 textColor: '#000000',
             },
             {

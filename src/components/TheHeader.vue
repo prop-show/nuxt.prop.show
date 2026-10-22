@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useRouter } from '@void/vue'
-import IconArrowRight from '~icons/tabler/arrow-right'
 import IconMenu2 from '~icons/tabler/menu-2'
 import { siteConfig } from '@/site-config'
 
@@ -22,8 +21,8 @@ function isActive(to?: string) {
 <template>
     <header class="relative z-40 border-b border-default">
         <div class="flex min-h-18 items-center gap-4">
-            <SiteLink to="/" class="group flex shrink-0 items-center gap-3 outline-none focus-visible:ring-2 focus-visible:ring-primary">
-                <span class="flex size-10 items-center justify-center border border-default bg-default transition-colors group-hover:border-primary">
+            <SiteLink to="/" aria-label="Prop.show — 首页" class="flex shrink-0 items-center gap-2.5 outline-none focus-visible:ring-2 focus-visible:ring-primary">
+                <span class="flex size-9 items-center justify-center">
                     <img
                         src="/prop-light-transparent.svg" alt=""
                         width="34" height="34"
@@ -35,41 +34,27 @@ function isActive(to?: string) {
                         class="hidden dark:block"
                     >
                 </span>
-                <div>
-                    <div class="font-mono text-sm font-black tracking-[0.08em]">
-                        PROP.SHOW
-                    </div>
-                    <div class="mt-0.5 flex items-center gap-2 font-mono text-[9px] font-bold tracking-[0.16em] text-dimmed">
-                        <span class="size-1.5 animate-pulse rounded-full bg-primary motion-reduce:animate-none" />
-                        ON AIR
-                    </div>
-                </div>
+                <span class="text-xl font-black tracking-tight text-highlighted">prop.show</span>
             </SiteLink>
 
             <div class="flex-1" />
 
-            <nav class="hidden items-stretch self-stretch md:flex" aria-label="主要导航">
+            <nav class="hidden items-center gap-1 md:flex" aria-label="主要导航">
                 <SiteLink
-                    v-for="(link, index) in navigationLinks"
+                    v-for="link in navigationLinks"
                     :key="link.label"
                     :to="link.to"
-                    class="group relative flex min-w-20 items-center justify-center gap-2 px-3 font-bold outline-none transition-colors hover:bg-elevated/55 focus-visible:bg-elevated/55 lg:min-w-24 lg:px-4"
-                    :class="isActive(link.to) ? 'text-highlighted' : 'text-muted'"
+                    :aria-current="isActive(link.to) ? 'page' : undefined"
+                    class="flex min-h-11 items-center px-3 text-sm font-medium outline-none transition-colors hover:text-highlighted focus-visible:ring-2 focus-visible:ring-primary lg:px-4"
+                    :class="isActive(link.to) ? 'font-bold text-highlighted underline decoration-primary decoration-2 underline-offset-8' : 'text-muted'"
                 >
-                    <span class="font-mono text-[9px] font-bold tracking-[0.12em] text-dimmed">
-                        {{ String(index + 1).padStart(2, '0') }}
-                    </span>
-                    <span class="text-sm">{{ link.label }}</span>
-                    <span
-                        class="absolute inset-x-3 bottom-0 h-0.5 origin-left bg-primary transition-transform duration-300"
-                        :class="isActive(link.to) ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'"
-                    />
+                    {{ link.label }}
                 </SiteLink>
             </nav>
 
             <div class="flex items-center gap-2">
                 <ColorModeButton
-                    class="size-10 justify-center rounded-none border border-default hover:border-primary"
+                    class="size-11 justify-center"
                 />
 
                 <UiSheet
@@ -79,7 +64,7 @@ function isActive(to?: string) {
                         <UiButton
                             variant="ghost"
                             aria-label="打开导航菜单"
-                            class="size-10 justify-center rounded-none border border-default hover:border-primary md:hidden"
+                            class="size-11 justify-center md:hidden"
                         >
                             <IconMenu2 aria-hidden="true" />
                         </UiButton>
@@ -88,27 +73,21 @@ function isActive(to?: string) {
                     <UiSheetContent side="top">
                         <UiSheetHeader>
                             <UiSheetTitle>站点导航</UiSheetTitle>
-                            <UiSheetDescription>首页、视频与关于我们</UiSheetDescription>
+                            <UiSheetDescription>首页、视频、速报、作品与关于我们</UiSheetDescription>
                         </UiSheetHeader>
 
-                        <div class="mx-auto w-full max-w-6xl px-4 pb-5">
-                            <nav class="grid sm:grid-cols-2" aria-label="移动端导航">
+                        <div class="mx-auto w-full max-w-6xl px-4 pb-5 sm:px-6 lg:px-8">
+                            <nav class="flex flex-col gap-1" aria-label="移动端导航">
                                 <SiteLink
-                                    v-for="(link, index) in navigationLinks"
+                                    v-for="link in navigationLinks"
                                     :key="link.label"
                                     :to="link.to"
-                                    class="group flex items-center justify-between border-b border-default p-4 outline-none transition-colors hover:bg-elevated/55 focus-visible:bg-elevated/55 sm:odd:border-r"
+                                    :aria-current="isActive(link.to) ? 'page' : undefined"
+                                    class="flex min-h-12 items-center px-3 text-base outline-none transition-colors hover:bg-elevated/55 focus-visible:ring-2 focus-visible:ring-primary"
+                                    :class="isActive(link.to) ? 'font-bold text-primary' : 'text-highlighted'"
                                     @click="mobileMenuOpen = false"
                                 >
-                                    <div class="flex items-center gap-4">
-                                        <span class="font-mono text-xs font-bold text-dimmed">
-                                            {{ String(index + 1).padStart(2, '0') }}
-                                        </span>
-                                        <span class="text-lg font-black" :class="{ 'text-primary': isActive(link.to) }">
-                                            {{ link.label }}
-                                        </span>
-                                    </div>
-                                    <IconArrowRight aria-hidden="true" class="size-5 text-muted transition-transform group-hover:translate-x-1" />
+                                    {{ link.label }}
                                 </SiteLink>
                             </nav>
                         </div>

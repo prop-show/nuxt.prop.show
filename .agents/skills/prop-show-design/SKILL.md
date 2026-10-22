@@ -5,7 +5,7 @@ description: Maintain the prop.show visual system when creating, redesigning, re
 
 # Prop.show Design
 
-Keep new UI recognizably prop.show while allowing the composition to respond to its content. Enforce the brand fundamentals strictly; do not force every component into the same layout.
+Build prop.show as an editorial technology publication. Preserve the logo, yellow brand accent, real content and accessible behavior; let composition respond to page responsibilities. The v2 reference replaces the old broadcast/archive decoration requirements.
 
 ## Workflow
 
@@ -18,7 +18,7 @@ Keep new UI recognizably prop.show while allowing the composition to respond to 
 3. State the component's job in one sentence and classify it as a hero, archive/list, directory/card, status/action panel, navigation/shell, loading/empty state, or standalone surface.
 4. Define its real content, primary action, secondary information, and required states before choosing a layout.
 5. Reuse the nearest established pattern and semantic tokens. Vary the composition only when the content hierarchy requires it.
-6. Implement the smallest focused component that fits the existing Void, Vue, Nuxt UI, Tailwind, and Tabler Icon conventions.
+6. Implement the smallest focused component that fits the existing Void, Vue, shadcn-vue, Tailwind CSS 4, and Tabler conventions.
 7. Run the design review checklist from the reference before finishing.
 
 ## Decision Rules
@@ -32,7 +32,7 @@ Keep new UI recognizably prop.show while allowing the composition to respond to 
 
 ## Implementation Discipline
 
-- Use semantic Nuxt UI classes instead of introducing a parallel palette.
+- Use the existing semantic Tailwind tokens and shadcn-vue components instead of introducing a parallel palette.
 - Use Composition API with `<script setup lang="ts">` for Vue components.
 - Reuse existing site config, content types, components, and icon families before adding abstractions or dependencies.
 - Keep route pages as composition surfaces; move a reusable visual section into a focused component.

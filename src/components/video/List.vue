@@ -15,15 +15,15 @@ withDefaults(defineProps<{
 </script>
 
 <template>
-    <section class="my-20">
-        <SectionHeading :eyebrow="eyebrow" :title="title">
-            <span class="section-count hidden sm:block">
-                {{ String(total).padStart(2, '0') }} EPISODES
+    <section class="my-8 md:my-10">
+        <SectionHeading :title="title">
+            <span class="text-sm text-muted">
+                共 {{ total }} 集视频
             </span>
         </SectionHeading>
 
-        <div class="overflow-hidden border-y border-default">
+        <TransitionGroup name="archive" tag="div" class="overflow-hidden border-y border-default">
             <VideoCard v-for="video in videos" :key="video.stem" :video="video" :numbering />
-        </div>
+        </TransitionGroup>
     </section>
 </template>
