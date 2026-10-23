@@ -1,7 +1,8 @@
 import type { ContentDocument, News } from '@/content'
 import { HTTPException } from 'hono/http-exception'
-
 import { defineHandler, defineHead } from 'void'
+
+import { site } from '@/config'
 
 import { contentDate, getContent, news, renderContent } from '@/content'
 import { seoHead } from '@/utils/seo'
@@ -25,8 +26,8 @@ export const loader = defineHandler((c): Props => {
         signalNumber: String(news.length - news.findIndex(item => item.path === letter.path)).padStart(2, '0'),
         publishedAt: value
             ? {
-                    date: new Intl.DateTimeFormat('zh-CN', { timeZone: 'Asia/Shanghai', year: 'numeric', month: '2-digit', day: '2-digit' }).format(value),
-                    time: new Intl.DateTimeFormat('zh-CN', { timeZone: 'Asia/Shanghai', hour: '2-digit', minute: '2-digit', hour12: false }).format(value),
+                    date: new Intl.DateTimeFormat(site.locale, { timeZone: site.timeZone, year: 'numeric', month: '2-digit', day: '2-digit' }).format(value),
+                    time: new Intl.DateTimeFormat(site.locale, { timeZone: site.timeZone, hour: '2-digit', minute: '2-digit', hour12: false }).format(value),
                 }
             : { date: '--', time: '--' },
     }
@@ -35,5 +36,5 @@ export const loader = defineHandler((c): Props => {
 export const head = defineHead<Props>((_c, { letter }) => seoHead({
     title: letter.title,
     description: letter.description,
-    canonical: `https://prop.show${letter.path}`,
+    canonical: `${site.url}${letter.path}`,
 }))

@@ -9,101 +9,51 @@ defineProps<Props>()
 </script>
 
 <template>
-    <main>
+    <main class="mx-auto max-w-3xl">
         <div class="my-8 md:my-12">
-            <SiteLink to="/news" class="group inline-flex items-center gap-2 font-mono text-xs font-bold tracking-[0.16em] text-muted transition-colors hover:text-highlighted">
+            <SiteLink to="/news" class="group inline-flex items-center gap-2 text-sm font-medium tracking-[0.16em] text-muted transition-colors hover:text-highlighted">
                 <IconArrowLeft aria-hidden="true" class="size-4 transition-transform group-hover:-translate-x-1" />
                 返回速报
             </SiteLink>
         </div>
 
-        <section v-if="pending" class="overflow-hidden border border-default">
-            <div class="grid lg:grid-cols-[1fr_15rem]">
-                <div class="space-y-6 p-6 sm:p-10 lg:p-12">
-                    <UiSkeleton class="h-3 w-36" />
-                    <UiSkeleton class="h-9 w-4/5 sm:h-11 lg:h-13" />
-                    <UiSkeleton class="h-5 w-48" />
-                </div>
-                <UiSkeleton class="min-h-48 rounded-none lg:min-h-full" />
+        <section v-if="pending" aria-label="正在加载速报" class="mb-12">
+            <UiSkeleton class="h-9 w-4/5 sm:h-10 lg:h-13" />
+            <div class="mt-4 flex flex-wrap gap-3">
+                <UiSkeleton class="h-4 w-36" />
+                <UiSkeleton class="h-4 w-24" />
+            </div>
+            <div class="mt-8 space-y-4">
+                <UiSkeleton class="h-5 w-full" />
+                <UiSkeleton class="h-5 w-full" />
+                <UiSkeleton class="h-5 w-5/6" />
+                <UiSkeleton class="h-5 w-full" />
             </div>
         </section>
 
         <template v-else-if="letter">
-            <header class="overflow-hidden border border-default bg-default/85 shadow-sm">
-                <div class="grid lg:grid-cols-[1fr_15rem]">
-                    <section class="relative overflow-hidden p-6 sm:p-10 lg:p-12">
-                        <div class="grid-texture absolute inset-0 opacity-45" />
+            <header>
+                <h1 class="text-[1.75rem] leading-[1.3] font-bold tracking-[-0.02em] sm:text-[2rem] lg:text-[2.5rem]">
+                    {{ letter.title }}
+                </h1>
 
-                        <div class="relative z-10 flex flex-wrap items-center gap-3 font-mono text-[10px] font-bold tracking-[0.2em] text-dimmed">
-                            <span class="inline-flex items-center gap-2 text-primary">
-                                <span class="size-2 rounded-full bg-primary" />
-                                NEWS
-                            </span>
-                        </div>
-
-                        <h1 class="relative z-10 mt-7 max-w-4xl text-[1.75rem] leading-[1.3] font-bold tracking-[-0.02em] sm:text-[2rem] lg:text-[2.5rem]">
-                            {{ letter.title }}
-                        </h1>
-
-                        <div class="relative z-10 mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-xs font-bold text-muted">
-                            <time :datetime="letter.date">{{ publishedAt.date }}</time>
-                            <span class="hidden h-3 w-px bg-default sm:block" />
-                            <span>{{ publishedAt.time }}</span>
-                        </div>
-                    </section>
-
-                    <aside class="flex min-h-44 flex-col justify-between border-t border-default bg-primary p-6 text-black lg:min-h-full lg:border-t-0 lg:border-l">
-                        <div class="meta-label-on-primary">
-                            ARCHIVE NUMBER
-                        </div>
-                        <div>
-                            <div class="font-mono text-[2rem] leading-[1.1] font-bold tracking-tight sm:text-4xl lg:text-[2.5rem]">
-                                {{ signalNumber }}
-                            </div>
-                        </div>
-                    </aside>
+                <div class="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm font-medium text-muted">
+                    <time :datetime="letter.date">{{ publishedAt.date }} {{ publishedAt.time }}</time>
+                </div>
+                <div v-if="letter.source" class="mt-6 flex flex-col items-start gap-3 bg-elevated/60 p-5 sm:p-6">
+                    <p class="text-sm leading-6 text-muted">
+                        这是一条速报摘要，完整信息请查看原始来源。
+                    </p>
+                    <UiButton :to="letter.source" target="_blank" rel="noopener noreferrer" size="lg" class="min-h-12 w-full sm:w-auto">
+                        <IconExternalLink aria-hidden="true" />
+                        阅读原文
+                    </UiButton>
                 </div>
             </header>
 
-            <div class="mx-auto my-12 grid max-w-5xl gap-8 lg:grid-cols-[10rem_minmax(0,1fr)] lg:items-start">
-                <aside class="hidden border-t border-default pt-4 lg:block">
-                    <div class="font-mono text-[10px] font-bold tracking-[0.2em] text-dimmed">
-                        TRANSMISSION
-                    </div>
-                    <div class="mt-3 flex items-center gap-2 text-sm font-bold">
-                        <span class="size-2 rounded-full bg-green-500" />
-                        已归档
-                    </div>
-                    <div class="mt-6 grid gap-4 text-sm">
-                        <UiButton
-                            v-if="letter.source"
-                            :to="letter.source"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            variant="outline"
-                        >
-                            <IconExternalLink aria-hidden="true" />
-                            消息来源
-                        </UiButton>
-                    </div>
-                </aside>
-
-                <!-- 只在移动端展示 -->
-                <NewsSource :letter />
-
-                <article class="border-y border-default py-7 sm:border sm:bg-default/55 sm:p-8 lg:p-10">
-                    <div class="mb-6 border-b border-default pb-5">
-                        <div class="font-mono text-[10px] font-bold tracking-[0.2em] text-primary">
-                            ARTICLE
-                        </div>
-                        <h2 class="mt-2 text-lg leading-[1.4] font-bold lg:text-xl">
-                            速报正文
-                        </h2>
-                    </div>
-
-                    <Content :value="letter" />
-                </article>
-            </div>
+            <article class="my-8 min-w-0">
+                <Content :value="letter" />
+            </article>
 
             <footer class="mb-20 flex justify-end border-y border-default py-5">
                 <UiButton to="/news" variant="outline">

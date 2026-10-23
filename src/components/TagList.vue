@@ -17,8 +17,8 @@ const visible = computed(() => props.limit ? (props.tags || []).slice(0, props.l
         <span
             v-for="tag in visible"
             :key="tag"
-            class="border border-default font-mono font-bold tracking-wider text-toned"
-            :class="size === 'md' ? 'px-2.5 py-1 text-[10px]' : 'px-2 py-0.5 text-[9px]'"
+            class="bg-elevated/60 text-toned"
+            :class="size === 'md' ? 'px-2.5 py-1 text-sm' : 'px-2 py-0.5 text-[13px]'"
         >
             {{ tag }}
         </span>

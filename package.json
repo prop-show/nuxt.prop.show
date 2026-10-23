@@ -9,9 +9,10 @@
     "scripts": {
         "build": "pnpm generate:og && vite build",
         "generate:og": "node scripts/generate-og.ts",
-        "dev": "pnpm generate:og && vite --port 4399",
+        "dev": "vite",
+        "dev:seo": "pnpm generate:og && vite",
         "fetch:videos": "node scripts/fetch-videos.ts",
-        "preview": "vite preview --port 4399",
+        "preview": "vite preview",
         "postinstall": "simple-git-hooks",
         "lint": "eslint .",
         "lint:fix": "eslint --fix .",

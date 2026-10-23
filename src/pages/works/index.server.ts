@@ -1,6 +1,7 @@
 import type { Creator, Work } from '@/content'
-
 import { defineHandler, defineHead } from 'void'
+
+import { site } from '@/config'
 
 import { creators, pageSize, works } from '@/content'
 import { seoHead } from '@/utils/seo'
@@ -46,6 +47,6 @@ export const head = defineHead<Props>((_c, props) => {
     return seoHead({
         title: props.currentPage > 1 ? `团队作品 · 第 ${props.currentPage} 页` : '团队作品',
         description: '浏览 prop.show 团队成员完成的网站、产品、工具与开源项目。',
-        canonical: `https://prop.show/works${query.size ? `?${query}` : ''}`,
+        canonical: `${site.url}/works${query.size ? `?${query}` : ''}`,
     })
 })

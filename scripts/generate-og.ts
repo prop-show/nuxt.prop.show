@@ -4,6 +4,8 @@ import { createRequire } from 'node:module'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { Renderer } from '@takumi-rs/core'
+import { ogImage, site } from '../src/config.ts'
+import { seriesConfig } from '../src/series-config.ts'
 import { videoLabel } from '../src/utils/video.ts'
 import { generateContent } from './generate-content.ts'
 
@@ -19,55 +21,72 @@ for (const block of css.matchAll(/@font-face\s*\{([^}]+)\}/g)) {
         const [start, end] = range.trim().slice(2).split('-')
         return [Number.parseInt(start!, 16), Number.parseInt(end ?? start!, 16)]
     })
-    await renderer.registerFont({ name: 'Noto Sans SC', weight: 900, data: await readFile(resolve(fontRoot, file)), unicodeRange: ranges })
+    await renderer.registerFont({ name: 'Noto Sans SC', weight: 700, data: await readFile(resolve(fontRoot, file)), unicodeRange: ranges })
 }
 
 const content = await generateContent(root)
 const pages = [
-    { path: '/', title: '看前端视频，\n读技术速报。', label: 'VIDEOS / NEWS' },
-    { path: '/videos', title: '前端节目，随时开播。', label: 'VIDEOS' },
-    { path: '/news', title: '前端讯号，正在接收。', label: 'NEWS' },
-    { path: '/works', title: '团队作品，持续归档。', label: 'WORKS' },
-    { path: '/about', title: '记录技术变化，分享真实经验。', label: 'ABOUT' },
-    { path: '/design-assets', title: '设计资产，保持一致。', label: 'DESIGN ASSETS' },
-    { path: '/series/yisi', title: '乙巳：从零构建完整产品', label: 'YISI SERIES' },
-    ...content.videos.map(entry => ({ ...entry, title: videoLabel(entry), label: `VIDEO / ${entry.category}` })),
-    ...content.news.map(entry => ({ ...entry, label: 'NEWS' })),
-    ...content.works.map(entry => ({ ...entry, label: 'WORKS' })),
+    { path: '/', title: '前端实践，持续记录。', label: '视频与技术速报' },
+    { path: '/videos', title: '视频', label: '前端实践与项目演示' },
+    { path: '/news', title: '前端速报', label: '框架、工具与开源动态' },
+    { path: '/works', title: '团队作品', label: '项目、工具与开源实践' },
+    { path: '/about', title: '关于 prop.show', label: '认识创作团队' },
+    { path: '/design-assets', title: '设计资产', label: '标志、品牌色与使用规则' },
+    ...Object.values(seriesConfig).map(series => ({ path: series.path, title: series.title, label: '项目实战系列' })),
+    ...content.videos.map(entry => ({ ...entry, title: videoLabel(entry), label: `视频 · ${entry.category}` })),
+    ...content.news.map(entry => ({ ...entry, label: '前端速报' })),
+    ...content.works.map(entry => ({
+        ...entry,
+        label: '团队作品',
+        authorName: content.creators.find(creator => creator.slug === entry.author)?.name,
+    })),
 ]
 const logo = await readFile(resolve(root, 'public/prop-light-transparent.svg'))
-const output = resolve(root, 'public/og')
+const output = resolve(root, `public${ogImage.directory}`)
 await mkdir(output, { recursive: true })
 for (const page of pages) {
-    const titleSize = page.title.length > 42 ? 48 : page.title.length > 26 ? 58 : 72
+    const titleSize = page.title.length > 60 ? 46 : page.title.length > 42 ? 54 : page.title.length > 26 ? 62 : 76
     const node: Node = {
         type: 'container',
-        style: { width: 1200, height: 630, display: 'flex', backgroundColor: '#171717', color: '#fafafa', fontFamily: 'Noto Sans SC', fontWeight: 900 },
+        style: { width: ogImage.width, height: ogImage.height, padding: 56, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', backgroundColor: '#ffffff', color: '#171717', fontFamily: 'Noto Sans SC', fontWeight: 700 },
         children: [
             {
                 type: 'container',
-                style: { width: 870, height: 630, padding: 56, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' },
+                style: { display: 'flex', alignItems: 'center', justifyContent: 'space-between' },
                 children: [
-                    { type: 'text', text: 'PROP.SHOW', style: { fontSize: 26, letterSpacing: 3 } },
-                    { type: 'text', text: page.title, style: { fontSize: titleSize, lineHeight: 1.25, whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' } },
-                    { type: 'text', text: '把前端技术讲明白，持续记录真实经验。', style: { fontSize: 22, color: '#a3a3a3' } },
+                    {
+                        type: 'container',
+                        style: { display: 'flex', alignItems: 'center', gap: 18 },
+                        children: [
+                            { type: 'image', src: 'prop-logo', style: { width: 52, height: 52 } },
+                            { type: 'text', text: site.name, style: { fontSize: 30 } },
+                        ],
+                    },
+                    { type: 'text', text: page.label, style: { fontSize: 22, color: '#525252' } },
                 ],
             },
             {
                 type: 'container',
-                style: { width: 330, height: 630, padding: 32, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', backgroundColor: '#f0db4f', color: '#000' },
+                style: { display: 'flex', flexDirection: 'column', gap: 24 },
                 children: [
-                    { type: 'text', text: page.label, style: { fontSize: 18 } },
-                    { type: 'image', src: 'prop-logo', style: { width: 266, height: 266 } },
-                    { type: 'text', text: 'prop.show', style: { fontSize: 24 } },
+                    { type: 'container', style: { width: 64, height: 10, backgroundColor: '#f0db4f' } },
+                    { type: 'text', text: page.title, style: { fontSize: titleSize, lineHeight: 1.3, whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' } },
+                ],
+            },
+            {
+                type: 'container',
+                style: { display: 'flex', justifyContent: 'space-between', alignItems: 'center' },
+                children: [
+                    { type: 'text', text: 'authorName' in page ? `作者 · ${page.authorName || '未知作者'}` : '开发者共创 · 记录真实经验', style: { fontSize: 22, color: '#525252' } },
+                    { type: 'text', text: 'prop.show', style: { fontSize: 22 } },
                 ],
             },
         ],
     }
-    const png = await renderer.render(node, { width: 1200, height: 630, format: 'png', images: [{ src: 'prop-logo', data: logo }] })
+    const png = await renderer.render(node, { width: ogImage.width, height: ogImage.height, format: ogImage.format, images: [{ src: 'prop-logo', data: logo }] })
     // Nested page paths use nested directories; query variants share their archive image.
-    const target = resolve(output, `${page.path === '/' ? 'index' : page.path.slice(1)}.png`)
+    const target = resolve(output, `${page.path === '/' ? 'index' : page.path.slice(1)}.${ogImage.format}`)
     await mkdir(dirname(target), { recursive: true })
     await writeFile(target, png)
 }
-console.log(`Takumi: generated ${pages.length} OG images (1200×630) in public/og`)
+console.log(`Takumi: generated ${pages.length} OG images (${ogImage.width}×${ogImage.height}) in public${ogImage.directory}`)

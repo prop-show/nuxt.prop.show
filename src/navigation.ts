@@ -1,8 +1,10 @@
+import { site } from './config'
+
 export function resolveLink(to: string | { path: string, query?: Record<string, unknown> }) {
     if (typeof to === 'string') {
         if (!to.startsWith('/') || to.startsWith('//'))
             return to
-        const url = new URL(to, 'https://prop.show')
+        const url = new URL(to, site.url)
         if (url.pathname !== '/')
             url.pathname = url.pathname.replace(/\/$/, '')
         return `${url.pathname}${url.search}${url.hash}`

@@ -1,6 +1,7 @@
 import type { News } from '@/content'
-
 import { defineHandler, defineHead } from 'void'
+
+import { site } from '@/config'
 
 import { news, pageSize } from '@/content'
 import { seoHead } from '@/utils/seo'
@@ -30,5 +31,5 @@ export const loader = defineHandler((c): Props => {
 export const head = defineHead<Props>((_c, props) => seoHead({
     title: props.currentPage > 1 ? `速报 · 第 ${props.currentPage} 页` : '速报',
     description: '第一时间获得前端库和工具的最新动态和更新消息。',
-    canonical: `https://prop.show/news${props.currentPage > 1 ? `?page=${props.currentPage}` : ''}`,
+    canonical: `${site.url}/news${props.currentPage > 1 ? `?page=${props.currentPage}` : ''}`,
 }))

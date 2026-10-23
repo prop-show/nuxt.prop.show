@@ -3,12 +3,11 @@ import { mkdir, rm, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import process from 'node:process'
 import { fetch, ProxyAgent } from 'undici'
+import { accounts } from '../src/config.ts'
 
 const USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36'
 
 const OUTPUT_DIR = '.video-list'
-const BILIBILI_MID = '104376935'
-const YOUTUBE_HANDLE = 'PropShowFM'
 const MAX_VIDEOS = 10
 const MAX_CONTINUATION = 10
 
@@ -434,7 +433,7 @@ async function main(): Promise<void> {
     const errors: string[] = []
 
     try {
-        const videos = await fetchBilibiliVideos(BILIBILI_MID)
+        const videos = await fetchBilibiliVideos(accounts.bilibili)
         all.push(...videos.map(video => ({ ...video, source: 'bilibili' as const })))
         succeeded.push('bilibili')
         console.log(`bilibili: ${videos.length} videos`)
@@ -444,7 +443,7 @@ async function main(): Promise<void> {
     }
 
     try {
-        const videos = await fetchYouTubeVideos(YOUTUBE_HANDLE)
+        const videos = await fetchYouTubeVideos(accounts.youtube)
         all.push(...videos.map(video => ({ ...video, source: 'youtube' as const })))
         succeeded.push('youtube')
         console.log(`youtube: ${videos.length} videos`)

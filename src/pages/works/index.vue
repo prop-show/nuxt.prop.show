@@ -3,6 +3,9 @@ import type { Props } from '@/pages/works/index.server'
 import IconAlertTriangle from '~icons/tabler/alert-triangle'
 import IconArchiveOff from '~icons/tabler/archive-off'
 import IconUserSearch from '~icons/tabler/user-search'
+import WorkArchiveFilters from '@/pages/works/_components/ArchiveFilters.vue'
+import WorkHero from '@/pages/works/_components/Hero.vue'
+import WorkList from '@/pages/works/_components/List.vue'
 
 defineProps<Props>()
 </script>
@@ -11,26 +14,40 @@ defineProps<Props>()
     <main>
         <WorkHero />
 
-        <section v-if="pending" class="my-16">
-            <div class="mb-8 border-y border-default px-1 py-5 sm:px-5">
-                <UiSkeleton class="h-9 w-80 max-w-full" />
+        <section v-if="pending" class="my-8 md:my-10" aria-label="正在加载作品">
+            <div class="flex flex-col gap-2 py-2 sm:flex-row sm:items-start sm:gap-4">
+                <UiSkeleton class="my-3 h-5 w-7" />
+                <div class="flex flex-wrap gap-2">
+                    <UiSkeleton class="h-9 w-20" />
+                    <UiSkeleton class="h-9 w-28" />
+                    <UiSkeleton class="h-9 w-28" />
+                </div>
             </div>
 
-            <div class="my-20">
-                <div class="mb-8 border-b border-default pb-5">
-                    <UiSkeleton class="mb-2 h-3 w-28" />
-                    <UiSkeleton class="h-8 w-56 lg:h-10" />
+            <div class="my-8 md:my-10">
+                <div class="mb-6 flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
+                    <UiSkeleton class="h-[31px] w-24 lg:h-[39px] lg:w-30" />
+                    <UiSkeleton class="h-5 w-24" />
                 </div>
                 <div class="border-y border-default">
-                    <div v-for="index in 3" :key="index" class="grid gap-5 border-b border-default px-1 py-7 last:border-b-0 sm:px-5 lg:grid-cols-[minmax(0,1fr)_14rem_2.5rem] lg:items-center">
-                        <div class="space-y-3">
-                            <UiSkeleton class="h-3 w-16" />
-                            <UiSkeleton class="h-6 w-3/5" />
-                            <UiSkeleton class="h-4 w-full" />
-                            <UiSkeleton class="h-5 w-40" />
+                    <div v-for="index in 3" :key="index" class="grid gap-5 border-b border-default px-1 py-7 last:border-b-0 sm:px-5 lg:grid-cols-[minmax(0,1fr)_14rem_1.25rem] lg:items-center">
+                        <div class="min-w-0">
+                            <UiSkeleton class="h-6 w-16" />
+                            <UiSkeleton class="mt-2 h-[31px] w-3/5" />
+                            <div class="mt-2 space-y-2 py-1.5">
+                                <UiSkeleton class="h-5 w-full" />
+                                <UiSkeleton class="h-5 w-4/5" />
+                            </div>
+                            <UiSkeleton class="mt-3 h-6 w-40" />
                         </div>
-                        <UiSkeleton class="h-10 w-40" />
-                        <UiSkeleton class="hidden size-10 lg:block" />
+                        <div class="flex items-center gap-3">
+                            <UiSkeleton class="size-10 shrink-0" />
+                            <div>
+                                <UiSkeleton class="h-5 w-24" />
+                                <UiSkeleton class="mt-0.5 h-6 w-28" />
+                            </div>
+                        </div>
+                        <UiSkeleton class="hidden size-5 lg:block" />
                     </div>
                 </div>
             </div>

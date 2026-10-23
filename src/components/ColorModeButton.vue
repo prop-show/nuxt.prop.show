@@ -3,8 +3,9 @@ import { useColorMode } from '@vueuse/core'
 import IconMoon from '~icons/tabler/moon'
 import IconSun from '~icons/tabler/sun'
 import UiButton from '@/components/ui/button/Button.vue'
+import { themeStorageKey } from '@/config'
 
-const mode = useColorMode({ storageKey: 'vueuse-color-scheme' })
+const mode = useColorMode({ storageKey: themeStorageKey })
 </script>
 
 <template>

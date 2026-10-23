@@ -12,23 +12,26 @@ const { variant = 'default' } = defineProps<{
 }>()
 
 const { creators } = useShared<{ creators: Creator[] }>()
+function profileLabel(href: string) {
+    const hostname = new URL(href).hostname
+    return hostname === 'github.com' ? 'GitHub' : hostname
+}
+
 const pending = false
 const error = shallowRef<Error | null>(null)
 </script>
 
 <template>
-    <section v-if="pending" class="my-20">
-        <div class="mb-8 border-b border-default pb-5">
-            <UiSkeleton class="mb-2 h-3 w-28" />
+    <section v-if="pending" class="my-12 md:my-16">
+        <div class="mb-6">
             <UiSkeleton class="h-8 w-64 lg:h-10" />
         </div>
         <div class="grid gap-5 md:grid-cols-2">
-            <div v-for="index in 2" :key="index" class="flex items-center gap-5 border border-default p-5">
-                <UiSkeleton :class="variant === 'directory' ? 'size-22' : 'size-16'" />
-                <div class="flex-1 space-y-3">
-                    <UiSkeleton class="h-3 w-24" />
+            <div v-for="index in 2" :key="index" class="flex items-start gap-4 pt-6">
+                <UiSkeleton :class="variant === 'directory' ? 'size-18' : 'size-14'" />
+                <div class="min-w-0 flex-1 space-y-3">
                     <UiSkeleton class="h-7 w-32" />
-                    <UiSkeleton class="h-4 w-48" />
+                    <UiSkeleton class="h-4 w-40 max-w-full" />
                 </div>
             </div>
         </div>
@@ -36,7 +39,7 @@ const error = shallowRef<Error | null>(null)
 
     <UiAlert
         v-else-if="error"
-        class="my-20"
+        class="my-12 md:my-16"
         variant="destructive"
     >
         <IconAlertTriangle aria-hidden="true" />
@@ -46,7 +49,7 @@ const error = shallowRef<Error | null>(null)
 
     <UiEmpty
         v-else-if="!creators.length"
-        class="my-20"
+        class="my-12 md:my-16"
     >
         <UiEmptyHeader>
             <UiEmptyMedia variant="icon">
@@ -57,83 +60,57 @@ const error = shallowRef<Error | null>(null)
         </UiEmptyHeader>
     </UiEmpty>
 
-    <section v-else-if="variant === 'directory'" class="my-20">
-        <SectionHeading eyebrow="CREATORS" title="创作团队">
+    <section v-else class="my-12 md:my-16" aria-labelledby="creators-heading">
+        <SectionHeading title="创作团队" title-id="creators-heading">
             <div class="flex flex-wrap items-center gap-x-5 gap-y-2">
-                <span class="section-count hidden md:block">
-                    {{ String(creators.length).padStart(2, '0') }} CONTRIBUTORS
+                <span v-if="variant === 'directory'" class="text-sm text-muted">
+                    {{ creators.length }} 位创作者
                 </span>
-                <SiteLink to="/works" class="group inline-flex items-center gap-2 text-sm font-bold text-muted outline-none transition-colors hover:text-highlighted focus-visible:ring-2 focus-visible:ring-primary">
-                    查看团队作品
-                    <IconArrowRight aria-hidden="true" class="size-4 transition-transform group-hover:translate-x-1" />
-                </SiteLink>
-            </div>
-        </SectionHeading>
-
-        <div class="grid gap-5 md:grid-cols-2">
-            <SiteLink
-                v-for="(creator, index) in creators"
-                :key="creator.stem"
-                :to="creator.href"
-                target="_blank"
-                class="group flex items-center gap-5 overflow-hidden border border-default bg-default/70 p-5 outline-none transition-all duration-300 hover:-translate-y-1 hover:bg-elevated/70 hover:shadow-lg focus-visible:ring-2 focus-visible:ring-primary"
-            >
-                <CreatorAvatar :creator="creator" size="xl" />
-
-                <div class="min-w-0 flex-1">
-                    <div class="font-mono text-[10px] font-bold tracking-[0.2em] text-dimmed">
-                        CONTRIBUTOR {{ String(index + 1).padStart(2, '0') }}
-                    </div>
-                    <div class="mt-2 flex items-center justify-between gap-3">
-                        <h3 class="truncate text-lg leading-[1.4] font-bold lg:text-xl">
-                            {{ creator.name }}
-                        </h3>
-                        <IconArrowUpRight aria-hidden="true" class="size-5 shrink-0 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-                    </div>
-                    <p class="mt-2 text-sm text-muted">
-                        {{ creator.role }}
-                    </p>
-                </div>
-            </SiteLink>
-        </div>
-    </section>
-
-    <section v-else class="my-20">
-        <SectionHeading eyebrow="CREATORS" title="创作团队">
-            <div class="flex flex-wrap items-center gap-x-5 gap-y-2">
-                <SiteLink to="/about" class="group inline-flex items-center gap-2 text-sm font-bold text-muted outline-none transition-colors hover:text-highlighted focus-visible:ring-2 focus-visible:ring-primary">
+                <SiteLink v-else to="/about" class="inline-flex min-h-11 items-center gap-2 text-sm text-muted outline-none transition-colors hover:text-highlighted focus-visible:ring-2 focus-visible:ring-primary">
                     认识团队
-                    <IconArrowRight aria-hidden="true" class="size-4 transition-transform group-hover:translate-x-1" />
+                    <IconArrowRight aria-hidden="true" class="size-4" />
                 </SiteLink>
-                <SiteLink to="/works" class="group inline-flex items-center gap-2 text-sm font-bold text-muted outline-none transition-colors hover:text-highlighted focus-visible:ring-2 focus-visible:ring-primary">
-                    查看团队作品
-                    <IconArrowRight aria-hidden="true" class="size-4 transition-transform group-hover:translate-x-1" />
+                <SiteLink to="/works" class="inline-flex min-h-11 items-center gap-2 text-sm text-muted outline-none transition-colors hover:text-highlighted focus-visible:ring-2 focus-visible:ring-primary">
+                    全部团队作品
+                    <IconArrowRight aria-hidden="true" class="size-4" />
                 </SiteLink>
             </div>
         </SectionHeading>
 
-        <div class="grid gap-4 md:grid-cols-2">
-            <SiteLink
+        <div class="grid gap-x-12 gap-y-6 md:grid-cols-2">
+            <article
                 v-for="creator in creators"
                 :key="creator.stem"
-                :to="creator.href"
-                target="_blank"
-                class="group flex items-center gap-4 border border-default bg-default/60 p-4 outline-none transition-all duration-300 hover:-translate-y-0.5 hover:bg-elevated/70 hover:shadow-md focus-visible:ring-2 focus-visible:ring-primary"
+                class="flex min-w-0 items-start gap-4 pt-6"
             >
-                <CreatorAvatar :creator="creator" size="lg" />
-
+                <CreatorAvatar :creator="creator" size="lg" class="shrink-0" :style="{ width: variant === 'directory' ? '72px' : '56px', height: variant === 'directory' ? '72px' : '56px' }" />
                 <div class="min-w-0 flex-1">
-                    <div class="flex items-center justify-between gap-3">
-                        <h3 class="truncate text-lg leading-[1.4] font-bold lg:text-xl">
-                            {{ creator.name }}
-                        </h3>
-                        <IconArrowUpRight aria-hidden="true" class="size-4 shrink-0 text-muted transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                    </div>
-                    <p class="mt-1 text-sm text-muted">
+                    <h3 class="text-xl leading-7 font-bold wrap-anywhere">
+                        {{ creator.name }}
+                    </h3>
+                    <p v-if="variant === 'directory'" class="mt-2 text-sm leading-6 text-muted">
                         {{ creator.role }}
                     </p>
+                    <div class="mt-2 flex flex-wrap items-center gap-x-5">
+                        <SiteLink
+                            :to="{ path: '/works', query: { author: creator.slug } }"
+                            :aria-label="`查看 ${creator.name} 的作品`"
+                            class="inline-flex min-h-11 items-center gap-1.5 text-sm font-medium outline-none transition-colors hover:text-primary focus-visible:ring-2 focus-visible:ring-primary"
+                        >
+                            查看作品 <IconArrowRight aria-hidden="true" class="size-4" />
+                        </SiteLink>
+                        <SiteLink
+                            :to="creator.href"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            :aria-label="`${creator.name} 的${profileLabel(creator.href)}（新窗口打开）`"
+                            class="inline-flex min-h-11 items-center gap-1.5 text-sm text-muted outline-none transition-colors hover:text-highlighted focus-visible:ring-2 focus-visible:ring-primary"
+                        >
+                            {{ profileLabel(creator.href) }} <IconArrowUpRight aria-hidden="true" class="size-4" />
+                        </SiteLink>
+                    </div>
                 </div>
-            </SiteLink>
+            </article>
         </div>
     </section>
 </template>

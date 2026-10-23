@@ -1,9 +1,10 @@
 import generated from 'virtual:prop-content'
+import { contentConfig, site } from './config'
 
 export { contentDate } from './utils/content-date'
 
-export const siteUrl = 'https://prop.show'
-export const pageSize = 10
+export const siteUrl = site.url
+export const pageSize = contentConfig.pageSize
 
 /** Metadata only: collections are shipped to the browser through page props, so bodies stay out. */
 export interface ContentEntry {

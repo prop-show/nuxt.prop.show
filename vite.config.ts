@@ -7,8 +7,11 @@ import Components from 'unplugin-vue-components/vite'
 import { defineConfig } from 'vite'
 import { voidPlugin } from 'void'
 import { contentPlugin } from './scripts/content-plugin.ts'
+import { devPort } from './src/config.ts'
 
 export default defineConfig({
+    server: { port: devPort },
+    preview: { port: devPort },
     resolve: { alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) } },
     plugins: [
         contentPlugin(),

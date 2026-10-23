@@ -1,8 +1,5 @@
 <script setup lang="ts">
-/**
- * 区块标题：bordered section heading + mono eyebrow + 右侧插槽。
- * 见 .agents/skills/prop-show-design/references/design-system.md 的 Section Heading 模式。
- */
+/** 区块标题与操作；保留 eyebrow 属性以兼容现有调用，不再渲染。 */
 withDefaults(defineProps<{
     title: string
     eyebrow?: string
@@ -17,17 +14,12 @@ withDefaults(defineProps<{
 
 <template>
     <div
-        class="mb-8 flex flex-col justify-between gap-4 border-b border-default pb-5"
+        class="mb-6 flex flex-col justify-between gap-3"
         :class="stackAt === 'md' ? 'md:flex-row md:items-end' : 'sm:flex-row sm:items-end'"
     >
-        <div>
-            <div v-if="eyebrow" class="eyebrow">
-                {{ eyebrow }}
-            </div>
-            <h2 :id="titleId" class="text-2xl leading-[1.3] font-black tracking-tight lg:text-3xl">
-                {{ title }}
-            </h2>
-        </div>
+        <h2 :id="titleId" class="text-2xl leading-[1.3] font-bold tracking-tight lg:text-3xl">
+            {{ title }}
+        </h2>
 
         <slot />
     </div>

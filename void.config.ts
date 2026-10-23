@@ -1,4 +1,5 @@
 import { defineConfig } from 'void/config'
+import { site } from './src/config'
 import { themeScript } from './src/theme-script'
 
 export default defineConfig({
@@ -9,8 +10,8 @@ export default defineConfig({
         workers_dev: true,
         preview_urls: true,
         routes: [
-            { pattern: 'prop.show', custom_domain: true },
-            { pattern: 'www.prop.show', custom_domain: true },
+            { pattern: new URL(site.url).hostname, custom_domain: true },
+            { pattern: `www.${new URL(site.url).hostname}`, custom_domain: true },
         ],
         previews: {},
     },
@@ -26,8 +27,8 @@ export default defineConfig({
         },
     },
     head: {
-        titleTemplate: '%s | prop.show',
-        htmlAttrs: { lang: 'zh-CN' },
+        titleTemplate: `%s | ${site.name}`,
+        htmlAttrs: { lang: site.locale },
         meta: [
             { charset: 'utf-8' },
             { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -36,7 +37,7 @@ export default defineConfig({
         link: [
             { rel: 'icon', type: 'image/svg+xml', href: '/prop-dark.svg', media: '(prefers-color-scheme: dark)' },
             { rel: 'icon', type: 'image/svg+xml', href: '/prop-light.svg', media: '(prefers-color-scheme: light)' },
-            { rel: 'alternate', type: 'application/rss+xml', href: '/rss.xml', title: 'prop.show RSS' },
+            { rel: 'alternate', type: 'application/rss+xml', href: '/rss.xml', title: `${site.name} RSS` },
         ],
         script: [{ innerHTML: themeScript }],
     },

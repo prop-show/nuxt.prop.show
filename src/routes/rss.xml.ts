@@ -1,4 +1,5 @@
 import { defineHandler } from 'void'
+import { site, xmlCacheControl } from '@/config'
 import { contentDate, escapeXml, news, siteUrl, videos } from '@/content'
 import { videoLabel } from '@/utils/video'
 
@@ -13,10 +14,10 @@ const items = [
 const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>prop.show</title>
+    <title>${escapeXml(site.name)}</title>
     <link>${siteUrl}</link>
     <description>前端开发视频、速报与开发者对谈持续更新。</description>
-    <language>zh-CN</language>
+    <language>${escapeXml(site.locale)}</language>
     <atom:link href="${siteUrl}/rss.xml" rel="self" type="application/rss+xml" />
 ${items.map((item) => {
     const link = escapeXml(new URL(item.path, siteUrl).href)
@@ -37,6 +38,6 @@ ${items.map((item) => {
 
 export const GET = defineHandler((c) => {
     c.header('Content-Type', 'application/rss+xml; charset=utf-8')
-    c.header('Cache-Control', 'public, max-age=0, s-maxage=3600')
+    c.header('Cache-Control', xmlCacheControl)
     return c.body(xml)
 })

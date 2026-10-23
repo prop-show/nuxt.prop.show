@@ -1,8 +1,9 @@
 import { describe, expect, it } from 'vitest'
+import { devPort } from '@/config'
 import { pageSize, videos } from '@/content'
 
 // Needs a running server: pnpm dev, or pnpm build && pnpm preview.
-const base = process.env.SEO_BASE_URL ?? 'http://localhost:4399'
+const base = process.env.SEO_BASE_URL ?? `http://localhost:${devPort}`
 
 async function read(path: string) {
     const response = await fetch(`${base}${path}`)

@@ -1,4 +1,5 @@
 import { defineHandler } from 'void'
+import { xmlCacheControl } from '@/config'
 import { contentDate, escapeXml, news, pageSize, siteUrl, videos, works } from '@/content'
 
 const entries: { path: string, date?: string }[] = [
@@ -27,6 +28,6 @@ ${entries.map((entry) => {
 
 export const GET = defineHandler((c) => {
     c.header('Content-Type', 'application/xml; charset=utf-8')
-    c.header('Cache-Control', 'public, max-age=0, s-maxage=3600')
+    c.header('Cache-Control', xmlCacheControl)
     return c.body(xml)
 })

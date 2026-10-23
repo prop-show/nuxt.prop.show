@@ -1,8 +1,10 @@
 import type { Video } from '@/content'
-
 import { defineHandler, defineHead } from 'void'
 
+import { site } from '@/config'
 import { pageSize, videos } from '@/content'
+
+import { seriesConfig } from '@/series-config'
 import { seoHead } from '@/utils/seo'
 
 export interface Props {
@@ -37,7 +39,7 @@ export const loader = defineHandler((c): Props => {
         pending: false,
         categories: [...new Set(videos.map(video => video.category))],
         tags: [...new Set(videos.flatMap(video => video.tags))].sort(),
-        seriesCount: videos.filter(video => video.series === '乙巳').length,
+        seriesCount: videos.filter(video => video.series === seriesConfig.yisi.name).length,
         activeCategory,
         activeTag,
         resultCount: filteredVideos.length,
@@ -57,6 +59,6 @@ export const head = defineHead<Props>((_c, props) => {
         title: props.currentPage > 1 ? `视频 · 第 ${props.currentPage} 页` : '视频',
         description: '观看 prop.show 前端开发视频，包含项目实战、技术解析、工具使用等高质量内容。',
         noindex: !!(props.activeCategory || props.activeTag) && props.resultCount === 0,
-        canonical: `https://prop.show/videos${query.size ? `?${query}` : ''}`,
+        canonical: `${site.url}/videos${query.size ? `?${query}` : ''}`,
     })
 })
