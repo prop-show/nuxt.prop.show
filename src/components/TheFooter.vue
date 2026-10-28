@@ -14,7 +14,7 @@ const currentYear = new Date().getFullYear()
     <footer class="mt-20 border-t border-default pt-10 pb-6 sm:mt-24">
         <div class="grid gap-9 md:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)_minmax(0,1fr)] md:gap-12">
             <div>
-                <SiteLink to="/" aria-label="Prop.show — 首页" class="inline-flex items-center gap-2.5 outline-none focus-visible:ring-2 focus-visible:ring-primary">
+                <SiteLink to="/" aria-label="Prop.show — 首页" class="inline-flex items-center gap-2.5 outline-none focus-visible:ring-2 focus-visible:ring-ring">
                     <img src="/prop-light-transparent.svg" alt="" width="32" height="32" class="dark:hidden">
                     <img src="/prop-dark-transparent.svg" alt="" width="32" height="32" class="hidden dark:block">
                     <span class="text-xl font-bold tracking-tight text-highlighted">prop.show</span>
@@ -30,7 +30,7 @@ const currentYear = new Date().getFullYear()
                 </h2>
                 <ul class="grid grid-cols-2 gap-x-5 md:grid-cols-1">
                     <li v-for="link in browseLinks" :key="link.to">
-                        <SiteLink :to="link.to" class="inline-flex min-h-11 items-center text-sm text-muted outline-none transition-colors hover:text-highlighted focus-visible:ring-2 focus-visible:ring-primary">
+                        <SiteLink :to="link.to" class="inline-flex min-h-11 items-center text-sm text-muted outline-none transition-colors hover:text-highlighted focus-visible:ring-2 focus-visible:ring-ring">
                             {{ link.label }}
                         </SiteLink>
                     </li>
@@ -48,7 +48,7 @@ const currentYear = new Date().getFullYear()
                             :external="social.href === '/rss.xml'"
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="inline-flex min-h-11 items-center gap-2 text-sm text-muted outline-none transition-colors hover:text-highlighted focus-visible:ring-2 focus-visible:ring-primary"
+                            class="inline-flex min-h-11 items-center gap-2 text-sm text-muted outline-none transition-colors hover:text-highlighted focus-visible:ring-2 focus-visible:ring-ring"
                         >
                             <component :is="social.icon" class="size-4 shrink-0" aria-hidden="true" />
                             {{ social.platform }}
@@ -62,7 +62,7 @@ const currentYear = new Date().getFullYear()
         <div class="mt-10 space-y-3 text-[13px] leading-6 text-muted">
             <div class="flex flex-wrap items-center gap-x-6 gap-y-1">
                 <span>© {{ currentYear }} prop.show</span>
-                <SiteLink to="/design-assets" class="inline-flex min-h-11 items-center outline-none transition-colors hover:text-highlighted focus-visible:ring-2 focus-visible:ring-primary">
+                <SiteLink to="/design-assets" class="inline-flex min-h-11 items-center outline-none transition-colors hover:text-highlighted focus-visible:ring-2 focus-visible:ring-ring">
                     设计资产
                 </SiteLink>
             </div>
@@ -74,7 +74,7 @@ const currentYear = new Date().getFullYear()
                     :to="link.to"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="inline-flex min-h-11 items-center gap-1 outline-none transition-colors hover:text-highlighted focus-visible:ring-2 focus-visible:ring-primary"
+                    class="inline-flex min-h-11 items-center gap-1 outline-none transition-colors hover:text-highlighted focus-visible:ring-2 focus-visible:ring-ring"
                 >
                     {{ link.label }}
                     <IconArrowUpRight aria-hidden="true" class="size-3.5" />

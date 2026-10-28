@@ -11,3 +11,17 @@ export function contentDate(value?: string): Date | undefined {
     const date = new Date(timestamp)
     return Number.isNaN(date.getTime()) ? undefined : date
 }
+
+/** 全站唯一的日期写法（归档、首页、详情皆用）：2026/07/11。 */
+export function contentDateText(value?: string): string {
+    const date = contentDate(value)
+
+    return date
+        ? new Intl.DateTimeFormat(site.locale, {
+                timeZone: site.timeZone,
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+            }).format(date)
+        : '待定'
+}

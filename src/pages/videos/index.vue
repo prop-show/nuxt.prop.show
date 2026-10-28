@@ -28,7 +28,7 @@ defineProps<Props>()
             </div>
 
             <div>
-                <div v-for="index in 5" :key="index" class="space-y-3 border-b border-default px-1 py-7 sm:px-5">
+                <div v-for="index in 5" :key="index" class="space-y-3 border-b border-default py-7">
                     <UiSkeleton class="h-8 w-3/5" />
                     <UiSkeleton class="h-4 w-40" />
                     <UiSkeleton class="h-5 w-full" />

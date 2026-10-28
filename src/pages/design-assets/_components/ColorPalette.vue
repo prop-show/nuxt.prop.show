@@ -53,12 +53,12 @@ onBeforeUnmount(() => {
                 v-for="color in designAssets.colors"
                 :key="color.hex"
                 type="button"
-                class="group grid w-full border-b border-default text-left outline-none transition-colors last:border-b-0 hover:bg-elevated/55 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset sm:grid-cols-[6rem_minmax(0,1fr)_auto]"
+                class="group grid w-full border-b border-default text-left outline-none transition-colors last:border-b-0 hover:bg-elevated/55 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset sm:grid-cols-[6rem_minmax(0,1fr)_auto]"
                 :aria-label="`复制 ${color.name} 色值 ${color.hex}`"
                 @click="copyColor(color.hex)"
             >
                 <span
-                    class="flex min-h-20 items-end p-5 text-sm font-medium sm:min-h-32"
+                    class="flex min-h-20 items-end p-5 text-sm font-medium ring-1 ring-default ring-inset sm:min-h-32"
                     :style="{ backgroundColor: color.hex, color: color.textColor }"
                 />
 

@@ -18,7 +18,7 @@ defineProps<{ count: number }>()
                 从前言开始学习
             </UiButton>
             <span class="text-sm text-muted">共 {{ count }} 集 · 按目录顺序学习</span>
-            <a href="#curriculum" class="inline-flex min-h-11 items-center text-sm outline-none hover:text-primary focus-visible:ring-2 focus-visible:ring-primary">浏览课程目录 ↓</a>
+            <a href="#curriculum" class="inline-flex min-h-11 items-center text-sm outline-none hover:text-primary focus-visible:ring-2 focus-visible:ring-ring">浏览课程目录 ↓</a>
         </div>
     </header>
 </template>

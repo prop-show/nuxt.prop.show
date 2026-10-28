@@ -30,7 +30,7 @@ function pageLink(page: number) {
 </script>
 
 <template>
-    <div v-if="total > pageSize" class="mt-8 flex flex-col items-center justify-between gap-4 border-y border-default py-5 sm:flex-row">
+    <div v-if="total > pageSize" class="flex flex-col items-center justify-between gap-4 border-b border-default py-5 sm:flex-row">
         <div class="text-sm tabular-nums text-muted">
             第 {{ page }} / {{ Math.ceil(total / pageSize) }} 页
         </div>
@@ -64,7 +64,7 @@ function pageLink(page: number) {
                         v-if="item.type === 'page'"
                         as-child
                         :value="item.value"
-                        :class="item.value === page ? buttonVariants({ variant: 'default', size: 'icon' }) : 'hidden sm:inline-flex'"
+                        :class="item.value === page ? buttonVariants({ variant: 'default', size: 'icon' }) : 'inline-flex'"
                         :aria-label="`第 ${item.value} 页`"
                     >
                         <SiteLink :to="pageLink(item.value)" preserve-scroll>

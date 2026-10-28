@@ -1,8 +1,7 @@
 <script setup lang="ts">
-/** 区块标题与操作；保留 eyebrow 属性以兼容现有调用，不再渲染。 */
+/** 区块标题与右侧操作。 */
 withDefaults(defineProps<{
     title: string
-    eyebrow?: string
     /** h2 的 id，供外层 section 的 aria-labelledby 引用。 */
     titleId?: string
     /** 右侧栏并排的断点：短内容（计数、图标）用 sm，段落用 md。 */

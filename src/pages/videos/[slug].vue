@@ -7,7 +7,7 @@ import IconRoute from '~icons/tabler/route'
 import IconVideoOff from '~icons/tabler/video-off'
 import VideoPlatformButtons from '@/pages/videos/_components/PlatformButtons.vue'
 
-import { videoEpisode } from '@/utils/video'
+import { videoNumberLabel } from '@/utils/video'
 
 defineProps<Props>()
 </script>
@@ -58,7 +58,7 @@ defineProps<Props>()
                 </h1>
 
                 <div class="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm font-medium text-muted">
-                    <span>EP.{{ String(displayEpisode).padStart(2, '0') }}</span>
+                    <span>{{ videoNumberLabel(video) }}</span>
                     <time v-if="video.date" :datetime="video.date">{{ video.date.slice(0, 10) }}</time>
                     <span>{{ video.category }}</span>
                     <span v-if="video.series">{{ video.series }}</span>
@@ -99,7 +99,7 @@ defineProps<Props>()
                 <SiteLink
                     v-if="isYisiSeries"
                     to="/series/yisi"
-                    class="group flex items-center justify-between border border-default bg-default/55 p-5 font-bold outline-none transition-colors hover:border-primary focus-visible:ring-2 focus-visible:ring-primary"
+                    class="group flex items-center justify-between border border-default bg-default/55 p-5 font-bold outline-none transition-colors hover:border-primary focus-visible:ring-2 focus-visible:ring-ring"
                 >
                     <span>
                         <span class="block text-sm text-muted">系列学习</span>
@@ -116,11 +116,12 @@ defineProps<Props>()
                 </article>
             </section>
 
-            <nav class="mb-20 grid border-y border-default md:grid-cols-2">
+            <nav class="mb-20 grid border-y border-default" :class="previousVideo && nextVideo ? 'md:grid-cols-2' : ''">
                 <SiteLink
                     v-if="previousVideo"
                     :to="previousVideo.path"
-                    class="group flex min-h-32 flex-col justify-between border-b border-default p-5 transition-colors hover:bg-elevated/55 md:border-r md:border-b-0"
+                    class="group flex min-h-32 flex-col justify-between border-b border-default p-5 transition-colors hover:bg-elevated/55"
+                    :class="nextVideo ? 'md:border-r md:border-b-0' : ''"
                 >
                     <div class="flex items-center gap-2 text-sm text-muted">
                         <IconArrowLeft class="size-4 transition-transform group-hover:-translate-x-1" />
@@ -128,7 +129,7 @@ defineProps<Props>()
                     </div>
                     <div>
                         <div class="text-sm font-medium text-primary">
-                            EP.{{ String(videoEpisode(previousVideo)).padStart(2, '0') }}
+                            {{ videoNumberLabel(previousVideo) }}
                         </div>
                         <div class="mt-1 line-clamp-2 font-bold">
                             {{ previousVideo.title }}
@@ -139,7 +140,8 @@ defineProps<Props>()
                 <SiteLink
                     v-if="nextVideo"
                     :to="nextVideo.path"
-                    class="group flex min-h-32 flex-col items-end md:col-start-2 justify-between p-5 text-right transition-colors hover:bg-elevated/55"
+                    class="group flex min-h-32 flex-col items-end justify-between p-5 text-right transition-colors hover:bg-elevated/55"
+                    :class="previousVideo ? 'md:col-start-2' : ''"
                 >
                     <div class="flex items-center gap-2 text-sm text-muted">
                         下一期
@@ -147,7 +149,7 @@ defineProps<Props>()
                     </div>
                     <div>
                         <div class="text-sm font-medium text-primary">
-                            EP.{{ String(videoEpisode(nextVideo)).padStart(2, '0') }}
+                            {{ videoNumberLabel(nextVideo) }}
                         </div>
                         <div class="mt-1 line-clamp-2 font-bold">
                             {{ nextVideo.title }}

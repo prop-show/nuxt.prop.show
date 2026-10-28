@@ -90,7 +90,8 @@
     --destructive-foreground: var(--color-white);
     --border: var(--color-neutral-200);
     --input: var(--border);
-    --ring: var(--primary);
+    /* 焦点环必须是可读的文字色，不能用品牌黄填充色：黄对白底只有 1.4:1。 */
+    --ring: #806400;
     --radius: 0.4rem;
     --motion-fast: 160ms;
     --motion-standard: 240ms;
@@ -109,7 +110,6 @@
     --ui-bg: var(--background);
     --ui-border: var(--border);
     --ui-primary: var(--primary);
-    --ui-radius: 0.2rem;
 }
 
 .dark {
@@ -126,16 +126,18 @@
     --accent-foreground: var(--color-white);
     --destructive: var(--color-red-400);
     --destructive-foreground: var(--color-black);
-    --border: var(--color-neutral-800);
+    /* 描边与浮起面必须比背景明显：neutral-800 对 neutral-900 只有 1.18:1，等于看不见。 */
+    --border: var(--color-neutral-700);
+    --ring: var(--primary);
 
     --foreground-highlighted: var(--color-white);
     --foreground-dimmed: var(--color-neutral-400);
     --foreground-toned: var(--color-neutral-300);
     --foreground-inverted: var(--color-neutral-900);
-    --surface-elevated: var(--color-neutral-800);
+    --surface-elevated: var(--color-neutral-700);
     --surface-inverted: var(--color-white);
     --border-muted: var(--color-neutral-700);
-    --border-accented: var(--color-neutral-700);
+    --border-accented: var(--color-neutral-600);
 }
 
 @layer base {
@@ -192,10 +194,6 @@ body {
 
 .filter-control {
     min-height: 44px;
-}
-
-.nav-indicator {
-    transition: transform var(--motion-fast) var(--motion-ease);
 }
 
 .content-ready-enter-active {
@@ -271,38 +269,6 @@ body {
     .filter-control:active {
         transform: none !important;
     }
-}
-
-/* 共享的 42px 细网格底纹（hero / 详情页头部），配合 absolute inset-0 + opacity-* 使用。 */
-.grid-texture {
-    background-image:
-        linear-gradient(to right, color-mix(in srgb, var(--ui-border) 65%, transparent) 1px, transparent 1px),
-        linear-gradient(to bottom, color-mix(in srgb, var(--ui-border) 65%, transparent) 1px, transparent 1px);
-    background-size: 42px 42px;
-    mask-image: linear-gradient(to right, black, transparent 90%);
-    contain: strict;
-}
-
-.grid-texture-left {
-    mask-image: linear-gradient(to left, black, transparent 90%);
-}
-
-/* mono 元信息标签与区块 eyebrow。全站唯一来源，见 .agents/skills/prop-show-design/references/design-system.md */
-.meta-label {
-    @apply font-mono text-[10px] font-bold tracking-[0.18em] text-dimmed;
-}
-
-.eyebrow {
-    @apply mb-2 font-mono text-xs font-bold tracking-[0.22em] text-primary;
-}
-
-.meta-label-on-primary {
-    @apply font-mono text-[10px] font-bold tracking-[0.2em] text-black/70;
-}
-
-/* 区块标题右侧的计数（EPISODES / WORKS / CONTRIBUTORS …） */
-.section-count {
-    @apply font-mono text-xs font-bold tracking-[0.18em] text-dimmed;
 }
 
 /* Markdown 组件块 ::note / ::alert / ::poetry，标记由 src/markdown.ts 生成。 */

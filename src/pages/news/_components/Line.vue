@@ -1,38 +1,30 @@
 <script lang="ts" setup>
 import type { News } from '@/content'
-import { site } from '@/config'
-import { contentDate } from '@/utils/content-date'
+import { contentDate, contentDateText } from '@/utils/content-date'
 
 defineProps<{
     news: News[]
     total: number
 }>()
-
-function formatDate(date: string) {
-    return new Intl.DateTimeFormat('zh-CN', {
-        timeZone: site.timeZone,
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-    }).format(contentDate(date))
-}
 </script>
 
 <template>
-    <section class="my-8 md:my-12" aria-label="速报列表">
-        <div class="mb-4 text-sm text-muted">
-            共 {{ total }} 条速报
-        </div>
+    <section class="my-8 md:my-10" aria-label="速报列表">
+        <SectionHeading title="全部速报">
+            <span class="text-sm text-muted tabular-nums">
+                共 {{ total }} 条
+            </span>
+        </SectionHeading>
 
-        <div>
+        <div class="border-y border-default">
             <SiteLink
                 v-for="item in news"
                 :key="item.stem"
                 :to="item.path"
-                class="content-link group block border-b border-default px-1 py-7 outline-none transition-colors last:border-b-0 hover:bg-elevated/55 focus-visible:bg-elevated/55 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary sm:px-5"
+                class="content-link group block border-b border-default py-7 outline-none transition-colors last:border-b-0 hover:bg-elevated/55 focus-visible:bg-elevated/55 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
             >
                 <time :datetime="contentDate(item.date)?.toISOString()" class="block text-[13px] leading-6 text-muted tabular-nums">
-                    {{ formatDate(item.date) }}
+                    {{ contentDateText(item.date) }}
                 </time>
 
                 <div class="mt-2 min-w-0">

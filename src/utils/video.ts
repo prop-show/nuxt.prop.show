@@ -22,6 +22,13 @@ export function videoLabel(video: NumberedVideo) {
         : video.title
 }
 
+/** 编号写法：全局节目写「第27期」，系列写「EP.23」，两套前缀不同，不会读混。 */
+export function videoNumberLabel(video: NumberedVideo) {
+    const episode = String(videoEpisode(video)).padStart(2, '0')
+
+    return video.series ? `EP.${episode}` : `第${episode}期`
+}
+
 /** 分类色点，只用于小面积语义标识。 */
 export function videoCategoryColor(category?: string) {
     switch (category) {

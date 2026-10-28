@@ -23,18 +23,18 @@ const modules = [
 <template>
     <section class="my-12 md:my-16">
         <SectionHeading title="节目频道">
-            <SiteLink to="/videos" class="inline-flex min-h-11 items-center gap-2 text-sm text-muted outline-none hover:text-highlighted focus-visible:ring-2 focus-visible:ring-primary">
+            <SiteLink to="/videos" class="inline-flex min-h-11 items-center gap-2 text-sm text-muted outline-none hover:text-highlighted focus-visible:ring-2 focus-visible:ring-ring">
                 全部视频 <IconArrowRight aria-hidden="true" class="size-4" />
             </SiteLink>
         </SectionHeading>
         <p class="mb-8 max-w-2xl text-base leading-8 text-muted">
-            用视频演示开发过程，从项目实践到日常技巧。<SiteLink to="/news" class="underline decoration-default underline-offset-4 outline-none hover:text-primary focus-visible:ring-2 focus-visible:ring-primary">
+            用视频演示开发过程，从项目实践到日常技巧。<SiteLink to="/news" class="inline-flex min-h-6 items-center underline decoration-default underline-offset-4 outline-none hover:text-primary focus-visible:ring-2 focus-visible:ring-ring">
                 技术速报
             </SiteLink>记录框架、工具与开源动态。
         </p>
         <ul class="grid gap-6 md:grid-cols-3 md:gap-8">
             <li v-for="module in modules" :key="module.title" class="min-w-0">
-                <SiteLink :to="module.to" class="group block bg-elevated/60 p-5 outline-none transition-colors hover:bg-elevated focus-visible:ring-2 focus-visible:ring-primary sm:p-6">
+                <SiteLink :to="module.to" class="group block bg-elevated/60 p-5 outline-none transition-colors hover:bg-elevated focus-visible:ring-2 focus-visible:ring-ring sm:p-6">
                     <h3 class="flex items-center justify-between gap-3 text-lg leading-8 font-semibold">
                         {{ module.title }} <IconArrowRight aria-hidden="true" class="size-4 shrink-0 transition-transform group-hover:translate-x-1" />
                     </h3>

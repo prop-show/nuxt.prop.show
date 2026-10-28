@@ -12,7 +12,7 @@ defineProps<{
 <template>
     <SiteLink
         :to="work.path"
-        class="group grid gap-5 border-b border-default px-1 py-7 outline-none transition-colors last:border-b-0 hover:bg-elevated/55 focus-visible:bg-elevated/55 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary sm:px-5 lg:grid-cols-[minmax(0,1fr)_14rem_1.25rem] lg:items-center"
+        class="group grid gap-5 border-b border-default py-7 outline-none transition-colors last:border-b-0 hover:bg-elevated/55 focus-visible:bg-elevated/55 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring lg:grid-cols-[minmax(0,1fr)_auto_1.25rem] lg:items-center"
     >
         <div class="min-w-0">
             <div class="text-[13px] leading-6 text-muted">
@@ -25,12 +25,10 @@ defineProps<{
                 {{ work.description }}
             </p>
 
-            <div v-if="work.tags?.length" class="mt-3 flex flex-wrap gap-x-3 gap-y-1 text-[13px] leading-6 text-muted">
-                <span v-for="tag in work.tags.slice(0, 4)" :key="tag">{{ tag }}</span>
-            </div>
+            <TagList v-if="work.tags?.length" :tags="work.tags" :limit="4" class="mt-3" />
         </div>
 
-        <div>
+        <div class="min-w-0 lg:max-w-[16rem]">
             <div v-if="creator" class="flex items-center gap-3">
                 <CreatorAvatar :creator="creator" />
                 <div class="min-w-0">

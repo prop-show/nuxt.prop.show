@@ -2,8 +2,11 @@
 import type { Video } from '@/content'
 import IconArrowRight from '~icons/tabler/arrow-right'
 import IconPlayerPlayFilled from '~icons/tabler/player-play-filled'
+import { seriesConfig } from '@/series-config'
 
 defineProps<{ video?: Video }>()
+
+const series = seriesConfig.yisi
 </script>
 
 <template>
@@ -41,13 +44,13 @@ defineProps<{ video?: Video }>()
                         项目实战系列
                     </p>
                     <h3 class="mt-3 text-xl leading-8 font-bold">
-                        乙巳：从零构建完整产品
+                        {{ series.title }}
                     </h3>
                     <p class="mt-3 text-sm leading-7 text-black/75">
-                        从 API、数据库到前端，在完整项目中理解开发的每一步。
+                        {{ series.description }}
                     </p>
                 </div>
-                <SiteLink to="/series/yisi" class="inline-flex min-h-11 items-center gap-2 self-start text-sm font-bold outline-none hover:underline focus-visible:ring-2 focus-visible:ring-black">
+                <SiteLink :to="series.path" class="inline-flex min-h-11 items-center gap-2 self-start text-sm font-bold outline-none hover:underline focus-visible:ring-2 focus-visible:ring-black">
                     查看课程目录 <IconArrowRight aria-hidden="true" class="size-4" />
                 </SiteLink>
             </aside>

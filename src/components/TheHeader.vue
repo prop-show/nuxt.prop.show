@@ -21,7 +21,7 @@ function isActive(to?: string) {
 <template>
     <header class="relative z-40 border-b border-default">
         <div class="flex min-h-18 items-center gap-4">
-            <SiteLink to="/" aria-label="Prop.show — 首页" class="flex shrink-0 items-center gap-2.5 outline-none focus-visible:ring-2 focus-visible:ring-primary">
+            <SiteLink to="/" aria-label="Prop.show — 首页" class="flex shrink-0 items-center gap-2.5 outline-none focus-visible:ring-2 focus-visible:ring-ring">
                 <span class="flex size-9 items-center justify-center">
                     <img
                         src="/prop-light-transparent.svg" alt=""
@@ -45,7 +45,7 @@ function isActive(to?: string) {
                     :key="link.label"
                     :to="link.to"
                     :aria-current="isActive(link.to) ? 'page' : undefined"
-                    class="flex min-h-11 items-center px-3 text-sm font-medium outline-none transition-colors hover:text-highlighted focus-visible:ring-2 focus-visible:ring-primary lg:px-4"
+                    class="flex min-h-11 items-center px-3 text-sm font-medium outline-none transition-colors hover:text-highlighted focus-visible:ring-2 focus-visible:ring-ring lg:px-4"
                     :class="isActive(link.to) ? 'font-bold text-highlighted underline decoration-primary decoration-2 underline-offset-8' : 'text-muted'"
                 >
                     {{ link.label }}
@@ -83,8 +83,8 @@ function isActive(to?: string) {
                                     :key="link.label"
                                     :to="link.to"
                                     :aria-current="isActive(link.to) ? 'page' : undefined"
-                                    class="flex min-h-12 items-center px-3 text-base outline-none transition-colors hover:bg-elevated/55 focus-visible:ring-2 focus-visible:ring-primary"
-                                    :class="isActive(link.to) ? 'font-bold text-primary' : 'text-highlighted'"
+                                    class="flex min-h-12 items-center px-3 text-base outline-none transition-colors hover:bg-elevated/55 focus-visible:ring-2 focus-visible:ring-ring"
+                                    :class="isActive(link.to) ? 'font-bold text-highlighted underline decoration-primary decoration-2 underline-offset-8' : 'text-highlighted'"
                                     @click="mobileMenuOpen = false"
                                 >
                                     {{ link.label }}

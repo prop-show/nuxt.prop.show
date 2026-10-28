@@ -32,6 +32,8 @@ Use actual source when implementation and this reference diverge. Record intenti
 
 - Brand fill is `#F0DB4F`, with dark text. Neutral light/dark surfaces support it.
 - `text-primary` uses the separate readable foreground token: `#806400` in light mode and brand yellow in dark mode. Do not use the bright fill as small text on white.
+- The same rule covers the focus ring: `--ring` is `#806400` on light and brand yellow on dark, and focus uses `focus-visible:ring-ring` (never `ring-primary`). The brand fill against white is 1.4:1, which is invisible as a focus indicator.
+- Dark surfaces separate by value, not by shadow: `--border: neutral-700` and `--surface-elevated: neutral-700` against `neutral-900` (1.7:1). `neutral-800` against `neutral-900` is 1.18:1 and reads as nothing.
 - Prefer existing semantic utilities (`bg-default`, `bg-elevated`, `text-highlighted`, `text-muted`, `border-default`). Do not build component-local palettes.
 - Other colors are permitted for truthful status or actual content imagery; they do not become competing decorative accents.
 - Use mode-correct logo assets. Dark overscroll remains dark.
@@ -44,7 +46,9 @@ Use actual source when implementation and this reference diverge. Record intenti
 - Use comfortable body line height (roughly 1.7–2). Keep detail reading width around 42–48rem. Wide lists may use the full shared container.
 - Mono is optional for code, episode IDs and aligned technical values. Dates and UI labels can use normal sans with tabular numbers.
 - No routine 9–10px uppercase labels or tracking-heavy eyebrows. Chinese carries navigation and actions.
-- Detail titles wrap naturally. Compact homepage update titles intentionally remain one line with ellipsis; keep full text in the DOM and offer a title attribute.
+- Detail titles wrap naturally. Homepage update titles clamp to two lines; the full text stays in the DOM with a title attribute.
+- One date format everywhere: `2026/07/11` from `contentDateText()` in `src/utils/content-date.ts`. Never a second month/day-only variant.
+- Numbering has two prefixes and they never mix: global episodes are `第27期`, series episodes are `EP.23`. Counting units follow the collection: videos 期 (global) or 集 (a series), news 条, works 件.
 
 ### Responsive behavior and accessibility
 
@@ -69,15 +73,19 @@ Use actual source when implementation and this reference diverge. Record intenti
 - Quiet filters with a clear selected state. Categories stay available; a long tag list may use native details/summary with the current selection visible.
 - Item title dominates; metadata and summary help selection. Show only available platforms.
 - Real episode numbers stay secondary. Global and series numbering must be unambiguous.
-- Pagination updates the URL, retains filters, and works with reload/back/forward. Small widths use fewer controls.
+- All three archives share one structure: a section heading (`全部视频` / `全部速报` / `全部作品`) with `共 N 期/条/件` on the right, rows that align with that heading, and one pagination band closed by a single rule.
+- Filter controls always show a border when unselected; the selected one is brand fill with dark text. A result count appears only while a filter is active.
+- Pagination updates the URL, retains filters, and works with reload/back/forward. Page numbers stay visible at small widths; only the first/last-edge controls drop.
 
 ### Details: read or watch
 
 - Return link, natural title, useful metadata, then content or viewing/source actions.
 - No oversized number/type panel, archive status sidebar or duplicate article label.
 - Watch and repository actions stay close to the title. Sources stay near news date metadata.
-- Avoid repeating the same introduction in header and body. Keep previous/next and course navigation where useful.
+- Avoid repeating the same introduction in header and body. Keep previous/next and course navigation where useful, in one full-width column when only one side exists.
 - Skeleton geometry follows the implemented title, actions and body layout.
+- Tags render through `TagList` everywhere, so a tag looks the same in a work row and on a video detail.
+- Video cards accept an optional `cover` image (`cover:` in the frontmatter, file under `public/`). Without one, no thumbnail space is reserved. Never substitute invented art.
 
 ### About and works: show people and evidence
 
@@ -102,16 +110,18 @@ Use actual source when implementation and this reference diverge. Record intenti
 3. Preserve dirty user changes and content/query behavior.
 4. Implement the smallest complete change; match skeletons and optional/empty states.
 5. Check approximately 390, 768 and 1440px, both themes, long titles, keyboard and reduced motion for touched interactions.
-6. Run focused ESLint, typecheck and relevant build/test checks. Report actual evidence and limitations.
-7. Compare screenshots against the task. Update this reference only for deliberate, verified system changes.
+6. Verify the changed result in the browser: measure alignment, focus-ring colour and text truncation instead of trusting the diff.
+7. Run focused ESLint, typecheck and relevant build/test checks. Report actual evidence and limitations.
+8. Compare screenshots against the task. Update this reference only for deliberate, verified system changes.
 
 ## Review checklist
 
 - First screen says what the page is and presents useful content or an action.
 - Primary content arrives promptly on a phone; no decorative block pushes it down.
 - Titles, metadata and actions have clear relative importance.
+- Every keyboard tab shows a focus ring you can actually see in both themes.
 - Homepage paired updates align; lists and details remain readable with long text.
-- Neutral surfaces, brand fill and readable accent text work in both themes.
+- Neutral surfaces, brand fill and readable accent text work in both themes; borders and raised panels stay visible in dark mode.
 - Borders, imagery and motion each have a purpose; no invented status or filler.
 - All navigation, sources, filters, pagination and keyboard behavior continue to work.
 - No horizontal overflow, unnecessary layout movement or missing-content holes.

@@ -66,11 +66,11 @@ const error = shallowRef<Error | null>(null)
                 <span v-if="variant === 'directory'" class="text-sm text-muted">
                     {{ creators.length }} 位创作者
                 </span>
-                <SiteLink v-else to="/about" class="inline-flex min-h-11 items-center gap-2 text-sm text-muted outline-none transition-colors hover:text-highlighted focus-visible:ring-2 focus-visible:ring-primary">
+                <SiteLink v-else to="/about" class="inline-flex min-h-11 items-center gap-2 text-sm text-muted outline-none transition-colors hover:text-highlighted focus-visible:ring-2 focus-visible:ring-ring">
                     认识团队
                     <IconArrowRight aria-hidden="true" class="size-4" />
                 </SiteLink>
-                <SiteLink to="/works" class="inline-flex min-h-11 items-center gap-2 text-sm text-muted outline-none transition-colors hover:text-highlighted focus-visible:ring-2 focus-visible:ring-primary">
+                <SiteLink to="/works" class="inline-flex min-h-11 items-center gap-2 text-sm text-muted outline-none transition-colors hover:text-highlighted focus-visible:ring-2 focus-visible:ring-ring">
                     全部团队作品
                     <IconArrowRight aria-hidden="true" class="size-4" />
                 </SiteLink>
@@ -95,7 +95,7 @@ const error = shallowRef<Error | null>(null)
                         <SiteLink
                             :to="{ path: '/works', query: { author: creator.slug } }"
                             :aria-label="`查看 ${creator.name} 的作品`"
-                            class="inline-flex min-h-11 items-center gap-1.5 text-sm font-medium outline-none transition-colors hover:text-primary focus-visible:ring-2 focus-visible:ring-primary"
+                            class="inline-flex min-h-11 items-center gap-1.5 text-sm font-medium outline-none transition-colors hover:text-primary focus-visible:ring-2 focus-visible:ring-ring"
                         >
                             查看作品 <IconArrowRight aria-hidden="true" class="size-4" />
                         </SiteLink>
@@ -104,7 +104,7 @@ const error = shallowRef<Error | null>(null)
                             target="_blank"
                             rel="noopener noreferrer"
                             :aria-label="`${creator.name} 的${profileLabel(creator.href)}（新窗口打开）`"
-                            class="inline-flex min-h-11 items-center gap-1.5 text-sm text-muted outline-none transition-colors hover:text-highlighted focus-visible:ring-2 focus-visible:ring-primary"
+                            class="inline-flex min-h-11 items-center gap-1.5 text-sm text-muted outline-none transition-colors hover:text-highlighted focus-visible:ring-2 focus-visible:ring-ring"
                         >
                             {{ profileLabel(creator.href) }} <IconArrowUpRight aria-hidden="true" class="size-4" />
                         </SiteLink>

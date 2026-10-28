@@ -41,8 +41,8 @@ defineProps<Props>()
             id="curriculum"
             :videos="seriesVideos"
             :total="seriesVideos.length"
-            eyebrow="YISI CURRICULUM"
             title="完整课程目录"
+            unit="集"
             numbering="series"
         />
     </main>

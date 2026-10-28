@@ -17,6 +17,8 @@ const documentSchema = z.object({
 const videoSchema = z.object({
     category: requiredText,
     date: z.string().optional(),
+    /** 可选封面图，放在 public/ 下，例如 /media/videos/27-cover.jpg。 */
+    cover: z.string().optional(),
     status: z.string().optional(),
     platforms: z.object({
         bilibili: z.string().optional(),

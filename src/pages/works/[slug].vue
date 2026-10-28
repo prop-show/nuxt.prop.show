@@ -107,7 +107,7 @@ defineProps<Props>()
                         :to="creator.href"
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="group inline-flex items-center gap-3 outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                        class="group inline-flex items-center gap-3 outline-none focus-visible:ring-2 focus-visible:ring-ring"
                     >
                         <CreatorAvatar :creator="creator" size="md" class="shrink-0" />
                         <div class="min-w-0">

@@ -30,7 +30,7 @@ defineProps<Props>()
                     <UiSkeleton class="h-5 w-24" />
                 </div>
                 <div class="border-y border-default">
-                    <div v-for="index in 3" :key="index" class="grid gap-5 border-b border-default px-1 py-7 last:border-b-0 sm:px-5 lg:grid-cols-[minmax(0,1fr)_14rem_1.25rem] lg:items-center">
+                    <div v-for="index in 3" :key="index" class="grid gap-5 border-b border-default py-7 last:border-b-0 lg:grid-cols-[minmax(0,1fr)_auto_1.25rem] lg:items-center">
                         <div class="min-w-0">
                             <UiSkeleton class="h-6 w-16" />
                             <UiSkeleton class="mt-2 h-[31px] w-3/5" />

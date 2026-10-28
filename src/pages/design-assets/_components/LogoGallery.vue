@@ -48,7 +48,7 @@ const { designAssets } = siteConfig
                         <a
                             :href="logo.asset"
                             :download="logo.asset.slice(1)"
-                            class="group flex min-h-12 items-center justify-between border border-default px-4 text-sm font-medium outline-none transition-colors hover:border-primary hover:bg-elevated/70 focus-visible:ring-2 focus-visible:ring-primary"
+                            class="group flex min-h-12 items-center justify-between border border-default px-4 text-sm font-medium outline-none transition-colors hover:border-primary hover:bg-elevated/70 focus-visible:ring-2 focus-visible:ring-ring"
                         >
                             下载带底 SVG
                             <IconDownload aria-hidden="true" class="size-4 text-muted transition-transform group-hover:translate-y-0.5 group-hover:text-primary" />
@@ -56,7 +56,7 @@ const { designAssets } = siteConfig
                         <a
                             :href="logo.transparentAsset"
                             :download="logo.transparentAsset.slice(1)"
-                            class="group flex min-h-12 items-center justify-between border border-default px-4 text-sm font-medium outline-none transition-colors hover:border-primary hover:bg-elevated/70 focus-visible:ring-2 focus-visible:ring-primary"
+                            class="group flex min-h-12 items-center justify-between border border-default px-4 text-sm font-medium outline-none transition-colors hover:border-primary hover:bg-elevated/70 focus-visible:ring-2 focus-visible:ring-ring"
                         >
                             下载透明 SVG
                             <IconDownload aria-hidden="true" class="size-4 text-muted transition-transform group-hover:translate-y-0.5 group-hover:text-primary" />

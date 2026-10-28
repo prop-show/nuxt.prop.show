@@ -15,9 +15,9 @@ const creatorsByKey = computed(() => new Map(
 
 <template>
     <section class="my-8 md:my-10">
-        <SectionHeading title="作品目录">
-            <span class="text-sm text-muted">
-                共 {{ total }} 件作品
+        <SectionHeading title="全部作品">
+            <span class="text-sm text-muted tabular-nums">
+                共 {{ total }} 件
             </span>
         </SectionHeading>
 

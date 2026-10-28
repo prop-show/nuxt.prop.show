@@ -24,6 +24,8 @@ export interface ContentDocument extends ContentEntry {
 export interface Video extends ContentEntry {
     category: string
     date?: string
+    /** 可选封面图；没有时不渲染缩略图，不留空位。 */
+    cover?: string
     status?: string
     platforms: { bilibili?: string, youtube?: string, douyin?: string }
     tags: string[]
