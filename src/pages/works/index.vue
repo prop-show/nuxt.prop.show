@@ -14,7 +14,7 @@ defineProps<Props>()
     <main>
         <WorkHero />
 
-        <section v-if="pending" class="my-8 md:my-10" aria-label="正在加载作品">
+        <section v-if="pending" aria-label="正在加载作品">
             <div class="flex flex-col gap-2 py-2 sm:flex-row sm:items-start sm:gap-4">
                 <UiSkeleton class="my-3 h-5 w-7" />
                 <div class="flex flex-wrap gap-2">
@@ -24,10 +24,9 @@ defineProps<Props>()
                 </div>
             </div>
 
-            <div class="my-8 md:my-10">
-                <div class="mb-6 flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
-                    <UiSkeleton class="h-[31px] w-24 lg:h-[39px] lg:w-30" />
-                    <UiSkeleton class="h-5 w-24" />
+            <div class="mt-10 mb-8 md:mt-16 md:mb-10">
+                <div class="mb-6">
+                    <UiSkeleton class="h-4 w-24" />
                 </div>
                 <div class="border-y border-default">
                     <div v-for="index in 3" :key="index" class="grid gap-5 border-b border-default py-7 last:border-b-0 lg:grid-cols-[minmax(0,1fr)_auto_1.25rem] lg:items-center">

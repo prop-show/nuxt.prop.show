@@ -48,7 +48,7 @@ const news = computed(() => path.startsWith('/news/'))
                     <div class="flex items-center" :class="video ? 'h-[1.575rem] lg:h-7' : 'h-7'">
                         <UiSkeleton class="h-[1.125rem]" :class="video ? 'w-28 lg:h-5' : 'w-44'" />
                     </div>
-                    <div class="flex min-h-12 flex-col justify-center gap-2 sm:min-h-6" :class="video ? '' : 'mt-2'">
+                    <div v-if="!video" class="mt-2 flex min-h-12 flex-col justify-center gap-2 sm:min-h-6">
                         <UiSkeleton class="h-3.5 w-full max-w-96" />
                         <UiSkeleton class="h-3.5 w-2/3 sm:hidden" />
                     </div>

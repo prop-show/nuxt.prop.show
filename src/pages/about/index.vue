@@ -8,7 +8,7 @@ defineProps<Props>()
 </script>
 
 <template>
-    <main class="mx-auto max-w-5xl">
+    <main>
         <AboutHero />
 
         <Creators variant="directory" />

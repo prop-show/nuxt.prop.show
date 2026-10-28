@@ -21,10 +21,9 @@ defineProps<Props>()
             :series-count
         />
 
-        <section v-if="pending" class="my-20">
-            <div class="mb-8 border-b border-default pb-5">
-                <UiSkeleton class="mb-2 h-3 w-28" />
-                <UiSkeleton class="h-8 w-56 lg:h-10" />
+        <section v-if="pending" class="mt-10 mb-8 md:mt-16 md:mb-10">
+            <div class="mb-6">
+                <UiSkeleton class="h-4 w-28" />
             </div>
 
             <div>

@@ -14,9 +14,9 @@ defineProps<{ videos: Video[], news: News[], videoTotal: number, newsTotal: numb
                     全部 {{ videoTotal }} 期 <IconArrowRight aria-hidden="true" class="size-4" />
                 </SiteLink>
             </SectionHeading>
-            <div v-if="videos.length" class="space-y-1">
-                <SiteLink v-for="video in videos" :key="video.stem" :to="video.path" class="group flex min-h-18 items-center gap-4 outline-none focus-visible:ring-2 focus-visible:ring-ring">
-                    <span class="w-16 shrink-0 font-mono text-sm text-muted tabular-nums lg:w-20">第{{ String(video.order).padStart(2, '0') }}期</span>
+            <div v-if="videos.length">
+                <SiteLink v-for="video in videos" :key="video.stem" :to="video.path" class="group flex items-start gap-4 py-4 outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                    <span class="w-20 shrink-0 font-mono text-sm leading-7 text-muted tabular-nums">第{{ String(video.order).padStart(2, '0') }}期</span>
                     <span :title="video.title" class="line-clamp-2 min-w-0 text-lg font-semibold transition-colors group-hover:text-primary">{{ video.title }}</span>
                 </SiteLink>
             </div>
@@ -30,9 +30,9 @@ defineProps<{ videos: Video[], news: News[], videoTotal: number, newsTotal: numb
                     全部 {{ newsTotal }} 条 <IconArrowRight aria-hidden="true" class="size-4" />
                 </SiteLink>
             </SectionHeading>
-            <div v-if="news.length" class="space-y-1">
-                <SiteLink v-for="item in news" :key="item.stem" :to="item.path" class="group flex min-h-18 items-center gap-4 outline-none focus-visible:ring-2 focus-visible:ring-ring">
-                    <time :datetime="contentDate(item.date)?.toISOString()" class="w-20 shrink-0 text-sm tabular-nums text-muted lg:w-20">{{ contentDateText(item.date) }}</time>
+            <div v-if="news.length">
+                <SiteLink v-for="item in news" :key="item.stem" :to="item.path" class="group flex items-start gap-4 py-4 outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                    <time :datetime="contentDate(item.date)?.toISOString()" class="w-20 shrink-0 text-sm leading-7 tabular-nums text-muted">{{ contentDateText(item.date) }}</time>
                     <span :title="item.title" class="line-clamp-2 min-w-0 text-lg font-semibold transition-colors group-hover:text-primary">{{ item.title }}</span>
                 </SiteLink>
             </div>

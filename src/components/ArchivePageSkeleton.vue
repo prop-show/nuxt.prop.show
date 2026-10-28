@@ -10,7 +10,7 @@ defineProps<{ path: string }>()
                 <UiSkeleton class="h-4 w-72 max-w-full" />
             </div>
         </div>
-        <div v-if="path === '/videos'" class="my-8 md:my-10">
+        <div v-if="path === '/videos'">
             <div class="mb-4 flex h-10 items-center">
                 <UiSkeleton class="h-4 w-72 max-w-full" />
             </div>
@@ -27,7 +27,7 @@ defineProps<{ path: string }>()
             </div>
             <UiSkeleton class="mt-4 h-5 w-32" />
         </div>
-        <div v-else-if="path === '/works'" class="my-8 md:my-10">
+        <div v-else-if="path === '/works'">
             <div class="flex flex-col gap-2 py-2 sm:flex-row sm:gap-4">
                 <div class="flex h-11 items-center">
                     <UiSkeleton class="h-3.5 w-7" />
@@ -37,12 +37,9 @@ defineProps<{ path: string }>()
                 </div>
             </div>
         </div>
-        <div class="my-8" :class="path === '/news' ? 'md:my-12' : 'md:my-10'">
-            <div v-if="path === '/news'" class="mb-4">
-                <UiSkeleton class="h-5 w-28" />
-            </div>
-            <div v-else class="mb-6 flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
-                <UiSkeleton class="h-8 w-32 lg:h-9" /><UiSkeleton class="h-5 w-28" />
+        <div class="mt-10 mb-8 md:mt-16 md:mb-10">
+            <div class="mb-6">
+                <UiSkeleton class="h-4 w-28" />
             </div>
             <div :class="path === '/news' ? '' : 'border-y border-default'">
                 <div v-for="row in 4" :key="row" class="border-b border-default px-1 py-7 last:border-0 sm:px-5" :class="path === '/works' ? 'grid gap-5 lg:grid-cols-[minmax(0,1fr)_14rem_1.25rem] lg:items-center' : ''">

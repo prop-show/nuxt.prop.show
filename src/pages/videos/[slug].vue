@@ -7,15 +7,18 @@ import IconRoute from '~icons/tabler/route'
 import IconVideoOff from '~icons/tabler/video-off'
 import VideoPlatformButtons from '@/pages/videos/_components/PlatformButtons.vue'
 
+import { useArchiveBack } from '@/utils/archive-back'
 import { videoNumberLabel } from '@/utils/video'
 
 defineProps<Props>()
+
+const backTo = useArchiveBack('/videos')
 </script>
 
 <template>
     <main class="mx-auto max-w-3xl">
         <div class="my-8 md:my-12">
-            <SiteLink to="/videos" class="group inline-flex items-center gap-2 text-sm font-medium tracking-[0.16em] text-muted transition-colors hover:text-highlighted">
+            <SiteLink :to="backTo" class="group -my-2 inline-flex items-center gap-2 py-2 text-sm font-medium tracking-[0.16em] text-muted transition-colors hover:text-highlighted">
                 <IconArrowLeft class="size-4 transition-transform group-hover:-translate-x-1" />
                 返回视频
             </SiteLink>
@@ -53,6 +56,7 @@ defineProps<Props>()
 
         <template v-else-if="video">
             <header>
+                <!-- impeccable-disable-next-line design-system-font-size — 28/32/40 是 DESIGN.md 记录的 Detail Title 响应式三档 -->
                 <h1 class="text-[1.75rem] leading-[1.3] font-bold tracking-[-0.02em] sm:text-[2rem] lg:text-[2.5rem]">
                     {{ video.title }}
                 </h1>
@@ -73,9 +77,6 @@ defineProps<Props>()
                         <h2 class="text-lg leading-[1.4] font-bold lg:text-xl">
                             观看完整视频
                         </h2>
-                        <p class="text-sm leading-6 text-muted">
-                            选择平台观看完整节目，下方为节目说明与相关资料。
-                        </p>
                         <VideoPlatformButtons :platforms="video.platforms" :show-title="false" />
                     </template>
                     <UiButton

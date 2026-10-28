@@ -1,6 +1,7 @@
 <template>
-    <main class="mx-auto my-12 max-w-3xl sm:my-20">
+    <main class="my-12 sm:my-20">
         <span class="text-sm font-medium text-muted">404</span>
+        <!-- impeccable-disable-next-line design-system-font-size — 32/40/48 是 DESIGN.md 记录的 Page Title 响应式三档 -->
         <h1 class="mt-8 text-[2rem] leading-[1.2] font-bold tracking-[-0.025em] sm:text-[2.5rem] lg:text-5xl">
             页面不存在
         </h1>

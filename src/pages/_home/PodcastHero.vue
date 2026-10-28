@@ -38,15 +38,15 @@ const series = seriesConfig.yisi
                     观看完整节目 <IconArrowRight aria-hidden="true" class="size-4 transition-transform group-hover:translate-x-1" />
                 </SiteLink>
             </div>
-            <aside class="flex flex-col justify-between gap-5 bg-black/[0.045] p-6 sm:p-10 lg:p-8">
+            <aside class="flex flex-col justify-between gap-3 bg-black/[0.045] p-4 sm:gap-5 sm:p-10 lg:p-8">
                 <div>
                     <p class="text-sm text-black/70">
                         项目实战系列
                     </p>
-                    <h3 class="mt-3 text-xl leading-8 font-bold">
+                    <h3 class="mt-2 text-lg leading-7 font-bold sm:mt-3 sm:text-xl sm:leading-8">
                         {{ series.title }}
                     </h3>
-                    <p class="mt-3 text-sm leading-7 text-black/75">
+                    <p class="mt-3 hidden text-sm leading-7 text-black/75 sm:block">
                         {{ series.description }}
                     </p>
                 </div>

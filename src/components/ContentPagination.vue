@@ -37,7 +37,7 @@ function pageLink(page: number) {
 
         <Pagination class="mx-0 w-auto" :page="page" :total="total" :items-per-page="pageSize" :sibling-count="1" show-edges aria-label="内容分页">
             <PaginationContent v-slot="{ items }" class="flex flex-wrap items-center justify-center gap-1">
-                <PaginationFirst as-child size="icon" class="hidden px-0 sm:inline-flex sm:pr-0" aria-label="首页">
+                <PaginationFirst as-child size="icon" class="hidden size-11 px-0 sm:inline-flex sm:pr-0" aria-label="首页">
                     <component
                         :is="page === 1 ? 'button' : SiteLink"
                         preserve-scroll
@@ -48,7 +48,7 @@ function pageLink(page: number) {
                         <IconChevronsLeft aria-hidden="true" class="size-4" />
                     </component>
                 </PaginationFirst>
-                <PaginationPrevious as-child size="icon" class="px-0 sm:pr-0" aria-label="上一页">
+                <PaginationPrevious as-child size="icon" class="size-11 px-0 sm:pr-0" aria-label="上一页">
                     <component
                         :is="page === 1 ? 'button' : SiteLink"
                         preserve-scroll
@@ -64,18 +64,18 @@ function pageLink(page: number) {
                         v-if="item.type === 'page'"
                         as-child
                         :value="item.value"
-                        :class="item.value === page ? buttonVariants({ variant: 'default', size: 'icon' }) : 'inline-flex'"
+                        :class="item.value === page ? `${buttonVariants({ variant: 'default', size: 'icon' })} size-11` : 'inline-flex size-11 items-center justify-center'"
                         :aria-label="`第 ${item.value} 页`"
                     >
                         <SiteLink :to="pageLink(item.value)" preserve-scroll>
                             {{ item.value }}
                         </SiteLink>
                     </PaginationItem>
-                    <PaginationEllipsis v-else :index="index" class="hidden size-9 items-center justify-center sm:flex" aria-label="更多页码">
+                    <PaginationEllipsis v-else :index="index" class="hidden size-11 items-center justify-center sm:flex" aria-label="更多页码">
                         <IconDots aria-hidden="true" class="size-4" />
                     </PaginationEllipsis>
                 </template>
-                <PaginationNext as-child size="icon" class="px-0 sm:pr-0" aria-label="下一页">
+                <PaginationNext as-child size="icon" class="size-11 px-0 sm:pr-0" aria-label="下一页">
                     <component
                         :is="page === Math.ceil(total / pageSize) ? 'button' : SiteLink"
                         preserve-scroll
@@ -86,7 +86,7 @@ function pageLink(page: number) {
                         <IconChevronRight aria-hidden="true" class="size-4" />
                     </component>
                 </PaginationNext>
-                <PaginationLast as-child size="icon" class="hidden px-0 sm:inline-flex sm:pr-0" aria-label="末页">
+                <PaginationLast as-child size="icon" class="hidden size-11 px-0 sm:inline-flex sm:pr-0" aria-label="末页">
                     <component
                         :is="page === Math.ceil(total / pageSize) ? 'button' : SiteLink"
                         preserve-scroll

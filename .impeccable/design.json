@@ -1,0 +1,316 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-29T05:30:00.000Z",
+  "title": "Design System: prop.show",
+  "extensions": {
+    "colorMeta": {
+      "signal-yellow": {
+        "role": "primary",
+        "displayName": "信号黄 Signal Yellow",
+        "canonical": "#F0DB4F",
+        "tonalRamp": [
+          "oklch(25% 0.06 97)",
+          "oklch(38% 0.09 97)",
+          "oklch(50% 0.12 97)",
+          "oklch(62% 0.14 97)",
+          "oklch(72% 0.15 97)",
+          "oklch(82% 0.16 97)",
+          "oklch(88% 0.15 97)",
+          "oklch(95% 0.07 97)"
+        ]
+      },
+      "ink-gold": {
+        "role": "primary",
+        "displayName": "油墨金 Ink Gold",
+        "canonical": "#806400",
+        "tonalRamp": [
+          "oklch(24% 0.04 95)",
+          "oklch(35% 0.07 95)",
+          "oklch(45% 0.09 95)",
+          "oklch(52% 0.11 95)",
+          "oklch(62% 0.11 95)",
+          "oklch(72% 0.10 95)",
+          "oklch(85% 0.06 95)",
+          "oklch(94% 0.03 95)"
+        ]
+      },
+      "press-black": {
+        "role": "neutral",
+        "displayName": "油墨黑 Press Black",
+        "canonical": "#000000",
+        "tonalRamp": [
+          "oklch(20.5% 0 none)",
+          "oklch(26.9% 0 none)",
+          "oklch(37.1% 0 none)",
+          "oklch(43.9% 0 none)",
+          "oklch(55.6% 0 none)",
+          "oklch(70.8% 0 none)",
+          "oklch(87% 0 none)",
+          "oklch(98.5% 0 none)"
+        ]
+      },
+      "paper-white": {
+        "role": "neutral",
+        "displayName": "纸白 Paper White",
+        "canonical": "#FFFFFF",
+        "tonalRamp": [
+          "oklch(20.5% 0 none)",
+          "oklch(37.1% 0 none)",
+          "oklch(55.6% 0 none)",
+          "oklch(70.8% 0 none)",
+          "oklch(87% 0 none)",
+          "oklch(92.2% 0 none)",
+          "oklch(97% 0 none)",
+          "oklch(100% 0 none)"
+        ]
+      },
+      "press-ink-900": {
+        "role": "neutral",
+        "displayName": "版心底 Press Ink 900",
+        "canonical": "oklch(20.5% 0 none)",
+        "tonalRamp": [
+          "oklch(20.5% 0 none)",
+          "oklch(26.9% 0 none)",
+          "oklch(37.1% 0 none)",
+          "oklch(43.9% 0 none)",
+          "oklch(55.6% 0 none)",
+          "oklch(70.8% 0 none)",
+          "oklch(87% 0 none)",
+          "oklch(98.5% 0 none)"
+        ]
+      },
+      "press-ink-800": {
+        "role": "neutral",
+        "displayName": "版面灰 800",
+        "canonical": "oklch(26.9% 0 none)",
+        "tonalRamp": [
+          "oklch(20.5% 0 none)",
+          "oklch(26.9% 0 none)",
+          "oklch(37.1% 0 none)",
+          "oklch(43.9% 0 none)",
+          "oklch(55.6% 0 none)",
+          "oklch(70.8% 0 none)",
+          "oklch(87% 0 none)",
+          "oklch(98.5% 0 none)"
+        ]
+      },
+      "press-ink-700": {
+        "role": "neutral",
+        "displayName": "版面灰 Press Ink 700",
+        "canonical": "oklch(37.1% 0 none)",
+        "tonalRamp": [
+          "oklch(20.5% 0 none)",
+          "oklch(26.9% 0 none)",
+          "oklch(37.1% 0 none)",
+          "oklch(43.9% 0 none)",
+          "oklch(55.6% 0 none)",
+          "oklch(70.8% 0 none)",
+          "oklch(87% 0 none)",
+          "oklch(98.5% 0 none)"
+        ]
+      },
+      "press-ink-500": {
+        "role": "neutral",
+        "displayName": "次级墨 Press Ink 500",
+        "canonical": "oklch(55.6% 0 none)",
+        "tonalRamp": [
+          "oklch(20.5% 0 none)",
+          "oklch(26.9% 0 none)",
+          "oklch(37.1% 0 none)",
+          "oklch(43.9% 0 none)",
+          "oklch(55.6% 0 none)",
+          "oklch(70.8% 0 none)",
+          "oklch(87% 0 none)",
+          "oklch(98.5% 0 none)"
+        ]
+      },
+      "press-ink-300": {
+        "role": "neutral",
+        "displayName": "浅墨 Press Ink 300",
+        "canonical": "oklch(87% 0 none)",
+        "tonalRamp": [
+          "oklch(20.5% 0 none)",
+          "oklch(26.9% 0 none)",
+          "oklch(37.1% 0 none)",
+          "oklch(43.9% 0 none)",
+          "oklch(55.6% 0 none)",
+          "oklch(70.8% 0 none)",
+          "oklch(87% 0 none)",
+          "oklch(98.5% 0 none)"
+        ]
+      },
+      "press-ink-200": {
+        "role": "neutral",
+        "displayName": "发丝线 Press Ink 200",
+        "canonical": "oklch(92.2% 0 none)",
+        "tonalRamp": [
+          "oklch(20.5% 0 none)",
+          "oklch(26.9% 0 none)",
+          "oklch(37.1% 0 none)",
+          "oklch(43.9% 0 none)",
+          "oklch(55.6% 0 none)",
+          "oklch(70.8% 0 none)",
+          "oklch(87% 0 none)",
+          "oklch(98.5% 0 none)"
+        ]
+      },
+      "proof-grey-50": {
+        "role": "neutral",
+        "displayName": "校样灰 Proof Grey 50",
+        "canonical": "oklch(98.5% 0 none)",
+        "tonalRamp": [
+          "oklch(20.5% 0 none)",
+          "oklch(26.9% 0 none)",
+          "oklch(37.1% 0 none)",
+          "oklch(43.9% 0 none)",
+          "oklch(55.6% 0 none)",
+          "oklch(70.8% 0 none)",
+          "oklch(87% 0 none)",
+          "oklch(98.5% 0 none)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "首页主张句，只出现一次。" },
+      "page-title": { "displayName": "Page Title", "purpose": "页面 h1，与站标共用左侧导轨。" },
+      "section": { "displayName": "Section", "purpose": "区块标题；省略优于重复 h1。" },
+      "item": { "displayName": "Item", "purpose": "列表行标题，该行最先被读到的元素。" },
+      "body": { "displayName": "Body", "purpose": "摘要与说明。" },
+      "prose": { "displayName": "Prose", "purpose": "详情页正文，48rem 阅读栏。" },
+      "label": { "displayName": "Label", "purpose": "日期、期数、分类、平台名。" },
+      "tabular": { "displayName": "Tabular / Mono", "purpose": "集数编号与代码。" }
+    },
+    "shadows": [
+      {
+        "name": "shadow-xs",
+        "value": "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+        "purpose": "仅 shadcn-vue outline 按钮自带；不是本系统的层级语言，不要扩散。"
+      }
+    ],
+    "motion": [
+      { "name": "motion-fast", "value": "160ms", "purpose": "颜色、背景、边框、透明度的状态变化。" },
+      { "name": "motion-standard", "value": "240ms", "purpose": "抽屉进出、列表重排。" },
+      { "name": "motion-ease", "value": "cubic-bezier(0.2, 0, 0, 1)", "purpose": "唯一缓动曲线。" },
+      { "name": "press-scale", "value": "scale(0.97)", "purpose": "按钮与筛选项的按下反馈。" }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "黄色实心主操作，黑字；大号用于面板内主行动。",
+      "html": "<button class=\"ds-btn-primary\">观看完整节目 <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></button>",
+      "css": ".ds-btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:36px;padding:0 16px;border:0;border-radius:3.2px;background:var(--primary,#F0DB4F);color:var(--primary-foreground,#000);font:500 14px/1 system-ui,'Noto Sans SC','PingFang SC',sans-serif;white-space:nowrap;cursor:pointer;transition:background-color 160ms cubic-bezier(.2,0,0,1),color 160ms cubic-bezier(.2,0,0,1),transform 160ms cubic-bezier(.2,0,0,1)} .ds-btn-primary:hover{background:color-mix(in oklab,var(--primary,#F0DB4F) 90%,transparent)} .ds-btn-primary:focus-visible{outline:none;box-shadow:0 0 0 3px color-mix(in oklab,var(--ring,#806400) 50%,transparent)} .ds-btn-primary:active{transform:scale(.97)} .ds-btn-primary svg{flex-shrink:0}"
+    },
+    {
+      "name": "Ink Button",
+      "kind": "button",
+      "refersTo": "button-ink",
+      "description": "黑底白字的 CTA，只出现在黄色面板内部。",
+      "html": "<button class=\"ds-btn-ink\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M8 5v14l11-7z\"/></svg>观看完整节目 <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></button>",
+      "css": ".ds-btn-ink{display:inline-flex;align-items:center;gap:12px;min-height:48px;padding:0 20px;border:0;border-radius:0;background:#000;color:#fff;font:700 14px/1 system-ui,'Noto Sans SC','PingFang SC',sans-serif;cursor:pointer;transition:background-color 160ms cubic-bezier(.2,0,0,1),transform 160ms cubic-bezier(.2,0,0,1)} .ds-btn-ink:hover{background:#1a1a1a} .ds-btn-ink:focus-visible{outline:none;box-shadow:0 0 0 2px #000} .ds-btn-ink:active{transform:scale(.97)} .ds-btn-ink svg{flex-shrink:0}"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "次级操作，1px 描边，hover 换成中性浮起面。",
+      "html": "<button class=\"ds-btn-outline\">清除筛选</button>",
+      "css": ".ds-btn-outline{display:inline-flex;align-items:center;justify-content:center;height:36px;padding:0 16px;border:1px solid var(--border,#e5e5e5);border-radius:3.2px;background:var(--background,#fff);color:var(--foreground,#404040);font:500 14px/1 system-ui,'Noto Sans SC','PingFang SC',sans-serif;cursor:pointer;transition:background-color 160ms cubic-bezier(.2,0,0,1),border-color 160ms cubic-bezier(.2,0,0,1)} .ds-btn-outline:hover{background:var(--accent,#e5e5e5);color:var(--accent-foreground,#171717)} .ds-btn-outline:focus-visible{outline:none;box-shadow:0 0 0 3px color-mix(in oklab,var(--ring,#806400) 50%,transparent)}"
+    },
+    {
+      "name": "Filter Chip",
+      "kind": "chip",
+      "refersTo": "chip-filter",
+      "description": "归档页筛选项，未选中态：描边 + 次要文字，44px 触控高度，直角。",
+      "html": "<a class=\"ds-chip\" href=\"#\">编程技巧</a>",
+      "css": ".ds-chip{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;border:1px solid var(--border,#e5e5e5);border-radius:0;background:transparent;color:var(--muted-foreground,#737373);font:400 14px/1 system-ui,'Noto Sans SC','PingFang SC',sans-serif;text-decoration:none;cursor:pointer;transition:background-color 160ms cubic-bezier(.2,0,0,1),color 160ms cubic-bezier(.2,0,0,1),transform 160ms cubic-bezier(.2,0,0,1)} .ds-chip:hover{background:var(--accent,#e5e5e5);color:var(--foreground-highlighted,#171717)} .ds-chip:focus-visible{outline:none;box-shadow:0 0 0 2px var(--ring,#806400)} .ds-chip:active{transform:scale(.97)}"
+    },
+    {
+      "name": "Selected Filter Chip",
+      "kind": "chip",
+      "refersTo": "chip-filter-selected",
+      "description": "选中态：信号黄实心 + 黑字，代替阴影和加粗表达状态。",
+      "html": "<a class=\"ds-chip-on\" href=\"#\" aria-current=\"true\">全部类别</a>",
+      "css": ".ds-chip-on{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;border:1px solid var(--primary,#F0DB4F);border-radius:0;background:var(--primary,#F0DB4F);color:#000;font:400 14px/1 system-ui,'Noto Sans SC','PingFang SC',sans-serif;text-decoration:none;cursor:pointer;transition:background-color 160ms cubic-bezier(.2,0,0,1),transform 160ms cubic-bezier(.2,0,0,1)} .ds-chip-on:focus-visible{outline:none;box-shadow:0 0 0 2px var(--ring,#806400)} .ds-chip-on:active{transform:scale(.97)}"
+    },
+    {
+      "name": "Tag",
+      "kind": "chip",
+      "refersTo": "tag",
+      "description": "标签：中性浮起底、直角、13px；全站同一个标签只有一种长相。",
+      "html": "<span class=\"ds-tag\">图片压缩</span> <span class=\"ds-tag\">开源项目</span>",
+      "css": ".ds-tag{display:inline-block;padding:2px 8px;border-radius:0;background:color-mix(in oklab,var(--surface-elevated,#f5f5f5) 60%,transparent);color:var(--foreground-toned,#525252);font:400 13px/1.85 system-ui,'Noto Sans SC','PingFang SC',sans-serif}"
+    },
+    {
+      "name": "Archive Row",
+      "kind": "card",
+      "description": "归档列表行（签名组件）：标题 → 元信息 → 摘要 → 平台，整行是链接，只有一条发丝线分隔。",
+      "html": "<a class=\"ds-row\" href=\"#\"><h3 class=\"ds-row-title\">供应链攻击简易防护</h3><p class=\"ds-row-meta\"><span class=\"ds-row-ep\">第27期</span><span class=\"ds-row-dot\">·</span>编程技巧</p><p class=\"ds-row-desc\">通过 pnpm 的 minimumReleaseAge 和 npm 的 min-release-age 设置依赖发布等待期，降低安装刚发布的恶意依赖版本的风险。</p><span class=\"ds-row-plat\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><rect x=\"2\" y=\"6\" width=\"20\" height=\"12\" rx=\"2\"/><path d=\"M10 9l5 3-5 3z\"/></svg>BiliBili</span></a>",
+      "css": ".ds-row{display:block;padding:28px 0;border-bottom:1px solid var(--border,#e5e5e5);text-decoration:none;transition:background-color 160ms cubic-bezier(.2,0,0,1)} .ds-row:hover{background:color-mix(in oklab,var(--surface-elevated,#f5f5f5) 55%,transparent)} .ds-row:focus-visible{outline:none;box-shadow:inset 0 0 0 2px var(--ring,#806400)} .ds-row-title{margin:0;font:700 22px/1.4 system-ui,'Noto Sans SC','PingFang SC',sans-serif;color:var(--foreground-highlighted,#171717)} .ds-row-meta{display:flex;align-items:center;gap:8px;margin:8px 0 0;font:400 13px/1.85 system-ui,'Noto Sans SC','PingFang SC',sans-serif;color:var(--muted-foreground,#737373);font-variant-numeric:tabular-nums} .ds-row-ep{font-family:ui-monospace,SFMono-Regular,Menlo,monospace} .ds-row-desc{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin:8px 0 0;font:400 16px/28px system-ui,'Noto Sans SC','PingFang SC',sans-serif;color:var(--muted-foreground,#737373)} .ds-row-plat{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font:400 13px/1.85 system-ui,'Noto Sans SC','PingFang SC',sans-serif;color:var(--muted-foreground,#737373)}"
+    },
+    {
+      "name": "Feature Panel",
+      "kind": "card",
+      "description": "首页唯一的饱和色块：左栏文与黑色 CTA，右栏系列入口（4.5% 黑底）。",
+      "html": "<article class=\"ds-feature\"><div class=\"ds-feature-main\"><p class=\"ds-feature-kicker\">最新节目 · 编程技巧</p><h2 class=\"ds-feature-title\">供应链攻击简易防护</h2><p class=\"ds-feature-desc\">通过 pnpm 的 minimumReleaseAge 和 npm 的 min-release-age 设置依赖发布等待期。</p><a class=\"ds-feature-cta\" href=\"#\">观看完整节目 →</a></div><aside class=\"ds-feature-side\"><p class=\"ds-feature-kicker\">项目实战系列</p><h3 class=\"ds-feature-sub\">乙巳：从零构建完整产品</h3><a class=\"ds-feature-link\" href=\"#\">查看课程目录 →</a></aside></article>",
+      "css": ".ds-feature{display:grid;grid-template-columns:minmax(0,1fr) 20rem;overflow:hidden;background:var(--primary,#F0DB4F);color:#000} .ds-feature-main{min-width:0;padding:48px} .ds-feature-side{display:flex;flex-direction:column;justify-content:space-between;gap:20px;padding:32px;background:rgb(0 0 0 / .045)} .ds-feature-kicker{margin:0 0 20px;font:500 14px/1.4 system-ui,'Noto Sans SC','PingFang SC',sans-serif;color:rgb(0 0 0 / .7)} .ds-feature-title{margin:0;font:700 48px/1.2 system-ui,'Noto Sans SC','PingFang SC',sans-serif;letter-spacing:-.025em} .ds-feature-desc{max-width:36rem;margin:20px 0 0;font:400 16px/32px system-ui,'Noto Sans SC','PingFang SC',sans-serif;color:rgb(0 0 0 / .8)} .ds-feature-cta{display:inline-flex;align-items:center;gap:12px;min-height:48px;margin-top:28px;padding:0 20px;background:#000;color:#fff;font:700 14px/1 system-ui,'Noto Sans SC','PingFang SC',sans-serif;text-decoration:none;transition:background-color 160ms cubic-bezier(.2,0,0,1)} .ds-feature-cta:hover{background:#1a1a1a} .ds-feature-cta:focus-visible{outline:none;box-shadow:0 0 0 2px #000} .ds-feature-sub{margin:12px 0 0;font:700 20px/32px system-ui,'Noto Sans SC','PingFang SC',sans-serif} .ds-feature-link{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;min-height:44px;font:700 14px/1 system-ui,'Noto Sans SC','PingFang SC',sans-serif;color:#000;text-decoration:none} .ds-feature-link:hover{text-decoration:underline;text-underline-offset:4px} .ds-feature-link:focus-visible{outline:none;box-shadow:0 0 0 2px #000}"
+    },
+    {
+      "name": "Navigation Item",
+      "kind": "nav",
+      "description": "顶栏导航项；激活态是加粗 + 2px 信号黄下划线（偏移 8px），没有背景块。",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-item\" href=\"#\">速报</a><a class=\"ds-nav-item ds-nav-item-on\" href=\"#\" aria-current=\"page\">视频</a></nav>",
+      "css": ".ds-nav{display:flex;align-items:center;gap:4px} .ds-nav-item{display:flex;align-items:center;min-height:44px;padding:0 12px;color:var(--muted-foreground,#737373);font:500 14px/1 system-ui,'Noto Sans SC','PingFang SC',sans-serif;text-decoration:none;transition:color 160ms cubic-bezier(.2,0,0,1)} .ds-nav-item:hover{color:var(--foreground-highlighted,#171717)} .ds-nav-item:focus-visible{outline:none;box-shadow:0 0 0 2px var(--ring,#806400)} .ds-nav-item-on{color:var(--foreground-highlighted,#171717);font-weight:700;text-decoration:underline;text-decoration-color:var(--primary,#F0DB4F);text-decoration-thickness:2px;text-underline-offset:8px}"
+    },
+    {
+      "name": "List Count Caption",
+      "kind": "custom",
+      "description": "列表的计数说明行：14px muted 贴着规则线，不升级成第二个标题。",
+      "html": "<div class=\"ds-count\">共 27 期视频</div><div class=\"ds-count-rule\"></div>",
+      "css": ".ds-count{margin:0 0 12px;font:400 14px/1 system-ui,'Noto Sans SC','PingFang SC',sans-serif;color:var(--muted-foreground,#737373);font-variant-numeric:tabular-nums} .ds-count-rule{border-top:1px solid var(--border,#e5e5e5)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Yellow Broadsheet",
+    "overview": "prop.show 用一张报纸的方式编排前端内容：纸面、油墨、栏宽、发丝线。信号黄是唯一有饱和度的颜色，它出现的地方就是版面在说话的地方——一条最新节目、一个被选中的筛选项。其余部分全是纸白、油墨黑和中性灰阶，靠字号、字重和栏宽建立层级，而不是靠颜色、圆角或投影。它读起来像一个在职开发者整理的工作台，而不是一个营销页面。\n\n排版按访问者的任务分配空间：列表行只放标题、元信息、摘要和真实平台入口；详情页收窄到 48rem 的阅读栏；筛选块压在标题下方，列表则拉开距离。装饰性的纹理、网格底纹、发光边框和渐变文字都不属于这个系统，颜色的稀有本身就是它的分量。",
+    "keyCharacteristics": [
+      "直角优先：默认 0 圆角，只有头像（3.2px）和 shadcn 自带的按钮/骨架（4.8px）例外",
+      "1px 发丝线承担全部分隔与描边，没有阴影、没有玻璃、没有光晕",
+      "信号黄在任一屏只做一块实心面，同一屏内不复用第二处饱和色",
+      "明暗两套共用一套语义令牌，深色下靠色值分层（press-ink-700 描边对 press-ink-900 底）",
+      "中文承担全部导航与操作，不用 9–10px 大写字母眼眉标签"
+    ],
+    "rules": [
+      { "name": "The Ink-Gold Rule", "body": "信号黄只做填充，不做小字。浅色模式下强调文字与焦点环用油墨金 (#806400)，深色模式下才允许用信号黄本身。", "section": "colors" },
+      { "name": "The One Block Rule", "body": "一屏只给一块饱和色。精选面板是黄色，就不能再有第二个黄色区块；选中筛选项已是实心黄，别的控件就退回描边。", "section": "colors" },
+      { "name": "The Visible Hairline Rule", "body": "深色模式下描边必须是 press-ink-700。press-ink-800 对 press-ink-900 只有 1.18:1，等于没有线。", "section": "colors" },
+      { "name": "The No-Eyebrow Rule", "body": "标题上方不加小字标签。分类、类型这类元信息放在标题下方，作为 13px 的次要行——工作流行与视频行用同一种语序：标题 → 元信息 → 摘要 → 标签/平台。", "section": "typography" },
+      { "name": "The Quiet Count Rule", "body": "列表的计数（共 27 期视频）是 14px muted 的说明行，贴在自己的规则线上方 12px，不升级为标题。", "section": "typography" },
+      { "name": "The Flat-By-Default Rule", "body": "需要强调一个面时，先试描边，再试色值阶差。加阴影是这个系统的最后手段，而且答案通常是「不加」。", "section": "elevation" }
+    ],
+    "dos": [
+      "Do 让信号黄每屏只出现一次实心块，其余部分保持纸白/版面灰。",
+      "Do 用 1px 发丝线和色值阶差表达层级；深色描边取 press-ink-700（1.7:1）。",
+      "Do 浅色模式把强调文字和焦点环放在油墨金 #806400（对白底 4.9:1）。",
+      "Do 保持 0 圆角，例外只有 3.2px 头像与 shadcn 出厂的 4.8px。",
+      "Do 列表行统一语序：标题 → 元信息 → 摘要 → 标签/平台；元信息永远在标题下方。",
+      "Do 列表计数作为 14px muted 说明行，贴着规则线，不写成第二个标题。"
+    ],
+    "donts": [
+      "Don't 用信号黄做小字、图标或描边（白底 1.4:1，不可读）。",
+      "Don't 给列表行、说明块或面板加左侧色条。",
+      "Don't 加渐变文字、玻璃模糊、零偏移的彩色光晕，或把 shadow-xs 扩散到按钮之外。",
+      "Don't 在标题上方加小号大写标签（eyebrow），也不要用 9–10px 字号的标签行。",
+      "Don't 引入第二套图标风格、第二套圆角尺度或第二个容器宽度。",
+      "Don't 用装饰纹理、网格底纹或大号字母填充空白区域。"
+    ]
+  }
+}

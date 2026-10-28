@@ -3,6 +3,7 @@ import type { Props } from '@/pages/series/yisi.server'
 import IconRouteOff from '~icons/tabler/route-off'
 import SeriesYisiHero from '@/pages/series/_components/YisiHero.vue'
 import VideoList from '@/pages/videos/_components/List.vue'
+import { seriesConfig } from '@/series-config'
 
 defineProps<Props>()
 </script>
@@ -11,7 +12,7 @@ defineProps<Props>()
     <main>
         <SeriesYisiHero :count="seriesVideos.length" />
 
-        <section v-if="pending" id="curriculum" class="my-8 md:my-10">
+        <section v-if="pending" id="curriculum" class="mt-10 mb-8 md:mt-16 md:mb-10">
             <div class="mb-8 border-b border-default pb-5">
                 <UiSkeleton class="h-8 w-64 lg:h-10" />
             </div>
@@ -44,6 +45,8 @@ defineProps<Props>()
             title="完整课程目录"
             unit="集"
             numbering="series"
+            index
+            :phases="seriesConfig.yisi.phases"
         />
     </main>
 </template>

@@ -73,7 +73,7 @@ Use actual source when implementation and this reference diverge. Record intenti
 - Quiet filters with a clear selected state. Categories stay available; a long tag list may use native details/summary with the current selection visible.
 - Item title dominates; metadata and summary help selection. Show only available platforms.
 - Real episode numbers stay secondary. Global and series numbering must be unambiguous.
-- All three archives share one structure: a section heading (`全部视频` / `全部速报` / `全部作品`) with `共 N 期/条/件` on the right, rows that align with that heading, and one pagination band closed by a single rule.
+- All three archives share one structure: page title and filters as one group, a quiet `共 N 期/条/件` count caption instead of a second heading, rows that align with it, and one pagination band closed by a single rule. Do not repeat the page title in a section heading.
 - Filter controls always show a border when unselected; the selected one is brand fill with dark text. A result count appears only while a filter is active.
 - Pagination updates the URL, retains filters, and works with reload/back/forward. Page numbers stay visible at small widths; only the first/last-edge controls drop.
 

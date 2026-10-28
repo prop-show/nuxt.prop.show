@@ -312,9 +312,15 @@ body {
     white-space: pre-line;
 }
 
-/* 两种主题共用半透明中性灰底，覆盖 Shiki 的内联主题背景。 */
+/* 代码块靠发丝线分层，不靠底色：Shiki 的 github-light token 对白底只有 4.57:1，
+   任何灰底都会把它拖到 AA 以下；深色下标底板能拉开层次，对比也很充足。 */
 .shiki {
-    background-color: #8881 !important;
+    background-color: transparent !important;
+    border: 1px solid var(--border);
+}
+
+.dark .shiki {
+    background-color: var(--surface-elevated) !important;
 }
 
 html.dark .shiki,

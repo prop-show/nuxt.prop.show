@@ -11,10 +11,9 @@ defineProps<Props>()
     <main>
         <NewsHero />
 
-        <section v-if="pending" class="my-8 md:my-10" aria-label="正在加载速报">
-            <div class="mb-6 flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
-                <UiSkeleton class="h-[31px] w-32 lg:h-[39px] lg:w-40" />
-                <UiSkeleton class="h-5 w-20" />
+        <section v-if="pending" class="mt-10 mb-8 md:mt-16 md:mb-10" aria-label="正在加载速报">
+            <div class="mb-6">
+                <UiSkeleton class="h-4 w-20" />
             </div>
 
             <div class="border-y border-default">

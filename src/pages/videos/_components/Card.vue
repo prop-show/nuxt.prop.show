@@ -7,8 +7,11 @@ import { videoEpisode } from '@/utils/video'
 const props = withDefaults(defineProps<{
     video: Video
     numbering?: 'global' | 'series'
+    /** 系列索引是目录，不是推荐位：不重复每行相同的摘要与分类。 */
+    index?: boolean
 }>(), {
     numbering: 'global',
+    index: false,
 })
 
 const displayEpisode = computed(() => props.numbering === 'series'
@@ -17,6 +20,9 @@ const displayEpisode = computed(() => props.numbering === 'series'
 
 // 全局归档里的序号是全局节目号，所以旁边要带上系列自己的集数，避免读成系列集数。
 const metaLabel = computed(() => {
+    if (props.index)
+        return ''
+
     if (!props.video.series)
         return props.video.category
 
@@ -35,19 +41,21 @@ const availablePlatforms = computed(() => siteConfig.platforms.filter(platform =
 <template>
     <SiteLink
         :to="video.path"
-        class="content-link group grid gap-5 border-b border-default py-7 outline-none transition-colors last:border-b-0 hover:bg-elevated/55 focus-visible:bg-elevated/55 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
-        :class="video.cover ? 'sm:grid-cols-[minmax(0,1fr)_9rem] sm:items-start' : ''"
+        class="content-link group grid gap-5 border-b border-default outline-none transition-colors last:border-b-0 hover:bg-elevated/55 focus-visible:bg-elevated/55 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
+        :class="[video.cover ? 'sm:grid-cols-[minmax(0,1fr)_9rem] sm:items-start' : '', index ? 'py-5' : 'py-7']"
     >
         <div class="min-w-0">
             <h3 class="text-[22px] leading-[1.4] font-bold text-highlighted transition-colors group-hover:text-primary">
                 {{ video.title }}
             </h3>
-            <p class="mt-2 truncate text-[13px] leading-6 text-muted" :title="metaLabel">
+            <p class="mt-2 truncate text-[13px] leading-6 text-muted" :title="metaLabel || undefined">
                 <span class="font-mono">{{ numbering === 'series' ? 'EP.' : '第' }}{{ String(displayEpisode).padStart(2, '0') }}{{ numbering === 'global' ? '期' : '' }}</span>
-                <span class="mx-2" aria-hidden="true">·</span>
-                {{ metaLabel }}
+                <template v-if="metaLabel">
+                    <span class="mx-2" aria-hidden="true">·</span>
+                    {{ metaLabel }}
+                </template>
             </p>
-            <p class="mt-2 line-clamp-2 text-base leading-7 text-muted">
+            <p v-if="!index" class="mt-2 line-clamp-2 text-base leading-7 text-muted">
                 {{ video.description }}
             </p>
             <div v-if="availablePlatforms.length" class="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-[13px] text-muted">

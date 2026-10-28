@@ -4,14 +4,17 @@ import IconArrowLeft from '~icons/tabler/arrow-left'
 import IconArrowRight from '~icons/tabler/arrow-right'
 import IconExternalLink from '~icons/tabler/external-link'
 import IconSatelliteOff from '~icons/tabler/satellite-off'
+import { useArchiveBack } from '@/utils/archive-back'
 
 defineProps<Props>()
+
+const backTo = useArchiveBack('/news')
 </script>
 
 <template>
     <main class="mx-auto max-w-3xl">
         <div class="my-8 md:my-12">
-            <SiteLink to="/news" class="group inline-flex items-center gap-2 text-sm font-medium tracking-[0.16em] text-muted transition-colors hover:text-highlighted">
+            <SiteLink :to="backTo" class="group -my-2 inline-flex items-center gap-2 py-2 text-sm font-medium tracking-[0.16em] text-muted transition-colors hover:text-highlighted">
                 <IconArrowLeft aria-hidden="true" class="size-4 transition-transform group-hover:-translate-x-1" />
                 返回速报
             </SiteLink>
@@ -33,21 +36,21 @@ defineProps<Props>()
 
         <template v-else-if="letter">
             <header>
+                <!-- impeccable-disable-next-line design-system-font-size — 28/32/40 是 DESIGN.md 记录的 Detail Title 响应式三档 -->
                 <h1 class="text-[1.75rem] leading-[1.3] font-bold tracking-[-0.02em] sm:text-[2rem] lg:text-[2.5rem]">
                     {{ letter.title }}
                 </h1>
 
                 <div class="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm font-medium text-muted">
                     <time :datetime="letter.date">{{ publishedAt.date }} {{ publishedAt.time }}</time>
-                </div>
-                <div v-if="letter.source" class="mt-6 flex flex-col items-start gap-3 bg-elevated/60 p-5 sm:p-6">
-                    <p class="text-sm leading-6 text-muted">
-                        这是一条速报摘要，完整信息请查看原始来源。
-                    </p>
-                    <UiButton :to="letter.source" target="_blank" rel="noopener noreferrer" size="lg" class="min-h-12 w-full sm:w-auto">
-                        <IconExternalLink aria-hidden="true" />
-                        阅读原文
-                    </UiButton>
+                    <SiteLink
+                        v-if="letter.source"
+                        :to="letter.source"
+                        class="inline-flex items-center gap-1 underline decoration-default underline-offset-4 outline-none transition-colors hover:text-highlighted focus-visible:ring-2 focus-visible:ring-ring"
+                    >
+                        来源
+                        <IconExternalLink aria-hidden="true" class="size-3.5" />
+                    </SiteLink>
                 </div>
             </header>
 

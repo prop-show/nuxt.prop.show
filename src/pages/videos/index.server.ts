@@ -12,7 +12,8 @@ export interface Props {
     latestVideo: Video | null
     pending: boolean
     categories: string[]
-    tags: string[]
+    /** 标签及其在当前分类下的命中数，按命中数倒序。 */
+    tags: { name: string, count: number }[]
     seriesCount: number
     activeCategory: string
     activeTag: string
@@ -21,6 +22,20 @@ export interface Props {
     currentPage: number
     pageSize: number
     paginated: Video[]
+}
+
+/** 标签按当前分类下的命中数排序：选之前就能看出会不会落空。 */
+function tagCounts(activeCategory: string) {
+    const counts = new Map<string, number>()
+    for (const video of videos) {
+        if (activeCategory && video.category !== activeCategory)
+            continue
+        for (const tag of video.tags)
+            counts.set(tag, (counts.get(tag) ?? 0) + 1)
+    }
+    return [...counts.entries()]
+        .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+        .map(([name, count]) => ({ name, count }))
 }
 
 export const loader = defineHandler((c): Props => {
@@ -38,7 +53,7 @@ export const loader = defineHandler((c): Props => {
         latestVideo: videos[0] ?? null,
         pending: false,
         categories: [...new Set(videos.map(video => video.category))],
-        tags: [...new Set(videos.flatMap(video => video.tags))].sort(),
+        tags: tagCounts(activeCategory),
         seriesCount: videos.filter(video => video.series === seriesConfig.yisi.name).length,
         activeCategory,
         activeTag,

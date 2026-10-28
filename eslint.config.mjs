@@ -4,7 +4,7 @@ export default antfu({
     typescript: true,
     vue: true,
     stylistic: { indent: 4 },
-    ignores: ['.taste-skill/**', '.vscode/**', 'pnpm-workspace.yaml', '.void/**', 'dist/**', 'src/auto-imports.d.ts', 'src/components.d.ts', 'content/**', 'pnpm-lock.yaml', 'void.lock.json', 'src/components/ui/**'],
+    ignores: ['.taste-skill/**', '.vscode/**', '.impeccable/**', 'DESIGN.md', 'PRODUCT.md', 'pnpm-workspace.yaml', '.void/**', 'dist/**', 'src/auto-imports.d.ts', 'src/components.d.ts', 'content/**', 'pnpm-lock.yaml', 'void.lock.json', 'src/components/ui/**'],
     rules: { 'vue/multi-word-component-names': 'off' },
 }, {
     files: ['scripts/**/*.mjs'],

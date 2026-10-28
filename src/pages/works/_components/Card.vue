@@ -15,17 +15,17 @@ defineProps<{
         class="group grid gap-5 border-b border-default py-7 outline-none transition-colors last:border-b-0 hover:bg-elevated/55 focus-visible:bg-elevated/55 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring lg:grid-cols-[minmax(0,1fr)_auto_1.25rem] lg:items-center"
     >
         <div class="min-w-0">
-            <div class="text-[13px] leading-6 text-muted">
-                {{ work.type }}
-            </div>
-            <h3 class="mt-2 text-[22px] leading-[1.4] font-bold text-highlighted transition-colors group-hover:text-primary">
+            <h3 class="text-[22px] leading-[1.4] font-bold text-highlighted transition-colors group-hover:text-primary">
                 {{ work.title }}
             </h3>
+            <p class="mt-2 truncate text-[13px] leading-6 text-muted">
+                {{ work.type }}
+            </p>
             <p class="mt-2 line-clamp-2 text-base leading-7 text-muted">
                 {{ work.description }}
             </p>
 
-            <TagList v-if="work.tags?.length" :tags="work.tags" :limit="4" class="mt-3" />
+            <TagList v-if="work.tags?.length" :tags="work.tags.filter(tag => tag !== work.type)" :limit="4" class="mt-3" />
         </div>
 
         <div class="min-w-0 lg:max-w-[16rem]">

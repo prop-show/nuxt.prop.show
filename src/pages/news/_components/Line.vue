@@ -9,8 +9,11 @@ defineProps<{
 </script>
 
 <template>
-    <section class="my-8 md:my-10" aria-label="速报列表">
-        <SectionHeading title="全部速报">
+    <section class="mt-10 mb-8 md:mt-16 md:mb-10" aria-label="速报列表">
+        <h2 class="sr-only">
+            速报列表
+        </h2>
+        <SectionHeading>
             <span class="text-sm text-muted tabular-nums">
                 共 {{ total }} 条
             </span>

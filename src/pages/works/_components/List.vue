@@ -14,8 +14,11 @@ const creatorsByKey = computed(() => new Map(
 </script>
 
 <template>
-    <section class="my-8 md:my-10">
-        <SectionHeading title="全部作品">
+    <section class="mt-10 mb-8 md:mt-16 md:mb-10" aria-label="作品列表">
+        <h2 class="sr-only">
+            作品列表
+        </h2>
+        <SectionHeading>
             <span class="text-sm text-muted tabular-nums">
                 共 {{ total }} 件
             </span>

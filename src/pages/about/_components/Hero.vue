@@ -1,5 +1,6 @@
 <template>
     <header class="my-8 md:my-12">
+        <!-- impeccable-disable-next-line design-system-font-size — 32/40/48 是 DESIGN.md 记录的 Page Title 响应式三档 -->
         <h1 class="text-[2rem] leading-[1.2] font-bold tracking-[-0.025em] sm:text-[2.5rem] lg:text-5xl">
             关于 prop.show
         </h1>

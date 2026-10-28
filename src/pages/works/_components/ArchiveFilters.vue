@@ -13,7 +13,7 @@ function creatorKey(creator: Creator) {
 </script>
 
 <template>
-    <section class="my-8 md:my-10">
+    <section>
         <div>
             <div class="flex flex-col gap-2 py-2 sm:flex-row sm:items-start sm:gap-4">
                 <div class="py-3 text-[13px] text-muted sm:shrink-0">
@@ -47,9 +47,8 @@ function creatorKey(creator: Creator) {
             </div>
         </div>
 
-        <div v-if="activeAuthor || !resultCount" class="mt-4 flex items-center justify-between gap-4 text-sm text-muted">
-            <span v-if="!resultCount">找到 0 件作品</span>
-            <SiteLink v-if="activeAuthor" preserve-scroll to="/works" class="outline-none transition-colors hover:text-highlighted focus-visible:ring-2 focus-visible:ring-ring">
+        <div v-if="activeAuthor && resultCount" class="mt-4 flex justify-end text-sm text-muted">
+            <SiteLink v-if="activeAuthor" preserve-scroll to="/works" class="-my-3 inline-flex min-h-11 items-center outline-none transition-colors hover:text-highlighted focus-visible:ring-2 focus-visible:ring-ring">
                 清除筛选
             </SiteLink>
         </div>
