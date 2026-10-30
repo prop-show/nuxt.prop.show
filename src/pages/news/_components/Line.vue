@@ -26,9 +26,15 @@ defineProps<{
                 :to="item.path"
                 class="content-link group block border-b border-default py-7 outline-none transition-colors last:border-b-0 hover:bg-elevated/55 focus-visible:bg-elevated/55 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
             >
-                <time :datetime="contentDate(item.date)?.toISOString()" class="block text-[13px] leading-6 text-muted tabular-nums">
-                    {{ contentDateText(item.date) }}
-                </time>
+                <p class="text-[13px] leading-6 text-muted">
+                    <time :datetime="contentDate(item.date)?.toISOString()" class="tabular-nums">
+                        {{ contentDateText(item.date) }}
+                    </time>
+                    <template v-if="item.kind">
+                        <span class="mx-2" aria-hidden="true">·</span>
+                        {{ item.kind }}
+                    </template>
+                </p>
 
                 <div class="mt-2 min-w-0">
                     <h3 class="text-[22px] leading-[1.4] font-bold text-highlighted transition-colors group-hover:text-primary">

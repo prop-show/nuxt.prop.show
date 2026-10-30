@@ -38,6 +38,7 @@ export interface Video extends ContentEntry {
 export interface News extends ContentEntry {
     date: string
     source?: string
+    kind?: '周报'
 }
 
 export interface Work extends ContentEntry {

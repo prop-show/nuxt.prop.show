@@ -49,6 +49,7 @@ describe('content generation', () => {
         ['videos', 'category: Test\nseries: ""', 'series'],
         ['videos', 'category: Test\nrepository: invalid', 'repository'],
         ['news', 'date: 2026-10-20\nsource: invalid', 'source'],
+        ['news', 'date: 2026-10-20\nkind: 专题', 'kind'],
         ['works', 'author: Example\ntype: Tool\nwebsite: invalid', 'website'],
     ])('rejects invalid %s metadata (%s)', async (collection, fields, field) => {
         await writeFile(join(root, `content/${collection}/example.md`), `---\ntitle: Example\n${fields}\n---\nHello.`)
@@ -59,8 +60,10 @@ describe('content generation', () => {
         await writeFile(join(root, 'content/videos/example.md'), article.replace('category: Test', 'category: Test\norder: null\ntags: null'))
         await writeFile(join(root, 'content/works/example.md'), '---\ntitle: Work\nauthor: Example\ntype: Tool\ndescription: "  "\n---\n')
         await writeFile(join(root, 'content/creators/example.yml'), 'name: Example\navatar: /avatar.png\nhref: /about\nrole: Author\n')
+        await writeFile(join(root, 'content/news/example.md'), '---\ntitle: Example\ndate: 2026-10-20\nkind: 周报\n---\nHello.')
         const content = await generateContent(root)
         expect(content.videos[0]).toMatchObject({ order: 0, tags: [], platforms: {}, description: 'Hello world.' })
+        expect(content.news[0]).toMatchObject({ kind: '周报' })
         expect(content.works[0]).toMatchObject({ order: 0, tags: [], description: 'Work' })
         expect(content.creators[0]).toMatchObject({ slug: 'example', order: 0 })
     })

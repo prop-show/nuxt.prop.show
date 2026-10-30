@@ -1,0 +1,4 @@
+interface:
+  display_name: "JS 技术周报"
+  short_description: "扫描本周 JS 生态真实新闻与版本发布，核实出处后写成 prop.show 周报"
+  default_prompt: "使用 $write-js-weekly 写本周的周报，只写能追到出处的真事，并在发布前验证链接与渲染。"

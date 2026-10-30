@@ -43,6 +43,7 @@ const backTo = useArchiveBack('/news')
 
                 <div class="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm font-medium text-muted">
                     <time :datetime="letter.date">{{ publishedAt.date }} {{ publishedAt.time }}</time>
+                    <span v-if="letter.kind">{{ letter.kind }}</span>
                     <SiteLink
                         v-if="letter.source"
                         :to="letter.source"

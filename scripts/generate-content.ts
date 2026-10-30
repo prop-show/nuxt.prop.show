@@ -34,6 +34,8 @@ const videoSchema = z.object({
 const newsSchema = z.object({
     date: requiredText,
     source: z.url().optional(),
+    /** 周报相对速报只是一条带角标的稿件；缺省即默认形态，不需要标注。 */
+    kind: z.literal('周报').optional(),
 })
 const workSchema = z.object({
     author: requiredText,
