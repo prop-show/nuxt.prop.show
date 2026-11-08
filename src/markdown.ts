@@ -3,6 +3,7 @@ import { renderHtmlFromDocument } from '@comark/html'
 import { createMarkdownParser } from 'comark'
 import components from 'comark/plugins/components'
 import html from 'comark/plugins/html'
+import linkify from 'comark/plugins/linkify'
 import security from 'comark/plugins/security'
 import shiki from 'comark/plugins/shiki'
 import ini from 'shiki/dist/langs/ini.mjs'
@@ -12,7 +13,7 @@ import githubLight from 'shiki/dist/themes/github-light.mjs'
 // Existing articles embed HTML badges and screenshots; filter active content and unsafe URLs.
 const parse = createMarkdownParser({
     registerDefaultPlugins: false,
-    plugins: [components(), html(), shiki({
+    plugins: [components(), html(), linkify(), shiki({
         themes: { light: githubLight, dark: githubDark },
         preStyles: true,
         // Defaults cover js/ts/tsx/vue/bash/json/yaml; ini is used by the npm article.
@@ -24,7 +25,6 @@ const parse = createMarkdownParser({
     })],
     autoUnwrap: false,
     autoClose: false,
-    linkify: true,
 })
 
 const renderers: Record<string, NodeHandler> = Object.fromEntries(
